@@ -1,0 +1,8 @@
+﻿body {
+}
+.carousel-inner {
+    height: 600px;
+    overflow: hidden;
+    max-height: 80%;
+    max-height: 80vh;
+}
