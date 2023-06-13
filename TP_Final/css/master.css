@@ -1,0 +1,11 @@
+﻿body {
+}
+.bg-orange {
+    /*background-color: #f27600 !important;*/
+    background-color: #EC692B !important;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white !important;
+    
+}
