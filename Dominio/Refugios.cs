@@ -9,6 +9,7 @@ namespace Dominio
     internal class Refugios
     {
         public int Id { get; set; }
+        public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
     }

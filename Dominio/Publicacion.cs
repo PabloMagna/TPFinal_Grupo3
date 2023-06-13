@@ -14,5 +14,6 @@ namespace Dominio
         public int IdUsuario { get; set; }
         public string Descripcion { get; set; }
         public int Estado { get; set; }
+        public DateTime FechaHora { get; set; }
     }
 }
