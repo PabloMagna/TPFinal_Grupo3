@@ -21,15 +21,16 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Publicacion aux= new Publicacion();
+                    Publicacion aux = new Publicacion();
                     aux.Id = datos.Lector.GetInt32(0);
                     aux.Titulo = (string)datos.Lector["Titulo"];
                     aux.IdMascota = (int)datos.Lector["IdMascota"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.FechaHora = (DateTime)datos.Lector["FchaHora"];
 
                     publicaciones.Add(aux);
                 }
+                return publicaciones;
 
             }
             catch (Exception)
@@ -37,8 +38,11 @@ namespace Negocio
 
                 throw;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
-            return publicaciones;
         }
     }
 }
