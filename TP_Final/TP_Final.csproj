@@ -69,7 +69,9 @@
   <ItemGroup>
     <Content Include="css\master.css" />
     <Content Include="css\home.css" />
+    <Content Include="css\galeria.css" />
     <Content Include="default.aspx" />
+    <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Perfil.aspx" />
     <Content Include="Web.config" />
@@ -81,6 +83,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="galeria.aspx.cs">
+      <DependentUpon>galeria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="galeria.aspx.designer.cs">
+      <DependentUpon>galeria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

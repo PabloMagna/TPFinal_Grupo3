@@ -22,26 +22,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="default.aspx"><iconify-icon icon="fa-solid:paw"></iconify-icon>&nbsp;Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Quiénes somos</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Registrarme
-                    </a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Personas</a></li>
-                    <li><a class="dropdown-item" href="#">Refugios</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Ya tengo una cuenta</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">Ingresar</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="default.aspx"><iconify-icon icon="fa-solid:paw"></iconify-icon>&nbsp;Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Quiénes somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="galeria.aspx">En adopción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ingresar</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Registrarme
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Personas</a></li>
+                        <li><a class="dropdown-item" href="#">Refugios</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ya tengo una cuenta</a></li>
+                        </ul>
+                    </li>               
                 </ul>                
             </div>
             </div>
