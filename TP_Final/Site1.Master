@@ -26,10 +26,13 @@
                         <a class="nav-link active" aria-current="page" href="default.aspx"><iconify-icon icon="fa-solid:paw"></iconify-icon>&nbsp;Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Quiénes somos</a>
+                        <a class="nav-link" href="default.aspx#titulo1">Quiénes somos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="galeria.aspx">En adopción</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Publicar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Ingresar</a>

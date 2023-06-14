@@ -5,4 +5,15 @@
     overflow: hidden;
     max-height: 80%;
     max-height: 80vh;
+    margin-bottom: 20px;
+}
+.quienes_somos {
+    background-color: #D2E3EB;
+    height: auto;
+    padding: 30px 0;
+    text-align: center;
+}
+
+#titulo1 {
+    color: #24566E;
 }
