@@ -67,10 +67,12 @@
     <Content Include="css\master.css" />
     <Content Include="css\home.css" />
     <Content Include="css\galeria.css" />
+    <Content Include="css\formPublicacion.css" />
     <Content Include="default.aspx" />
     <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Perfil.aspx" />
+    <Content Include="formPublicacion.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +101,13 @@
       <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="formPublicacion.aspx.cs">
+      <DependentUpon>formPublicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="formPublicacion.aspx.designer.cs">
+      <DependentUpon>formPublicacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

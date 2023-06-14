@@ -32,7 +32,16 @@
         </div>
     </section>
     <section class="quienes_somos">
-        <h1 id="titulo1">Quiénes somos</h1>        
+        <h1 id="titulo1">Quiénes somos</h1>  
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis turpis dui. Morbi tristique nisl velornareauctor.Sedvulputate magna et nisi vestibulum, nec vulputate nibh commodo. Cras fermentum eros id sagittis semper. Integer vulputate, massa at dignissim gravida, felis enim ultrices nunc, vel aliquet dui quam ut ex. Donec arcu dolor, placerat eu velit ac, gravida consequat neque. Proin porta sagittis condimentum. Nulla sit amet imperdiet purus. Suspendisse ullamcorper justo aliquet mollis laoreet.<br />
+            Ut augue eros, mollis sed scelerisque ac, bibendum sit amet diam. Phasellus ut metus non ante tempor dignissim. Duis fringilla quis enim sed feugiat. Suspendisse sit amet diam quis nunc molestie commodo in ullamcorper diam. Nullam eget eros elementum, pharetra eros eget, luctus tortor. Nulla non est orci. Vestibulum tempus libero at neque sagittis, a iaculis erat rhoncus. Fusce ut fringilla lectus. Etiam a mi eget eros eleifend tincidunt sed ullamcorper lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sagittis hendrerit ligula, aliquam finibus tellus pellentesque sit amet. Sed sagittis blandit arcu a dapibus. Etiam mollis et diam a viverra.
+        </p>
+        <h3>Nuestra misión</h3>
+        <p>
+            Nulla at maximus dolor. Vestibulum ut ultrices erat. Phasellus tristique varius porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas viverra volutpat risus vel tincidunt. Duis sollicitudin in est vitae congue. In pulvinar turpis eu erat porttitor, at hendrerit nunc pulvinar. Suspendisse sed condimentum turpis, a rhoncus libero.
+        </p>          
+        
     </section>
 
 </asp:Content>

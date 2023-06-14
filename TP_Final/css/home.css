@@ -3,17 +3,26 @@
 .carousel-inner {
     height: 600px;
     overflow: hidden;
-    max-height: 80%;
-    max-height: 80vh;
-    margin-bottom: 20px;
+    max-height: 100%;
+    max-height: 100vh;
+    margin-bottom: 60px;
 }
 .quienes_somos {
-    background-color: #D2E3EB;
     height: auto;
     padding: 30px 0;
     text-align: center;
+    margin-top: 60px;
 }
+
 
 #titulo1 {
     color: #24566E;
+    background-color: #D2E3EB;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.quienes_somos p {
+    margin: 30px 20%;
+    color: #2E383D;
 }
