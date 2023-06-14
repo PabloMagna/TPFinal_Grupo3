@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select IDPublicacion, IDMascota,IDUsuario,Descripcion,Titulo, FchaHora, Estado from Publicacion");
+                datos.setearConsulta("select IDPublicacion, IDMascota,IDUsuario,Descripcion,Titulo, FechaHora, Estado from Publicacion");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,7 +26,7 @@ namespace Negocio
                     aux.Titulo = (string)datos.Lector["Titulo"];
                     aux.IdMascota = (int)datos.Lector["IdMascota"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.FechaHora = (DateTime)datos.Lector["FchaHora"];
+                    aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
 
                     publicaciones.Add(aux);
                 }

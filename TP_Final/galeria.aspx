@@ -14,11 +14,11 @@
             <% foreach (var item in publicaciones) { %>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="<%https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRteDCJTNhFoqZxxumlkvXtuFfktSVlkCt-KavF5Gul&s %>" class="card-img-top" alt="<% %>">
+                        <img src="<%=obtenerPrimeraImagen(item.IdMascota) %>" class="card-img-top" alt="<% %>">
                         <div class="card-body">
                             <h5 class="card-title"><%= item.Titulo %></h5>
                             <p class="card-text"><%= item.Descripcion %></p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
+                            <a href="#" class="btn btn-primary" style="background-color:#C45F2E">Ver más</a> 
                         </div>
                     </div>
                 </div>
