@@ -17,5 +17,6 @@ namespace Dominio
         public string Provincia { get; set; }
         public string Telefono { get; set; }
         public int Estado { get; set; }
+        public bool EsAdmin { get; set; }
     }
 }
