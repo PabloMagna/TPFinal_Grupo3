@@ -17,11 +17,11 @@
                     <h2 class="fw-bold text-center py-5">Bienvenido</h2>
                     <div class="mb-4">
                         <label for="tbxEmail" class="form-label">Correo Electrónico</label>
-                        <input type="email" id="tbxEmail" class="form-control">
+                        <asp:TextBox runat="server" type="email" id="tbxEmail" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="mb-4">
-                        <label for="txbContrasenia" class="form-label">Contraseña</label>
-                        <input type="password" id="txbContrasenia" class="form-control">
+                        <label for="tbxContrasenia" class="form-label">Contraseña</label>
+                        <asp:TextBox runat="server" type="password" id="tbxContrasenia" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="d-grid">
                         <asp:Button runat="server" ID="btnInicioSesion" CssClass="btn btn-primary custom-btn" 
