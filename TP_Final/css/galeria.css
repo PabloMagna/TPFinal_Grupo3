@@ -7,3 +7,9 @@
 #titulo {
     color: #24566E;
 }
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta la altura deseada */
+    object-fit: contain;
+    object-position: center;
+}
