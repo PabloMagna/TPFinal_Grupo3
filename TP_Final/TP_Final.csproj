@@ -64,6 +64,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaCuenta.aspx" />
+    <Content Include="css\AltaCuenta.css" />
     <Content Include="css\master.css" />
     <Content Include="css\home.css" />
     <Content Include="css\galeria.css" />
@@ -76,6 +78,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaCuenta.aspx.cs">
+      <DependentUpon>AltaCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaCuenta.aspx.designer.cs">
+      <DependentUpon>AltaCuenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
