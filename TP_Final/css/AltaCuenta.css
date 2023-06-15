@@ -15,14 +15,14 @@ section {
 
 .row {
     margin: auto;
-    margin-top:15px;
-    background:rgb(255, 94, 0);
-    width:500px;
-    min-height:600px;
-    padding:30px;
+    margin-top: 15px;
+    background: #C45F2E;
+    width: 500px;
+    min-height: 600px;
+    padding: 30px;
     flex: 1 1 300px;
-    max-width:600px;
-    justify-self:center;
+    max-width: 600px;
+    justify-self: center;
 }
 
 div.col-4{

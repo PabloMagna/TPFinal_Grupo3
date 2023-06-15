@@ -7,8 +7,7 @@ body {
     min-height: 100%;
     min-height: 100vh;
 }
-.bg-orange {
-    /*background-color: #f27600 !important;*/
+.bg-orange {   
     background-color: #C45F2E !important;
 }
 

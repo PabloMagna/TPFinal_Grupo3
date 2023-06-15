@@ -7,33 +7,54 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <section class="portada">
-        <h1 id="titulo">Formulario de alta de mascota en adopción</h1>
-        <h4><em>Necesitaremos que completes los siguientes datos.</em></h4>
+        <h1 id="titulo">Publicación de mascota en adopción</h1>
+        <h4><em>Necesitaremos que completes algunos datos.</em></h4>
     </section>
     <section class="formulario">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Especie</label>
-          <input type="text" class="form-control" id="" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Raza</label>
-          <input type="text" class="form-control" id="" placeholder="">
-        </div>
-         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Tamaño</label>
-          <input type="text" class="form-control" id="" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Edad</label>
-          <input type="number" class="form-control" id="" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-          <textarea class="form-control" id="" rows="10"></textarea>
+        <div class="row">
+            <div class="col-4">
+                <asp:Label ID="lbTitulo" runat="server" CssClass="titulo">Formulario de alta de Publicación</asp:Label>
+
+                <div class="mb-3">
+                    <label class="form-label" >Nombre de la Mascota </label>
+                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" placeholder="Boby"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" >Especie </label>
+                    <asp:TextBox ID="tbEspecie" runat="server" class="form-control" placeholder="Perro"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" >Raza </label>
+                    <asp:TextBox ID="TbRaza" runat="server" class="form-control" placeholder="Bulldog"></asp:TextBox>
+                </div>
+                   <div class="mb-3">
+                    <label class="form-label">Edad</label>
+                    <asp:TextBox ID="TextBox1" runat="server" Type="number" min="1" class="form-control"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Seleccione según corresponda</label>
+                    <asp:DropDownList ID="ddlEdad" runat="server" class="form-select" AutoPostBack="false">
+                        <asp:ListItem Selected="True">Años</asp:ListItem>
+                        <asp:ListItem >Meses</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                  <div class="mb-3">
+                    <label class="form-label">Sexo</label>
+                    <asp:DropDownList ID="ddlSexo" runat="server" class="form-select" AutoPostBack="false">
+                        <asp:ListItem Selected="True">Hembra</asp:ListItem>
+                        <asp:ListItem >Macho</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Breve descripción de la mascota</label>
+                    <asp:TextBox ID="tbDescripcion" runat="server" class="form-control"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Comentadios sobre la publicación</label>
+                    <asp:TextBox ID="TextBox2" runat="server" class="form-control" placeholder="Condiciones de adopción, necesidades de la mascota, etc."></asp:TextBox>
+                </div>
+         
+            </div>        
         </div>
     </section>
 </asp:Content>

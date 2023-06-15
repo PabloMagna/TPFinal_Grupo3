@@ -12,4 +12,9 @@
     height: 200px; /* Ajusta la altura deseada */
     object-fit: contain;
     object-position: center;
+    background-color: #D2E3EB;
+}
+
+.card{
+    margin: 25px 10px !important;
 }
