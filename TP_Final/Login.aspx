@@ -11,7 +11,10 @@
             <div class="col-md-6">
                 <div class="border rounded p-4">
                     <div class="text-end">
-                        <img width="48" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/2056/posts/38863/image-upload/5-AnimalLogoDesign-LionLogoDesign.jpg" alt="Alternate Text" />
+                        <iconify-icon icon="noto-v1:cat" width="48px"></iconify-icon>
+                        <!-- 
+                         <img width="48" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/2056/posts/38863/image-upload/5-AnimalLogoDesign-LionLogoDesign.jpg" alt="Alternate Text" /> 
+                        -->
                     </div>
                     <h2 class="fw-bold text-center py-5">Bienvenido</h2>
                     <div class="mb-4">

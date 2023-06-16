@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= item.Titulo %></h5>
                         <p class="card-text"><%= item.Descripcion %></p>
-                        <a href="publicacion.aspx?=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
+                        <a href="DetallePublicacion.aspx?=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
 
                         <style>
                             .custom-btn {

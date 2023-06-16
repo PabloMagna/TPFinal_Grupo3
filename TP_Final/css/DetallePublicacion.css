@@ -1,0 +1,13 @@
+﻿body {
+}
+.portada {
+    background-color: #D2E3EB;
+    height: auto;
+    padding: 20px 0;
+    text-align: center;
+    /*  margin-top: 60px;*/
+}
+
+#titulo {
+    color: #24566E;
+}

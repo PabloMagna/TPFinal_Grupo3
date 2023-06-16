@@ -66,11 +66,13 @@
   <ItemGroup>
     <Content Include="AltaCuenta.aspx" />
     <Content Include="css\AltaCuenta.css" />
+    <Content Include="css\DetallePublicacion.css" />
     <Content Include="css\master.css" />
     <Content Include="css\home.css" />
     <Content Include="css\galeria.css" />
     <Content Include="css\formPublicacion.css" />
     <Content Include="default.aspx" />
+    <Content Include="DetallePublicacion.aspx" />
     <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
@@ -92,6 +94,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePublicacion.aspx.cs">
+      <DependentUpon>DetallePublicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePublicacion.aspx.designer.cs">
+      <DependentUpon>DetallePublicacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="galeria.aspx.cs">
       <DependentUpon>galeria.aspx</DependentUpon>
