@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Comentarios.cs" />
     <Compile Include="ImagenesMascota.cs" />
+    <Compile Include="Localidad.cs" />
     <Compile Include="Mascota.cs" />
     <Compile Include="Persona.cs" />
+    <Compile Include="Provincia.cs" />
     <Compile Include="Publicacion.cs" />
     <Compile Include="Refugios.cs" />
     <Compile Include="Usuario.cs" />
