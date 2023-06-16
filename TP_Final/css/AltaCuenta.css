@@ -1,5 +1,16 @@
-﻿
-section {
+﻿.portada {
+    background-color: #D2E3EB;
+    height: auto;
+    padding: 20px 0;
+    text-align: center;
+   /* margin-top: 60px;*/
+}
+
+#titulo {
+    color: #24566E;
+}
+
+.formulario {
     display:flex;
     width:100vw;
     /*background:rgb(0, 148, 255);*/
@@ -29,3 +40,5 @@ div.col-4{
     width:100%;
     height:fit-content;
 }
+
+

@@ -3,10 +3,20 @@
     margin: 0;
     padding: 0;
 }
-body {
+body
+{
     min-height: 100%;
     min-height: 100vh;
+    position: relative;
 }
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 30;
+}
+
 .bg-orange {   
     background-color: #C45F2E !important;
 }
@@ -14,4 +24,7 @@ body {
 .navbar .navbar-nav .nav-link {
     color: white !important;
     
+}
+.contenido{
+    margin-top:60px;
 }

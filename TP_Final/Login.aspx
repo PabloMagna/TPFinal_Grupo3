@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
-    <asp:Label runat="server" ID="lblLogueado" Visible="false" ForeColor="Red"><span> TE ENCUENTRAS LOGUEADO</span></asp:Label>
+    <br />   
     <%if (Session["Usuario"] == null)
         { %>
     <div class="container">
@@ -23,6 +22,9 @@
                         <label for="tbxContrasenia" class="form-label">Contraseña</label>
                         <asp:TextBox runat="server" type="password" id="tbxContrasenia" CssClass="form-control"></asp:TextBox>
                     </div>
+                    <div class="mb-4">
+                         <asp:Label runat="server" ID="lblLogueado" Visible="false" ForeColor="Red"><span></span></asp:Label>
+                    </div>
                     <div class="d-grid">
                         <asp:Button runat="server" ID="btnInicioSesion" CssClass="btn btn-primary custom-btn" 
                             Text="Iniciar Sesión" type="button" OnClick="btnInicioSesion_Click"></asp:Button>
@@ -39,7 +41,7 @@
                         </style>
                     </div>
                     <div class="my-3">
-                        <span>No tienes cuenta? <a href="#">Registrate</a></span>
+                        <span>No tienes cuenta? <a href="AltaCuenta.aspx">Registrate</a> / <a href="#">Registrar un refugio</a></span>
                         <span>No recuerdas tu contraseña? <a href="#">Recuperar Contraseña</a></span>
                     </div>
                 </div>

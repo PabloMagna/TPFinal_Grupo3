@@ -3,8 +3,11 @@
     <link href="/css/AltaCuenta.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <section>
+     <section class="portada">
+        <h1 id="titulo">Gracias por ser parte del cambio</h1>
+         <h4><em>Vamos a necesitar que completes algunos datos.</em></h4>
+    </section>
+    <section class="formulario">
     <div class="row">
         <div class="col-4">
             <asp:Label ID="lbTitulo" runat="server" CssClass="titulo">Alta Usuario</asp:Label>

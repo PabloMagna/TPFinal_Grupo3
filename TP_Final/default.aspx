@@ -33,20 +33,24 @@
     </section>
     <section class="quienes_somos">
         <h1 id="titulo1">Quiénes somos</h1>  
-        <p>Somos un grupo de estudiantes de la Universidad Tecnológica Nacional (UTN) comprometidos con la causa de la adopción de mascotas. Nuestro objetivo principal es crear una plataforma en línea donde los dueños de mascotas que necesitan un nuevo hogar puedan conectarse con personas interesadas en adoptar.
+        <div class="about-us">
+            <p>
+                Somos un grupo de estudiantes de la Universidad Tecnológica Nacional (UTN) comprometidos con la causa de la adopción de mascotas. Nuestro objetivo principal es crear una plataforma en línea donde los dueños de mascotas que necesitan un nuevo hogar puedan conectarse con personas interesadas en adoptar.
+            <p/>
+            <p>
+                Comenzamos este proyecto como un trabajo práctico, pero nuestra visión es que esta web se convierta en una herramienta útil y valiosa para la comunidad, facilitando la adopción responsable de mascotas y promoviendo el bienestar animal.
+            </p>            
+            <p>
+                En nuestro sitio, los usuarios podrán crear perfiles de mascotas disponibles para adopción, buscar mascotas según sus preferencias y contactar a los dueños para iniciar el proceso de adopción. También ofrecemos recursos educativos y consejos para ayudar a los dueños de mascotas a cuidar y criar a sus nuevos compañeros de vida.
+            <p/>
+            <p>
+                Valoramos la importancia de la adopción responsable y nos esforzamos por promover un ambiente seguro y amigable en nuestra comunidad. Trabajamos en colaboración con refugios de animales y organizaciones locales para fomentar la adopción ética y brindar apoyo a aquellos que deseen encontrar un nuevo hogar para sus mascotas.
+            </p>            
+            <hr/>
+            <em>Únete a nuestra comunidad y sé parte del cambio. Juntos podemos hacer una diferencia en la vida de los animales y promover la adopción como un acto de amor y responsabildad.
 
-Comenzamos este proyecto como un trabajo práctico, pero nuestra visión es que esta web se convierta en una herramienta útil y valiosa para la comunidad, facilitando la adopción responsable de mascotas y promoviendo el bienestar animal.
-
-En nuestro sitio, los usuarios podrán crear perfiles de mascotas disponibles para adopción, buscar mascotas según sus preferencias y contactar a los dueños para iniciar el proceso de adopción. También ofrecemos recursos educativos y consejos para ayudar a los dueños de mascotas a cuidar y criar a sus nuevos compañeros de vida.
-
-Valoramos la importancia de la adopción responsable y nos esforzamos por promover un ambiente seguro y amigable en nuestra comunidad. Trabajamos en colaboración con refugios de animales y organizaciones locales para fomentar la adopción ética y brindar apoyo a aquellos que deseen encontrar un nuevo hogar para sus mascotas.
-
-Únete a nuestra comunidad y sé parte del cambio. Juntos podemos hacer una diferencia en la vida de los animales y promover la adopción como una opción responsable y amorosa.</p>
-        <h3>Nuestra misión</h3>
-        <p>
-            Nulla at maximus dolor. Vestibulum ut ultrices erat. Phasellus tristique varius porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas viverra volutpat risus vel tincidunt. Duis sollicitudin in est vitae congue. In pulvinar turpis eu erat porttitor, at hendrerit nunc pulvinar. Suspendisse sed condimentum turpis, a rhoncus libero.
-        </p>          
-        
+            </em>                
+        </div>
     </section>
 
 </asp:Content>
