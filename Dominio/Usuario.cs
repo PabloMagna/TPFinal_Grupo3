@@ -13,8 +13,8 @@ namespace Dominio
         public string Password { get; set; }
         public string UrlImagen { get; set; }
         public string Email { get; set; }
-        public string Localidad { get; set; }
-        public string Provincia { get; set; }
+        public int IDLocalidad { get; set; }
+        public int IDProvincia { get; set; }
         public string Telefono { get; set; }
         public int Estado { get; set; }
         public bool EsAdmin { get; set; }

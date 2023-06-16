@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select IDMascota,Especie,Raza,Edad,Sexo,Descripcion,Estado " +
+                datos.setearConsulta("select ID,Especie,Raza,Edad,Sexo,Descripcion,Estado " +
                     "from Mascotas where IDMascota = "+id.ToString());
                 datos.ejecutarLectura();
 

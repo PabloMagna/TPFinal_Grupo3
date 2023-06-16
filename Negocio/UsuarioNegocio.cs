@@ -15,7 +15,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select IDUsuario,IDTipoUsuario,UrlImagen,Localidad,Provincia,Telefono,Estado,EsAdmin from " +
+                datos.setearConsulta("select ID,IDTipoUsuario,UrlImagen,IDLocalidad,IDProvincia,Telefono,Estado,EsAdmin from " +
                     "Usuarios where Contrasenia = @Contrasenia and Email = @Email");
                 datos.setearParametro("@Contrasenia", contrasenia);
                 datos.setearParametro("@Email", email);
@@ -27,8 +27,8 @@ namespace Negocio
                     aux.Id = datos.Lector.GetInt32(0);
                     aux.Tipo = int.Parse(datos.Lector["IDTipoUsuario"].ToString());
                     aux.UrlImagen = (string)datos.Lector["UrlImagen"];
-                    aux.Localidad = (string)datos.Lector["Localidad"];
-                    aux.Provincia = (string)datos.Lector["Provincia"];
+                    aux.IDLocalidad = (int)datos.Lector["IDLocalidad"];
+                    aux.IDProvincia = (int)datos.Lector["IDProvincia"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Estado = (int)datos.Lector["Estado"];
                     aux.EsAdmin = (bool)datos.Lector["EsAdmin"];

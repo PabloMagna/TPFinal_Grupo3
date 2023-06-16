@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select IDImagen, UrlImagen from ImagenesMascota where IDMascota =" + idMascota);
+                datos.setearConsulta("select ID, UrlImagen from ImagenesMascota where IDMascota =" + idMascota);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
