@@ -23,7 +23,7 @@ namespace TP_Final
         }
         public string obtenerPrimeraImagen(int idMascota)
         {
-            List<ImagenesMascota> lista = new List<ImagenesMascota>();
+            List<ImagenMascota> lista = new List<ImagenMascota>();
             ImagenMascotaNegocio negocio = new ImagenMascotaNegocio();
             lista = negocio.listar(idMascota);
             if(lista!=null && lista.Count > 0)

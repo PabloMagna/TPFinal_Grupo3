@@ -15,8 +15,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID,IDTipoUsuario,UrlImagen,IDLocalidad,IDProvincia,Telefono,Estado,EsAdmin from " +
-                    "Usuarios where Contrasenia = @Contrasenia and Email = @Email");
+                datos.setearConsulta("select ID, IDTipoUsuario, Estado, EsAdmin  from Usuarios where Contrasenia = @Contrasenia and Email = @Email");
                 datos.setearParametro("@Contrasenia", contrasenia);
                 datos.setearParametro("@Email", email);
                 datos.ejecutarLectura();
@@ -25,11 +24,9 @@ namespace Negocio
                 {
                     Usuario aux = new Usuario();
                     aux.Id = datos.Lector.GetInt32(0);
+                    aux.Email = email;
+                    aux.Password = contrasenia;
                     aux.Tipo = int.Parse(datos.Lector["IDTipoUsuario"].ToString());
-                    aux.UrlImagen = (string)datos.Lector["UrlImagen"];
-                    aux.IDLocalidad = (int)datos.Lector["IDLocalidad"];
-                    aux.IDProvincia = (int)datos.Lector["IDProvincia"];
-                    aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Estado = (int)datos.Lector["Estado"];
                     aux.EsAdmin = (bool)datos.Lector["EsAdmin"];
                     return aux;

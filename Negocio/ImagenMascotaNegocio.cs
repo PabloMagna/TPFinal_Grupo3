@@ -9,9 +9,9 @@ namespace Negocio
 {
     public class ImagenMascotaNegocio
     {
-        public List<ImagenesMascota> listar(int idMascota)
+        public List<ImagenMascota> listar(int idMascota)
         {
-            List<ImagenesMascota> lista = new List<ImagenesMascota>();
+            List<ImagenMascota> lista = new List<ImagenMascota>();
              AccesoDatos datos = new AccesoDatos();
 
             try
@@ -21,7 +21,7 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    ImagenesMascota aux = new ImagenesMascota();
+                    ImagenMascota aux = new ImagenMascota();
                     aux.Id = datos.Lector.GetInt32(0);
                     aux.IdMascota = idMascota;
                     aux.urlImagen = (string)datos.Lector["UrlImagen"];

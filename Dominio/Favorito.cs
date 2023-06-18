@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Comentarios
+    public class Favorito
     {
         public int Id { get; set; }
+        public int IdUsuario { get; set; }
         public int IdPublicacion { get; set; }
-        public string Descripcion { get; set; }
         public int Estado { get; set; }
-        public DateTime FechaHora { get; set; }
     }
 }

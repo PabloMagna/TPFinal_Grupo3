@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Usuario
+    public class Comentario
     {
         public int Id { get; set; }
-        public int Tipo { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        
+        public int IdPublicacion { get; set; }
+        public string Descripcion { get; set; }
         public int Estado { get; set; }
-        public bool EsAdmin { get; set; }
+        public DateTime FechaHora { get; set; }
     }
 }
