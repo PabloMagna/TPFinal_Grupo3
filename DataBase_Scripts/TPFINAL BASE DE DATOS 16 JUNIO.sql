@@ -104,6 +104,7 @@ CREATE TABLE Comentarios (
 	IDPublicacion INT NOT NULL,
 	Descripcion VARCHAR(300) NOT NULL,
 	Estado INT NOT NULL,
+	FechaHora datetime NOT NULL,
 	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
 );
 GO
