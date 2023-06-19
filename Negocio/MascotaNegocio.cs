@@ -23,7 +23,7 @@ namespace Negocio
                 if (datos.Lector.Read())
                 {
                     aux.Id = id;
-                    aux.Especie = (string)datos.Lector["Especie"];
+                    aux.NumeroEspecie = (int)datos.Lector["Especie"];
                     aux.Raza = (string)datos.Lector["Raza"];
                     aux.Edad = (int)datos.Lector["Edad"];
                     aux.Sexo = (char)datos.Lector["Sexo"];
@@ -48,7 +48,7 @@ namespace Negocio
             {
                 datos.setearConsulta("Insert into Mascotas (Especie,Raza,Edad,Sexo,Descripcion,Estado) " +
                     "VALUES (@especie,@raza,@edad,@sexo,@descripcion,@estado)");
-                datos.setearParametro("@especie", mascota.Especie);
+                datos.setearParametro("@especie", mascota.NumeroEspecie);
                 datos.setearParametro("@raza", mascota.Raza);
                 datos.setearParametro("@edad",mascota.Edad);
                 datos.setearParametro("@",mascota.Sexo);

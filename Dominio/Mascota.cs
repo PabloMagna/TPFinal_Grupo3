@@ -9,7 +9,7 @@ namespace Dominio
     public class Mascota
     {
         public int Id { get; set; }
-        public string Especie { get; set; }
+        public int NumeroEspecie { get; set; }
         public string Raza { get; set; }
         public int Edad { get; set; }
         public char Sexo { get; set; }
