@@ -24,15 +24,18 @@
                     <asp:TextBox ID="tbEspecie" runat="server" class="form-control" placeholder="Perro"></asp:TextBox>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" >Raza </label>
-                    <asp:TextBox ID="TbRaza" runat="server" class="form-control" placeholder="Bulldog"></asp:TextBox>
+                    <label class="form-label">Raza</label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-select" AutoPostBack="false">
+                        <asp:ListItem Selected="True">Gato</asp:ListItem>
+                        <asp:ListItem >Perro</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
                    <div class="mb-3">
                     <label class="form-label">Edad</label>
                     <asp:TextBox ID="TextBox1" runat="server" Type="number" min="1" class="form-control"></asp:TextBox>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Seleccione según corresponda</label>
+                    <label class="form-label">Seleccione unidad de tiempo</label>
                     <asp:DropDownList ID="ddlEdad" runat="server" class="form-select" AutoPostBack="false">
                         <asp:ListItem Selected="True">Años</asp:ListItem>
                         <asp:ListItem >Meses</asp:ListItem>
@@ -47,13 +50,17 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Breve descripción de la mascota</label>
-                    <asp:TextBox ID="tbDescripcion" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="200"></asp:TextBox>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Comentadios sobre la publicación</label>
-                    <asp:TextBox ID="TextBox2" runat="server" class="form-control" placeholder="Condiciones de adopción, necesidades de la mascota, etc."></asp:TextBox>
+                    <label class="form-label">Comentarios sobre la publicación</label>
+                    <asp:TextBox ID="TextBox2" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="500" placeholder="Condiciones de adopción, necesidades de la mascota, etc."></asp:TextBox>
                 </div>
-         
+                <%--Botones--%>
+                <div class="mb-3">
+                    <input class="btn btn-light" type="submit" value="Enviar">
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" />
+                </div>
             </div>        
         </div>
     </section>

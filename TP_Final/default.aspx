@@ -9,17 +9,14 @@
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://c.pxhere.com/photos/5f/75/dogs_bernese_puppies_purebred_mountain_pet_animal_canine-701568.jpg!d" class="d-block w-100" alt="...">
+              <img src="imagenes/slider2.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="https://c.pxhere.com/photos/bf/9d/dogs_puppies_watching_outside_park_puppy_animal_pet-1173210.jpg!d" class="d-block w-100" alt="...">
+              <img src="imagenes/slider3.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="https://c.pxhere.com/photos/f4/e7/cats_kittens_animals_mammals_playing_playful_furry_wildlife-1009458.jpg!d" class="d-block w-100" alt="...">
-            </div>
-               <div class="carousel-item">
-              <img src="https://c.pxhere.com/photos/97/7d/cats_pets_animals_kittens_domestic_tabby_sitting_next-265073.jpg!d" class="d-block w-100" alt="...">
-            </div>
+              <img src="imagenes/slider4.jpg" class="d-block w-100" alt="...">
+            </div>            
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -45,7 +42,8 @@
             <p/>
             <p>
                 Valoramos la importancia de la adopción responsable y nos esforzamos por promover un ambiente seguro y amigable en nuestra comunidad. Trabajamos en colaboración con refugios de animales y organizaciones locales para fomentar la adopción ética y brindar apoyo a aquellos que deseen encontrar un nuevo hogar para sus mascotas.
-            </p>            
+            </p> 
+            <iconify-icon icon="twemoji:black-cat" width="45px"></iconify-icon> &nbsp; <iconify-icon icon="twemoji:dog" width="50px"></iconify-icon>
             <hr/>
             <em>Únete a nuestra comunidad y sé parte del cambio. Juntos podemos hacer una diferencia en la vida de los animales y promover la adopción como un acto de amor y responsabildad.
 
