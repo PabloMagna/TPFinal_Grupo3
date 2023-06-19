@@ -11,42 +11,35 @@
         <h4><em>- Ayudalos a encontrar un lugar donde pertenecer -</em></h4>
     </section>
     <br />
-  <section class="filtro">
-    <asp:DropDownList runat="server" ID="ddlEspecies"></asp:DropDownList>
-    <asp:DropDownList runat="server" ID="ddlSexo"></asp:DropDownList>
-    <asp:TextBox runat="server" ID="txtEdad" TextMode="Number"></asp:TextBox>
-    <asp:TextBox runat="server" ID="txtRaza"></asp:TextBox>
-    <asp:Button runat="server" ID="btnFiltrar" Text="Filtrar" OnClick="btnFiltrar_Click" />
-</section>
-    <br />
     <div class="container">
         <div class="row">
-            <% foreach (var item in publicaciones)
-                { %>
             <div class="col-md-4">
-                <div class="card">
-                    <img src="<%=obtenerPrimeraImagen(item.IdMascota) %>" style="max-height:19rem" class="card-img-top" alt="<% %>">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= item.Titulo %></h5>
-                        <p class="card-text"><%= item.Descripcion %></p>
-                        <a href="DetallePublicacion.aspx?=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
-
-                        <style>
-                            .custom-btn {
-                                background-color: #C45F2E;
-                                border-color: #C45F2E;
-                            }
-
-                                .custom-btn:hover {
-                                    background-color: #FFA066;
-                                    border-color: #FFA066;
-                                }
-                        </style>
-
+                <br />
+                <section class="filtro">
+                    <asp:DropDownList runat="server" ID="ddlEspecies" CssClass="form-select"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlSexo" CssClass="form-select"></asp:DropDownList>
+                    <asp:TextBox runat="server" ID="txtEdad" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtRaza" CssClass="form-control"></asp:TextBox>
+                    <asp:Button runat="server" ID="btnFiltrar" Text="Filtrar" OnClick="btnFiltrar_Click" CssClass="btn btn-primary"></asp:Button>
+                </section>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <% foreach (var item in publicaciones)
+                        { %>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img src="<%=obtenerPrimeraImagen(item.IdMascota) %>" style="max-height:19rem" class="card-img-top" alt="<% %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= item.Titulo %></h5>
+                                <p class="card-text"><%= item.Descripcion %></p>
+                                <a href="DetallePublicacion.aspx?=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
+                            </div>
+                        </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
-            <% } %>
         </div>
     </div>
     <br />
