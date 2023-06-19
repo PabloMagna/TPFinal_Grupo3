@@ -16,14 +16,14 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID,Especie,Raza,Edad,Sexo,Descripcion,Estado " +
+                datos.setearConsulta("select ID, numeroEspecie,Raza,Edad,Sexo,Descripcion,Estado " +
                     "from Mascotas where IDMascota = " + id.ToString());
                 datos.ejecutarLectura();
 
                 if (datos.Lector.Read())
                 {
                     aux.Id = id;
-                    aux.NumeroEspecie = (int)datos.Lector["Especie"];
+                    aux.NumeroEspecie = (int)datos.Lector["numeroEspecie"];
                     aux.Raza = (string)datos.Lector["Raza"];
                     aux.Edad = (int)datos.Lector["Edad"];
                     aux.Sexo = (char)datos.Lector["Sexo"];
@@ -47,7 +47,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into Mascotas (Especie,Raza,Edad,Sexo,Descripcion,Estado) " +
+                datos.setearConsulta("Insert into Mascotas (numeroEspecie,Raza,Edad,Sexo,Descripcion,Estado) " +
                     "VALUES (@especie,@raza,@edad,@sexo,@descripcion,@estado)");
                 datos.setearParametro("@especie", mascota.NumeroEspecie);
                 datos.setearParametro("@raza", mascota.Raza);
@@ -71,7 +71,7 @@ namespace Negocio
             List<int> lista = new List<int>();
             try
             {
-                string consulta = "SELECT ID FROM Mascotas WHERE Sexo = @sexo AND Especie = @especie AND Edad <= @edad";
+                string consulta = "SELECT ID FROM Mascotas WHERE Sexo = @sexo AND numeroEspecie = @especie AND Edad <= @edad";
                 if (!string.IsNullOrEmpty(raza))
                 {
                     consulta += " AND Raza LIKE '%' + @raza + '%'";
