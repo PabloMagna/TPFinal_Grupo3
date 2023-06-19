@@ -15,10 +15,10 @@ INSERT INTO Refugios (IDUsuario, Direccion, Nombre, UrlImagen, IDLocalidad, IDPr
 (3, 'Calle 123', 'Refugio Animal', 'https://thumbs.dreamstime.com/b/familia-que-se-familiariza-con-perros-en-refugio-para-animales-123287981.jpg', 3, 2, '9876543210');
 
 -- Inserts para la tabla Mascotas
-INSERT INTO Mascotas (Especie, Raza, Edad, Sexo, Descripcion, Estado) VALUES
-('Perro', 'Labrador Retriever', 2, 'M', 'Es un perro muy juguetón y amigable.', 1),
-('Gato', 'Persa', 1, 'H', 'Es un gato muy tranquilo y cariñoso.', 1),
-('Perro', 'Bulldog Francés', 3, 'M', 'Es un perro de tamaño pequeño y muy sociable.', 1);
+INSERT INTO Mascotas (NumeroEspecie, Raza, Edad, Sexo, Descripcion, Estado) VALUES
+(1, 'Labrador Retriever', 2, 'M', 'Es un perro muy juguetón y amigable.', 1),
+(2, 'Persa', 1, 'H', 'Es un gato muy tranquilo y cariñoso.', 1),
+(1, 'Bulldog Francés', 3, 'M', 'Es un perro de tamaño pequeño y muy sociable.', 1);
 
 -- Inserts para la tabla Publicaciones
 INSERT INTO Publicaciones (IDMascota, IDUsuario, Descripcion, Titulo, FechaHora, Estado) VALUES
