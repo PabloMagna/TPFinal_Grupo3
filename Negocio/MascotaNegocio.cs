@@ -17,7 +17,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("select ID,Especie,Raza,Edad,Sexo,Descripcion,Estado " +
-                    "from Mascotas where IDMascota = "+id.ToString());
+                    "from Mascotas where IDMascota = " + id.ToString());
                 datos.ejecutarLectura();
 
                 if (datos.Lector.Read())
@@ -41,7 +41,8 @@ namespace Negocio
         }
 
 
-        public void Agregar(Mascota mascota) {
+        public void Agregar(Mascota mascota)
+        {
 
             AccesoDatos datos = new AccesoDatos();
             try
@@ -50,10 +51,10 @@ namespace Negocio
                     "VALUES (@especie,@raza,@edad,@sexo,@descripcion,@estado)");
                 datos.setearParametro("@especie", mascota.NumeroEspecie);
                 datos.setearParametro("@raza", mascota.Raza);
-                datos.setearParametro("@edad",mascota.Edad);
-                datos.setearParametro("@",mascota.Sexo);
-                datos.setearParametro("@",mascota.Descripcion);
-                datos.setearParametro("@",mascota.Estado);
+                datos.setearParametro("@edad", mascota.Edad);
+                datos.setearParametro("@sexo", mascota.Sexo);
+                datos.setearParametro("@descripcion", mascota.Descripcion);
+                datos.setearParametro("@estado", mascota.Estado);
 
                 datos.ejecutarAccion();
             }
@@ -62,7 +63,40 @@ namespace Negocio
 
                 throw;
             }
-            finally { datos.cerrarConexion();  }
+            finally { datos.cerrarConexion(); }
+        }
+        public List<int> Filtrar(char sexo, int especie, int edad, string raza)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<int> lista = new List<int>();
+            try
+            {
+                string consulta = "SELECT ID FROM Mascotas WHERE Sexo = @sexo AND Especie = @especie AND Edad <= @edad";
+                if (!string.IsNullOrEmpty(raza))
+                {
+                    consulta += " AND Raza LIKE '%' + @raza + '%'";
+                    datos.setearParametro("@raza", raza);
+                }
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@sexo", sexo);
+                datos.setearParametro("@especie", especie);
+                datos.setearParametro("@edad", edad);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    lista.Add((int)datos.Lector["ID"]);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return lista;
         }
     }
 }

@@ -35,5 +35,10 @@ namespace TP_Final
                 return "https://g.petango.com/shared/Photo-Not-Available-dog.gif";
             }
         }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

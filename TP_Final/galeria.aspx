@@ -11,6 +11,14 @@
         <h4><em>- Ayudalos a encontrar un lugar donde pertenecer -</em></h4>
     </section>
     <br />
+  <section class="filtro">
+    <asp:DropDownList runat="server" ID="ddlEspecies"></asp:DropDownList>
+    <asp:DropDownList runat="server" ID="ddlSexo"></asp:DropDownList>
+    <asp:TextBox runat="server" ID="txtEdad" TextMode="Number"></asp:TextBox>
+    <asp:TextBox runat="server" ID="txtRaza"></asp:TextBox>
+    <asp:Button runat="server" ID="btnFiltrar" Text="Filtrar" OnClick="btnFiltrar_Click" />
+</section>
+    <br />
     <div class="container">
         <div class="row">
             <% foreach (var item in publicaciones)
