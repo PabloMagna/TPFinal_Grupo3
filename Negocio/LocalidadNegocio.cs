@@ -9,11 +9,13 @@ namespace Negocio
 {
     public class LocalidadNegocio
     {
-        public List<string> cargarDropDownList()
+        public List<string> cargarDropDownList(int IdProv)
         {
             List<string> localidades = new List<string>();
             AccesoDatos datos = new AccesoDatos();
-            datos.setearConsulta("select ID,Nombre,IDProvincia from Localidades");
+            
+
+            datos.setearConsulta("select ID,Nombre,IDProvincia from Localidades where IDProvincia="+IdProv);
             datos.ejecutarLectura();
 
             try

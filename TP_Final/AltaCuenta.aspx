@@ -48,16 +48,18 @@
                         <asp:TextBox ID="tbDireccion" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
+                
                 <div class="mb-3">
                     <label class="form-label">Seleccione una Provincia</label>
-                    <asp:DropDownList ID="ddlProvincia" runat="server" class="form-select" >
-                        <asp:ListItem Selected="True">Provincia</asp:ListItem>
+                    <asp:DropDownList ID="ddlProvincia" runat="server" Autopostback="true" class="form-select" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged" >
+                        <%--<asp:ListItem Selected="True">Provincia</asp:ListItem>--%>
                     </asp:DropDownList>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Seleccione una Localidad</label>
-                    <asp:DropDownList ID="ddlLocalidad" runat="server" class="form-select" AutoPostBack="false">
-                        <asp:ListItem Selected="True">Localidad</asp:ListItem>
+                    <label class="form-label">Seleccione una Localidad</label>                    
+
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" class="form-select" AutoPostBack="false">                   
+                        <%--<asp:ListItem Selected="True">Localidad</asp:ListItem>--%>
                     </asp:DropDownList>
                 </div>
                 <div class="mb-3">

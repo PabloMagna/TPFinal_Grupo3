@@ -62,5 +62,16 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+
+        public int BuscarNombre(string nombreProv)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            datos.setearConsulta("SELECT ID from Provincias where Nombre=" + nombreProv);
+            datos.ejecutarLectura();
+            int IDProvincia = (int)datos.Lector["ID"];
+            datos.cerrarConexion();
+            return IDProvincia;
+        }
     }
 }
