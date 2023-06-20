@@ -26,6 +26,7 @@
 
 .row {
     margin: auto;
+    border-radius: 10px;
     margin-top: 15px;
     background: #C45F2E;
     width: 500px;
@@ -36,9 +37,9 @@
     justify-self: center;
 }
 
-div.col-4{
-    width:100%;
-    height:fit-content;
+div.col-4 {
+    width: 100%;
+    height: fit-content;
 }
 
 

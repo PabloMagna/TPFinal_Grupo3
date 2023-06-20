@@ -55,8 +55,8 @@
                                         Registrarme
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/AltaCuenta.aspx">Personas</a></li>
-                                        <li><a class="dropdown-item" href="#">Refugios</a></li>
+                                        <li><a class="dropdown-item" href="/AltaCuenta.aspx?Cuenta=Persona">Personas</a></li>
+                                        <li><a class="dropdown-item" href="/AltaCuenta.aspx?Cuenta=Refugio">Refugios</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="Login.aspx">Ya tengo una cuenta</a></li>
                                     </ul>

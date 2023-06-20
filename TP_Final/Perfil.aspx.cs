@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
 
 namespace TP_Final
 {
@@ -11,7 +12,10 @@ namespace TP_Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Usuario"] != null)
+            {   
+                
+            }
         }
     }
 }

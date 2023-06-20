@@ -9,11 +9,36 @@ namespace Negocio
 {
     public class LocalidadNegocio
     {
+        public List<string> cargarDropDownList()
+        {
+            List<string> localidades = new List<string>();
+            AccesoDatos datos = new AccesoDatos();
+            datos.setearConsulta("select ID,Nombre,IDProvincia from Localidades");
+            datos.ejecutarLectura();
+
+            try
+            {
+                while (datos.Lector.Read())
+                {
+                    string prov = (string)datos.Lector["Nombre"];
+                    localidades.Add(prov);
+                }
+                return localidades;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+
+        }
+
         public List<Localidad> listar()
         {
             List<Localidad> localidades = new List<Localidad>();
             AccesoDatos datos = new AccesoDatos();
-            datos.setearConsulta("select ID,Nombre from Provincias");
+            datos.setearConsulta("select ID,IDProvincia,Nombre from Localidades");
             datos.ejecutarLectura();
 
             try

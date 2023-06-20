@@ -8,7 +8,33 @@ using Dominio;
 namespace Negocio
 {
     public class ProvinciaNegocio
-    {
+    {   
+
+        public List<string> cargarDropDownList()
+        {
+            List<string> provincias = new List<string>();
+            AccesoDatos datos = new AccesoDatos();
+            datos.setearConsulta("select ID,Nombre from Provincias");
+            datos.ejecutarLectura();
+
+            try
+            {
+                while (datos.Lector.Read())
+                {
+                    string prov = (string)datos.Lector["Nombre"];
+                    provincias.Add(prov);
+                }
+                return provincias;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+
+        }
+
         public List<Provincia> listar() {
             
             List<Provincia> provincias = new List<Provincia>();
