@@ -3,9 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>En Adopcion</title>
     <link href="css/galeria.css" rel="stylesheet" type="text/css" />
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
     <section class="portada">
         <h1 id="titulo">Adoptá, salvá una vida</h1>
         <h4><em>- Ayudalos a encontrar un lugar donde pertenecer -</em></h4>
@@ -16,6 +18,20 @@
             <div class="col-md-4">
                 <br />
                 <section class="filtro mt-3">
+                    <div class="form-group mb-3">
+                        <asp:UpdatePanel runat="server" ID="updatePanelProvincia">
+                            <ContentTemplate>
+                                <asp:DropDownList runat="server" ID="ddlProvincia" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="form-group mb-3">
+                        <asp:UpdatePanel runat="server" ID="updatePanelLocalidad">
+                            <ContentTemplate>
+                                <asp:DropDownList runat="server" ID="ddlLocalidad" CssClass="form-select"></asp:DropDownList>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
                     <div class="form-group mb-3">
                         <asp:DropDownList runat="server" ID="ddlEspecies" CssClass="form-select"></asp:DropDownList>
                     </div>

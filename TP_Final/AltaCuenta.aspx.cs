@@ -32,7 +32,7 @@ namespace TP_Final
                 ddlProvincia.DataSource = provincias.cargarDropDownList();
                 ddlProvincia.DataBind();
 
-                ddlLocalidad.DataSource=localidades.cargarDropDownList(ddlProvincia.SelectedIndex+1);
+                ddlLocalidad.DataSource=localidades.CargarDropDownList(ddlProvincia.SelectedIndex+1);
                 ddlLocalidad.DataBind();
             }
            
@@ -41,7 +41,7 @@ namespace TP_Final
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             LocalidadNegocio localidades = new LocalidadNegocio();
-            ddlLocalidad.DataSource = localidades.cargarDropDownList(ddlProvincia.SelectedIndex + 1);
+            ddlLocalidad.DataSource = localidades.CargarDropDownList(ddlProvincia.SelectedIndex + 1);
             ddlLocalidad.DataBind();
         }
     }

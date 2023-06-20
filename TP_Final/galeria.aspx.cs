@@ -19,6 +19,7 @@ namespace TP_Final
             {
                 CargarLista();
                 CargarDDL();
+                CargarDropDownListProvincias();
             }
         }
         public string obtenerPrimeraImagen(int idPublicacion)
@@ -38,7 +39,7 @@ namespace TP_Final
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            //Filtrar();
+            Filtrar();
             Response.Redirect("galeria.aspx");
         }
         private void CargarLista()
@@ -80,18 +81,7 @@ namespace TP_Final
         }
         private void Filtrar()
         {
-            //MascotaNegocio  mascotaNegocio = new MascotaNegocio();
-            //int meses = 0;
-            //if (ddlMesAnio.SelectedValue == "M")
-            //    meses = int.Parse(txtEdad.Text);          
-            //else if (ddlMesAnio.SelectedValue == "A")           
-            //    meses = int.Parse(txtEdad.Text) * 12;
-                     
-            //List<int> ints = mascotaNegocio.Filtrar(ddlSexo.SelectedValue[0],int.Parse(ddlEspecies.SelectedValue)
-            //    , meses, txtRaza.Text );
-            //PublicacionNegocio publiNegocio = new PublicacionNegocio();
-            //Session["Publicaciones"] = null;
-            //Session["Publicaciones"] = publiNegocio.Listar(ints);
+            PublicacionNegocio negocio = new PublicacionNegocio();
         }
 
         protected void btnRemoverFiltro_Click(object sender, EventArgs e)
@@ -99,6 +89,27 @@ namespace TP_Final
             PublicacionNegocio publiNegocio = new PublicacionNegocio();
             Session["Publicaciones"] = publiNegocio.Listar();
             Response.Redirect("galeria.aspx");
+        }
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ddlProvincia.SelectedIndex;
+            int idProvincia = index + 1;
+            CargarLocalidades(idProvincia);
+        }
+
+        private void CargarLocalidades(int idProvincia)
+        {
+            LocalidadNegocio localidadNegocio = new LocalidadNegocio();
+            List<string> localidades = localidadNegocio.CargarDropDownList(idProvincia);
+            ddlLocalidad.DataSource = localidades;
+            ddlLocalidad.DataBind();
+        }
+        private void CargarDropDownListProvincias()
+        {
+            ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio();
+            List<string> provincias = provinciaNegocio.cargarDropDownList();
+            ddlProvincia.DataSource = provincias;
+            ddlProvincia.DataBind();
         }
     }
 }

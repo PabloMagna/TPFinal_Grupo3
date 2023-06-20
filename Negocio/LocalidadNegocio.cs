@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class LocalidadNegocio
     {
-        public List<string> cargarDropDownList(int IdProv)
+        public List<string> CargarDropDownList(int IdProv)
         {
             List<string> localidades = new List<string>();
             AccesoDatos datos = new AccesoDatos();
