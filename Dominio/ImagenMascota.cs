@@ -9,7 +9,7 @@ namespace Dominio
     public class ImagenMascota
     {
         public int Id { get; set; }
-        public int IdMascota { get; set; }
+        public int IdPublicacion { get; set; }
         public string urlImagen { get; set; }
 
         public override string ToString()

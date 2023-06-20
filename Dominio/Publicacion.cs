@@ -10,7 +10,10 @@ namespace Dominio
     {
         public int Id { get; set; } 
         public string Titulo { get; set; }
-        public int IdMascota { get; set; }
+        public int NumeroEspecie { get; set; }
+        public string Raza { get; set; }
+        public int Edad { get; set; }
+        public char Sexo { get; set; }
         public int IdUsuario { get; set; }
         public string Descripcion { get; set; }
         public int Estado { get; set; }

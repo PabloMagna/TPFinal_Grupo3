@@ -23,7 +23,7 @@ namespace Negocio
                 {
                     ImagenMascota aux = new ImagenMascota();
                     aux.Id = datos.Lector.GetInt32(0);
-                    aux.IdMascota = idMascota;
+                    aux.IdPublicacion = idMascota;
                     aux.urlImagen = (string)datos.Lector["UrlImagen"];
 
                     lista.Add(aux);

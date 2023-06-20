@@ -49,7 +49,7 @@
                         { %>
                     <div class="col-md-6">
                         <div class="card">
-                            <img src="<%=obtenerPrimeraImagen(item.IdMascota) %>" style="max-height: 19rem" class="card-img-top" alt="<% %>">
+                            <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="<% %>">
                             <div class="card-body">
                                 <h5 class="card-title"><%= item.Titulo %></h5>
                                 <p class="card-text"><%= item.Descripcion %></p>
