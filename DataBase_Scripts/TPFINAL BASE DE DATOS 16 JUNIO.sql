@@ -86,6 +86,10 @@ CREATE TABLE Publicaciones (
 	Titulo VARCHAR(50) NOT NULL,
 	FechaHora datetime NOT NULL,
 	Estado INT NOT NULL,
+	IDLocalidad INT NOT NULL,
+	IDProvincia INT NOT NULL,
+	FOREIGN KEY (IDProvincia) REFERENCES Provincias(ID),
+	FOREIGN KEY (IDLocalidad) REFERENCES Localidades(ID),
 	FOREIGN KEY (IDMascota) REFERENCES Mascotas(ID),
 	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID)
 );

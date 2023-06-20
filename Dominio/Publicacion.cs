@@ -15,5 +15,7 @@ namespace Dominio
         public string Descripcion { get; set; }
         public int Estado { get; set; }
         public DateTime FechaHora { get; set; }
+        public int IDProvincia { get; set; }
+        public int IDLocalidad { get; set; }
     }
 }

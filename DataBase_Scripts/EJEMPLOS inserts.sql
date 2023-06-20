@@ -21,10 +21,10 @@ INSERT INTO Mascotas (NumeroEspecie, Raza, Edad, Sexo, Descripcion, Estado) VALU
 (1, 'Bulldog Francés', 3, 'M', 'Es un perro de tamaño pequeño y muy sociable.', 1);
 
 -- Inserts para la tabla Publicaciones
-INSERT INTO Publicaciones (IDMascota, IDUsuario, Descripcion, Titulo, FechaHora, Estado) VALUES
-(1, 1, 'Buscando un hogar para este adorable perro.', 'Adopción de perro', '2023-06-15 10:00:00', 1),
-(2, 2, 'Buscando un hogar para este hermoso gato.', 'Adopción de gato', '2023-06-15 11:00:00', 1),
-(3, 3, 'Buscando un hogar para este simpático perro.', 'Adopción de perro', '2023-06-15 12:00:00', 1);
+INSERT INTO Publicaciones (IDMascota, IDUsuario, Descripcion, Titulo, FechaHora, Estado, IDLocalidad, IDProvincia) VALUES
+(1, 1, 'Buscando un hogar para este adorable perro.', 'Adopción de perro', '2023-06-15 10:00:00', 1,2,1),
+(2, 2, 'Buscando un hogar para este hermoso gato.', 'Adopción de gato', '2023-06-15 11:00:00', 1,2,1),
+(3, 3, 'Buscando un hogar para este simpático perro.', 'Adopción de perro', '2023-06-15 12:00:00', 1,2,1);
 
 -- Inserts para la tabla ImagenesMascota
 INSERT INTO ImagenesMascota (IDMascota, UrlImagen) VALUES

@@ -30,8 +30,8 @@
                         <asp:TextBox runat="server" ID="txtRaza" CssClass="form-control" placeholder="Buscar Por Raza"></asp:TextBox>
                     </div>
                     <div class="form-group mb-3">
-                        <asp:Button runat="server" ID="btnRemoverFiltro" Text="Remover Filtro" OnClick="btnRemoverFiltro_Click" CssClass="btn btn-primary"></asp:Button>
                         <asp:Button runat="server" ID="btnFiltrar" Text="Filtrar" OnClick="btnFiltrar_Click" CssClass="btn btn-primary"></asp:Button>
+                        <asp:Button runat="server" ID="btnRemoverFiltro" Text="Remover Filtro" OnClick="btnRemoverFiltro_Click" CssClass="btn btn-primary"></asp:Button>
                     </div>
                 </section>
             </div>

@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID, IDMascota,IDUsuario,Descripcion,Titulo, FechaHora, Estado from Publicaciones");
+                datos.setearConsulta("select ID, IDMascota,IDUsuario,Descripcion,Titulo, FechaHora, Estado, IDLocalidad, IDProvincia from Publicaciones");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,6 +27,8 @@ namespace Negocio
                     aux.IdMascota = (int)datos.Lector["IdMascota"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                    aux.IDLocalidad = (int)datos.Lector["IDLocalidad"];
+                    aux.IDProvincia = (int)datos.Lector["IDProvincia"];
 
                     publicaciones.Add(aux);
                 }
@@ -53,7 +55,7 @@ namespace Negocio
             {
                 foreach (int i in ints)
                 {
-                    datos.setearConsulta("select ID, IDMascota,IDUsuario,Descripcion,Titulo, FechaHora, Estado from Publicaciones where IDMascota = " + i.ToString());
+                    datos.setearConsulta("select ID, IDMascota,IDUsuario,Descripcion,Titulo, FechaHora, Estado, IDLocalidad, IDProvincia from Publicaciones where IDMascota = " + i.ToString());
                     datos.ejecutarLectura();
 
                     while (datos.Lector.Read())
@@ -64,6 +66,8 @@ namespace Negocio
                         aux.IdMascota = (int)datos.Lector["IdMascota"];
                         aux.Descripcion = (string)datos.Lector["Descripcion"];
                         aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
+                        aux.IDLocalidad = (int)datos.Lector["IDLocalidad"];
+                        aux.IDProvincia = (int)datos.Lector["IDProvincia"];
 
                         publicaciones.Add(aux);
                     }
