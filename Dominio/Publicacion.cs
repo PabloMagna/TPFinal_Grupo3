@@ -10,7 +10,7 @@ namespace Dominio
     {
         public int Id { get; set; } 
         public string Titulo { get; set; }
-        public int NumeroEspecie { get; set; }
+        public int Especie { get; set; }
         public string Raza { get; set; }
         public int Edad { get; set; }
         public char Sexo { get; set; }

@@ -21,11 +21,11 @@ namespace TP_Final
                 CargarDDL();
             }
         }
-        public string obtenerPrimeraImagen(int idMascota)
+        public string obtenerPrimeraImagen(int idPublicacion)
         {
             List<ImagenMascota> lista = new List<ImagenMascota>();
             ImagenMascotaNegocio negocio = new ImagenMascotaNegocio();
-            lista = negocio.listar(idMascota);
+            lista = negocio.listar(idPublicacion);
             if (lista != null && lista.Count > 0)
             {
                 return lista[0].urlImagen;
@@ -38,7 +38,7 @@ namespace TP_Final
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            Filtrar();
+            //Filtrar();
             Response.Redirect("galeria.aspx");
         }
         private void CargarLista()
@@ -80,18 +80,18 @@ namespace TP_Final
         }
         private void Filtrar()
         {
-            MascotaNegocio  mascotaNegocio = new MascotaNegocio();
-            int meses = 0;
-            if (ddlMesAnio.SelectedValue == "M")
-                meses = int.Parse(txtEdad.Text);          
-            else if (ddlMesAnio.SelectedValue == "A")           
-                meses = int.Parse(txtEdad.Text) * 12;
+            //MascotaNegocio  mascotaNegocio = new MascotaNegocio();
+            //int meses = 0;
+            //if (ddlMesAnio.SelectedValue == "M")
+            //    meses = int.Parse(txtEdad.Text);          
+            //else if (ddlMesAnio.SelectedValue == "A")           
+            //    meses = int.Parse(txtEdad.Text) * 12;
                      
-            List<int> ints = mascotaNegocio.Filtrar(ddlSexo.SelectedValue[0],int.Parse(ddlEspecies.SelectedValue)
-                , meses, txtRaza.Text );
-            PublicacionNegocio publiNegocio = new PublicacionNegocio();
-            Session["Publicaciones"] = null;
-            Session["Publicaciones"] = publiNegocio.Listar(ints);
+            //List<int> ints = mascotaNegocio.Filtrar(ddlSexo.SelectedValue[0],int.Parse(ddlEspecies.SelectedValue)
+            //    , meses, txtRaza.Text );
+            //PublicacionNegocio publiNegocio = new PublicacionNegocio();
+            //Session["Publicaciones"] = null;
+            //Session["Publicaciones"] = publiNegocio.Listar(ints);
         }
 
         protected void btnRemoverFiltro_Click(object sender, EventArgs e)
