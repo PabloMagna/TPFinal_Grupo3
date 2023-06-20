@@ -5,7 +5,6 @@ go
 
 USE DBTPFinalGRUPO3;
 
-
 GO
 
 CREATE TABLE Provincias (
