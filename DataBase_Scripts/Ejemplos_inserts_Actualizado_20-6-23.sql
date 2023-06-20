@@ -5,7 +5,6 @@ INSERT INTO Usuarios (IDTipoUsuario, Contrasenia, Email, Estado, EsAdmin) VALUES
 (1, 'contraseña2', 'usuario2@example.com', 1, 0),
 (2, 'contraseña3', 'admin@example.com', 1, 1);
 
-
 -- Inserts para la tabla Personas
 INSERT INTO Personas (IDUsuario, Dni, Nombre, Apellido, FechaNacimiento, UrlImagen, IDLocalidad, IDProvincia, Telefono) VALUES
 (1, 12345678, 'Juan', 'Pérez', '1990-01-01', 'https://img.freepik.com/foto-gratis/personas-que-sonrie-alegre-hombres-guapos_1187-6057.jpg', 1, 1, '1234567890'),
@@ -14,7 +13,6 @@ INSERT INTO Personas (IDUsuario, Dni, Nombre, Apellido, FechaNacimiento, UrlImag
 -- Inserts para la tabla Refugios
 INSERT INTO Refugios (IDUsuario, Direccion, Nombre, UrlImagen, IDLocalidad, IDProvincia, Telefono) VALUES
 (3, 'Calle 123', 'Refugio Animal', 'https://thumbs.dreamstime.com/b/familia-que-se-familiariza-con-perros-en-refugio-para-animales-123287981.jpg', 3, 2, '9876543210');
-
 
 -- Inserts para la tabla Publicaciones
 INSERT INTO Publicaciones (Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, Titulo, FechaHora, Estado, IDLocalidad, IDProvincia) VALUES
@@ -33,7 +31,6 @@ INSERT INTO Comentarios (IDPublicacion, Descripcion, Estado, FechaHora) VALUES
 (1, 'Qué hermoso perro, espero que encuentre un hogar pronto.', 1, '2023-06-18 10:30:00'),
 (2, 'Me encanta este gato, es muy tierno.', 1, '2023-04-25 15:45:00'),
 (3, 'Este perro es genial, ojalá encuentre un hogar donde lo cuiden mucho.', 1, '2023-01-15 09:00:00');
-
 
 -- Inserts para la tabla Historias
 INSERT INTO Historias (IDUsuario, Descripcion, UrlImagen, FechaHora, Estado) VALUES
