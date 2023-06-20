@@ -1,9 +1,9 @@
-go
+--DROP DATABASE DBTPFinalGRUPO3;
+
 CREATE DATABASE DBTPFinalGRUPO3;
 go
-USE DBTPFinalGRUPO3;
-GO
 
+USE DBTPFinalGRUPO3;
 
 GO
 
@@ -67,39 +67,31 @@ CREATE TABLE Refugios (
 );
 GO
 
-CREATE TABLE Mascotas (
+
+CREATE TABLE Publicaciones (
 	ID INT IDENTITY(1,1) PRIMARY KEY,
+    Titulo VARCHAR(50) NOT NULL,
 	Especie INT NOT NULL,
 	Raza VARCHAR(20) NOT NULL,
 	Edad INT NOT NULL,
 	Sexo CHAR NOT NULL,
-	Descripcion VARCHAR(200) NOT NULL,
-	Estado INT NOT NULL
-);
-GO
-
-CREATE TABLE Publicaciones (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
-	IDMascota INT NOT NULL,
 	IDUsuario INT NOT NULL,
 	Descripcion VARCHAR(500) NOT NULL,
-	Titulo VARCHAR(50) NOT NULL,
 	FechaHora datetime NOT NULL,
 	Estado INT NOT NULL,
 	IDLocalidad INT NOT NULL,
 	IDProvincia INT NOT NULL,
 	FOREIGN KEY (IDProvincia) REFERENCES Provincias(ID),
 	FOREIGN KEY (IDLocalidad) REFERENCES Localidades(ID),
-	FOREIGN KEY (IDMascota) REFERENCES Mascotas(ID),
 	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID)
 );
 GO
 
 CREATE TABLE ImagenesMascota (
 	ID INT IDENTITY(1,1) PRIMARY KEY,
-	IDMascota INT NOT NULL,
+	IDPublicacion INT NOT NULL,
 	UrlImagen VARCHAR(500) NOT NULL,
-	FOREIGN KEY (IDMascota) REFERENCES Mascotas(ID)
+	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
 );
 GO
 
