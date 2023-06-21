@@ -38,20 +38,25 @@ namespace TP_Final
             {
                 Publicacion nueva = new Publicacion();
                 nueva.Titulo = tbNombre.Text;
+                nueva.Especie = int.Parse(ddlEspecie.SelectedValue);
                 nueva.Raza = tbRaza.Text;
                 nueva.Descripcion = tbDescripcion.Text;
                 nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
                 nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
-                nueva.Especie = int.Parse(ddlEspecie.SelectedValue);
                 nueva.Sexo = ddlSexo.SelectedValue[0];
                 //nueva.IdUsuario = //usuario de la sesión
                 nueva.FechaHora = DateTime.Now;
 
                 ImagenMascota nuevaImg = new ImagenMascota();
                 //nuevaImg.IdPublicacion = get id de la publicación que acabo de crear
+                nuevaImg.urlImagen = tpImg.Text;
 
-                //Insertar registro - Crear método en PublicacionNegocio
-
+                //Hago los inserts de publicacion e imágenes (sólo tengo el método de agregar publicacion con sp)
+                //SIN TERMINAR
+                /*
+                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+                publicacionNegocio.AgregarConSP(nueva);
+                */
 
             }
             catch (Exception ex)

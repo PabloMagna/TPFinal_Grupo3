@@ -19,7 +19,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" >Nombre de la Mascota</label>
-                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" placeholder="Boby"></asp:TextBox>
+                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" placeholder="Wolfy"></asp:TextBox>
                 </div>
                
                 <div class="mb-3">
@@ -75,7 +75,7 @@
                 </div>
                  <div class="mb-3">
                     <label class="form-label">Imagen de la mascota</label>
-                    <asp:TextBox ID="TextBox3" runat="server" class="form-control" MaxLength="500" placeholder="https://www...."></asp:TextBox>
+                    <asp:TextBox ID="tpImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...."></asp:TextBox>
                 </div>
                 <%--Botones--%>
                 <div class="mb-3">

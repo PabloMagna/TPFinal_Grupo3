@@ -106,6 +106,36 @@ namespace Negocio
             }
         }
 
+        public void AgregarConSP(Publicacion publicacionNueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {               
+                datos.setearProcedimiento("SP_alta_publicacion");
+                datos.setearParametro("@titulo", publicacionNueva.Titulo);
+                datos.setearParametro("@especie", publicacionNueva.Especie);
+                datos.setearParametro("@Raza", publicacionNueva.Raza);
+                datos.setearParametro("@edad", publicacionNueva.Edad);
+                datos.setearParametro("@sexo", publicacionNueva.Sexo);
+                datos.setearParametro("@idUsuario", publicacionNueva.IdUsuario);
+                datos.setearParametro("@descripcion", publicacionNueva.Descripcion);
+                datos.setearParametro("@fecha", publicacionNueva.FechaHora);
+                datos.setearParametro("@idLocalidad", publicacionNueva.IDLocalidad);
+                datos.setearParametro("@idProvincia", publicacionNueva.IDProvincia);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) 
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
 
         //public List<Publicacion> Listar(List<int> ints)
         //{
