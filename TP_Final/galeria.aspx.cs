@@ -70,7 +70,7 @@ namespace TP_Final
             ddlSexo.Items.Add(new ListItem("Macho", "M"));
             ddlSexo.Items.Add(new ListItem("Desconocido", "D"));
 
-            ddlSexo.SelectedValue = "D";
+            ddlSexo.SelectedValue = "M";
             // Cargar DropDownList de mes y año
             // Aquí debes implementar la lógica para cargar el DropDownList de mes y año
             ddlMesAnio.Items.Clear();

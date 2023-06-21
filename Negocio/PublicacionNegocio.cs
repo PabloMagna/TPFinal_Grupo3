@@ -134,52 +134,45 @@ namespace Negocio
             }
         }
 
+        public Publicacion ObtenerPorId(int IDPublicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones WHERE ID = @ID");
+                datos.setearParametro("@ID", IDPublicacion);
+                datos.ejecutarLectura();
 
+                if (datos.Lector.Read())
+                {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.Id = datos.Lector.GetInt32(0);
+                    publicacion.Titulo = datos.Lector.GetString(1);
+                    publicacion.Especie = datos.Lector.GetInt32(2);
+                    publicacion.Raza = datos.Lector.GetString(3);
+                    publicacion.Edad = datos.Lector.GetInt32(4);
+                    publicacion.Sexo = datos.Lector.GetString(5)[0];
+                    publicacion.IdUsuario = datos.Lector.GetInt32(6);
+                    publicacion.Descripcion = datos.Lector.GetString(7);
+                    publicacion.FechaHora = datos.Lector.GetDateTime(8);
+                    publicacion.Estado = datos.Lector.GetInt32(9);
+                    publicacion.IDLocalidad = datos.Lector.GetInt32(10);
+                    publicacion.IDProvincia = datos.Lector.GetInt32(11);
 
+                    return publicacion;
+                }
 
-        //public List<Publicacion> Listar(List<int> ints)
-        //{
-        //    AccesoDatos datos = new AccesoDatos();
-        //    List<Publicacion> publicaciones = new List<Publicacion>();
-        //    try
-        //    {
-        //        foreach (int i in ints)
-        //        {
-        //            datos.setearConsulta("select ID, Titulo, Especie, Raza, Edad, Sexo, IDUsuario, Descripcion,FechaHora, Estado, IDLocalidad, IDProvincia from Publicaciones where ID = " + i.ToString());
-        //            datos.ejecutarLectura();
+                return null; 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
-        //            while (datos.Lector.Read())
-        //            {
-        //                Publicacion aux = new Publicacion();
-        //                aux.Id = datos.Lector.GetInt32(0);
-        //                aux.Titulo = (string)datos.Lector["Titulo"];
-        //                aux.Especie = (int)datos.Lector["Especie"];
-        //                aux.Raza = (string)datos.Lector["Raza"];
-        //                aux.Edad = (int)datos.Lector["Edad"];
-        //                aux.Sexo = (char)datos.Lector["Sexo"];
-        //                aux.Descripcion = (string)datos.Lector["Descripcion"];
-        //                aux.FechaHora = (DateTime)datos.Lector["FechaHora"];
-        //                aux.IDLocalidad = (int)datos.Lector["IDLocalidad"];
-        //                aux.IDProvincia = (int)datos.Lector["IDProvincia"];
-        //                aux.Estado = (int)datos.Lector["Estado"];
-        //                aux.IdUsuario = (int)datos.Lector["IDUsuario"];
-
-        //                publicaciones.Add(aux);
-        //            }
-        //            datos.cerrarConexion();
-        //        }
-        //        return publicaciones;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        datos.cerrarConexion();
-        //    }
-        //}
     }
 }
