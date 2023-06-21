@@ -103,5 +103,33 @@ namespace Negocio
             datos.cerrarConexion();
             return IDProvincia;
         }
+        public string ObtenerNombrePorId(int idProvincia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string nombreProvincia = "";
+            try
+            {
+                datos.setearConsulta("SELECT Nombre FROM Provincias WHERE ID = @idProvincia");
+                datos.setearParametro("@idProvincia", idProvincia);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    nombreProvincia = datos.Lector.GetString(0);
+                }
+                return nombreProvincia;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }

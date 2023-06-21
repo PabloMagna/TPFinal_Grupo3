@@ -100,5 +100,28 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public string ObtnerNombrePorID(int idLocalidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string nombre = "";
+            try
+            {
+                datos.setearConsulta("SELECT Nombre FROM Localidades WHERE ID = @idLocalidad");
+                datos.setearParametro("@idLocalidad", idLocalidad);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    nombre = datos.Lector.GetString(0);
+                }
+                return nombre;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }
