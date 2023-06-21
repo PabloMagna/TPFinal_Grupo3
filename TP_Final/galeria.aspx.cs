@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Negocio;
 using Dominio;
 using static System.Net.WebRequestMethods;
+using System.Diagnostics.Eventing.Reader;
 
 namespace TP_Final
 {
@@ -20,7 +21,7 @@ namespace TP_Final
                 CargarLista();
                 CargarDDL();
                 CargarDropDownListProvincias();
-                CargarLocalidades(1);
+                CargarLocalidades(0);
             }
         }
         public string obtenerPrimeraImagen(int idPublicacion)
@@ -54,6 +55,7 @@ namespace TP_Final
             {
                 publicaciones = (List<Publicacion>)Session["Publicaciones"];
             }
+            
         }
         private void CargarDDL()
         {
@@ -63,22 +65,24 @@ namespace TP_Final
             ddlEspecies.Items.Add(new ListItem("Gato", "2"));
             ddlEspecies.Items.Add(new ListItem("Otros", "3"));
 
-            ddlEspecies.SelectedValue = "1";
+            ddlEspecies.Items.Insert(0, new ListItem("TODOS", "0"));
+            ddlEspecies.SelectedValue = "0";
             // Cargar DropDownList de sexo
             ddlSexo.Items.Clear();
             ddlSexo.Items.Add(new ListItem("Hembra", "H"));
             ddlSexo.Items.Add(new ListItem("Macho", "M"));
             ddlSexo.Items.Add(new ListItem("Desconocido", "D"));
 
-            ddlSexo.SelectedValue = "M";
+            ddlSexo.Items.Insert(0, new ListItem("TODOS", "T"));
+            ddlSexo.SelectedValue = "T";
             // Cargar DropDownList de mes y año
             // Aquí debes implementar la lógica para cargar el DropDownList de mes y año
             ddlMesAnio.Items.Clear();
-            ddlMesAnio.Items.Add(new ListItem("Año/s", "A"));
-            ddlMesAnio.Items.Add(new ListItem("Mes/es", "M"));
+            ddlMesAnio.Items.Add(new ListItem("Año/s (Máximo)", "A"));
+            ddlMesAnio.Items.Add(new ListItem("Mes/es (Máximo)", "M"));
             ddlMesAnio.SelectedValue = "A";
 
-            txtEdad.Text = "1";
+            txtEdad.Text = "0";
         }
         private void Filtrar()
         {
@@ -92,9 +96,18 @@ namespace TP_Final
             {
                 meses = Convert.ToInt32(txtEdad.Text);
             }
-            List<Publicacion> listaFiltrada = negocio.Filtrar(Convert.ToInt32(ddlLocalidad.SelectedValue), Convert.ToInt32(ddlEspecies.SelectedValue), ddlSexo.SelectedValue[0], meses, txtRaza.Text);
+
+            int provincia = Convert.ToInt32(ddlProvincia.SelectedValue);
+            int localidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
+            int especie = Convert.ToInt32(ddlEspecies.SelectedValue);
+            char sexo = ddlSexo.SelectedValue[0];
+
+            List<Publicacion> listaFiltrada = negocio.Filtrar(provincia, localidad, especie, sexo, meses);
             Session["Publicaciones"] = listaFiltrada;
+            publicaciones = listaFiltrada;
+            updatePanelTarjetas.Update();
         }
+
 
         protected void btnRemoverFiltro_Click(object sender, EventArgs e)
         {
@@ -111,16 +124,26 @@ namespace TP_Final
             ddlProvincia.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
             ddlProvincia.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
             ddlProvincia.DataBind();
+            ddlProvincia.Items.Insert(0, new ListItem("TODAS", "0"));
+            ddlProvincia.SelectedValue = "0";
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
             CargarLocalidades(idProvincia);
+            Filtrar();
         }
 
         private void CargarLocalidades(int idProvincia)
         {
+            if(idProvincia == 0)
+            {
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Insert(0, new ListItem("TODAS", "0"));
+                ddlLocalidad.SelectedValue = "0";
+                return;
+            }
             LocalidadNegocio localidadNegocio = new LocalidadNegocio();
             List<KeyValuePair<int, string>> localidades = localidadNegocio.ListarClaveValor(idProvincia);
 
@@ -128,6 +151,24 @@ namespace TP_Final
             ddlLocalidad.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
             ddlLocalidad.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
             ddlLocalidad.DataBind();
+            ddlLocalidad.Items.Insert(0, new ListItem("TODAS", "0"));
+            ddlLocalidad.SelectedValue = "0";
+          
+        }
+
+        protected void ddlLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+
+        protected void ddlEspecies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+
+        protected void ddlSexo_TextChanged(object sender, EventArgs e)
+        {
+            Filtrar();
         }
     }
 }

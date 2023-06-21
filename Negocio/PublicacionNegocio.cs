@@ -49,7 +49,7 @@ namespace Negocio
         }
 
 
-        public List<Publicacion> Filtrar(int localidad, int especie, char sexo, int edad, string raza)
+        public List<Publicacion> Filtrar(int provincia, int localidad, int especie, char sexo, int edad)
         {
             AccesoDatos datos = new AccesoDatos();
             List<Publicacion> publicacionesFiltradas = new List<Publicacion>();
@@ -60,16 +60,16 @@ namespace Negocio
                 if (localidad != 0)
                     consulta += " AND IDLocalidad = " + localidad;
 
+                if (provincia != 0)
+                    consulta += " AND IDProvincia = " + provincia;
+
                 if (especie != 0)
                     consulta += " AND Especie = " + especie;
-
-                if (!string.IsNullOrEmpty(raza))
-                    consulta += " AND Raza LIKE '%" + raza + "%'";
 
                 if (edad != 0)
                     consulta += " AND Edad <= " + edad;
 
-                if (sexo != ' ')
+                if (sexo != 'T')
                     consulta += " AND Sexo = '" + sexo + "'";
 
                 datos.setearConsulta(consulta);
@@ -105,6 +105,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
 
         public void AgregarConSP(Publicacion publicacionNueva)
         {
@@ -173,6 +174,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
+        
     }
 }
