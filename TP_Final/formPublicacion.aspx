@@ -24,33 +24,33 @@
                
                 <div class="mb-3">
                     <label class="form-label">Especie</label>
-                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-select" AutoPostBack="false">
-                        <asp:ListItem Selected="True">Gato</asp:ListItem>
-                        <asp:ListItem >Perro</asp:ListItem>
-                        <asp:ListItem >Otro</asp:ListItem>
+                    <asp:DropDownList ID="ddlEspecie" runat="server" class="form-select" AutoPostBack="false">
+                        <asp:ListItem Selected="True" Text="Perro" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Gato" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="Otro" Value="3"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                  <div class="mb-3">
                     <label class="form-label" >Raza </label>
-                    <asp:TextBox ID="tbEspecie" runat="server" class="form-control" placeholder="Chiguagua / Siamés"></asp:TextBox>
+                    <asp:TextBox ID="tbRaza" runat="server" class="form-control" placeholder="Chiguagua / Siamés"></asp:TextBox>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Edad</label>
-                    <asp:TextBox ID="TextBox1" runat="server" Type="number" min="1" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tbEdad" runat="server" Type="number" min="1" class="form-control"></asp:TextBox>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Seleccione unidad de tiempo</label>
                     <asp:DropDownList ID="ddlEdad" runat="server" class="form-select" AutoPostBack="false">
-                        <asp:ListItem Selected="True">Años</asp:ListItem>
-                        <asp:ListItem >Meses</asp:ListItem>
+                        <asp:ListItem Text="Años" Value="A"></asp:ListItem>
+                        <asp:ListItem Text="Meses" Value="M"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                   <div class="mb-3">
                     <label class="form-label">Sexo</label>
                     <asp:DropDownList ID="ddlSexo" runat="server" class="form-select" AutoPostBack="false">
-                        <asp:ListItem Selected="True">Hembra</asp:ListItem>
-                        <asp:ListItem >Macho</asp:ListItem>
-                        <asp:ListItem >Desconoce</asp:ListItem>
+                        <asp:ListItem Text="Macho" Value="M"></asp:ListItem>
+                        <asp:ListItem Selected="True" Text="Hembra" Value="H"></asp:ListItem>
+                        <asp:ListItem Text="Desconoce" Value="D"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                   <div class="mb-3">
@@ -71,11 +71,15 @@
                     </div>
                 <div class="mb-3">
                     <label class="form-label">Descripción la publicación</label>
-                    <asp:TextBox ID="TextBox2" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="500" placeholder="Características de la mascota, Condiciones de adopción, etc."></asp:TextBox>
+                    <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="500" placeholder="Características de la mascota, Condiciones de adopción, etc."></asp:TextBox>
+                </div>
+                 <div class="mb-3">
+                    <label class="form-label">Imagen de la mascota</label>
+                    <asp:TextBox ID="TextBox3" runat="server" class="form-control" MaxLength="500" placeholder="https://www...."></asp:TextBox>
                 </div>
                 <%--Botones--%>
                 <div class="mb-3">
-                    <input class="btn btn-light" type="submit" value="Enviar">
+                    <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" />
                 </div>
             </div>        

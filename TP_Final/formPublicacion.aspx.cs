@@ -15,11 +15,52 @@ namespace TP_Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {               
-                CargarDropDownListProvincias();      
+            try
+            {
+                if (!IsPostBack)
+                {
+                    CargarDropDownListProvincias();
+                    CargarLocalidades(1);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
+           
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Publicacion nueva = new Publicacion();
+                nueva.Titulo = tbNombre.Text;
+                nueva.Raza = tbRaza.Text;
+                nueva.Descripcion = tbDescripcion.Text;
+                nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
+                nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
+                nueva.Especie = int.Parse(ddlEspecie.SelectedValue);
+                nueva.Sexo = ddlSexo.SelectedValue[0];
+                //nueva.IdUsuario = //usuario de la sesión
+                nueva.FechaHora = DateTime.Now;
+
+                ImagenMascota nuevaImg = new ImagenMascota();
+                //nuevaImg.IdPublicacion = get id de la publicación que acabo de crear
+
+                //Insertar registro - Crear método en PublicacionNegocio
+
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
             }
         }
+
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ddlProvincia.SelectedIndex;
@@ -30,16 +71,22 @@ namespace TP_Final
         private void CargarLocalidades(int idProvincia)
         {
             LocalidadNegocio localidadNegocio = new LocalidadNegocio();
-            List<string> localidades = localidadNegocio.CargarDropDownList(idProvincia);
+            List<KeyValuePair<int, string>> localidades = localidadNegocio.ListarClaveValor(idProvincia);
+
             ddlLocalidad.DataSource = localidades;
+            ddlLocalidad.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
+            ddlLocalidad.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
             ddlLocalidad.DataBind();
         }
         private void CargarDropDownListProvincias()
-        {
+        {           
             ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio();
-            List<string> provincias = provinciaNegocio.cargarDropDownList();
-            ddlProvincia.DataSource = provincias;            
-            ddlProvincia.DataBind();            
+            List<KeyValuePair<int, string>> provincias = provinciaNegocio.ListarClaveValor();
+
+            ddlProvincia.DataSource = provincias;
+            ddlProvincia.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
+            ddlProvincia.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
+            ddlProvincia.DataBind();
         }
     }
 }

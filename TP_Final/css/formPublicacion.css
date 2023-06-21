@@ -1,5 +1,6 @@
 ﻿body {
 }
+
 .portada {
     background-color: #D2E3EB;
     height: auto;
@@ -21,7 +22,6 @@
 
 .titulo {
     font-size: 30px;
-    
 }
 
 .row {
@@ -40,3 +40,16 @@ div.col-4 {
     width: 100%;
     height: fit-content;
 }
+
+.btn {
+    padding: 7px 10px !important;
+    background-color: #D2E3EB !important;
+    color: #24566E !important;
+    font-weight: bold !important;
+    margin-right: 10px !important;
+    margin-top: 15px !important;
+}
+
+    .btn:hover {
+        background-color: #9dc2d3 !important;
+    }

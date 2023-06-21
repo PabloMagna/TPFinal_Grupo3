@@ -42,31 +42,31 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbNombre;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlEspecie control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecie;
 
         /// <summary>
-        /// tbEspecie control.
+        /// tbRaza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEspecie;
+        protected global::System.Web.UI.WebControls.TextBox tbRaza;
 
         /// <summary>
-        /// TextBox1 control.
+        /// tbEdad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbEdad;
 
         /// <summary>
         /// ddlEdad control.
@@ -123,13 +123,31 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.DropDownList ddlLocalidad;
 
         /// <summary>
-        /// TextBox2 control.
+        /// tbDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox tbDescripcion;
+
+        /// <summary>
+        /// TextBox3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+
+        /// <summary>
+        /// btnAceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
 
         /// <summary>
         /// btnCancelar control.
