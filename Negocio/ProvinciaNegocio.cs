@@ -41,11 +41,16 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             datos.setearConsulta("select ID,Nombre from Provincias");
             datos.ejecutarLectura();
-
+            bool bandera = true;
             try
             {
                 while (datos.Lector.Read())
                 {
+                    if (bandera)
+                    {
+                        provincias.Add("Seleccionar");
+                        bandera = false;
+                    }
                     string prov = (string)datos.Lector["Nombre"];
                     provincias.Add(prov);
                 }

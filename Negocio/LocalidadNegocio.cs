@@ -41,17 +41,26 @@ namespace Negocio
         {
             List<string> localidades = new List<string>();
             AccesoDatos datos = new AccesoDatos();
-            
 
-            datos.setearConsulta("select ID,Nombre,IDProvincia from Localidades where IDProvincia="+IdProv);
+
+            datos.setearConsulta("select ID,Nombre,IDProvincia from Localidades where IDProvincia=" + IdProv);
             datos.ejecutarLectura();
+            bool bandera = false;
 
             try
             {
                 while (datos.Lector.Read())
                 {
-                    string prov = (string)datos.Lector["Nombre"];
-                    localidades.Add(prov);
+                    if (!bandera)
+                    {
+                        localidades.Add("Seleccionar");
+                        bandera = true;
+                    }
+                    else
+                    {
+                        string prov = (string)datos.Lector["Nombre"];
+                        localidades.Add(prov);
+                    }
                 }
                 return localidades;
             }
