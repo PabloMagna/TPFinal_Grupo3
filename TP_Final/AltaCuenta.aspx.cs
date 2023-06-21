@@ -44,5 +44,10 @@ namespace TP_Final
             ddlLocalidad.DataSource = localidades.CargarDropDownList(ddlProvincia.SelectedIndex + 1);
             ddlLocalidad.DataBind();
         }
+
+        protected void cvProvincia_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+
+        }
     }
 }

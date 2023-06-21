@@ -33,6 +33,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
 
         /// <summary>
+        /// Control rfvEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+
+        /// <summary>
         /// Control tbPassword.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
+
+        /// <summary>
+        /// Control rfvPassword.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
 
         /// <summary>
         /// Control formPersona.
@@ -60,6 +78,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbNombre;
 
         /// <summary>
+        /// Control rfvNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombre;
+
+        /// <summary>
         /// Control tbApellido.
         /// </summary>
         /// <remarks>
@@ -69,6 +96,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbApellido;
 
         /// <summary>
+        /// Control rfvApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApellido;
+
+        /// <summary>
         /// Control tbFechaNac.
         /// </summary>
         /// <remarks>
@@ -76,6 +112,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbFechaNac;
+
+        /// <summary>
+        /// Control rfvFechaNac.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaNac;
 
         /// <summary>
         /// Control formRefugio.
@@ -96,6 +141,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbNombreRefugio;
 
         /// <summary>
+        /// Control rfvNombreRefugio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreRefugio;
+
+        /// <summary>
         /// Control tbDireccion.
         /// </summary>
         /// <remarks>
@@ -105,6 +159,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbDireccion;
 
         /// <summary>
+        /// Control rfvDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDireccion;
+
+        /// <summary>
         /// Control ddlProvincia.
         /// </summary>
         /// <remarks>
@@ -112,6 +175,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
+
+        /// <summary>
+        /// Control cvProvincia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvProvincia;
 
         /// <summary>
         /// Control ddlLocalidad.
@@ -130,6 +202,24 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbTelefono;
+
+        /// <summary>
+        /// Control rfvTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTelefono;
+
+        /// <summary>
+        /// Control btnEnviar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEnviar;
 
         /// <summary>
         /// Control btnCancelar.
