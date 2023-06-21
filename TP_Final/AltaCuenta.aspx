@@ -69,7 +69,7 @@
                 <div class="mb-3">
                     <label class="form-label">Seleccione una Localidad</label>                    
 
-                        <asp:DropDownList ID="ddlLocalidad" runat="server" class="form-select" AutoPostBack="false">                   
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" class="form-select" AutoPostBack="false" OnLoad="ddlLocalidad_Load">                   
                         <%--<asp:ListItem Selected="True">Localidad</asp:ListItem>--%>
                     </asp:DropDownList>
                 </div>
@@ -80,9 +80,9 @@
                 </div>
                 <%--Botones--%>
                 <div class="mb-3">
-                    <asp:Button ID="btnEnviar" runat="server" Text="Enviar" class="btn btn-light"/>
+                    <asp:Button ID="btnEnviar" runat="server" Text="Enviar" class="btn btn-light" OnClick="btnEnviar_Click"/>
                     <%--<input class="btn btn-light" type="submit" value="Enviar">--%>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary"/>
                 </div>
             </div>
 
