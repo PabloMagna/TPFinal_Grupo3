@@ -66,11 +66,28 @@ namespace Negocio
                 if (especie != 0)
                     consulta += " AND Especie = " + especie;
 
-                if (edad != 0)
-                    consulta += " AND Edad <= " + edad;
-
                 if (sexo != 'T')
                     consulta += " AND Sexo = '" + sexo + "'";
+
+                if (edad != 0)
+                {
+                    if (edad == 1) // Bebé (menor al año)
+                    {
+                        // Consulta para filtrar bebés (menores a 12 meses)
+                        consulta += " AND Edad < 12";
+                    }
+                    else if (edad == 2) // Joven (1 a 10 años)
+                    {
+                        // Consulta para filtrar animales jóvenes (entre 12 meses y 10 años)
+                        consulta += " AND Edad >= 12 AND Edad <= 10*12";
+                    }
+                    else if (edad == 3) // Adulto (más de 10)
+                    {
+                        // Consulta para filtrar animales adultos (mayores a 10 años)
+                        consulta += " AND Edad > 10*12";
+                    }
+                }
+
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();

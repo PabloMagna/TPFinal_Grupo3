@@ -33,6 +33,15 @@ namespace TP_Final
         protected global::System.Web.UI.UpdatePanel updatePanelProvincia;
 
         /// <summary>
+        /// Control lblProvincia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProvincia;
+
+        /// <summary>
         /// Control ddlProvincia.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
+
+        /// <summary>
+        /// Control lblLocalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLocalidad;
 
         /// <summary>
         /// Control ddlLocalidad.
@@ -51,6 +69,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.DropDownList ddlLocalidad;
 
         /// <summary>
+        /// Control lblEspecie.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEspecie;
+
+        /// <summary>
         /// Control ddlEspecies.
         /// </summary>
         /// <remarks>
@@ -58,6 +85,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecies;
+
+        /// <summary>
+        /// Control lblSexo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSexo;
 
         /// <summary>
         /// Control ddlSexo.
@@ -69,22 +105,22 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.DropDownList ddlSexo;
 
         /// <summary>
-        /// Control ddlMesAnio.
+        /// Control lblEdad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMesAnio;
+        protected global::System.Web.UI.WebControls.Label lblEdad;
 
         /// <summary>
-        /// Control txtEdad.
+        /// Control ddlEdad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEdad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEdad;
 
         /// <summary>
         /// Control updatePanelTarjetas.

@@ -15,25 +15,31 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <br />
                 <section class="filtro mt-3">
                     <asp:UpdatePanel runat="server" ID="updatePanelProvincia">
                         <ContentTemplate>
-                            <div class="form-group mb-3">
-                                <asp:DropDownList runat="server" ID="ddlProvincia" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
-                            </div>
-                            <div class="form-group mb-3">
-                                <asp:DropDownList runat="server" ID="ddlLocalidad" CssClass="form-select" AutoPostBack="True"  OnSelectedIndexChanged="ddlLocalidad_SelectedIndexChanged"></asp:DropDownList>
-                            </div>
-                            <div class="form-group mb-3">
-                                <asp:DropDownList runat="server" ID="ddlEspecies" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecies_SelectedIndexChanged"></asp:DropDownList>
-                            </div>
-                            <div class="form-group mb-3">
-                                <asp:DropDownList runat="server" ID="ddlSexo" CssClass="form-select" AutoPostBack="true" OnTextChanged="ddlSexo_TextChanged"></asp:DropDownList>
-                            </div>
-                            <div class="form-group mb-3 d-flex align-items-center">
-                                <asp:DropDownList runat="server" ID="ddlMesAnio" CssClass="form-control me-2"></asp:DropDownList>
-                                <asp:TextBox runat="server" ID="txtEdad" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                            <div class="bg-orange rounded p-3">
+                                <h3 class="text-white">FILTROS</h3>
+                                <div class="form-group mb-3">
+                                    <asp:Label runat="server" ID="lblProvincia" Text="Elige Provincia:" CssClass="form-label text-white"></asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlProvincia" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <asp:Label runat="server" ID="lblLocalidad" Text="Elige Localidad:" CssClass="form-label text-white"></asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlLocalidad" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlLocalidad_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <asp:Label runat="server" ID="lblEspecie" Text="Elige Especie:" CssClass="form-label text-white"></asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlEspecies" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecies_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <asp:Label runat="server" ID="lblSexo" Text="Elige Sexo:" CssClass="form-label text-white"></asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlSexo" CssClass="form-select" AutoPostBack="true" OnTextChanged="ddlSexo_TextChanged"></asp:DropDownList>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <asp:Label runat="server" ID="lblEdad" Text="Elige Edad:" CssClass="form-label text-white"></asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlEdad" CssClass="form-select" AutoPostBack="true" OnTextChanged="ddlEdad_TextChanged"></asp:DropDownList>
+                                </div>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>

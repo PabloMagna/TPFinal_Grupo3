@@ -65,7 +65,7 @@ namespace TP_Final
             ddlEspecies.Items.Add(new ListItem("Gato", "2"));
             ddlEspecies.Items.Add(new ListItem("Otros", "3"));
 
-            ddlEspecies.Items.Insert(0, new ListItem("TODOS", "0"));
+            ddlEspecies.Items.Insert(0, new ListItem("TODAS LAS ESPECIES", "0"));
             ddlEspecies.SelectedValue = "0";
             // Cargar DropDownList de sexo
             ddlSexo.Items.Clear();
@@ -73,36 +73,27 @@ namespace TP_Final
             ddlSexo.Items.Add(new ListItem("Macho", "M"));
             ddlSexo.Items.Add(new ListItem("Desconocido", "D"));
 
-            ddlSexo.Items.Insert(0, new ListItem("TODOS", "T"));
+            ddlSexo.Items.Insert(0, new ListItem("TODOS LOS SEXOS", "T"));
             ddlSexo.SelectedValue = "T";
-            // Cargar DropDownList de mes y año
-            // Aquí debes implementar la lógica para cargar el DropDownList de mes y año
-            ddlMesAnio.Items.Clear();
-            ddlMesAnio.Items.Add(new ListItem("Año/s (Máximo)", "A"));
-            ddlMesAnio.Items.Add(new ListItem("Mes/es (Máximo)", "M"));
-            ddlMesAnio.SelectedValue = "A";
-
-            txtEdad.Text = "0";
+            
+            ddlEdad.Items.Clear();
+            ddlEdad.Items.Add(new ListItem("TODAS LAS EDADES", "0"));
+            ddlEdad.Items.Add(new ListItem("Bebé (menor al año)", "1"));
+            ddlEdad.Items.Add(new ListItem("Joven (1 a 10 años)", "2"));
+            ddlEdad.Items.Add(new ListItem("Adulto (más de 10)", "3"));
+            ddlEdad.SelectedValue = "0";
         }
         private void Filtrar()
         {
             PublicacionNegocio negocio = new PublicacionNegocio();
-            int meses = 0;
-            if (ddlMesAnio.SelectedValue == "A")
-            {
-                meses = Convert.ToInt32(txtEdad.Text) * 12;
-            }
-            else
-            {
-                meses = Convert.ToInt32(txtEdad.Text);
-            }
 
+            int edad = Convert.ToInt32(ddlEdad.SelectedValue);
             int provincia = Convert.ToInt32(ddlProvincia.SelectedValue);
             int localidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
             int especie = Convert.ToInt32(ddlEspecies.SelectedValue);
             char sexo = ddlSexo.SelectedValue[0];
 
-            List<Publicacion> listaFiltrada = negocio.Filtrar(provincia, localidad, especie, sexo, meses);
+            List<Publicacion> listaFiltrada = negocio.Filtrar(provincia, localidad, especie, sexo, edad);
             Session["Publicaciones"] = listaFiltrada;
             publicaciones = listaFiltrada;
             updatePanelTarjetas.Update();
@@ -124,7 +115,7 @@ namespace TP_Final
             ddlProvincia.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
             ddlProvincia.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
             ddlProvincia.DataBind();
-            ddlProvincia.Items.Insert(0, new ListItem("TODAS", "0"));
+            ddlProvincia.Items.Insert(0, new ListItem("TODAS LAS PROVINCIAS", "0"));
             ddlProvincia.SelectedValue = "0";
         }
 
@@ -140,7 +131,7 @@ namespace TP_Final
             if(idProvincia == 0)
             {
                 ddlLocalidad.Items.Clear();
-                ddlLocalidad.Items.Insert(0, new ListItem("TODAS", "0"));
+                ddlLocalidad.Items.Insert(0, new ListItem("TODAS LAS LOCALIDADES", "0"));
                 ddlLocalidad.SelectedValue = "0";
                 return;
             }
@@ -151,7 +142,7 @@ namespace TP_Final
             ddlLocalidad.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
             ddlLocalidad.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
             ddlLocalidad.DataBind();
-            ddlLocalidad.Items.Insert(0, new ListItem("TODAS", "0"));
+            ddlLocalidad.Items.Insert(0, new ListItem("TODAS LAS LOCALIDADES", "0"));
             ddlLocalidad.SelectedValue = "0";
           
         }
@@ -167,6 +158,10 @@ namespace TP_Final
         }
 
         protected void ddlSexo_TextChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+        protected void ddlEdad_TextChanged(object sender, EventArgs e)
         {
             Filtrar();
         }
