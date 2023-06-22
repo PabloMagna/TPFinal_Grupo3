@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,9 +125,10 @@ namespace Negocio
         }
 
 
-        public void AgregarConSP(Publicacion publicacionNueva)
+        public int AgregarConSP(Publicacion publicacionNueva)
         {
             AccesoDatos datos = new AccesoDatos();
+            int idPublicacionCreada = 0;
             try
             {               
                 datos.setearProcedimiento("SP_alta_publicacion");
@@ -140,7 +142,16 @@ namespace Negocio
                 datos.setearParametro("@fecha", publicacionNueva.FechaHora);
                 datos.setearParametro("@idLocalidad", publicacionNueva.IDLocalidad);
                 datos.setearParametro("@idProvincia", publicacionNueva.IDProvincia);
+                
                 datos.ejecutarAccion();
+                
+                datos.setearConsulta("SELECT @@IDENTITY");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    idPublicacionCreada = datos.Lector.GetInt32(0);
+
+                }
             }
             catch (Exception ex) 
             {
@@ -150,6 +161,8 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+            return idPublicacionCreada;
+
         }
 
         public Publicacion ObtenerPorId(int IDPublicacion)

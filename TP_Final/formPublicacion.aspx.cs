@@ -13,6 +13,8 @@ namespace TP_Final
 {
     public partial class Publicar : System.Web.UI.Page
     {
+        protected Usuario usuarioLogin { set; get; }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -20,7 +22,8 @@ namespace TP_Final
                 if (!IsPostBack)
                 {
                     CargarDropDownListProvincias();
-                    CargarLocalidades(1);
+                    CargarLocalidades(1);                    
+                    usuarioLogin = (Usuario) Session["Usuario"];
                 }
 
             }
@@ -44,20 +47,20 @@ namespace TP_Final
                 nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
                 nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
                 nueva.Sexo = ddlSexo.SelectedValue[0];
-                //nueva.IdUsuario = //usuario de la sesión
+                nueva.IdUsuario = usuarioLogin.Id;
                 nueva.FechaHora = DateTime.Now;
+                /*
 
+                //Hago los inserts: 
+                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();               
                 ImagenMascota nuevaImg = new ImagenMascota();
-                //nuevaImg.IdPublicacion = get id de la publicación que acabo de crear
+                //Agregar con sp devielve el ID de la publicación.
+                nuevaImg.IdPublicacion = publicacionNegocio.AgregarConSP(nueva);
                 nuevaImg.urlImagen = tpImg.Text;
 
-                //Hago los inserts de publicacion e imágenes (sólo tengo el método de agregar publicacion con sp)
-                //SIN TERMINAR
-                /*
-                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
-                publicacionNegocio.AgregarConSP(nueva);
+                //Hacer insert de Img
+              
                 */
-
             }
             catch (Exception ex)
             {
