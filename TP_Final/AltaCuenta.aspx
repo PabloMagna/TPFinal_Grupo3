@@ -82,13 +82,14 @@
                 <div class="mb-3">
                     <label class="form-label">Telefono</label>
                     <asp:TextBox ID="tbTelefono" runat="server" class="form-control"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTelefono" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$"></asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTelefono" ErrorMessage="Campo Obligatorio"></asp:RequiredFieldValidator>
                 </div>
                 <%--Botones--%>
                 <div class="mb-3">
                     <asp:Button ID="btnEnviar" runat="server" Text="Enviar" class="btn btn-light" OnClick="btnEnviar_Click" />
                     <%--<input class="btn btn-light" type="submit" value="Enviar">--%>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" Onclick="btnCancelar_Click" CausesValidation="false"/>
                 </div>
             </div>
 

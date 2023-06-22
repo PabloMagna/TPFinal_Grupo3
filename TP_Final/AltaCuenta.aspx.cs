@@ -44,6 +44,7 @@ namespace TP_Final
                 ddlLocalidad.DataBind();
                 ddlLocalidad.SelectedIndex = 0;
             }
+            
            
         }
 
@@ -81,6 +82,11 @@ namespace TP_Final
             {
                 //Acciones a tomar si todos los campos del form son validos (cargar a db)
             }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx");
         }
     }
 }
