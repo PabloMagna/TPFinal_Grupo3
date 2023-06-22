@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -59,12 +60,19 @@ namespace TP_Final
             args.IsValid = (ddlProvincia.SelectedItem.Text != "Seleccionar");
         }
 
+        protected void cvLocalidad_ServerValidate(Object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = (ddlLocalidad.SelectedIndex != 0);
+        }
+
         protected void ddlLocalidad_Load(object sender, EventArgs e)
         {
-            if (ddlLocalidad.Items.Count == 0)
+            if (!IsPostBack)
             {
+                ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Add("Seleccionar");
             }
+            
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
