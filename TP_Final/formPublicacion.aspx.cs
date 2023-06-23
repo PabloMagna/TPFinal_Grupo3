@@ -17,13 +17,13 @@ namespace TP_Final
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            usuarioLogin = (Dominio.Usuario)Session["Usuario"];
             try
             {
                 if (!IsPostBack)
                 {
                     CargarDropDownListProvincias();
-                    CargarLocalidades(1);                    
-                    usuarioLogin = (Usuario) Session["Usuario"];
+                    CargarLocalidades(1);    
                 }
 
             }
@@ -49,18 +49,20 @@ namespace TP_Final
                 nueva.Sexo = ddlSexo.SelectedValue[0];
                 nueva.IdUsuario = usuarioLogin.Id;
                 nueva.FechaHora = DateTime.Now;
-                /*
+                
+                
+                //Insert Publicacion: 
+                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();                 
+                publicacionNegocio.AgregarConSP(nueva);
 
-                //Hago los inserts: 
-                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();               
+                //Insert Imágenes: 
                 ImagenMascota nuevaImg = new ImagenMascota();
-                //Agregar con sp devielve el ID de la publicación.
-                nuevaImg.IdPublicacion = publicacionNegocio.AgregarConSP(nueva);
+                nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id);
                 nuevaImg.urlImagen = tpImg.Text;
 
-                //Hacer insert de Img
+               //Falta el método que hace el insert de imágenes
               
-                */
+                
             }
             catch (Exception ex)
             {

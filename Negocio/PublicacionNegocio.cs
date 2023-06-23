@@ -125,12 +125,11 @@ namespace Negocio
         }
 
 
-        public int AgregarConSP(Publicacion publicacionNueva)
+        public void AgregarConSP(Publicacion publicacionNueva)
         {
             AccesoDatos datos = new AccesoDatos();
-            int idPublicacionCreada = 0;
             try
-            {               
+            {              
                 datos.setearProcedimiento("SP_alta_publicacion");
                 datos.setearParametro("@titulo", publicacionNueva.Titulo);
                 datos.setearParametro("@especie", publicacionNueva.Especie);
@@ -143,15 +142,8 @@ namespace Negocio
                 datos.setearParametro("@idLocalidad", publicacionNueva.IDLocalidad);
                 datos.setearParametro("@idProvincia", publicacionNueva.IDProvincia);
                 
-                datos.ejecutarAccion();
+                datos.ejecutarAccion();               
                 
-                datos.setearConsulta("SELECT @@IDENTITY");
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
-                {
-                    idPublicacionCreada = datos.Lector.GetInt32(0);
-
-                }
             }
             catch (Exception ex) 
             {
@@ -160,10 +152,38 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
+            }     
+        }
+
+        public int GetIdPublicacionCreada(int IDSession)
+        {
+           
+            AccesoDatos datos = new AccesoDatos();
+            int idPublicacionCreada = 0;
+            try
+            {
+                string consulta = "SELECT TOP 1 ID FROM Publicaciones WHERE IDUsuario = " + IDSession + " order by FechaHora Desc";
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    idPublicacionCreada = datos.Lector.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();                
             }
             return idPublicacionCreada;
-
         }
+           
+
+           
+        
 
         public Publicacion ObtenerPorId(int IDPublicacion)
         {
