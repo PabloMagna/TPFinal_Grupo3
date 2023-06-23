@@ -101,6 +101,20 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public int BuscarId(string localidad)
+        {
+            int id = 0;
+            AccesoDatos datos = new AccesoDatos();
+            datos.setearConsulta("SELECT ID FROM Localidades where Nombre = " + "'" +localidad+ "'");
+            datos.ejecutarLectura();
+            if (datos.Lector.Read())
+            {
+                id = (int)datos.Lector["ID"];
+            }
+            datos.cerrarConexion();
+            return id;
+        }
         public string ObtnerNombrePorID(int idLocalidad)
         {
             AccesoDatos datos = new AccesoDatos();

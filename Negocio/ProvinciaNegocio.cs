@@ -94,12 +94,15 @@ namespace Negocio
         }
 
 
-        public int BuscarNombre(string nombreProv)
+        public int BuscarID(string nombreProv)
         {
             AccesoDatos datos = new AccesoDatos();
-            datos.setearConsulta("SELECT ID from Provincias where Nombre=" + nombreProv);
+            datos.setearConsulta("SELECT ID FROM Provincias where Nombre = " + "'" + nombreProv + "'");
             datos.ejecutarLectura();
-            int IDProvincia = (int)datos.Lector["ID"];
+            int IDProvincia = 0;
+            if (datos.Lector.Read()) {
+                IDProvincia = (int)datos.Lector["ID"];
+            }
             datos.cerrarConexion();
             return IDProvincia;
         }

@@ -82,12 +82,73 @@ namespace TP_Final
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            string cuenta = (string)Request.QueryString["Cuenta"];
             Page.Validate("Validaciones");
             if (Page.IsValid)
             {   //acciones a tomar si es valido el ingreso de datos
-                //Cargar Usuario a db
-                //Obtener idDeUsuario, cargar obj Persona y luego insertarlo en la db.
-                Response.Redirect("default.aspx"); 
+                
+                AccesoDatos datos = new AccesoDatos();
+                Usuario usuario = new Usuario();
+                usuario.Email = tbEmail.Text;
+                usuario.Password = tbPassword.Text;
+
+                LocalidadNegocio localidades = new LocalidadNegocio();
+                ProvinciaNegocio provincias = new ProvinciaNegocio();
+                int idLocalidad = localidades.BuscarId(ddlLocalidad.SelectedItem.ToString());
+                int idProvincia = provincias.BuscarID(ddlProvincia.SelectedItem.ToString());
+
+                datos.setearConsulta("INSERT INTO Usuarios (IDTipoUsuario, Contrasenia, Email,Estado,EsAdmin) OUTPUT INSERTED.IDUsuario "
+                    + "VALUES (@IDTipoUsuario, @Password,@Email,@Estado,@EsAdmin)");
+                datos.setearParametro("@IDTipoUsuario", usuario.Tipo);
+                datos.setearParametro("@Password", usuario.Password);
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Estado", usuario.Estado);
+                datos.setearParametro("@EsAdmin", usuario.EsAdmin);
+                datos.ejecutarAccion();
+
+                int idUsuario = 0;
+                if (datos.Lector.Read())
+                {
+                    idUsuario = Convert.ToInt32(datos.Lector["IDUsuario"]);
+                }
+                datos.cerrarConexion();
+
+
+                if (cuenta == "Persona") {
+
+                    Persona persona = new Persona();
+                    persona.IDUsuario = idUsuario;
+                    persona.Nombre = tbNombre.Text;
+                    persona.Apellido = tbApellido.Text;
+                    persona.Dni = tbDni.Text;
+                    persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
+                    persona.IDProvincia = idProvincia;
+                    persona.IDLocalidad = idLocalidad;
+                    persona.UrlImagen = "";
+                    persona.Telefono = tbTelefono.Text;
+                    // Insertar en la tabla Personas
+                    datos.setearConsulta("INSERT INTO Personas (IDUsuario,Dni,Nombre, Apellido, FechaNacimiento, UrlImagen, IDLocalidad, IDProvincia, Telefono) "
+                        + "VALUES (@IDUsuario,@Dni,@Nombre, @Apellido,@FechaNacimiento, @UrlImagen, @IDLocalidad, @IDProvincia, @Telefono)");
+                    datos.setearParametro("@IDUsuario", idUsuario);
+                    datos.setearParametro("@Dni", persona.Dni);
+                    datos.setearParametro("@Nombre", persona.Nombre);
+                    datos.setearParametro("@Apellido", persona.Apellido);
+                    datos.setearParametro("@FechaNacimiento", persona.FechaNacimiento);
+                    datos.setearParametro("@UrlImagen", persona.UrlImagen);
+                    datos.setearParametro("@IDLocalidad", persona.IDLocalidad);
+                    datos.setearParametro("@IDProvincia", persona.IDProvincia);
+                    datos.setearParametro("@Telefono", persona.Telefono);
+                  
+                    datos.ejecutarAccion();
+                    datos.cerrarConexion();
+                }
+                else
+                {
+                    //Refugio
+                }
+                
+  
+                // Realizar cualquier otra acción necesaria o mostrar un mensaje de éxito
             }
         }
 
