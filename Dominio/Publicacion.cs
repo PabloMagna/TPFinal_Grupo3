@@ -1,11 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dominio
 {
+    public enum Estado
+    {
+        [Description("Activa")]
+        Activa = 1,
+
+        [Description("Borrada")]
+        Borrada = 2,
+
+        [Description("Finalizada")]
+        Finalizada = 3,
+
+        [Description("En Proceso")]
+        EnProceso = 4,
+
+        [Description("Baneada")]
+        Baneada = 5
+    }
     public class Publicacion
     {
         public int Id { get; set; } 
@@ -17,9 +35,8 @@ namespace Dominio
         public int Edad { get; set; }
         public char Sexo { get; set; }
         public DateTime FechaHora { get; set; }
-        public int Estado { get; set; }
+        public Estado Estado { get; set; }
         public int IDLocalidad { get; set; }
         public int IDProvincia { get; set; }
-
     }
 }

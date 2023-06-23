@@ -31,7 +31,7 @@ namespace Negocio
                     aux.IdUsuario = datos.Lector.GetInt32(6);
                     aux.Descripcion = datos.Lector.GetString(7);
                     aux.FechaHora = datos.Lector.GetDateTime(8);
-                    aux.Estado = datos.Lector.GetInt32(9);
+                    aux.Estado = (Estado)Enum.Parse(typeof(Estado), datos.Lector.GetInt32(9).ToString());
                     aux.IDLocalidad = datos.Lector.GetInt32(10);
                     aux.IDProvincia = datos.Lector.GetInt32(11);
 
@@ -105,7 +105,7 @@ namespace Negocio
                     aux.IdUsuario = datos.Lector.GetInt32(6);
                     aux.Descripcion = datos.Lector.GetString(7);
                     aux.FechaHora = datos.Lector.GetDateTime(8);
-                    aux.Estado = datos.Lector.GetInt32(9);
+                    aux.Estado = (Estado)Enum.Parse(typeof(Estado), datos.Lector.GetInt32(9).ToString());
                     aux.IDLocalidad = datos.Lector.GetInt32(10);
                     aux.IDProvincia = datos.Lector.GetInt32(11);
 
@@ -206,7 +206,7 @@ namespace Negocio
                     publicacion.IdUsuario = datos.Lector.GetInt32(6);
                     publicacion.Descripcion = datos.Lector.GetString(7);
                     publicacion.FechaHora = datos.Lector.GetDateTime(8);
-                    publicacion.Estado = datos.Lector.GetInt32(9);
+                    publicacion.Estado = (Estado)Enum.Parse(typeof(Estado), datos.Lector.GetInt32(9).ToString());
                     publicacion.IDLocalidad = datos.Lector.GetInt32(10);
                     publicacion.IDProvincia = datos.Lector.GetInt32(11);
 
@@ -224,6 +224,35 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        
+        public void Actualizar(Publicacion publicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Publicaciones SET Titulo = @Titulo, Especie = @Especie, Raza = @Raza, Edad = @Edad, Sexo = @Sexo, IDUsuario = @IDUsuario, Descripcion = @Descripcion, FechaHora = @FechaHora, IDLocalidad = @IDLocalidad, IDProvincia = @IDProvincia WHERE ID = @ID");
+                datos.setearParametro("@Titulo", publicacion.Titulo);
+                datos.setearParametro("@Especie", publicacion.Especie);
+                datos.setearParametro("@Raza", publicacion.Raza);
+                datos.setearParametro("@Edad", publicacion.Edad);
+                datos.setearParametro("@Sexo", publicacion.Sexo);
+                datos.setearParametro("@IDUsuario", publicacion.IdUsuario);
+                datos.setearParametro("@Descripcion", publicacion.Descripcion);
+                datos.setearParametro("@FechaHora", publicacion.FechaHora);
+                datos.setearParametro("@IDLocalidad", publicacion.IDLocalidad);
+                datos.setearParametro("@IDProvincia", publicacion.IDProvincia);
+                datos.setearParametro("@ID", publicacion.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
