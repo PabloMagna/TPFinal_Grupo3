@@ -53,7 +53,8 @@ namespace Negocio
                 {
                     if (!bandera)
                     {
-                        localidades.Add("Seleccionar");
+                        //localidades.Add("Seleccionar");
+                        localidades.Insert(0, "Seleccionar");
                         bandera = true;
                     }
                     else

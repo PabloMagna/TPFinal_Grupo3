@@ -23,6 +23,7 @@ namespace TP_Final
                 formPersona.Visible = true;
                 rfvNombreRefugio.Enabled = false;
                 rfvDireccion.Enabled = false;
+                
             }
             else
             {
@@ -31,6 +32,8 @@ namespace TP_Final
                 rfvApellido.Enabled = false;
                 rfvNombre.Enabled = false;
                 rfvFechaNac.Enabled = false;
+                rfvDni.Enabled = false;
+                revDni.Enabled = false;
             }
 
             if (!IsPostBack)
@@ -58,7 +61,7 @@ namespace TP_Final
         protected void cvProvincia_ServerValidate(object source, ServerValidateEventArgs args)
         {
             //Comprueba si se seleccionó una provincia en el ddl de provincia.
-            args.IsValid = (ddlProvincia.SelectedItem.Text != "Seleccionar");
+            args.IsValid = (ddlProvincia.SelectedIndex!=0);
         }
 
         protected void cvLocalidad_ServerValidate(Object source, ServerValidateEventArgs args)
@@ -72,15 +75,19 @@ namespace TP_Final
             {
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Add("Seleccionar");
+                ddlLocalidad.SelectedIndex = 0;
             }
             
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            Page.Validate("Validaciones");
             if (Page.IsValid)
-            {
-                //Acciones a tomar si todos los campos del form son validos (cargar a db)
+            {   //acciones a tomar si es valido el ingreso de datos
+                //Cargar Usuario a db
+                //Obtener idDeUsuario, cargar obj Persona y luego insertarlo en la db.
+                Response.Redirect("default.aspx");
             }
         }
 
@@ -88,5 +95,7 @@ namespace TP_Final
         {
             Response.Redirect("default.aspx");
         }
+
+
     }
 }
