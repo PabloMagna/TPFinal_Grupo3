@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
 }
-body
-{
+
+body {
     min-height: 100%;
     min-height: 100vh;
     position: relative;
@@ -17,33 +17,39 @@ header {
     z-index: 30;
 }
 
-.bg-orange {   
+    header li {
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+
+.bg-orange {
     background-color: #C45F2E !important;
+    min-height: 100px !important;
 }
 
 .navbar .navbar-nav .nav-link {
     color: white !important;
-    
 }
-.contenido{
-    margin-top:60px;
+
+.contenido {
+    margin-top: 100px;
 }
 
 #botones a {
     text-decoration: none;
     color: #24566E;
-    margin: 5px;
+    margin-left: 10px;
+    margin: 5px 10px;
     background-color: #D2E3EB;
-    padding: 5px 8px;
+    padding: 4px 8px;
     border-radius: 10px;
 }
 
-#userlog {
-    margin-right:15px;
+#userlog, #avatar {
+    margin: 0 20px;
 }
 
 #botones a:hover {
     color: antiquewhite;
     background-color: #9dc2d3;
 }
-

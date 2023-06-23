@@ -28,7 +28,7 @@
           </button>
         </div>
     </section>
-    <section class="quienes_somos">
+    <section id="about" class="quienes_somos">
         <h1 id="titulo1">Quiénes somos</h1>  
         <div class="about-us">
             <p>

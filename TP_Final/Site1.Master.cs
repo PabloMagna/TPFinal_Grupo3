@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,5 +15,26 @@ namespace TP_Final
         {
             
         }
+        public string GetUserName()
+        {
+            string username = "";
+            if (Session["Usuario"] != null)
+            {
+                Dominio.Usuario Mailusuario = (Dominio.Usuario)Session["Usuario"];
+                string buscar = @"^(.*?)@";
+                Regex regex = new Regex(buscar);
+                Match encontrado = regex.Match(Mailusuario.Email);
+
+                if (encontrado.Success)
+                {
+                    for (int i = 0; i < encontrado.Length - 1; i++)
+                    {
+                        username += Mailusuario.Email[i];
+                    }
+                }
+            }
+            return username;
+        }
     }
+    
 }
