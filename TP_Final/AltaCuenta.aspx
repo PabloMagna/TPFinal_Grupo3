@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AltaCuenta.aspx.cs" Inherits="TP_Final.AltaCuenta" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AltaCuenta.aspx.cs" Inherits="TP_Final.AltaCuenta" EnableEventValidation="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/css/AltaCuenta.css" rel="stylesheet" type="text/css" />
@@ -8,6 +8,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="smUbicacion" runat="server"></asp:ScriptManager>
     <section class="portada">
         <h1 id="titulo">Gracias por ser parte del cambio</h1>
         <h4><em>Vamos a necesitar que completes algunos datos.</em></h4>
@@ -18,9 +19,15 @@
                 <asp:Label ID="lbTitulo" runat="server" CssClass="titulo">Alta de Usuario</asp:Label>
 
                 <div class="mb-3">
-                    <label class="form-label">Email </label>
-                    <asp:TextBox TextMode="Email" ID="tbEmail" runat="server" class="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
+                    <asp:UpdatePanel ID="upEmail" runat="server">
+                        <ContentTemplate>
+
+                            <label class="form-label">Email </label>
+                            <asp:TextBox ID="tbEmail" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationExpression="" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Formato inválido" SetFocusOnError="true" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password </label>
@@ -31,7 +38,7 @@
                 <div id="formPersona" runat="server">
                     <div class="mb-3">
                         <label class="form-label">Nombre </label>
-                        <asp:TextBox ID="tbNombre" runat="server" class="form-control"></asp:TextBox> 
+                        <asp:TextBox ID="tbNombre" runat="server" class="form-control"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mb-3">
@@ -66,8 +73,7 @@
                     </div>
                 </div>
 
-                        <%--Drop down's de Provincias y Localidades--%>
-                <asp:ScriptManager ID="smUbicacion" runat="server"></asp:ScriptManager>
+                <%--Drop down's de Provincias y Localidades--%>
                 <asp:UpdatePanel ID="upUbicacion" runat="server">
                     <ContentTemplate>
                         <div class="mb-3">
@@ -88,14 +94,15 @@
                 <div class="mb-3">
                     <label class="form-label">Telefono</label>
                     <asp:TextBox ID="tbTelefono" runat="server" class="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTelefono" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTelefono" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
-                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTelefono" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio"></asp:RequiredFieldValidator>
                 </div>
                 <%--Botones--%>
                 <div class="mb-3">
+                    <%--Enviar--%>
                     <asp:Button ID="btnEnviar" runat="server" Text="Enviar" class="btn btn-light" OnClick="btnEnviar_Click" CausesValidation="true" ValidationGroup="Validaciones" />
-                    <%--<input class="btn btn-light" type="submit" value="Enviar">--%>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" Onclick="btnCancelar_Click" CausesValidation="false"/>
+                    <%--Cancelar--%>
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" CausesValidation="false" />
                 </div>
             </div>
 

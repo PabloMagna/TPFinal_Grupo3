@@ -15,6 +15,15 @@ namespace TP_Final
     {
 
         /// <summary>
+        /// Control smUbicacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager smUbicacion;
+
+        /// <summary>
         /// Control lbTitulo.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTitulo;
+
+        /// <summary>
+        /// Control upEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upEmail;
 
         /// <summary>
         /// Control tbEmail.
@@ -40,6 +58,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+
+        /// <summary>
+        /// Control revEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
 
         /// <summary>
         /// Control tbPassword.
@@ -195,15 +222,6 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDireccion;
 
         /// <summary>
-        /// Control smUbicacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager smUbicacion;
-
-        /// <summary>
         /// Control upUbicacion.
         /// </summary>
         /// <remarks>
@@ -258,15 +276,6 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.TextBox tbTelefono;
 
         /// <summary>
-        /// Control revTelefono.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTelefono;
-
-        /// <summary>
         /// Control rfvTelefono.
         /// </summary>
         /// <remarks>
@@ -274,6 +283,15 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTelefono;
+
+        /// <summary>
+        /// Control revTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTelefono;
 
         /// <summary>
         /// Control btnEnviar.

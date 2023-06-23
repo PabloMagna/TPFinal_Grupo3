@@ -87,7 +87,7 @@ namespace TP_Final
             {   //acciones a tomar si es valido el ingreso de datos
                 //Cargar Usuario a db
                 //Obtener idDeUsuario, cargar obj Persona y luego insertarlo en la db.
-                Response.Redirect("default.aspx");
+                Response.Redirect("default.aspx"); 
             }
         }
 
@@ -96,6 +96,6 @@ namespace TP_Final
             Response.Redirect("default.aspx");
         }
 
-
+    
     }
 }
