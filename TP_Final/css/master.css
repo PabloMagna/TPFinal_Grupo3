@@ -28,3 +28,22 @@ header {
 .contenido{
     margin-top:60px;
 }
+
+#botones a {
+    text-decoration: none;
+    color: #24566E;
+    margin: 5px;
+    background-color: #D2E3EB;
+    padding: 5px 8px;
+    border-radius: 10px;
+}
+
+#userlog {
+    margin-right:15px;
+}
+
+#botones a:hover {
+    color: antiquewhite;
+    background-color: #9dc2d3;
+}
+

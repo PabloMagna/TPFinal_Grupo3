@@ -39,16 +39,16 @@
                         <% if (Session["Usuario"] != null) { %>
                             <!-- Elementos de navegación para un usuario con sesión iniciada -->
                             <div class="d-flex ms-auto">
-                                <div>
+                                <div id="userlog" class="d-flex flex-column">
                                      <%Dominio.Usuario usuario = (Dominio.Usuario)Session["Usuario"];%>
                                     <p>¡Hola <%=usuario.Email%>!</p>
                                 </div>
                                 <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 3.5rem; height: 3.5rem;margin-top:3px; margin-right: 10px;">
                                   <img src="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />                               
                                 </div>
-                                <div class="d-flex flex-column">
-                                    <a class="btn btn-primary btn-sm" href="logout.aspx">Cerrar sesión</a>
-                                    <a class="btn btn-primary btn-sm mt-1" href="perfil.aspx">Ir al perfil</a>
+                                <div id="botones" class="d-flex flex-column">                                    
+                                    <a class="btn-salir" href="default.aspx">Cerrar sesión</a>
+                                    <a class="btn-perfil" href="perfil.aspx">Ir al perfil</a>
                                 </div>
                             </div>
                         <% } else { %>

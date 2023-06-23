@@ -39,6 +39,7 @@ namespace TP_Final
         {
             try
             {
+                //Seteo publicacion: 
                 Publicacion nueva = new Publicacion();
                 nueva.Titulo = tbNombre.Text;
                 nueva.Especie = int.Parse(ddlEspecie.SelectedValue);
@@ -55,10 +56,15 @@ namespace TP_Final
                 PublicacionNegocio publicacionNegocio = new PublicacionNegocio();                 
                 publicacionNegocio.AgregarConSP(nueva);
 
-                //Insert Imágenes: 
+                //Seteo Imágenes: 
                 ImagenMascota nuevaImg = new ImagenMascota();
                 nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id);
                 nuevaImg.urlImagen = tpImg.Text;
+
+                //Insert Imágenes: 
+                ImagenMascotaNegocio imagenNegocio = new ImagenMascotaNegocio();
+                imagenNegocio.Agregar(nuevaImg);
+
 
                //Falta el método que hace el insert de imágenes
               

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,30 @@ namespace Negocio
                 }
 
                 return listaUrls;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Agregar(ImagenMascota nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string query = "insert into ImagenesMascota values (" + nueva.IdPublicacion + "," +"'"+ nueva.urlImagen + "'" + ")";
+                datos.setearConsulta(query);
+                /*
+                datos.setearParametro("@IDPublicaion", IDPublicacion);
+                datos.setearParametro("@UrlImagen", nueva.urlImagen);               
+                */
+                datos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
