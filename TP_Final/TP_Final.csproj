@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdministrarPublicaciones.aspx" />
+    <Content Include="AdministrarUsuarios.aspx" />
     <Content Include="AltaCuenta.aspx" />
     <Content Include="css\AltaCuenta.css" />
     <Content Include="css\DetallePublicacion.css" />
@@ -91,6 +92,13 @@
     </Compile>
     <Compile Include="AdministrarPublicaciones.aspx.designer.cs">
       <DependentUpon>AdministrarPublicaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrarUsuarios.aspx.cs">
+      <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarUsuarios.aspx.designer.cs">
+      <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaCuenta.aspx.cs">
       <DependentUpon>AltaCuenta.aspx</DependentUpon>
