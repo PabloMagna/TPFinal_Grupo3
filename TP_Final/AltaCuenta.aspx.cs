@@ -86,6 +86,7 @@ namespace TP_Final
             Page.Validate("Validaciones");
             if (Page.IsValid)
             {   //acciones a tomar si es valido el ingreso de datos
+                int filasAfectadas = 0;
                 AccesoDatos datos = new AccesoDatos();
                 UsuarioNegocio usuarios = new UsuarioNegocio();
                 Usuario usuario = new Usuario();
@@ -110,16 +111,32 @@ namespace TP_Final
                     persona.IDLocalidad = idLocalidad;
                     persona.UrlImagen = "";
                     persona.Telefono = tbTelefono.Text;
-                    // Insertar en la tabla Personas
-                    personas.Agregar(persona);
+                    // Insertar en DB
+                    filasAfectadas=personas.Agregar(persona);
                 }
                 else
                 {
                     //Refugio
+                    Refugio refugio = new Refugio();
+                    RefugioNegocio refugios = new RefugioNegocio();
+                    refugio.IdUsuario = idUsuario;
+                    refugio.Nombre = tbNombreRefugio.Text;
+                    refugio.Direccion = tbDireccion.Text;
+                    refugio.UrlImagen = "";
+                    refugio.IDProvincia = idProvincia;
+                    refugio.IDLocalidad = idLocalidad;
+                    refugio.Telefono = tbTelefono.Text;
+                    // Insertar en DB
+                    filasAfectadas = refugios.Agregar(refugio);
+
+                    if(filasAfectadas > 0)
+                    {
+                        //Alta De Refugio o Persona Exitoso
+                        // Realizar cualquier otra acción necesaria o mostrar un mensaje de éxito
+                        //Autologin
+                    }
                 }              
   
-                // Realizar cualquier otra acción necesaria o mostrar un mensaje de éxito
-                //Autologin
             }
         }
 

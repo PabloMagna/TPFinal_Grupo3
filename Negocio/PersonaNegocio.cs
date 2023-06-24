@@ -9,10 +9,10 @@ namespace Negocio
 {
     public class PersonaNegocio
     {
-        public void Agregar(Persona persona)
+        public int Agregar(Persona persona)
         {
             AccesoDatos datos = new AccesoDatos();
-
+            int filas = 0;
             try
             {
                 datos.setearConsulta("INSERT INTO PERSONAS(IDUsuario,Dni,Nombre,Apellido,FechaNacimiento,UrlImagen,IDLocalidad,IDProvincia,Telefono)" +
@@ -29,7 +29,7 @@ namespace Negocio
                 datos.setearParametro("@IDProvincia", persona.IDProvincia);
                 datos.setearParametro("@Telefono", persona.Telefono);
 
-                datos.ejecutarAccion();
+                filas = datos.ejecutar_FilasAfectadas();
 
             }
             catch (Exception)
@@ -38,7 +38,7 @@ namespace Negocio
                 throw;
             }
             finally { datos.cerrarConexion(); }
-
+            return filas;
         }
     }
 }
