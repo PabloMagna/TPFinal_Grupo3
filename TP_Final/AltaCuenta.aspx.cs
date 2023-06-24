@@ -99,7 +99,7 @@ namespace TP_Final
                 int idProvincia = provincias.BuscarID(ddlProvincia.SelectedItem.ToString());
 
                 if (cuenta == "Persona") {
-
+                    PersonaNegocio personas = new PersonaNegocio();
                     Persona persona = new Persona();
                     persona.IDUsuario = idUsuario;
                     persona.Nombre = tbNombre.Text;
@@ -111,20 +111,21 @@ namespace TP_Final
                     persona.UrlImagen = "";
                     persona.Telefono = tbTelefono.Text;
                     // Insertar en la tabla Personas
-                    datos.setearConsulta("INSERT INTO Personas (IDUsuario,Dni,Nombre, Apellido, FechaNacimiento, UrlImagen, IDLocalidad, IDProvincia, Telefono) "
-                        + "VALUES (@IDUsuario,@Dni,@Nombre, @Apellido,@FechaNacimiento, @UrlImagen, @IDLocalidad, @IDProvincia, @Telefono)");
-                    datos.setearParametro("@IDUsuario", idUsuario);
-                    datos.setearParametro("@Dni", persona.Dni);
-                    datos.setearParametro("@Nombre", persona.Nombre);
-                    datos.setearParametro("@Apellido", persona.Apellido);
-                    datos.setearParametro("@FechaNacimiento", persona.FechaNacimiento);
-                    datos.setearParametro("@UrlImagen", persona.UrlImagen);
-                    datos.setearParametro("@IDLocalidad", persona.IDLocalidad);
-                    datos.setearParametro("@IDProvincia", persona.IDProvincia);
-                    datos.setearParametro("@Telefono", persona.Telefono);
+                    personas.Agregar(persona);
+                    //datos.setearConsulta("INSERT INTO Personas (IDUsuario,Dni,Nombre, Apellido, FechaNacimiento, UrlImagen, IDLocalidad, IDProvincia, Telefono) "
+                    //    + "VALUES (@IDUsuario,@Dni,@Nombre, @Apellido,@FechaNacimiento, @UrlImagen, @IDLocalidad, @IDProvincia, @Telefono)");
+                    //datos.setearParametro("@IDUsuario", idUsuario);
+                    //datos.setearParametro("@Dni", persona.Dni);
+                    //datos.setearParametro("@Nombre", persona.Nombre);
+                    //datos.setearParametro("@Apellido", persona.Apellido);
+                    //datos.setearParametro("@FechaNacimiento", persona.FechaNacimiento);
+                    //datos.setearParametro("@UrlImagen", persona.UrlImagen);
+                    //datos.setearParametro("@IDLocalidad", persona.IDLocalidad);
+                    //datos.setearParametro("@IDProvincia", persona.IDProvincia);
+                    //datos.setearParametro("@Telefono", persona.Telefono);
                   
-                    datos.ejecutarAccion();
-                    datos.cerrarConexion();
+                    //datos.ejecutarAccion();
+                    //datos.cerrarConexion();
                 }
                 else
                 {
