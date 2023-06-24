@@ -44,21 +44,11 @@ namespace TP_Final
         }
         protected string CargarEspecie()
         {
-            if (publicacion.Especie == 1)
-                return "Perro";
-            else if (publicacion.Especie == 2)
-                return "Gato";
-            else
-                return "Otro";
+            return publicacion.Especie.ToString();
         }
         protected string CargarSexo()
         {
-            if (publicacion.Sexo == 'M')
-                return "Macho";
-            else if (publicacion.Sexo == 'H')
-                return "Hembra";
-            else
-                return "Desconocido";
+            return publicacion.Sexo == 'M' ? "Macho" : publicacion.Sexo == 'H' ? "Hembra" : "Desconocido";
         }
         protected string CargarEdad()
         {

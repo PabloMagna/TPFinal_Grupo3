@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
+    public enum Especie
+    {
+        [Description("Perro")]
+        Perro = 1,
+
+        [Description("Gato")]
+        Gato = 2,
+
+        [Description("Otro")]
+        Otro = 3
+    }
     public enum Estado
     {
         [Description("Activa")]
@@ -30,7 +41,7 @@ namespace Dominio
         public int IdUsuario { get; set; }
         public string Descripcion { get; set; }
         public string Titulo { get; set; }
-        public int Especie { get; set; }
+        public Especie Especie { get; set; }
         public string Raza { get; set; }
         public int Edad { get; set; }
         public char Sexo { get; set; }

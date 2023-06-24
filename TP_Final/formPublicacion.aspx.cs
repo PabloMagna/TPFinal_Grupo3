@@ -42,7 +42,7 @@ namespace TP_Final
                 //Seteo publicacion: 
                 Publicacion nueva = new Publicacion();
                 nueva.Titulo = tbNombre.Text;
-                nueva.Especie = int.Parse(ddlEspecie.SelectedValue);
+                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);
                 nueva.Raza = tbRaza.Text;
                 nueva.Descripcion = tbDescripcion.Text;
                 nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);

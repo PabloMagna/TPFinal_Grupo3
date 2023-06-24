@@ -24,7 +24,7 @@ namespace Negocio
                     Publicacion aux = new Publicacion();
                     aux.Id = datos.Lector.GetInt32(0);
                     aux.Titulo = datos.Lector.GetString(1);
-                    aux.Especie = datos.Lector.GetInt32(2);
+                    aux.Especie = (Especie)Enum.ToObject(typeof(Especie), datos.Lector.GetInt32(2));
                     aux.Raza = datos.Lector.GetString(3);
                     aux.Edad = datos.Lector.GetInt32(4);
                     aux.Sexo = datos.Lector.GetString(5)[0];
@@ -98,7 +98,7 @@ namespace Negocio
                     Publicacion aux = new Publicacion();
                     aux.Id = datos.Lector.GetInt32(0);
                     aux.Titulo = datos.Lector.GetString(1);
-                    aux.Especie = datos.Lector.GetInt32(2);
+                    aux.Especie = (Especie)Enum.ToObject(typeof(Especie), datos.Lector.GetInt32(2));
                     aux.Raza = datos.Lector.GetString(3);
                     aux.Edad = datos.Lector.GetInt32(4);
                     aux.Sexo = datos.Lector.GetString(5)[0];
@@ -199,7 +199,7 @@ namespace Negocio
                     Publicacion publicacion = new Publicacion();
                     publicacion.Id = datos.Lector.GetInt32(0);
                     publicacion.Titulo = datos.Lector.GetString(1);
-                    publicacion.Especie = datos.Lector.GetInt32(2);
+                    publicacion.Especie = (Especie)Enum.ToObject(typeof(Especie), datos.Lector.GetInt32(2));
                     publicacion.Raza = datos.Lector.GetString(3);
                     publicacion.Edad = datos.Lector.GetInt32(4);
                     publicacion.Sexo = datos.Lector.GetString(5)[0];
