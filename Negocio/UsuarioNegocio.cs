@@ -43,5 +43,32 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int Agregar(Usuario usuario)
+        {   
+            AccesoDatos datos = new AccesoDatos();
+            int id = 0;
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Usuarios (IDTipoUsuario, Contrasenia, Email,Estado,EsAdmin) "
+                        + "VALUES (@IDTipoUsuario, @Password,@Email,@Estado,@EsAdmin); SELECT SCOPE_IDENTITY() AS IDUsuario;");
+                datos.setearParametro("@IDTipoUsuario", usuario.Tipo);
+                datos.setearParametro("@Password", usuario.Password);
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Estado", usuario.Estado);
+                datos.setearParametro("@EsAdmin", usuario.EsAdmin);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read()) { id = Convert.ToInt32(datos.Lector["IDUsuario"]); }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion();}
+            return id;
+        }
     }
 }

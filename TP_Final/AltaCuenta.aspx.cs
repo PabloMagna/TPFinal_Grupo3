@@ -86,33 +86,17 @@ namespace TP_Final
             Page.Validate("Validaciones");
             if (Page.IsValid)
             {   //acciones a tomar si es valido el ingreso de datos
-                
                 AccesoDatos datos = new AccesoDatos();
+                UsuarioNegocio usuarios = new UsuarioNegocio();
                 Usuario usuario = new Usuario();
                 usuario.Email = tbEmail.Text;
                 usuario.Password = tbPassword.Text;
+                int idUsuario = usuarios.Agregar(usuario);
 
                 LocalidadNegocio localidades = new LocalidadNegocio();
                 ProvinciaNegocio provincias = new ProvinciaNegocio();
                 int idLocalidad = localidades.BuscarId(ddlLocalidad.SelectedItem.ToString());
                 int idProvincia = provincias.BuscarID(ddlProvincia.SelectedItem.ToString());
-
-                datos.setearConsulta("INSERT INTO Usuarios (IDTipoUsuario, Contrasenia, Email,Estado,EsAdmin) OUTPUT INSERTED.IDUsuario "
-                    + "VALUES (@IDTipoUsuario, @Password,@Email,@Estado,@EsAdmin)");
-                datos.setearParametro("@IDTipoUsuario", usuario.Tipo);
-                datos.setearParametro("@Password", usuario.Password);
-                datos.setearParametro("@Email", usuario.Email);
-                datos.setearParametro("@Estado", usuario.Estado);
-                datos.setearParametro("@EsAdmin", usuario.EsAdmin);
-                datos.ejecutarAccion();
-
-                int idUsuario = 0;
-                if (datos.Lector.Read())
-                {
-                    idUsuario = Convert.ToInt32(datos.Lector["IDUsuario"]);
-                }
-                datos.cerrarConexion();
-
 
                 if (cuenta == "Persona") {
 
