@@ -44,12 +44,26 @@ header {
     padding: 4px 8px;
     border-radius: 10px;
 }
+.botones {
+    text-decoration: none;
+    color: #24566E;
+    margin-left: 10px;
+    margin: 5px 10px;
+    background-color: #D2E3EB;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+
 
 #userlog, #avatar {
     margin: 0 20px;
 }
 
 #botones a:hover {
+    color: antiquewhite;
+    background-color: #9dc2d3;
+}
+.botones:hover {
     color: antiquewhite;
     background-color: #9dc2d3;
 }

@@ -35,6 +35,16 @@ namespace TP_Final
             }
             return username;
         }
+
+        public void btnsalir_Click(object sender, EventArgs e)
+        {
+            Session.Remove("Usuario");
+        }
+
+        public void btnperfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Perfil.aspx");
+        }
     }
     
 }

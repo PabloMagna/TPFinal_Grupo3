@@ -56,9 +56,9 @@
                                 <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 3.5rem; height: 3.5rem;">
                                   <img src="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />                               
                                 </div>
-                                <div id="botones" class="d-flex flex-column">                                    
-                                    <a class="btn-salir" href="default.aspx">Cerrar sesión</a>
-                                    <a class="btn-perfil" href="perfil.aspx">Ir al perfil</a>
+                                <div id="botones" class="d-flex flex-column"> 
+                                    <asp:Button ID="btnsalir" class="botones" runat="server" Text="Cerrar sesión" OnClick="btnsalir_Click"/>
+                                    <asp:Button ID="btnperfil" class="botones" runat="server" Text="Ir al perfil" OnClick="btnperfil_Click" />
                                 </div>
                             </div>
                         <% }
