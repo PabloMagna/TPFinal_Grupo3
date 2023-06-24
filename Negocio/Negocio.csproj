@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciaNegocio.cs" />
     <Compile Include="PublicacionNegocio.cs" />
+    <Compile Include="RefugioNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
   </ItemGroup>
   <ItemGroup>

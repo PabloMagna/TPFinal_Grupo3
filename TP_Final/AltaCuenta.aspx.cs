@@ -112,28 +112,14 @@ namespace TP_Final
                     persona.Telefono = tbTelefono.Text;
                     // Insertar en la tabla Personas
                     personas.Agregar(persona);
-                    //datos.setearConsulta("INSERT INTO Personas (IDUsuario,Dni,Nombre, Apellido, FechaNacimiento, UrlImagen, IDLocalidad, IDProvincia, Telefono) "
-                    //    + "VALUES (@IDUsuario,@Dni,@Nombre, @Apellido,@FechaNacimiento, @UrlImagen, @IDLocalidad, @IDProvincia, @Telefono)");
-                    //datos.setearParametro("@IDUsuario", idUsuario);
-                    //datos.setearParametro("@Dni", persona.Dni);
-                    //datos.setearParametro("@Nombre", persona.Nombre);
-                    //datos.setearParametro("@Apellido", persona.Apellido);
-                    //datos.setearParametro("@FechaNacimiento", persona.FechaNacimiento);
-                    //datos.setearParametro("@UrlImagen", persona.UrlImagen);
-                    //datos.setearParametro("@IDLocalidad", persona.IDLocalidad);
-                    //datos.setearParametro("@IDProvincia", persona.IDProvincia);
-                    //datos.setearParametro("@Telefono", persona.Telefono);
-                  
-                    //datos.ejecutarAccion();
-                    //datos.cerrarConexion();
                 }
                 else
                 {
                     //Refugio
-                }
-                
+                }              
   
                 // Realizar cualquier otra acción necesaria o mostrar un mensaje de éxito
+                //Autologin
             }
         }
 

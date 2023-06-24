@@ -70,6 +70,22 @@ namespace Negocio
             }
         }
 
+        public int ejecutar_FilasAfectadas()
+        {
+            comando.Connection = conexion;
+            int filas = 0;
+            try
+            {
+                conexion.Open();
+                filas=comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return filas;
+        }
+
         public void cerrarConexion()
         {
             if (lector != null)
