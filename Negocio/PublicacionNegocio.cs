@@ -253,6 +253,26 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void ActualizarEstado(int idPublicacion, Estado nuevoEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Publicaciones SET Estado = @Estado WHERE ID = @ID");
+                datos.setearParametro("@Estado", nuevoEstado);
+                datos.setearParametro("@ID", idPublicacion);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }
