@@ -77,6 +77,7 @@
     <Content Include="DetallePublicacion.aspx" />
     <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="imagenes\leftarrow.png" />
     <Content Include="imagenes\slider2.jpg" />
     <Content Include="imagenes\slider3.jpg" />
     <Content Include="imagenes\slider4.jpg" />

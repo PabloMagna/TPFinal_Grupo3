@@ -11,3 +11,12 @@
 #titulo {
     color: #24566E;
 }
+
+.volver {
+    height: 26px;
+    width: 26px;
+}
+
+.btnVolver{
+    padding-bottom: 30px;
+}

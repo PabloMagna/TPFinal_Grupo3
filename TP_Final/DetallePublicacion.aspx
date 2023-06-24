@@ -21,6 +21,10 @@
     <br />
     <div class="container">
         <section class="Detalle">
+            <div class="btnVolver">
+                <a href="/galeria.aspx">
+                <img src="imagenes/leftarrow.png" class="volver" /></a>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="card-body">
