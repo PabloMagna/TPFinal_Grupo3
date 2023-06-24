@@ -8,7 +8,7 @@ La web ofrece:<br/>
 -  La publicación de contenido, incluyento publicaciones de mascotas en adopción, comentarios sobre las mismas o historias de adopciones exitosas.
 - La administración del sitio por parte de usuarios con permisos de administrador.
 - CRUD
-- Seguimiento de adopciones
+- Seguimiento de adopciones<br/>
 ... Entro otras.
 
 #### Integrantes: 
