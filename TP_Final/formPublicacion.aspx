@@ -8,6 +8,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
+
+    <%if (Session["Usuario"] == null)
+        {
+            Response.Redirect("Login.aspx");
+
+        } %>              
+
+  
      <section class="portada">
         <h1 id="titulo">Publicación de mascota en adopción</h1>
         <h4><em>Necesitaremos que completes algunos datos.</em></h4>

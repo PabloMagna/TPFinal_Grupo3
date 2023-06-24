@@ -42,16 +42,32 @@ namespace TP_Final
                 //Seteo publicacion: 
                 Publicacion nueva = new Publicacion();
                 nueva.Titulo = tbNombre.Text;
-                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);
-                nueva.Raza = tbRaza.Text;
+                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);                
                 nueva.Descripcion = tbDescripcion.Text;
                 nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
                 nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
                 nueva.Sexo = ddlSexo.SelectedValue[0];
                 nueva.IdUsuario = usuarioLogin.Id;
-                nueva.FechaHora = DateTime.Now;
-                
-                
+                nueva.FechaHora = DateTime.Now;                
+
+                if (ddlEdad.SelectedValue == "A")
+                {
+                    nueva.Edad = int.Parse(tbEdad.Text) * 12;
+                }
+                else
+                {
+                    nueva.Edad = int.Parse(tbEdad.Text);
+                }
+
+                if (tbRaza.Text.Length == 0 || tbRaza.Text == null)
+                {
+                    nueva.Raza = "Sin especificar";
+                }
+                else
+                {
+                    nueva.Raza = tbRaza.Text;
+                }
+
                 //Insert Publicacion: 
                 PublicacionNegocio publicacionNegocio = new PublicacionNegocio();                 
                 publicacionNegocio.AgregarConSP(nueva);
