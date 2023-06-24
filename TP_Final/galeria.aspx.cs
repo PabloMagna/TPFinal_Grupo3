@@ -46,16 +46,8 @@ namespace TP_Final
         }
         private void CargarLista()
         {
-            if (Session["Publicaciones"] == null)
-            {
                 PublicacionNegocio publiNegocio = new PublicacionNegocio();
-                publicaciones = publiNegocio.Listar();
-            }
-            else
-            {
-                publicaciones = (List<Publicacion>)Session["Publicaciones"];
-            }
-            
+                publicaciones = publiNegocio.Listar();          
         }
         private void CargarDDL()
         {
