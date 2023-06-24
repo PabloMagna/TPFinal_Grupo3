@@ -92,6 +92,9 @@ namespace TP_Final
                 Usuario usuario = new Usuario();
                 usuario.Email = tbEmail.Text;
                 usuario.Password = tbPassword.Text;
+                usuario.Tipo = (TipoUsuario)Enum.Parse(typeof(TipoUsuario), cuenta);
+                usuario.EsAdmin = false;
+                usuario.Estado = EstadoUsuario.Activo;
                 int idUsuario = usuarios.Agregar(usuario);
 
                 LocalidadNegocio localidades = new LocalidadNegocio();
