@@ -38,6 +38,7 @@
                         <p class="card-text">Provincia: <%= CargarProvincia() %></p>
                         <p class="card-text">Fecha y hora: <%= publicacion.FechaHora.ToString() %></p>
                         <p class="card-text">Estado: <%= publicacion.Estado %></p>
+                        <asp:Button id="btAdoptar" runat="server" CssClass="btn btn-primary custom-btn" Text="Adoptar" OnClick="btAdoptar_Click"/>
                     </div>
                 </div>
                 <div class="col-md-6">

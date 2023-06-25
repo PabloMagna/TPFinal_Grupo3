@@ -59,5 +59,10 @@ namespace TP_Final
             else
                 return publicacion.Edad / 12 + " Año/s";
         }
+
+        protected void btAdoptar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

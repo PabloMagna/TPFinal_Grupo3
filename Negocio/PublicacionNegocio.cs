@@ -279,7 +279,7 @@ namespace Negocio
             List<Publicacion> lista = new List<Publicacion>();
             try
             {
-                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones where ID ="+idUsuario);
+                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones where IDUsuario ="+idUsuario);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
