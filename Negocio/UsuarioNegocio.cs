@@ -78,5 +78,77 @@ namespace Negocio
 
             return id;
         }
+        public List<Usuario> Listar()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuario> lista = new List<Usuario>();
+            try
+            {
+                datos.setearConsulta("select ID, IDTipoUsuario, Contrasenia, Email, Estado, EsAdmin from Usuarios");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
+                    aux.Password = datos.Lector.GetString(2);
+                    aux.Email = datos.Lector.GetString(3);
+                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(4);
+                    aux.EsAdmin = datos.Lector.GetBoolean(5);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void ActualizarEstado (int idPublicacion, EstadoUsuario estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update Usuarios set Estado = @Estado where ID = @IdUsuario");
+                datos.setearParametro("@IdUsuario", idPublicacion);
+                datos.setearParametro("@Estado", estado);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void ActualizarAdmin(int idUsuario, bool esAdmin)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update Usuarios set EsAdmin = @EsAdmin where ID = @IdUsuario");
+                datos.setearParametro("@IdUsuario", idUsuario);
+                datos.setearParametro("@EsAdmin", esAdmin);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

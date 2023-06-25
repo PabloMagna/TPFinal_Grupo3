@@ -19,9 +19,17 @@ namespace TP_Final
         private void CargarPublicaciones()
         {
             PublicacionNegocio negocio = new PublicacionNegocio();
+            List<Publicacion> publicaciones = new List<Publicacion>();
             try
             {
-                List<Publicacion> publicaciones = negocio.Listar();
+                if (Request.QueryString["ID"] != null)
+                {
+                    publicaciones = negocio.ListarPorUsuario(Convert.ToInt32(Request.QueryString["ID"]));
+                }
+                else
+                {
+                    publicaciones = negocio.Listar();
+                }
                 dgvPublicaciones.DataSource = publicaciones;
                 dgvPublicaciones.DataBind();
 
@@ -63,31 +71,11 @@ namespace TP_Final
             Estado nuevoEstado = (Estado)Enum.Parse(typeof(Estado), ddlEstado.SelectedValue);
 
             // Actualizar el estado en la base de datos
-            ActualizarEstado(idPublicacion, nuevoEstado);
+            PublicacionNegocio negocio = new PublicacionNegocio();
+            negocio.ActualizarEstado(idPublicacion, nuevoEstado);
 
             // Actualizar el DGV
             CargarPublicaciones();
-        }
-
-        private void ActualizarEstado(int idPublicacion, Estado nuevoEstado)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearConsulta("UPDATE Publicaciones SET Estado = @Estado WHERE ID = @ID");
-                datos.setearParametro("@Estado", nuevoEstado);
-                datos.setearParametro("@ID", idPublicacion);
-
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
     }
 }

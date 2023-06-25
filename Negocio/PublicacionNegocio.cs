@@ -273,6 +273,40 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Publicacion> ListarPorUsuario(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Publicacion> lista = new List<Publicacion>();
+            try
+            {
+                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones where ID ="+idUsuario);
+                datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    Publicacion aux = new Publicacion();
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.Titulo = datos.Lector.GetString(1);
+                    aux.Especie = (Especie)Enum.ToObject(typeof(Especie), datos.Lector.GetInt32(2));
+                    aux.Raza = datos.Lector.GetString(3);
+                    aux.Edad = datos.Lector.GetInt32(4);
+                    aux.Sexo = datos.Lector.GetString(5)[0];
+                    aux.IdUsuario = datos.Lector.GetInt32(6);
+                    aux.Descripcion = datos.Lector.GetString(7);
+                    aux.FechaHora = datos.Lector.GetDateTime(8);
+                    aux.Estado = (Estado)Enum.Parse(typeof(Estado), datos.Lector.GetInt32(9).ToString());
+                    aux.IDLocalidad = datos.Lector.GetInt32(10);
+                    aux.IDProvincia = datos.Lector.GetInt32(11);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

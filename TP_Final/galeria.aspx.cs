@@ -29,7 +29,8 @@ namespace TP_Final
             List<ImagenMascota> lista = new List<ImagenMascota>();
             ImagenMascotaNegocio negocio = new ImagenMascotaNegocio();
             lista = negocio.listar(idPublicacion);
-            if (lista != null && lista.Count > 0)
+
+            if (lista != null && lista.Count > 0 && !string.IsNullOrEmpty(lista[0].urlImagen))
             {
                 return lista[0].urlImagen;
             }
