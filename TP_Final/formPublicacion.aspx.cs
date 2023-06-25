@@ -37,6 +37,11 @@ namespace TP_Final
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+
+            if (!ValidarForm())
+            {                
+                return;
+            }
             try
             {
                 //Seteo publicacion: 
@@ -120,5 +125,90 @@ namespace TP_Final
             ddlProvincia.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
             ddlProvincia.DataBind();
         }
+
+
+        //Validaciones
+
+        public bool ValidarForm()
+        {
+            validarTitulo();
+            validarEdad();
+            validarDescripcion();
+
+            if (!validarDescripcion() || !validarEdad() || !validarTitulo())
+            {
+                lblErrorForm.Text = ("(*) Los campos con asterisco son obligatorios.").ToUpper();                
+                lblErrorForm.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            
+            return true;
+        }
+        
+        public bool validarEdad()
+        {
+            if (string.IsNullOrEmpty(tbEdad.Text))
+            {
+                lblErrorEdad.Text = "Debes indicar la edad.";
+                lblErrorEdad.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else if (int.Parse(tbEdad.Text) < 1)
+            {
+                lblErrorEdad.Text = "La edad debe ser un valor positivo.";
+                lblErrorEdad.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else
+            {
+                lblErrorEdad.Visible = false;
+                return true;
+            }
+        }
+
+        public bool validarTitulo()
+        {
+            if (string.IsNullOrEmpty(tbNombre.Text))
+            {
+                LblErrorTitulo.Text = "Se requiere el nombre de la mascota o un título que la identifique.";
+                LblErrorTitulo.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else if (tbNombre.Text.Length < 3)
+            {
+                LblErrorTitulo.Text = "El nombre debe tener al menos 3 caracteres.";
+                LblErrorTitulo.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
+        public bool validarDescripcion()
+        {
+            if (string.IsNullOrEmpty(tbDescripcion.Text))
+            {
+                lblErrorDescripcion.Text = "Debe agregar una descripción.";
+                lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else if (tbDescripcion.Text.Length < 100)
+            {
+                lblErrorDescripcion.Text = "La descripción es demasiado corta.";
+                lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else
+            {
+                lblErrorDescripcion.Visible = false;
+                return true;
+            }
+
+        }
+
+
     }
 }

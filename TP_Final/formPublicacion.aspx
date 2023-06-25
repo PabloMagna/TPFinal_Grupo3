@@ -26,12 +26,16 @@
                 <asp:Label ID="lbTitulo" runat="server" CssClass="titulo">Formulario de alta de Publicación</asp:Label>
 
                 <div class="mb-3">
-                    <label class="form-label" >Nombre de la Mascota</label>
+                    <asp:Label ID="lblErrorForm" runat="server" Text=""></asp:Label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" >Nombre de la Mascota *</label>
                     <asp:TextBox ID="tbNombre" runat="server" class="form-control" placeholder="Wolfy"></asp:TextBox>
+                    <asp:Label ID="LblErrorTitulo" runat="server" Text=""></asp:Label>
                 </div>
                
                 <div class="mb-3">
-                    <label class="form-label">Especie</label>
+                    <label class="form-label">Especie *</label>
                     <asp:DropDownList ID="ddlEspecie" runat="server" class="form-select" AutoPostBack="false">
                         <asp:ListItem Selected="True" Text="Perro" Value="1"></asp:ListItem>
                         <asp:ListItem Text="Gato" Value="2"></asp:ListItem>
@@ -43,18 +47,19 @@
                     <asp:TextBox ID="tbRaza" runat="server" class="form-control" placeholder="Chiguagua / Siamés"></asp:TextBox>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Edad</label>
+                    <label class="form-label">Edad *</label>
                     <asp:TextBox ID="tbEdad" runat="server" Type="number" min="1" class="form-control"></asp:TextBox>
+                    <asp:Label ID="lblErrorEdad" runat="server" Text=""></asp:Label>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Seleccione unidad de tiempo</label>
+                    <label class="form-label">Seleccione unidad de tiempo *</label>
                     <asp:DropDownList ID="ddlEdad" runat="server" class="form-select" AutoPostBack="false">
                         <asp:ListItem Text="Años" Value="A"></asp:ListItem>
                         <asp:ListItem Text="Meses" Value="M"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                   <div class="mb-3">
-                    <label class="form-label">Sexo</label>
+                    <label class="form-label">Sexo *</label>
                     <asp:DropDownList ID="ddlSexo" runat="server" class="form-select" AutoPostBack="false">
                         <asp:ListItem Text="Macho" Value="M"></asp:ListItem>
                         <asp:ListItem Selected="True" Text="Hembra" Value="H"></asp:ListItem>
@@ -62,7 +67,7 @@
                     </asp:DropDownList>
                 </div>
                   <div class="mb-3">
-                      <label class="form-label">Provincia</label>
+                      <label class="form-label">Provincia *</label>
                         <asp:UpdatePanel runat="server" ID="updatePanelProvincia">
                             <ContentTemplate>
                                 <asp:DropDownList runat="server" ID="ddlProvincia" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
@@ -70,7 +75,7 @@
                         </asp:UpdatePanel>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Localidad</label>
+                        <label class="form-label">Localidad *</label>
                         <asp:UpdatePanel runat="server" ID="updatePanelLocalidad">
                             <ContentTemplate>
                                 <asp:DropDownList runat="server" ID="ddlLocalidad" CssClass="form-select"></asp:DropDownList>
@@ -78,8 +83,9 @@
                         </asp:UpdatePanel>
                     </div>
                 <div class="mb-3">
-                    <label class="form-label">Descripción la publicación</label>
+                    <label class="form-label">Descripción la publicación *</label>
                     <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="500" placeholder="Características de la mascota, Condiciones de adopción, etc."></asp:TextBox>
+                    <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
                 </div>
                  <div class="mb-3">
                     <label class="form-label">Imagen de la mascota</label>

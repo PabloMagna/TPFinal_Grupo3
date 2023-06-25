@@ -33,6 +33,15 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.Label lbTitulo;
 
         /// <summary>
+        /// lblErrorForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorForm;
+
+        /// <summary>
         /// tbNombre control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbNombre;
+
+        /// <summary>
+        /// LblErrorTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblErrorTitulo;
 
         /// <summary>
         /// ddlEspecie control.
@@ -67,6 +85,15 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEdad;
+
+        /// <summary>
+        /// lblErrorEdad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorEdad;
 
         /// <summary>
         /// ddlEdad control.
@@ -130,6 +157,15 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDescripcion;
+
+        /// <summary>
+        /// lblErrorDescripcion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorDescripcion;
 
         /// <summary>
         /// tpImg control.
