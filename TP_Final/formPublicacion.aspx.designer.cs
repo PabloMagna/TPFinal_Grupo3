@@ -168,13 +168,31 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.Label lblErrorDescripcion;
 
         /// <summary>
-        /// tpImg control.
+        /// tbImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tpImg;
+        protected global::System.Web.UI.WebControls.TextBox tbImg;
+
+        /// <summary>
+        /// txtImagen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile txtImagen;
+
+        /// <summary>
+        /// imgPerfil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPerfil;
 
         /// <summary>
         /// btnAceptar control.

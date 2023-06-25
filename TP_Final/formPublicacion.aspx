@@ -87,9 +87,20 @@
                     <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="500" placeholder="Características de la mascota, Condiciones de adopción, etc."></asp:TextBox>
                     <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
                 </div>
-                 <div class="mb-3">
+
+                <div class="mb-3">
                     <label class="form-label">Imagen de la mascota</label>
-                    <asp:TextBox ID="tpImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...."></asp:TextBox>
+                </div>
+                 <div class="mb-3">
+                    <label class="form-label">Con URL</label>
+                    <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...."></asp:TextBox>                                          
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Subir desde el ordenador</label>
+                    <input type="file" id="txtImagen" runat="server" class="form-control" />
+                </div>
+                <div class="mb-3">
+                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid" ImageUrl="../imagenes/pet_placeholder.png"/>
                 </div>
                 <%--Botones--%>
                 <div class="mb-3">

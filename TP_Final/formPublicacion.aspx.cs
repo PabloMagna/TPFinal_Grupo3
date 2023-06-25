@@ -73,23 +73,35 @@ namespace TP_Final
                     nueva.Raza = tbRaza.Text;
                 }
 
+                ImagenMascotaNegocio imagenNegocio = new ImagenMascotaNegocio();
+                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+
                 //Insert Publicacion: 
-                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();                 
                 publicacionNegocio.AgregarConSP(nueva);
 
                 //Seteo Imágenes: 
                 ImagenMascota nuevaImg = new ImagenMascota();
                 nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id);
-                nuevaImg.urlImagen = tpImg.Text;
+
+                //Imagenes con URL
+                if (string.IsNullOrEmpty(nuevaImg.urlImagen))
+                {
+                    nuevaImg.urlImagen = tbImg.Text;
+                    //Insert Imágenes: 
+                    imagenNegocio.Agregar(nuevaImg);
+                }
+                //Imagenes con archivos
+
+                string ruta = Server.MapPath("./imagenes/publicaciones/");
+                string nombre = nuevaImg.IdPublicacion.ToString();
+                DateTime fechaHora = DateTime.Now;
+                txtImagen.PostedFile.SaveAs(ruta + "Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg");
+                nuevaImg.urlImagen = "../imagenes/publicaciones/Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg"; 
 
                 //Insert Imágenes: 
-                ImagenMascotaNegocio imagenNegocio = new ImagenMascotaNegocio();
                 imagenNegocio.Agregar(nuevaImg);
 
 
-               //Falta el método que hace el insert de imágenes
-              
-                
             }
             catch (Exception ex)
             {
