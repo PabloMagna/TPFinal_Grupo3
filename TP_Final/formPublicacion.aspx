@@ -105,7 +105,7 @@
                 <%--Botones--%>
                 <div class="mb-3">
                     <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
                 </div>
             </div>        
         </div>

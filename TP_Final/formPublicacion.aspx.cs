@@ -34,8 +34,12 @@ namespace TP_Final
             }
            
         }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx");
+        }
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
+            protected void btnAceptar_Click(object sender, EventArgs e)
         {
 
             if (!ValidarForm())
@@ -84,7 +88,7 @@ namespace TP_Final
                 nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id);
 
                 //Imagenes con URL
-                if (string.IsNullOrEmpty(nuevaImg.urlImagen))
+                if (!string.IsNullOrEmpty(tbImg.Text))
                 {
                     nuevaImg.urlImagen = tbImg.Text;
                     //Insert Imágenes: 
@@ -101,7 +105,7 @@ namespace TP_Final
                 //Insert Imágenes: 
                 imagenNegocio.Agregar(nuevaImg);
 
-
+                Response.Redirect("default.aspx");
             }
             catch (Exception ex)
             {
