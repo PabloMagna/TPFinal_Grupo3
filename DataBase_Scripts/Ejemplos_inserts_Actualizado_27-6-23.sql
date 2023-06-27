@@ -27,10 +27,10 @@ INSERT INTO ImagenesMascota (IDPublicacion, UrlImagen) VALUES
 (3, 'https://example.com/imagen_perro2.jpg');
 
 -- Inserts para la tabla Comentarios
-INSERT INTO Comentarios (IDPublicacion, Descripcion, Estado, FechaHora) VALUES
-(1, 'Qué hermoso perro, espero que encuentre un hogar pronto.', 1, '2023-06-18 10:30:00'),
-(2, 'Me encanta este gato, es muy tierno.', 1, '2023-04-25 15:45:00'),
-(3, 'Este perro es genial, ojalá encuentre un hogar donde lo cuiden mucho.', 1, '2023-01-15 09:00:00');
+INSERT INTO Comentarios (IDPublicacion, IDUsuario, Descripcion, Estado, FechaHora) VALUES
+(1,1, 'Qué hermoso perro, espero que encuentre un hogar pronto.', 1, '2023-06-18 10:30:00'),
+(2,2, 'Me encanta este gato, es muy tierno.', 1, '2023-04-25 15:45:00'),
+(3,3,'Este perro es genial, ojalá encuentre un hogar donde lo cuiden mucho.', 1, '2023-01-15 09:00:00');
 
 -- Inserts para la tabla Historias
 INSERT INTO Historias (IDUsuario, Descripcion, UrlImagen, FechaHora, Estado) VALUES

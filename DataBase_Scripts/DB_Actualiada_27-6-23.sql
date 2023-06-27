@@ -98,10 +98,12 @@ GO
 CREATE TABLE Comentarios (
 	ID INT IDENTITY(1,1) PRIMARY KEY,
 	IDPublicacion INT NOT NULL,
+	IDUsuario int not null,
 	Descripcion VARCHAR(300) NOT NULL,
 	Estado INT NOT NULL,
 	FechaHora datetime NOT NULL,
-	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
+	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID),
+	Foreign key(IDUsuario) references usuarios(ID)
 );
 GO
 
@@ -135,3 +137,4 @@ CREATE TABLE Adopciones (
 	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID),
 	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
 );
+
