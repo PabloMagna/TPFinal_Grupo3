@@ -150,5 +150,36 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Usuario> ListarPorIDUsuario (int iDUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuario> lista = new List<Usuario>();
+            try
+            {
+                datos.setearConsulta("select ID, IDTipoUsuario, Contrasenia, Email, Estado, EsAdmin from Usuarios where ID = @ID");
+                datos.setearParametro("@ID", iDUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
+                    aux.Password = datos.Lector.GetString(2);
+                    aux.Email = datos.Lector.GetString(3);
+                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(4);
+                    aux.EsAdmin = datos.Lector.GetBoolean(5);
+                    lista.Add(aux);
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

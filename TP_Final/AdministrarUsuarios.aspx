@@ -29,6 +29,12 @@
                         NavigateUrl='<%# "AdministrarPublicaciones.aspx?ID=" + Eval("Id") %>'></asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Comentarios">
+                <ItemTemplate>
+                    <asp:HyperLink ID="hlComentarios" runat="server" Text="Usuario"
+                        NavigateUrl='<%# "AdministrarComentarios.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>

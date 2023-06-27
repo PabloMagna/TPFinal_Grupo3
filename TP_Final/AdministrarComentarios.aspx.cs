@@ -18,14 +18,21 @@ namespace TP_Final
                 CargarComentarios();
             }
         }
-
         private void CargarComentarios()
         {
             ComentarioNegocio negocio = new ComentarioNegocio();
             try
             {
-                List<Comentario> lista = negocio.Listar();
-                gvComentarios.DataSource = lista;
+                List<Comentario> lista = new List<Comentario>();
+                if (Request.QueryString["IDU"] != null)
+                {
+                    lista = negocio.ListarPorIDUsuario(Convert.ToInt32(Request.QueryString["IDU"]));
+                }
+                else
+                {
+                    lista = negocio.Listar();
+                }
+                    gvComentarios.DataSource = lista;
                 gvComentarios.DataBind();
 
                 foreach (GridViewRow row in gvComentarios.Rows)

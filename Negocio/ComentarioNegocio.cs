@@ -64,6 +64,38 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Comentario> ListarPorIDUsuario(int IDUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Comentario> lista = new List<Comentario>();
+            try
+            {
+                datos.setearConsulta("SELECT Id, IdPublicacion, IdUsuario, Descripcion, Estado, FechaHora FROM Comentarios where IdUsuario = @IDUsuario");
+                datos.setearParametro("@IDUsuario", IDUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Comentario aux = new Comentario();
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.IdPublicacion = datos.Lector.GetInt32(1);
+                    aux.IdUsuario = datos.Lector.GetInt32(2);
+                    aux.Descripcion = datos.Lector.GetString(3);
+                    aux.Estado = (EstadoComentario)Enum.Parse(typeof(EstadoComentario), datos.Lector.GetInt32(4).ToString());
+                    aux.FechaHora = datos.Lector.GetDateTime(5);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
         public List<Comentario> ListarPorPublicacion(int IDPublicacion)
         {
             AccesoDatos datos = new AccesoDatos();

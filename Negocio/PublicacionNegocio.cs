@@ -308,5 +308,42 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public List<Publicacion> ListarPorIDPublicacion(int IdPublicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Publicacion> lista = new List<Publicacion>();
+
+            try
+            {
+                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones WHERE ID = @ID");
+                datos.setearParametro("@ID", IdPublicacion);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.Id = datos.Lector.GetInt32(0);
+                    publicacion.Titulo = datos.Lector.GetString(1);
+                    publicacion.Especie = (Especie)Enum.ToObject(typeof(Especie), datos.Lector.GetInt32(2));
+                    publicacion.Raza = datos.Lector.GetString(3);
+                    publicacion.Edad = datos.Lector.GetInt32(4);
+                    publicacion.Sexo = datos.Lector.GetString(5)[0];
+                    publicacion.IdUsuario = datos.Lector.GetInt32(6);
+                    publicacion.Descripcion = datos.Lector.GetString(7);
+                    publicacion.FechaHora = datos.Lector.GetDateTime(8);
+                    publicacion.Estado = (Estado)Enum.Parse(typeof(Estado), datos.Lector.GetInt32(9).ToString());
+                    publicacion.IDLocalidad = datos.Lector.GetInt32(10);
+                    publicacion.IDProvincia = datos.Lector.GetInt32(11);
+                    lista.Add(publicacion);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

@@ -24,7 +24,15 @@ namespace TP_Final
             UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
-                List<Usuario> lista = negocio.Listar();
+                List<Usuario> lista = new List<Usuario>();
+                if (Request.QueryString["IDU"] != null)
+                {
+                    lista = negocio.ListarPorIDUsuario(Convert.ToInt32(Request.QueryString["IDU"]));
+                }
+                else
+                {
+                    lista = negocio.Listar();
+                }
                 dgvUsuarios.DataSource = lista;
                 dgvUsuarios.DataBind();
 

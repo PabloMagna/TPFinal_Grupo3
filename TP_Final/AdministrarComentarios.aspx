@@ -18,6 +18,18 @@
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="FechaHora" HeaderText="Fecha/Hora" ReadOnly="true" />
+             <asp:TemplateField HeaderText="Publicacion">
+                <ItemTemplate>
+                    <asp:HyperLink ID="hlPublicacion" runat="server" Text="Publicacion"
+                        NavigateUrl='<%# "AdministrarPublicaciones.aspx?IDP=" + Eval("IdPublicacion") %>'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Usuario">
+                <ItemTemplate>
+                    <asp:HyperLink ID="hlUsuario" runat="server" Text="Usuario"
+                        NavigateUrl='<%# "AdministrarUsuarios.aspx?IDU=" + Eval("IdUsuario") %>'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>

@@ -26,6 +26,10 @@ namespace TP_Final
                 {
                     publicaciones = negocio.ListarPorUsuario(Convert.ToInt32(Request.QueryString["ID"]));
                 }
+                else if (Request.QueryString["IDP"] != null)
+                {
+                        publicaciones = negocio.ListarPorIDPublicacion(Convert.ToInt32(Request.QueryString["IDP"]));
+                }
                 else
                 {
                     publicaciones = negocio.Listar();
