@@ -87,32 +87,27 @@
                     <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="500" placeholder="Características de la mascota, Condiciones de adopción, etc."></asp:TextBox>
                     <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
                 </div>
-
+            <hr />
+              <div class="mb-3">
+                    <label class="form-label">IMAGEN DE LA MASCOTA</label>
+                </div>  
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <div class="mb-3">
+                            <label class="form-label">Con URL</label>
+                            <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...." AutoPostBack="true" OnTextChanged="tbImg_textCanged"></asp:TextBox>   
+                    
+                        </div> 
+                         <div class="mb-3 imgMascota">                   
+                             <asp:Image ID="imgMascota" runat="server" CssClass="img-fluid" ImageUrl="../imagenes/pet_placeholder.png"/>
+                        </div> 
+                    </ContentTemplate>                    
+                </asp:UpdatePanel>
                 <div class="mb-3">
-                    <label class="form-label">Imagen de la mascota</label>
-                </div>                
-                <div class="mb-3">
+                    <label class="form-label">Subir desde el ordenador</label>
                     <input type="file" id="tbImgFile" runat="server" class="form-control"/>                   
-                </div>
-                <!--
-                <div class="mb-3">
-                    <input type="file" id="tbImgFile2" runat="server" class="form-control"/>
-                </div>
-                 <div class="mb-3">
-                    <input type="file" id="tbImgFile3" runat="server" class="form-control"/>
-                </div>
-                -->
-                <!--
-                 <div class="mb-3">
-                    <label class="form-label">Con URL</label>
-                    <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...." AutoPostBack="true" OnTextChanged="tbImg_textCanged"></asp:TextBox>                                          
-                </div>
-                -->
-                <!--
-                <div class="mb-3">
-                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid" ImageUrl="../imagenes/pet_placeholder.png"/>
-                </div>
-                -->
+                </div> 
+
                 <!--Botones-->
                 <div class="mb-3">
                     <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>

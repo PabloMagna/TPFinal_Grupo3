@@ -14,7 +14,7 @@ namespace TP_Final
     public partial class Publicar : System.Web.UI.Page
     {
         protected Usuario usuarioLogin { set; get; }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             usuarioLogin = (Dominio.Usuario)Session["Usuario"];
@@ -34,18 +34,18 @@ namespace TP_Final
                 Session.Add("Error", ex);
                 throw;
             }
-           
+
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("default.aspx");
         }
 
-            protected void btnAceptar_Click(object sender, EventArgs e)
+        protected void btnAceptar_Click(object sender, EventArgs e)
         {
 
             if (!ValidarForm())
-            {                
+            {
                 return;
             }
             try
@@ -53,13 +53,13 @@ namespace TP_Final
                 //Seteo publicacion: 
                 Publicacion nueva = new Publicacion();
                 nueva.Titulo = tbNombre.Text;
-                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);                
+                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);
                 nueva.Descripcion = tbDescripcion.Text;
                 nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
                 nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
                 nueva.Sexo = ddlSexo.SelectedValue[0];
                 nueva.IdUsuario = usuarioLogin.Id;
-                nueva.FechaHora = DateTime.Now;                
+                nueva.FechaHora = DateTime.Now;
 
                 if (ddlEdad.SelectedValue == "A")
                 {
@@ -96,8 +96,9 @@ namespace TP_Final
                     //Insert Imágenes: 
                     imagenNegocio.Agregar(nuevaImg);
                 }
-                //Imagenes con archivos
 
+
+                //Imagenes con archivos
                 if (!string.IsNullOrEmpty(tbImgFile.Value))
                 {
                     string ruta = Server.MapPath("./imagenes/publicaciones/");
@@ -105,13 +106,15 @@ namespace TP_Final
                     DateTime fechaHora = DateTime.Now;
                     tbImgFile.PostedFile.SaveAs(ruta + "Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg");
                     nuevaImg.urlImagen = "../imagenes/publicaciones/Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg";
+
                     //Insert Imágenes: 
                     imagenNegocio.Agregar(nuevaImg);
                 }
+
                 formulario.Visible = false;
                 altaExitosa.Visible = true;
-                /*Response.Redirect("default.aspx");*/
             }
+
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
@@ -121,16 +124,16 @@ namespace TP_Final
 
         protected void tbImg_textCanged(object sender, EventArgs e)
         {
-            try 
+            try
             {
-                imgPerfil.ImageUrl = tbImg.Text;
+                imgMascota.ImageUrl = tbImg.Text;
             }
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
             }
         }
-      
+
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -150,7 +153,7 @@ namespace TP_Final
             ddlLocalidad.DataBind();
         }
         private void CargarDropDownListProvincias()
-        {           
+        {
             ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio();
             List<KeyValuePair<int, string>> provincias = provinciaNegocio.ListarClaveValor();
 
@@ -171,14 +174,14 @@ namespace TP_Final
 
             if (!validarDescripcion() || !validarEdad() || !validarTitulo())
             {
-                lblErrorForm.Text = ("(*) Los campos con asterisco son obligatorios.").ToUpper();                
+                lblErrorForm.Text = ("(*) Los campos con asterisco son obligatorios.").ToUpper();
                 lblErrorForm.ForeColor = System.Drawing.Color.Cyan;
                 return false;
             }
-            
+
             return true;
         }
-        
+
         public bool validarEdad()
         {
             if (string.IsNullOrEmpty(tbEdad.Text))
