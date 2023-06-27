@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="AdopcionNegocio.cs" />
     <Compile Include="ComentarioNegocio.cs" />
+    <Compile Include="FavoritoNegocio.cs" />
     <Compile Include="HistoriaNegocio.cs" />
     <Compile Include="ImagenMascotaNegocio.cs" />
     <Compile Include="LocalidadNegocio.cs" />

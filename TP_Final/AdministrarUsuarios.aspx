@@ -41,6 +41,12 @@
                         NavigateUrl='<%# "AdministrarHistorias.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Adopcion">
+                <ItemTemplate>
+                    <asp:HyperLink ID="hlAdopcion" runat="server" Text="Adopcion"
+                        NavigateUrl='<%# "AdministrarAdopciones.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>

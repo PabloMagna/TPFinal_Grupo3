@@ -78,6 +78,7 @@
     <Content Include="css\formPublicacion.css" />
     <Content Include="default.aspx" />
     <Content Include="DetallePublicacion.aspx" />
+    <Content Include="Favoritos.aspx" />
     <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\leftarrow.png" />
@@ -145,6 +146,13 @@
     </Compile>
     <Compile Include="DetallePublicacion.aspx.designer.cs">
       <DependentUpon>DetallePublicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Favoritos.aspx.cs">
+      <DependentUpon>Favoritos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Favoritos.aspx.designer.cs">
+      <DependentUpon>Favoritos.aspx</DependentUpon>
     </Compile>
     <Compile Include="galeria.aspx.cs">
       <DependentUpon>galeria.aspx</DependentUpon>
