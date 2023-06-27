@@ -24,6 +24,15 @@ namespace TP_Final
         protected global::System.Web.UI.ScriptManager scriptManager;
 
         /// <summary>
+        /// formulario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formulario;
+
+        /// <summary>
         /// lbTitulo control.
         /// </summary>
         /// <remarks>
@@ -168,6 +177,33 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.Label lblErrorDescripcion;
 
         /// <summary>
+        /// tbImgFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile tbImgFile;
+
+        /// <summary>
+        /// tbImgFile2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile tbImgFile2;
+
+        /// <summary>
+        /// tbImgFile3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile tbImgFile3;
+
+        /// <summary>
         /// tbImg control.
         /// </summary>
         /// <remarks>
@@ -175,15 +211,6 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbImg;
-
-        /// <summary>
-        /// txtImagen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile txtImagen;
 
         /// <summary>
         /// imgPerfil control.
@@ -211,5 +238,14 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelar;
+
+        /// <summary>
+        /// altaExitosa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl altaExitosa;
     }
 }

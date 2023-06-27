@@ -23,7 +23,9 @@ namespace TP_Final
                 if (!IsPostBack)
                 {
                     CargarDropDownListProvincias();
-                    CargarLocalidades(1);    
+                    CargarLocalidades(1);
+                    altaExitosa.Visible = false;
+                    formulario.Visible = true;
                 }
 
             }
@@ -96,16 +98,19 @@ namespace TP_Final
                 }
                 //Imagenes con archivos
 
-                string ruta = Server.MapPath("./imagenes/publicaciones/");
-                string nombre = nuevaImg.IdPublicacion.ToString();
-                DateTime fechaHora = DateTime.Now;
-                txtImagen.PostedFile.SaveAs(ruta + "Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg");
-                nuevaImg.urlImagen = "../imagenes/publicaciones/Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg"; 
-
-                //Insert Imágenes: 
-                imagenNegocio.Agregar(nuevaImg);
-
-                Response.Redirect("default.aspx");
+                if (!string.IsNullOrEmpty(tbImgFile.Value))
+                {
+                    string ruta = Server.MapPath("./imagenes/publicaciones/");
+                    string nombre = nuevaImg.IdPublicacion.ToString();
+                    DateTime fechaHora = DateTime.Now;
+                    tbImgFile.PostedFile.SaveAs(ruta + "Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg");
+                    nuevaImg.urlImagen = "../imagenes/publicaciones/Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg";
+                    //Insert Imágenes: 
+                    imagenNegocio.Agregar(nuevaImg);
+                }
+                formulario.Visible = false;
+                altaExitosa.Visible = true;
+                /*Response.Redirect("default.aspx");*/
             }
             catch (Exception ex)
             {
@@ -113,6 +118,19 @@ namespace TP_Final
                 throw;
             }
         }
+
+        protected void tbImg_textCanged(object sender, EventArgs e)
+        {
+            try 
+            {
+                imgPerfil.ImageUrl = tbImg.Text;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
+        }
+      
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {

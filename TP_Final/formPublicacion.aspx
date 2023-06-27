@@ -20,7 +20,7 @@
         <h1 id="titulo">Publicación de mascota en adopción</h1>
         <h4><em>Necesitaremos que completes algunos datos.</em></h4>
     </section>
-    <section class="formulario">
+    <section class="formulario" id="formulario" runat="server">
         <div class="row">
             <div class="col-4">
                 <asp:Label ID="lbTitulo" runat="server" CssClass="titulo">Formulario de alta de Publicación</asp:Label>
@@ -90,24 +90,39 @@
 
                 <div class="mb-3">
                     <label class="form-label">Imagen de la mascota</label>
+                </div>                
+                <div class="mb-3">
+                    <input type="file" id="tbImgFile" runat="server" class="form-control"/>                   
+                </div>
+                <!--
+                <div class="mb-3">
+                    <input type="file" id="tbImgFile2" runat="server" class="form-control"/>
                 </div>
                  <div class="mb-3">
+                    <input type="file" id="tbImgFile3" runat="server" class="form-control"/>
+                </div>
+                -->
+                <!--
+                 <div class="mb-3">
                     <label class="form-label">Con URL</label>
-                    <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...."></asp:TextBox>                                          
+                    <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...." AutoPostBack="true" OnTextChanged="tbImg_textCanged"></asp:TextBox>                                          
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Subir desde el ordenador</label>
-                    <input type="file" id="txtImagen" runat="server" class="form-control" />
-                </div>
+                -->
+                <!--
                 <div class="mb-3">
                 <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid" ImageUrl="../imagenes/pet_placeholder.png"/>
                 </div>
-                <%--Botones--%>
+                -->
+                <!--Botones-->
                 <div class="mb-3">
                     <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
                 </div>
             </div>        
         </div>
+    </section>
+    <section id="altaExitosa" class="altaExitosa" runat="server">
+        <h3 id="h3alta">¡Gracias!</h3>
+        <p>La publicación se realizó correctamente.<br /> Porás verta en la sección de mascotas <a href="galeria.aspx">en adopción</a>.</p>
     </section>
 </asp:Content>

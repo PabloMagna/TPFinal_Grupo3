@@ -54,3 +54,11 @@ div.col-4 {
         background-color: #9dc2d3 !important;
     }
 
+.altaExitosa {
+    width:100%;
+    align-self:center;
+    text-align:center;
+}
+    .altaExitosa h3 {
+        color: #24566E;
+    }
