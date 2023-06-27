@@ -43,6 +43,8 @@
                                     <li><a class="dropdown-item" href="AdministrarPublicaciones.aspx">Administrar Publicaciones</a></li>
                                     <li><a class="dropdown-item" href="AdministrarUsuarios.aspx">Administrar Usuarios</a></li>
                                     <li><a class="dropdown-item" href="AdministrarComentarios.aspx">Administrar Comentarios</a></li>
+                                    <li><a class="dropdown-item" href="AdministrarAdopciones.aspx">Administrar Adopciones</a></li>
+                                    <li><a class="dropdown-item" href="AdministrarHistorias.aspx">Administrar Historias</a></li>
                                 </ul>
                             </li>
                         </ul>

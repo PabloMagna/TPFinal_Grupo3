@@ -27,6 +27,9 @@ namespace TP_Final
                 if (Request.QueryString["IDU"] != null)
                 {
                     lista = negocio.ListarPorIDUsuario(Convert.ToInt32(Request.QueryString["IDU"]));
+                }else if (Request.QueryString["IDP"] != null)
+                {
+                    lista = negocio.ListarPorPublicacion(Convert.ToInt32(Request.QueryString["IDP"]));
                 }
                 else
                 {

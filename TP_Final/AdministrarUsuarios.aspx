@@ -31,8 +31,14 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Comentarios">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlComentarios" runat="server" Text="Usuario"
+                    <asp:HyperLink ID="hlComentarios" runat="server" Text="Comentarios"
                         NavigateUrl='<%# "AdministrarComentarios.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Historias">
+                <ItemTemplate>
+                    <asp:HyperLink ID="hlHistorias" runat="server" Text="Historias"
+                        NavigateUrl='<%# "AdministrarHistorias.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

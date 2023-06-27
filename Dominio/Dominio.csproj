@@ -49,6 +49,7 @@
     <Compile Include="Adopcion.cs" />
     <Compile Include="Comentario.cs" />
     <Compile Include="Favorito.cs" />
+    <Compile Include="Historia.cs" />
     <Compile Include="ImagenMascota.cs" />
     <Compile Include="Localidad.cs" />
     <Compile Include="Persona.cs" />

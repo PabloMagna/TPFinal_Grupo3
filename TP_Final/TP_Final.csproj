@@ -64,7 +64,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdministrarAdopciones.aspx" />
     <Content Include="AdministrarComentarios.aspx" />
+    <Content Include="AdministrarHistorias.aspx" />
     <Content Include="AdministrarPublicaciones.aspx" />
     <Content Include="AdministrarUsuarios.aspx" />
     <Content Include="AltaCuenta.aspx" />
@@ -88,12 +90,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrarAdopciones.aspx.cs">
+      <DependentUpon>AdministrarAdopciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarAdopciones.aspx.designer.cs">
+      <DependentUpon>AdministrarAdopciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdministrarComentarios.aspx.cs">
       <DependentUpon>AdministrarComentarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdministrarComentarios.aspx.designer.cs">
       <DependentUpon>AdministrarComentarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrarHistorias.aspx.cs">
+      <DependentUpon>AdministrarHistorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarHistorias.aspx.designer.cs">
+      <DependentUpon>AdministrarHistorias.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdministrarPublicaciones.aspx.cs">
       <DependentUpon>AdministrarPublicaciones.aspx</DependentUpon>
