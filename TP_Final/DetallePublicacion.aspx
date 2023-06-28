@@ -5,6 +5,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/DetallePublicacion.css" rel="stylesheet" type="text/css" />
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+    </style>
+    <style>
         /* Estilos personalizados */
         .carousel-item img {
             max-height: 30rem;
@@ -63,4 +66,43 @@
             </div>
         </section>
     </div>
+
+    <%--COMENTARIOS--%>
+    <section class="container-sm comentarios">
+        <div class="cabecera">
+            <img
+              src="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000"
+            />
+            <label>Joaquin pepe<label>
+                <span id="fecha">28/06/2023 01:00</span>
+        </div>
+      <div class="comentario">
+        <p>
+          Qué hermoso perro, espero que encuentre un hogar pronto Lorem ipsum,
+          dolor sit amet consectetur adipisicing elit. Nobis inventore quisquam
+          quas? Illum officia voluptate fugiat voluptatibus non nobis doloribus
+          eligendi. Dolorum animi, possimus illum dolores at delectus nobis
+          nemo!
+        </p>
+      </div>
+
+      <div class="cabecera">
+            <img 
+                src="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000"
+              />
+            <label>Nombre Usuario<label>
+                <span id="fecha">28/06/2023 01:00</span>
+        </div>
+      <div class="comentario">
+        <p>
+          Qué hermoso perro, espero que encuentre un hogar pronto Lorem ipsum,
+          dolor sit amet consectetur adipisicing elit. Nobis inventore quisquam
+          quas? Illum officia voluptate fugiat voluptatibus non nobis doloribus
+          eligendi. Dolorum animi, possimus illum dolores at delectus nobis
+          nemo!
+        </p>
+      </div>
+     
+    </section>
+
 </asp:Content>

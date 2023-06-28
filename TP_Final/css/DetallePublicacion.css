@@ -1,4 +1,7 @@
-﻿body {
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 .portada {
     background-color: #D2E3EB;
@@ -21,3 +24,55 @@
     padding-bottom: 30px;
 }
 
+/* SECCION COMENTARIOS */
+.comentarios {
+    font-family: roboto,sans-serif;
+    font-weight: 600;
+    background-color: rgb(243, 157, 113);
+    border: 10px solid rgb(223, 121, 80);
+    position: relative;
+}
+
+.comentario {
+    margin: 10px auto;
+    position: relative;
+    margin-left: 50px;
+    background-color: rgb(245, 245, 229);
+    border-radius: 8px;
+}
+
+    .comentario p {
+        font-family: roboto, sans-serif;
+        display: block;
+        position: relative;
+        padding: 10px;
+        text-align: left;
+    }
+
+.cabecera img {
+    position: relative;
+    left: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.cabecera {
+    display: flex;
+    width: 100%;
+    color: aliceblue;
+    font-weight: 600;
+    margin-top: 10px;
+    position: relative;
+}
+
+    .cabecera label {
+        font-size: 1.08rem;
+        margin-left: 14px;
+        margin-top: 2px;
+    }
+
+#fecha {
+    display: block;
+    position: relative;
+}
