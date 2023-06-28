@@ -51,7 +51,6 @@
     <Compile Include="Favorito.cs" />
     <Compile Include="Historia.cs" />
     <Compile Include="ImagenMascota.cs" />
-    <Compile Include="ImagenUsuario.cs" />
     <Compile Include="Localidad.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Provincia.cs" />

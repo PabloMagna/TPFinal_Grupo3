@@ -52,7 +52,6 @@
     <Compile Include="FavoritoNegocio.cs" />
     <Compile Include="HistoriaNegocio.cs" />
     <Compile Include="ImagenMascotaNegocio.cs" />
-    <Compile Include="ImagenUsuarioNegocio.cs" />
     <Compile Include="LocalidadNegocio.cs" />
     <Compile Include="PersonaNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
