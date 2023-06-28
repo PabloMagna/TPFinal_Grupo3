@@ -51,7 +51,7 @@
         text-align: left;
     }
 
-.cabecera img {
+.imgUser {
     position: relative;
     left: 10px;
     height: 40px;
@@ -70,15 +70,19 @@
     position: relative;
 }
 
-    .cabecera label {
+    .lbNombre {
         font-size: 1.08rem;
         margin-left: 14px;
         margin-top: 2px;
     }
 
-#fecha {
+.fecha {
     display: block;
     position: relative;
+    font-size: .8rem;
+    margin-left: 14px;
+    margin-top: 5px;
+    overflow:clip;
 }
 
 .nuevoComent {

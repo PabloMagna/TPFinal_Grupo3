@@ -70,25 +70,34 @@
     <%--COMENTARIOS--%>
     <section class="container-sm comentarios">
         <div class="cabecera">
-            <img
-              src="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000"
-            />
-            <label>Joaquin pepe<label>
-                <span id="fecha">28/06/2023 01:00</span>
+            <asp:Image ID="imgUsuario" runat="server" CssClass="imgUser" ImageUrl="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000" />
+            <asp:Label ID="lbNombreUsuario" CssClass="lbNombre" runat="server">Joaquin pepe</asp:Label>
+                <asp:Label ID="fechaComentario" runat="server" CssClass="fecha">28/06/2023 01:12</asp:Label>
         </div>
       <div class="comentario">
-        <p>
+          <%--<asp:TextBox ID="tbComentario" runat="server" CssClass="form-control tbComentario" TextMode="MultiLine">
+              Qué hermoso perro, espero que encuentre un hogar pronto Lorem ipsum,
+          dolor sit amet consectetur adipisicing elit. Nobis inventore quisquam
+          quas? Illum officia voluptate fugiat voluptatibus non nobis doloribus
+          eligendi. Dolorum animi, possimus illum dolores at delectus nobis
+          nemo!          </asp:TextBox>--%>
+
+          <p id="pComentario" runat="server"> Qué hermoso perro, espero que encuentre un hogar pronto Lorem ipsum,
+          dolor sit amet consectetur adipisicing elit. Nobis inventore quisquam
+          quas? Illum officia voluptate fugiat voluptatibus non nobis doloribus
+          eligendi. Dolorum animi, possimus illum dolores at delectus nobis</p>
+        <%--<p>
           Qué hermoso perro, espero que encuentre un hogar pronto Lorem ipsum,
           dolor sit amet consectetur adipisicing elit. Nobis inventore quisquam
           quas? Illum officia voluptate fugiat voluptatibus non nobis doloribus
           eligendi. Dolorum animi, possimus illum dolores at delectus nobis
           nemo!
-        </p>
+        </p>--%>
       </div>
 
-      <div class="cabecera">
+      <%--<div class="cabecera">
             <img 
-                src="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000"
+                src=""
               />
             <label>Nombre Usuario<label>
                 <span id="fecha">28/06/2023 01:00</span>
@@ -101,7 +110,7 @@
           eligendi. Dolorum animi, possimus illum dolores at delectus nobis
           nemo!
         </p>
-      </div>
+      </div>--%>
      
     </section>
 
@@ -110,15 +119,17 @@
     </div>
     <section class="container-sm nuevoComent">
       <div class="cabecera Usuario">
-        <img 
+       <%-- <img 
             src="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000"
-          />
-        <label>Nombre Usuario<label>
+          />--%>
+          <asp:Image id="imgComentador" runat="server" CssClass="imgUser" ImageUrl="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000"/>
+          <asp:Label ID="lbNombreComentador" runat="server" CssClass="lbNombre">Nombre Usuario</asp:Label>
+        <%--<label>Nombre Usuario</label>--%>
     </div>
-    <textarea ID="NuevoComentario" class="form-control Campo" resize="none" rows="5" name="Nuevo">
-    </textarea>
+        <asp:TextBox ID="tbNuevoComentario" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control Campo" ></asp:TextBox>
     <div class="containerBtn">
-      <button  ID="btnEnviar" type="button" class="btn btn-primary">Enviar</button>
+     <%-- <button  ID="btnEnviar" type="button" class="btn btn-primary">Enviar</button>--%>
+        <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-primary"/>
     </div>
     </section>
 
