@@ -6,11 +6,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="portada">
         <h1 id="titulo">Historias</h1>
-        <h4><em>Relatos de adopciones a través de Prt Net.</em></h4>
+        <h4><em>Relatos de adopciones a través de Pet Net.</em></h4>
     </section>
     <section class="historias_container" runat="server">
-        <asp:GridView runat="server" ID="dvgHistorias" CssClass="table table-bordered">
-
-        </asp:GridView>
+        <!--For each... -->
+        <div class="container">
+            <div>
+                <asp:Image ID="imgHistoria" runat="server" />
+            </div>
+            <div>
+                <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblFecha" runat="server" Text=""></asp:Label>
+            </div>
+            <div>
+                <asp:Label ID="lblTexto" runat="server" Text=""></asp:Label>
+            </div>
+            
+        </div>
     </section>
 </asp:Content>

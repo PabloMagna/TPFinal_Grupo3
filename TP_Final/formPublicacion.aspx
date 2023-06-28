@@ -105,7 +105,7 @@
                 </asp:UpdatePanel>
                 <div class="mb-3">
                     <label class="form-label">Subir desde el ordenador</label>
-                    <input type="file" id="tbImgFile" runat="server" class="form-control"/>                   
+                    <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>                   
                 </div> 
 
                 <!--Botones-->
