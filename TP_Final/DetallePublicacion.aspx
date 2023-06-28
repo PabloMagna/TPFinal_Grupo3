@@ -105,4 +105,21 @@
      
     </section>
 
+    <%--INSERTAR COMENTARIO--%>
+    <div class="row-cols-4">
+    </div>
+    <section class="container-sm nuevoComent">
+      <div class="cabecera Usuario">
+        <img 
+            src="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000"
+          />
+        <label>Nombre Usuario<label>
+    </div>
+    <textarea ID="NuevoComentario" class="form-control Campo" resize="none" rows="5" name="Nuevo">
+    </textarea>
+    <div class="containerBtn">
+      <button  ID="btnEnviar" type="button" class="btn btn-primary">Enviar</button>
+    </div>
+    </section>
+
 </asp:Content>

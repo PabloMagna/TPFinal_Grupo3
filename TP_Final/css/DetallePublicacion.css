@@ -28,8 +28,10 @@
 .comentarios {
     font-family: roboto,sans-serif;
     font-weight: 600;
+    margin-top:20px;
     background-color: rgb(243, 157, 113);
     border: 10px solid rgb(223, 121, 80);
+    border-radius: 10px;
     position: relative;
 }
 
@@ -55,6 +57,8 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    border-style: groove;
+    border-color: rgb(100, 120, 236);
 }
 
 .cabecera {
@@ -75,4 +79,39 @@
 #fecha {
     display: block;
     position: relative;
+}
+
+.nuevoComent {
+    font: roboto, sans-serif;
+    position: relative;
+    margin: 20px auto;
+    border: 10px solid rgb(223, 121, 80);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(243, 157, 113);
+}
+
+.Usuario {
+    color: rgb(252, 252, 252);
+    left: 0px;
+    bottom: 10px;
+    font-weight: 600;
+}
+
+.Campo {
+    position: relative;
+    resize: none;
+    text-align: left;
+}
+
+textarea.form-control:focus {
+    padding: 10px;
+    text-indent: 0;
+    text-align: left;
+}
+
+.containerBtn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
 }
