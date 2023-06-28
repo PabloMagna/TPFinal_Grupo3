@@ -72,6 +72,7 @@
     <Content Include="AltaCuenta.aspx" />
     <Content Include="css\AltaCuenta.css" />
     <Content Include="css\DetallePublicacion.css" />
+    <Content Include="css\Historias.css" />
     <Content Include="css\master.css" />
     <Content Include="css\home.css" />
     <Content Include="css\galeria.css" />
@@ -81,6 +82,7 @@
     <Content Include="Favoritos.aspx" />
     <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Historias.aspx" />
     <Content Include="imagenes\leftarrow.png" />
     <Content Include="imagenes\slider2.jpg" />
     <Content Include="imagenes\slider3.jpg" />
@@ -163,6 +165,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Historias.aspx.cs">
+      <DependentUpon>Historias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Historias.aspx.designer.cs">
+      <DependentUpon>Historias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
