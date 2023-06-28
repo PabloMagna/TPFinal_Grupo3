@@ -137,4 +137,11 @@ CREATE TABLE Adopciones (
 	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID),
 	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
 );
+GO
+--CREACION DE TABLA DE ImagenesUsuarios
+CREATE TABLE ImagenesUsuarios(
+	ID int PRIMARY KEY IDENTITY(1,1),
+	IDUsuario int FOREIGN KEY REFERENCES Usuarios(ID),
+	UrlImagen varchar(500) NULL
+);
 
