@@ -95,11 +95,8 @@
     </div>
     <section class="container-sm nuevoComent">
         <div class="cabecera Usuario">
-            <%-- <img 
-            src="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000"
-          />--%>
-            <asp:Image ID="imgComentador" runat="server" CssClass="imgUser" ImageUrl="https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000" />
-            <asp:Label ID="lbNombreComentador" runat="server" CssClass="lbNombre">Nombre Usuario</asp:Label>
+            <img ID="imgComentador" class="imgUser" src="<%:camposSesion.UrlImg %>"/>
+            <label id="lbNombreLogeado" class="lbNombre"><%:camposSesion.Nombre %></label>
         </div>
         <asp:TextBox ID="tbNuevoComentario" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control Campo"></asp:TextBox>
         <div class="containerBtn">

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,19 +14,37 @@ namespace TP_Final
 {
     public partial class DetallePublicacion : System.Web.UI.Page
     {
-        protected Publicacion publicacion;
         protected List<string> listaImagenes;
         protected List<string> imagenesUsuario { set; get; }
         protected List<Comentario> comentarios { set; get; }
         protected List<Usuario> usuarios { set; get; }
-        protected Usuario userSesion { set; get; }
+        protected Usuario userSession { set; get; }
+        protected Publicacion publicacion;
+        protected Campos camposSesion;
+        protected const string ImgPlaceHolder = "https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
             if (Session["Usuario"] != null)
             {
-                userSesion = (Usuario)Session["Usuario"];
-
+                userSession = (Usuario)Session["Usuario"];
+                ComentarioNegocio negocioComentario = new ComentarioNegocio();
+                camposSesion = new Campos();
+                camposSesion=negocioComentario.CamposUsuarioComentario(userSession);
+                if(camposSesion.UrlImg is null || camposSesion.UrlImg == string.Empty)
+                {
+                    camposSesion.UrlImg = ImgPlaceHolder;
+                }   
             }
+            else
+            {
+                camposSesion = new Campos();
+                camposSesion.Nombre = "Logeate para comentar";
+                camposSesion.UrlImg = ImgPlaceHolder;
+                btnEnviar.Enabled = false;
+                tbNuevoComentario.ReadOnly = true;
+            }
+            
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["ID"] != null)
@@ -44,6 +63,7 @@ namespace TP_Final
             listaImagenes = imagenNegocio.ObtenerUrlsImagenes(id);
         }
 
+        
         private void CargaComentarios()
         {
             int id = Convert.ToInt32(Request.QueryString["ID"]);
@@ -59,10 +79,11 @@ namespace TP_Final
                 //Carga Imagenes de Perfil de Usuarios
                 int idUser = comentario.IdUsuario;
                 string url = ObtenerImagenUsuario(idUser);
+
                 if(url is null || url == string.Empty)
-                {   
+                {
                     //PLACEOLDER
-                    url = "https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000";
+                    url = ImgPlaceHolder;
                 }
                 imagenesUsuario.Add(url);
                 //Cargo Usuarios de comentarios

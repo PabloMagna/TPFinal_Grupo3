@@ -34,5 +34,39 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
             return registrosAfectados;
         }
+
+        public Refugio BuscarporUsuario(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Refugio refugio = new Refugio();
+            datos.setearConsulta("SELECT ID, IDUsuario, Nombre," +
+                "UrlImagen, IDLocalidad, IDProvincia, " +
+                "Telefono, Direccion FROM REFUGIOS WHERE IDUsuario =" + idUsuario);
+
+            datos.ejecutarLectura();
+            try
+            {
+                if (datos.Lector.Read())
+                {
+                    refugio.Id= datos.Lector.GetInt32(0);
+                    refugio.IdUsuario = idUsuario;              
+                    refugio.Nombre = (string)datos.Lector["Nombre"];
+                    refugio.UrlImagen = (string)datos.Lector["UrlImagen"];
+                    refugio.IDLocalidad = (int)datos.Lector["IDLocalidad"];
+                    refugio.IDProvincia = (int)datos.Lector["IDProvincia"];
+                    refugio.Telefono = (string)datos.Lector["Telefono"];
+                    refugio.Direccion = (string)datos.Lector["Direccion"];
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+            return refugio;
+        }
     }
 }

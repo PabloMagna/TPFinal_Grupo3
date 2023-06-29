@@ -108,7 +108,7 @@ namespace TP_Final
                     persona.IDUsuario = idUsuario;
                     persona.Nombre = tbNombre.Text;
                     persona.Apellido = tbApellido.Text;
-                    persona.Dni = tbDni.Text;
+                    persona.Dni = int.Parse(tbDni.Text);
                     persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
                     persona.IDProvincia = idProvincia;
                     persona.IDLocalidad = idLocalidad;

@@ -56,7 +56,7 @@ namespace Negocio
                 {
                     persona.ID = datos.Lector.GetInt32(0);
                     persona.IDUsuario = idUsuario;
-                    persona.Dni = (string)datos.Lector["Dni"];
+                    persona.Dni = (int)datos.Lector["Dni"];
                     persona.Nombre = (string)datos.Lector["Nombre"];
                     persona.Apellido = (string)datos.Lector["Apellido"];
                     persona.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
@@ -68,10 +68,9 @@ namespace Negocio
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
             finally { datos.cerrarConexion(); }
             return persona;

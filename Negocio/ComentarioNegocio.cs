@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Negocio
-{
+{   
     public class ComentarioNegocio
     {
         public void ActualizarEstado(int idComentario, EstadoComentario estado)
@@ -29,6 +29,36 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public Campos CamposUsuarioComentario(Usuario user)
+        {
+            Campos campos = new Campos();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (user.Tipo == TipoUsuario.Persona)
+                {
+                    PersonaNegocio negocioPersona = new PersonaNegocio();
+                    Persona nueva = negocioPersona.BuscarporUsuario(user.Id);
+                    campos.Nombre = nueva.Nombre + " " + nueva.Apellido;
+                    campos.UrlImg = nueva.UrlImagen;
+                }
+                else
+                {
+                    RefugioNegocio negocioRefugio = new RefugioNegocio();
+                    Refugio nuevo = new Refugio();
+                    nuevo = negocioRefugio.BuscarporUsuario(user.Id);
+                    campos.Nombre = nuevo.Nombre;
+                    campos.UrlImg = nuevo.UrlImagen;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+            return campos;
         }
 
         public List<Comentario> Listar()

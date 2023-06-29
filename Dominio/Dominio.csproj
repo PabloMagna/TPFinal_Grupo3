@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adopcion.cs" />
+    <Compile Include="Campos.cs" />
     <Compile Include="Comentario.cs" />
     <Compile Include="Favorito.cs" />
     <Compile Include="Historia.cs" />
