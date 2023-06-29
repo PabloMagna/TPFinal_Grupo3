@@ -160,5 +160,14 @@ namespace TP_Final
         {
 
         }
+
+        protected void btnEnviar_Click(object sender, EventArgs e)
+        {
+            if(tbNuevoComentario.Text.Length > 0)
+            {
+                //Se puede enviar el comentario (Implementar validacion en front)
+
+            }
+        }
     }
 }

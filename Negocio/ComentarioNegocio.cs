@@ -194,5 +194,24 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void Agregar(Comentario nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Insert into Comentarios values(@IDPublicacion,@Descripcion,1,GETDATE(),@IdUsuario)");
+                datos.setearParametro("@IDPublicacion",nuevo.IdPublicacion);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdUsuario", nuevo.IdUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }
