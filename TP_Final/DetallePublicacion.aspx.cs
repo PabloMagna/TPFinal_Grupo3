@@ -22,9 +22,12 @@ namespace TP_Final
         protected Publicacion publicacion;
         protected Campos camposSesion;
         protected List<Campos> camposUsuario;
+        public int IDPublicacion;
         protected const string ImgPlaceHolder = "https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
-        {   
+        {
+            IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
+
             if (Session["Usuario"] != null)
             {
                 userSession = (Usuario)Session["Usuario"];
@@ -74,11 +77,19 @@ namespace TP_Final
             //usuarios = new List<Usuario>();
             comentarios = new List<Comentario>();
             comentarios = comentarioNego.ListarPorPublicacion(id);
+            camposUsuario = new List<Campos>();
 
             foreach (var comentario in comentarios)
             {
-                //Carga Imagenes de Perfil de Usuarios
+                //Cargo Usuarios de comentarios
                 int idUser = comentario.IdUsuario;
+                Usuario user = new Usuario();
+                user = usuarioNego.BuscarxID(idUser);
+                Campos camposAux = new Campos();
+                camposAux = comentarioNego.CamposUsuarioComentario(user);
+                camposUsuario.Add(camposAux);
+                //usuarios.Add(user);
+                //Carga Imagenes de Perfil de Usuarios
                 string url = ObtenerImagenUsuario(idUser);
 
                 if(url is null || url == string.Empty)
@@ -87,14 +98,6 @@ namespace TP_Final
                     url = ImgPlaceHolder;
                 }
                 imagenesUsuario.Add(url);
-                //Cargo Usuarios de comentarios
-                Usuario user = new Usuario();
-                user = usuarioNego.BuscarxID(idUser);
-                camposUsuario = new List<Campos>();
-                Campos camposAux = new Campos();
-                camposAux = comentarioNego.CamposUsuarioComentario(user);
-                camposUsuario.Add(camposAux);
-                //usuarios.Add(user);
             }
             
         }
@@ -162,11 +165,21 @@ namespace TP_Final
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
-        {
+        {   
             if(tbNuevoComentario.Text.Length > 0)
             {
                 //Se puede enviar el comentario (Implementar validacion en front)
-
+                ComentarioNegocio negocio = new ComentarioNegocio();
+                Comentario nuevo = new Comentario
+                {
+                    IdUsuario = userSession.Id,
+                    IdPublicacion = IDPublicacion,
+                    Descripcion = tbNuevoComentario.Text,
+                    Estado = EstadoComentario.Activo,
+                    FechaHora = DateTime.Now
+                };
+                negocio.Agregar(nuevo);
+                Response.Redirect("DetallePublicacion.aspx?ID="+IDPublicacion);
             }
         }
     }

@@ -78,7 +78,7 @@
          %>
     <section class="container-sm comentarios">
         <div class="cabecera">
-            <img class="imgUser" src="<%:camposUsuario[i].UrlImg%>" onerror="this.onerror=null; 
+            <img class="imgUser" src="<%:camposUsuario[i].UrlImg %>" onerror="this.onerror=null; 
             this.src='<%:ImgPlaceHolder %>;'"/>
             <label name="Nombre-Usuario" class="lbNombre"><%:camposUsuario[i].Nombre %></label>
             <label class="fecha"><%=coment.FechaHora.ToString()%></label>
@@ -96,7 +96,8 @@
     </div>
     <section class="container-sm nuevoComent">
         <div class="cabecera Usuario">
-            <img ID="imgComentador" class="imgUser" src="<%:camposSesion.UrlImg %>"/>
+            <img ID="imgComentador" class="imgUser" src="<%:camposSesion.UrlImg %>" onerror="this.onerror=null; 
+            this.src='<%:ImgPlaceHolder %>;'"/>
             <label id="lbNombreLogeado" class="lbNombre"><%:camposSesion.Nombre %></label>
         </div>
         <asp:TextBox ID="tbNuevoComentario" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control Campo" MaxLength="500"></asp:TextBox>
