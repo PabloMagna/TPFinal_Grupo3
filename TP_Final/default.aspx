@@ -39,14 +39,14 @@
             </p>   
             <h3>Breve descripción de la plataforma</h3>
             <p>
-                En nuestro sitio, los usuarios podrán crear publicaciones de mascotas disponibles para adopción, buscar mascotas según sus preferencias y contactar a los dueños para iniciar el proceso de adopción. También ofrecemos recursos para el seguimiento de adopciones concretadas a través de la web, para garantizar el bien estar de la mascota en su nuevo hogar.
+                En nuestro sitio, los usuarios podrán crear publicaciones de mascotas disponibles para adopción, buscar mascotas según sus preferencias y contactar a los dueños para iniciar el proceso de adopción. También ofrecemos recursos para el seguimiento de adopciones concretadas a través de la web, para garantizar el bienestar de la mascota en su nuevo hogar.
             <p/> 
             <p class="iconos">
                 <iconify-icon icon="twemoji:black-cat" width="45px"></iconify-icon> &nbsp; <iconify-icon icon="twemoji:dog" width="50px"></iconify-icon>
             </p>
             
             <hr/>
-            <em>Únete a nuestra comunidad y sé parte del cambio. Juntos podemos hacer una diferencia en la vida de los animales y promover la adopción como un acto de amor y responsabildad.
+            <em>Unite a nuestra comunidad y sé parte del cambio. Juntos podemos hacer una diferencia en la vida de los animales y promover la adopción como un acto de amor y responsabildad.
 
             </em>                
         </div>

@@ -51,7 +51,7 @@
                                 { %>
                             <div class="carousel-item <% if (imagen == listaImagenes[0])
                                 { %>active<% } %>">
-                                <img src="<%= imagen %>" class="d-block w-100" alt="Imagen de mascota">
+                                <img src="<%= imagen %>" class="d-block w-100" alt="Imagen de mascota" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'">
                             </div>
                             <% } %>
                         </div>

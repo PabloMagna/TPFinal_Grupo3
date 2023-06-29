@@ -11,30 +11,40 @@
     <section class="historias_container" runat="server">
         <%foreach (Dominio.Historia item in ListaHistorias)
             {%>
-            <div class="container div_historia">
-                 <div class="nombre-fecha">
-                    <%
-                        foreach (Dominio.Usuario useritem in ListaUsuarios)
-                        {
-                            if(item.IDUsuario == useritem.Id)
-                            {                        
-                                NombreUsuario=GetUserName(useritem.Email);                        
-                            }
-                        }%>
-                    <h3 id="nombreUsuario"><%: NombreUsuario %></h3>                      
+            <div class="container text-center div_historia">              
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <img src="<%: item.UrlImagen%>" class="rounded float-start" ID="imgHistoria" alt="Foto Historia" onerror="this.src='https://st2.depositphotos.com/2926693/5217/v/450/depositphotos_52171865-stock-illustration-happy-cat-and-dog.jpg'">
+                    </div>
+                     <div class="col-md-6 contenido-texto">
+                         <div class="row">
+                            <%
+                                foreach (Dominio.Usuario useritem in ListaUsuarios)
+                                {
+                                    if(item.IDUsuario == useritem.Id)
+                                    {                        
+                                        NombreUsuario=GetUserName(useritem.Email);                        
+                                    }
+                                }%>
+                                <h3 id="nombreUsuario"> <b><%: NombreUsuario %></b> - <%: item.FechaHora %></h3>  
+                                <hr />
+                            </div>  
+                            <div class="row">                              
+                                
+                                <p id="textoDescripcion"><%: item.Descripcion %></p>
+                            </div>            
+                        </div>
+                        
+                    </div>
+
                 </div>
-                <hr />
-                <div class="divImagen">
-                    <img src="<%: item.UrlImagen%>" class="rounded float-start" ID="imgHistoria" alt="Foto Historia" onerror="this.src='https://img.freepik.com/vector-gratis/adopta-concepto-mascota_23-2148523582.jpg?w=360'">
-                </div>
-               
-                <div>
-                    <h4 id="fecha"><%: item.FechaHora %></h4>
-                    <hr />
-                    <p id="textoDescripcion"><%: item.Descripcion %></p>
-                </div>            
-            </div>
            <% } %>
+           
+               
+
+              
+
         
     </section>
 </asp:Content>
