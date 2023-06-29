@@ -24,15 +24,6 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.Button btAdoptar;
 
         /// <summary>
-        /// Control imgUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgUsuario;
-
-        /// <summary>
         /// Control lbNombreUsuario.
         /// </summary>
         /// <remarks>
@@ -40,24 +31,6 @@ namespace TP_Final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbNombreUsuario;
-
-        /// <summary>
-        /// Control fechaComentario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fechaComentario;
-
-        /// <summary>
-        /// Control pComentario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pComentario;
 
         /// <summary>
         /// Control imgComentador.

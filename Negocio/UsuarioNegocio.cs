@@ -46,6 +46,37 @@ namespace Negocio
             }
         }
 
+        public Usuario BuscarxID(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario aux = new Usuario();
+
+            try
+            {
+                datos.setearConsulta("select ID, IDTipoUsuario, Estado, EsAdmin,Email,Contrasenia from Usuarios where ID=" + idUsuario);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.Email = (string)datos.Lector["Email"]; ;
+                    aux.Password = (string)datos.Lector["Contrasenia"];
+                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
+                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(2);
+                    aux.EsAdmin = datos.Lector.GetBoolean(3);
+                }
+      
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+   
+            return aux;
+        }
+
+
         public int Agregar(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
