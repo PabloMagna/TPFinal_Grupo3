@@ -100,7 +100,7 @@
             this.src='<%:ImgPlaceHolder %>;'"/>
             <label id="lbNombreLogeado" class="lbNombre"><%:camposSesion.Nombre %></label>
         </div>
-        <asp:TextBox ID="tbNuevoComentario" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control Campo" MaxLength="500"></asp:TextBox>
+        <asp:TextBox ID="tbNuevoComentario" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control Campo" MaxLength="300"></asp:TextBox>
         <div class="containerBtn">
             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" OnClick="btnEnviar_Click" CssClass="btn btn-primary" />
         </div>
