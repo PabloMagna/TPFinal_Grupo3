@@ -78,8 +78,9 @@
          %>
     <section class="container-sm comentarios">
         <div class="cabecera">
-            <img class="imgUser" src="<%:imagenesUsuario[i] %>"/>
-            <asp:Label ID="lbNombreUsuario" CssClass="lbNombre" runat="server">"traer nombre persona o refugio"</asp:Label>
+            <img class="imgUser" src="<%:imagenesUsuario[i] %>" onerror="this.onerror=null; 
+            this.src='<%:ImgPlaceHolder %>;'"/>
+            <label name="Nombre-Usuario" class="lbNombre"><%:camposUsuario[i].Nombre  %>Traer Nombre persona/refugio</label>
             <label class="fecha"><%=coment.FechaHora.ToString()%></label>
         </div>
         <div class="comentario">

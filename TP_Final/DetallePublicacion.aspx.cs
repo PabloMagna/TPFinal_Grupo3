@@ -21,6 +21,7 @@ namespace TP_Final
         protected Usuario userSession { set; get; }
         protected Publicacion publicacion;
         protected Campos camposSesion;
+        protected List<Campos> camposUsuario;
         protected const string ImgPlaceHolder = "https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {   
@@ -70,7 +71,7 @@ namespace TP_Final
             ComentarioNegocio comentarioNego = new ComentarioNegocio();
             UsuarioNegocio usuarioNego = new UsuarioNegocio();
             imagenesUsuario = new List<string>();
-            usuarios = new List<Usuario>();
+            //usuarios = new List<Usuario>();
             comentarios = new List<Comentario>();
             comentarios = comentarioNego.ListarPorPublicacion(id);
 
@@ -89,7 +90,11 @@ namespace TP_Final
                 //Cargo Usuarios de comentarios
                 Usuario user = new Usuario();
                 user = usuarioNego.BuscarxID(idUser);
-                usuarios.Add(user);
+                camposUsuario = new List<Campos>();
+                Campos camposAux = new Campos();
+                camposAux = comentarioNego.CamposUsuarioComentario(user);
+                camposUsuario.Add(camposAux);
+                //usuarios.Add(user);
             }
             
         }

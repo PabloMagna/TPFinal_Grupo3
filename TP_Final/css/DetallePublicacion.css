@@ -74,6 +74,7 @@
         font-size: 1.08rem;
         margin-left: 14px;
         margin-top: 2px;
+        padding:5px;
     }
 
 .fecha {
@@ -81,7 +82,7 @@
     position: relative;
     font-size: .8rem;
     margin-left: 14px;
-    margin-top: 5px;
+    margin-top: .6rem;
     overflow:clip;
 }
 
