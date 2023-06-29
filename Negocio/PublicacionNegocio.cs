@@ -352,6 +352,9 @@ namespace Negocio
 
             try
             {
+                if (listaId.Count == 0 || listaId ==null)
+                    return listaPublicaciones;
+
                 string consulta = "SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones WHERE ID IN ({0})";
                 string parametros = string.Join(",", listaId);
 

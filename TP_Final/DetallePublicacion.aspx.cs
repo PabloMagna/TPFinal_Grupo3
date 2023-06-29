@@ -37,7 +37,8 @@ namespace TP_Final
                 if(camposSesion.UrlImg is null || camposSesion.UrlImg == string.Empty)
                 {
                     camposSesion.UrlImg = ImgPlaceHolder;
-                }   
+                }
+                ComprobarFavorito();
             }
             else
             {
@@ -182,5 +183,38 @@ namespace TP_Final
                 Response.Redirect("DetallePublicacion.aspx?ID="+IDPublicacion);
             }
         }
+        protected void btnFavorito_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = (Usuario)Session["Usuario"];
+            int idUsuario = usuario.Id;
+            int idPublicacion = Request.QueryString["ID"] != null ? Convert.ToInt32(Request.QueryString["ID"]) : 0;
+            FavoritoNegocio favoritoNegocio = new FavoritoNegocio();
+            bool esFavorito = favoritoNegocio.EsFavorito(idUsuario, idPublicacion);
+            if (esFavorito)
+                favoritoNegocio.ActivarDesactivar(idUsuario, idPublicacion, EstadoFavorito.Inactivo);
+            else
+                favoritoNegocio.ActivarDesactivar(idUsuario, idPublicacion, EstadoFavorito.Activo);
+            Response.Redirect("DetallePublicacion.aspx?ID=" + idPublicacion);
+        }
+        public void ComprobarFavorito()
+        {
+            if (Session["Usuario"] != null)
+            {
+
+                btnFavorito.Visible = true;
+                Usuario usuario = (Usuario)Session["Usuario"];
+                int idUsuario = usuario.Id;
+                int idPublicacion = Request.QueryString["ID"] != null ? Convert.ToInt32(Request.QueryString["ID"]) : 0;
+
+                FavoritoNegocio favoritoNegocio = new FavoritoNegocio();
+                bool esFavorito = favoritoNegocio.EsFavorito(idUsuario, idPublicacion);
+
+                if (esFavorito)
+                    btnFavorito.Text = "Quitar de favoritos";
+                else
+                    btnFavorito.Text = "Agregar a favoritos";
+            }
+        }
+
     }
 }

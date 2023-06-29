@@ -82,19 +82,19 @@ namespace Negocio
                 if (count > 0)
                 {
                     // Realizar la actualización
-                    datos.setearConsulta("UPDATE favoritos SET Estado = @Estado WHERE IDUsuario = @IDUsuario AND IDPublicacion = @IDPublicacion");
-                    datos.setearParametro("@IDUsuario", idUsuario);
-                    datos.setearParametro("@IDPublicacion", idPublicacion);
-                    datos.setearParametro("@Estado", (int)estadoFavorito);
+                    datos.setearConsulta("UPDATE favoritos SET Estado = @Estado2 WHERE IDUsuario = @IDUsuario2 AND IDPublicacion = @IDPublicacion2");
+                    datos.setearParametro("@IDUsuario2", idUsuario);
+                    datos.setearParametro("@IDPublicacion2", idPublicacion);
+                    datos.setearParametro("@Estado2", (int)estadoFavorito);
                     datos.ejecutarAccion();
                 }
                 else
                 {
                     // Crear un nuevo registro
-                    datos.setearConsulta("INSERT INTO favoritos (IDUsuario, IDPublicacion, Estado) VALUES (@IDUsuario, @IDPublicacion, @Estado)");
-                    datos.setearParametro("@IDUsuario", idUsuario);
-                    datos.setearParametro("@IDPublicacion", idPublicacion);
-                    datos.setearParametro("@Estado", (int)estadoFavorito);
+                    datos.setearConsulta("INSERT INTO favoritos (IDUsuario, IDPublicacion, Estado) VALUES (@IDUsuario3, @IDPublicacion3, @Estado3)");
+                    datos.setearParametro("@IDUsuario3", idUsuario);
+                    datos.setearParametro("@IDPublicacion3", idPublicacion);
+                    datos.setearParametro("@Estado3", (int)estadoFavorito);
                     datos.ejecutarAccion();
                 }
             }
