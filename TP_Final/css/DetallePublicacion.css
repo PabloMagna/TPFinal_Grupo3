@@ -36,7 +36,8 @@
 }
 
 .comentario {
-    margin: 10px auto;
+    /*margin: 10px auto;*/
+    width:fit-content;
     position: relative;
     margin-left: 50px;
     background-color: rgb(245, 245, 229);
