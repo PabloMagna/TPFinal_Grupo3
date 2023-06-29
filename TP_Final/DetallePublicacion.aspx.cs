@@ -15,9 +15,7 @@ namespace TP_Final
     public partial class DetallePublicacion : System.Web.UI.Page
     {
         protected List<string> listaImagenes;
-        protected List<string> imagenesUsuario { set; get; }
         protected List<Comentario> comentarios { set; get; }
-        protected List<Usuario> usuarios { set; get; }
         protected Usuario userSession { set; get; }
         protected Publicacion publicacion;
         protected Campos camposSesion;
@@ -74,7 +72,6 @@ namespace TP_Final
             int id = Convert.ToInt32(Request.QueryString["ID"]);
             ComentarioNegocio comentarioNego = new ComentarioNegocio();
             UsuarioNegocio usuarioNego = new UsuarioNegocio();
-            imagenesUsuario = new List<string>();
             //usuarios = new List<Usuario>();
             comentarios = new List<Comentario>();
             comentarios = comentarioNego.ListarPorPublicacion(id);
@@ -89,16 +86,6 @@ namespace TP_Final
                 Campos camposAux = new Campos();
                 camposAux = comentarioNego.CamposUsuarioComentario(user);
                 camposUsuario.Add(camposAux);
-                //usuarios.Add(user);
-                //Carga Imagenes de Perfil de Usuarios
-                string url = ObtenerImagenUsuario(idUser);
-
-                if(url is null || url == string.Empty)
-                {
-                    //PLACEOLDER
-                    url = ImgPlaceHolder;
-                }
-                imagenesUsuario.Add(url);
             }
             
         }
@@ -128,41 +115,6 @@ namespace TP_Final
                 return publicacion.Edad + " Meses";
             else
                 return publicacion.Edad / 12 + " Año/s";
-        }
-
-
-        //REVISAR SI SE PASA ESTA FUNCON A USUARIONEGOCIO
-        private string ObtenerImagenUsuario(int idUsuario)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            string url = "";
-
-            try
-            {
-                datos.setearConsulta("select urlImagen from Personas where IDUsuario=@IDUsuario union all select UrlImagen from Refugios where IDUsuario=@IDUsuario");
-                datos.setearParametro("@IDUsuario", idUsuario);
-                datos.ejecutarLectura();
-                if (datos.Lector.Read())
-                {
-                    url = (string)datos.Lector["urlImagen"];
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-
-            return url;
-        }
-
-        protected void btAdoptar_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
