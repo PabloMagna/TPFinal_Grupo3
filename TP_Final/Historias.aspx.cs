@@ -15,6 +15,7 @@ namespace TP_Final
         protected List<Historia> ListaHistorias;
         protected List<Usuario> ListaUsuarios;
         protected List<string> NombresUsuarios;
+        protected string NombreUsuario;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,23 +33,25 @@ namespace TP_Final
             UsuarioNegocio negocioU = new UsuarioNegocio();
             ListaUsuarios = negocioU.Listar();
         }
+
         public void ListarNombesUsuarios()
         {
             foreach (var item in ListaHistorias)
             {
+
                 foreach (var useritem in ListaUsuarios)
                 {
-                    if(item.IDUsuario == useritem.Id)
-                    {                        
-                        NombresUsuarios.Add(GetUserName(useritem.Email));                        
+                    if (item.IDUsuario == useritem.Id)
+                    {
+                        NombresUsuarios.Add(GetUserName(useritem.Email));
                     }
                 }
             }
         }
         public string GetUserName(string email)
         {
-            string username = "";           
-                
+            string username = "";
+
             string buscar = @"^(.*?)@";
             Regex regex = new Regex(buscar);
             Match encontrado = regex.Match(email);
@@ -59,7 +62,7 @@ namespace TP_Final
                 {
                     username += email[i];
                 }
-            }            
+            }
             return username;
         }
 

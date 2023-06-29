@@ -12,3 +12,58 @@
 #titulo {
     color: #24566E;
 }
+
+.historias_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_historia {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    margin: 50px 0;
+    align-self: center;
+    justify-self: center;
+    background-color: beige;
+}
+
+.divImagen {
+    height: 250px;
+    width: 300px;
+    border-radius: 50px;
+    align-content: center;
+}
+
+#imgHistoria {
+    height: 250px;
+    overflow: hidden;
+}
+
+.nombre-fecha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+#fecha {
+    color: #24566E;
+    font-size: 15px;
+}
+
+#nombreUsuario {
+    margin-top: 30px;
+    margin-left: 15px;
+    color: #24566E;
+    font-size: 18px;
+    text-transform: capitalize;
+}

@@ -9,19 +9,32 @@
         <h4><em>Relatos de adopciones a través de Pet Net.</em></h4>
     </section>
     <section class="historias_container" runat="server">
-        <!--For each... -->
-        <div class="container">
-            <div>
-                <asp:Image ID="imgHistoria" runat="server" />
+        <%foreach (Dominio.Historia item in ListaHistorias)
+            {%>
+            <div class="container div_historia">
+                 <div class="nombre-fecha">
+                    <%
+                        foreach (Dominio.Usuario useritem in ListaUsuarios)
+                        {
+                            if(item.IDUsuario == useritem.Id)
+                            {                        
+                                NombreUsuario=GetUserName(useritem.Email);                        
+                            }
+                        }%>
+                    <h3 id="nombreUsuario"><%: NombreUsuario %></h3>                      
+                </div>
+                <hr />
+                <div class="divImagen">
+                    <img src="<%: item.UrlImagen%>" class="rounded float-start" ID="imgHistoria" alt="Foto Historia" onerror="this.src='https://img.freepik.com/vector-gratis/adopta-concepto-mascota_23-2148523582.jpg?w=360'">
+                </div>
+               
+                <div>
+                    <h4 id="fecha"><%: item.FechaHora %></h4>
+                    <hr />
+                    <p id="textoDescripcion"><%: item.Descripcion %></p>
+                </div>            
             </div>
-            <div>
-                <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
-                <asp:Label ID="lblFecha" runat="server" Text=""></asp:Label>
-            </div>
-            <div>
-                <asp:Label ID="lblTexto" runat="server" Text=""></asp:Label>
-            </div>
-            
-        </div>
+           <% } %>
+        
     </section>
 </asp:Content>
