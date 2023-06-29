@@ -50,5 +50,19 @@ namespace TP_Final
                 favoritos = publicacionNegocio.ListarPorListaDeID(ints);
             }
         }
+
+        protected void btnQuitarFavorito_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = (Usuario)Session["Usuario"];
+            int idUsuario = usuario.Id;
+
+            Button btnQuitarFavorito = (Button)sender;
+            int idPublicacion = int.Parse(btnQuitarFavorito.Attributes["data-id"]);
+
+            FavoritoNegocio favoritoNegocio = new FavoritoNegocio();
+            favoritoNegocio.ActivarDesactivar(idUsuario, idPublicacion, EstadoFavorito.Inactivo);
+            Response.Redirect("Favoritos.aspx");
+        }
+
     }
 }

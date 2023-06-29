@@ -34,6 +34,7 @@
                                         <h5 class="card-title"><%= item.Titulo %></h5>
                                         <p class="card-text"><%= item.Descripcion %></p>
                                         <a href="DetallePublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
+                                        <asp:Button runat="server" ID="btnQuitarFavorito" Text="Quitar de favoritos" OnClick="btnQuitarFavorito_Click" CssClass="btn btn-primary custom-btn" Style="margin-top: 5px;" data-id="<%= item.Id %>" />
                                     </div>
                                 </div>
                             </div>
