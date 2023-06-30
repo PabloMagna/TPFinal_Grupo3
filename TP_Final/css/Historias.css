@@ -15,7 +15,7 @@
     color: #24566E;
 }
 
-.contenidoHistorias .formularioOculto {
+.contenidoHistorias, .formularioOculto {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.div_historia .contenidoForm {
+.div_historia, .contenidoForm{
     margin: 50px 0;
     width: 70%;
     border: 0;
