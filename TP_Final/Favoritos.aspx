@@ -26,7 +26,8 @@
                                 else
                                 {%>
                             <% foreach (var item in favoritos)
-                                { %>
+                                {
+                                    Session["idFav"] = item.Id;  %>
                             <div class="col-md-6">
                                 <div class="card">
                                     <img src="<%= obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="<% %>">
@@ -34,7 +35,7 @@
                                         <h5 class="card-title"><%= item.Titulo %></h5>
                                         <p class="card-text"><%= item.Descripcion %></p>
                                         <a href="DetallePublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
-                                        <asp:Button runat="server" ID="btnQuitarFavorito" Text="Quitar de favoritos" OnClick="btnQuitarFavorito_Click" CssClass="btn btn-primary custom-btn" Style="margin-top: 5px;" data-id="<%= item.Id %>" />
+                                        <asp:Button runat="server" ID="btnQuitarFavorito" Text="Quitar de favoritos" OnClick="btnQuitarFavorito_Click" CssClass="btn btn-primary custom-btn" Style="margin-top: 5px;" />
                                     </div>
                                 </div>
                             </div>

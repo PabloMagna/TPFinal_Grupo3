@@ -57,7 +57,7 @@ namespace TP_Final
             int idUsuario = usuario.Id;
 
             Button btnQuitarFavorito = (Button)sender;
-            int idPublicacion = int.Parse(btnQuitarFavorito.Attributes["data-id"]);
+            int idPublicacion = (int)Session["idFav"];
 
             FavoritoNegocio favoritoNegocio = new FavoritoNegocio();
             favoritoNegocio.ActivarDesactivar(idUsuario, idPublicacion, EstadoFavorito.Inactivo);
