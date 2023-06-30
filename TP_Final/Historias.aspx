@@ -8,6 +8,25 @@
         <h1 id="titulo">Historias</h1>
         <h4><em>Relatos de adopciones a través de Pet Net.</em></h4>
     </section>
+    <section class="formularioOculto">
+        <div class="contenidoForm">
+             <p>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+           Contanos tu historia
+          </a>
+          
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+            Acá va el form
+            </div>
+            <button class="btn btn-primary" type="button" >
+            Enviar
+          </button>
+        </div>
+        </div>
+       
+    </section>
     <section class="contenidoHistorias" runat="server">
         <%foreach (Dominio.Historia item in ListaHistorias)
             {%>         

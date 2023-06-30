@@ -15,7 +15,7 @@
     color: #24566E;
 }
 
-.contenidoHistorias {
+.contenidoHistorias .formularioOculto {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.div_historia {
+.div_historia .contenidoForm {
     margin: 50px 0;
     width: 70%;
     border: 0;
@@ -40,5 +40,7 @@
     width: auto;
     object-fit: contain;
     overflow: hidden;
-    background-color: #D2E3EB;
+    background-image: url("https://www.shutterstock.com/shutterstock/videos/1077938252/thumb/1.jpg?ip=x480");
+    background-repeat: repeat;
+    /*background-size: cover;*/
 }
