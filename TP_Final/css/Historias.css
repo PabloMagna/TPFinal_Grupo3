@@ -1,4 +1,6 @@
 ﻿body {
+    width: 100%;
+    margin: 0;
 }
 
 .portada {
@@ -13,54 +15,30 @@
     color: #24566E;
 }
 
-.historias_container {
+.contenidoHistorias {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .div_historia {
     margin: 50px 0;
+    width: 70%;
+    border: 0;
+    align-self: center !important;
 }
+
 .contenido-texto {
     background-color: beige;
-    border-radius:15px;
+    border-radius: 15px;
 }
 
-/*
-.divImagen {
-    height: 250px;
-    width: 300px;
-    border-radius: 50px;
-    align-content: center;
-}*/
 #imgHistoria {
     height: 350px;
-    overflow: hidden !important;
-    margin-left: 0px;
-}
-
-.nombre-fecha {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin-bottom: 30px;
-    text-align: left;
-}
-
-#fecha {
-    color: #24566E;
-    font-size: 15px;
-}
-
-#nombreUsuario {
-    margin-top: 30px;
-    margin-left: 15px;
-    color: #24566E;
-    font-size: 18px;
-    text-transform: capitalize;
+    width: auto;
+    object-fit: contain;
+    overflow: hidden;
+    background-color: #D2E3EB;
 }
