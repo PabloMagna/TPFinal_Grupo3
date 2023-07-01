@@ -11,19 +11,23 @@
     <section class="formularioOculto">
         <div class="contenidoForm">
              <p>
-          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-           Contanos tu historia
-          </a>
-          
-        </p>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-            Acá va el form
+              <a class="btn border-orange" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" id="btnExpandir">
+               Contanos tu historia <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
+              </a>          
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">                    
+                    <div class="mb-3">
+                        <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="300" placeholder="Compartinos tu experiencia luego de la adopción..."></asp:TextBox>
+                        <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Añadir una foto</label>
+                        <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>  
+                    </div>
+                    <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn" OnClick="btnAceptar_Click"/>
+                </div>
             </div>
-            <button class="btn btn-primary" type="button" >
-            Enviar
-          </button>
-        </div>
         </div>
        
     </section>

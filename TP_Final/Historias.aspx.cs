@@ -66,5 +66,10 @@ namespace TP_Final
             return username;
         }
 
+        public void btnAceptar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

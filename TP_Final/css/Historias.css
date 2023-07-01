@@ -15,6 +15,31 @@
     color: #24566E;
 }
 
+.btn {
+    padding: 7px 10px;
+    background-color: #D2E3EB !important;
+    color: #24566E !important;
+    font-weight: bold !important;
+    margin-right: 10px !important;
+    margin-top: 15px !important;
+}
+
+    .btn:hover {
+        background-color: #9dc2d3 !important;
+    }
+#btnExpandir {
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #D2E3EB !important;
+}
+.border-orange {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    border: 3px solid #D2E3EB !important;
+    background-color: #C45F2E !important;
+    width: 100%;
+}
+
 .contenidoHistorias, .formularioOculto {
     width: 100%;
     display: flex;
