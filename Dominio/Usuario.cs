@@ -16,7 +16,8 @@ namespace Dominio
     public enum TipoUsuario
     {
         Persona = 1,
-        Refugio = 2
+        Refugio = 2,
+        PersonaCompleto = 3
     }
     public class Usuario
     {   

@@ -69,7 +69,9 @@
     <Content Include="AdministrarHistorias.aspx" />
     <Content Include="AdministrarPublicaciones.aspx" />
     <Content Include="AdministrarUsuarios.aspx" />
+    <Content Include="Adopciones.aspx" />
     <Content Include="AltaCuenta.aspx" />
+    <Content Include="ContactoAdopcion.aspx" />
     <Content Include="css\AltaCuenta.css" />
     <Content Include="css\DetallePublicacion.css" />
     <Content Include="css\Historias.css" />
@@ -128,12 +130,26 @@
     <Compile Include="AdministrarUsuarios.aspx.designer.cs">
       <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Adopciones.aspx.cs">
+      <DependentUpon>Adopciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Adopciones.aspx.designer.cs">
+      <DependentUpon>Adopciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaCuenta.aspx.cs">
       <DependentUpon>AltaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AltaCuenta.aspx.designer.cs">
       <DependentUpon>AltaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactoAdopcion.aspx.cs">
+      <DependentUpon>ContactoAdopcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactoAdopcion.aspx.designer.cs">
+      <DependentUpon>ContactoAdopcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
