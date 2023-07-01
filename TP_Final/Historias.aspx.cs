@@ -34,20 +34,7 @@ namespace TP_Final
             ListaUsuarios = negocioU.Listar();
         }
 
-        public void ListarNombesUsuarios()
-        {
-            foreach (var item in ListaHistorias)
-            {
-
-                foreach (var useritem in ListaUsuarios)
-                {
-                    if (item.IDUsuario == useritem.Id)
-                    {
-                        NombresUsuarios.Add(GetUserName(useritem.Email));
-                    }
-                }
-            }
-        }
+        
         public string GetUserName(string email)
         {
             string username = "";
@@ -68,8 +55,91 @@ namespace TP_Final
 
         public void btnAceptar_Click(object sender, EventArgs e)
         {
-            
+            HistoriaNegocio negocio = new HistoriaNegocio();
+            if (!validarDescripcion() || !validarImagen())
+            {
+                return;
+            }
+            try
+            {
+                Dominio.Usuario usuarioSesion = (Dominio.Usuario)Session["Usuario"];
+                //Seteo historia: 
+                Historia nueva = new Historia();
+                nueva.IDUsuario = usuarioSesion.Id;
+                nueva.Descripcion = tbDescripcion.Text;
+                nueva.FechaHora = DateTime.Now;
+                nueva.Estado = EstadoHistoria.Activo;               
+                nueva.FechaHora = DateTime.Now;
+
+
+
+                //Imagenes con archivos
+                if (!string.IsNullOrEmpty(tbImgFile.Value) || !EsImagen(tbImgFile.Value))
+                {
+                    string ruta = Server.MapPath("./imagenes/Historias/");
+                    string nombreFile = ruta + "Historia-IDUser-" + usuarioSesion.Id + "-" + DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".jpg";
+                    tbImgFile.PostedFile.SaveAs(nombreFile);
+                    nueva.UrlImagen = "."+ nombreFile;                   
+                }
+                else
+                {
+                    nueva.UrlImagen = "";
+                }
+                // altaExitosa.Visible = true;
+                negocio.Agregar(nueva);
+            }
+
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
         }
+
+        static bool EsImagen(string fileName)
+        {
+            string pattern = @"\.(png|jpe?g)$";
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(fileName);
+        }
+
+        public bool validarDescripcion()
+        {
+            if (string.IsNullOrEmpty(tbDescripcion.Text))
+            {
+                lblErrorDescripcion.Text = "Debe agregar una descripción.";
+                lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else if (tbDescripcion.Text.Length < 50)
+            {
+                lblErrorDescripcion.Text = "La descripción es demasiado corta.";
+                lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }
+            else
+            {
+                lblErrorDescripcion.Visible = false;
+                return true;
+            }
+
+        }
+
+        public bool validarImagen()
+        {
+            if (EsImagen(tbImgFile.Value) == false)
+            {
+                lblErrorImg.Text = "El formato de imagen es incorrecto. Debe ser imagen .png, .jpg o .jpeg";
+                lblErrorImg.ForeColor = System.Drawing.Color.Cyan;
+                return false;
+            }           
+            else
+            {
+                lblErrorImg.Visible = false;
+                return true;
+            }
+
+        }        
 
     }
 }

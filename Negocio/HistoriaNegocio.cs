@@ -92,5 +92,34 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public bool Agregar(Historia nuevaHistoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool insertOk = false;
+            try
+            {
+                datos.setearConsulta("insert into Historias (Estado, Descripcion, IDUsuario, UrlImagen, FechaHora) values (@Estado, @Descripcion,@IDUsuario,@UrlImagen,@FechaHora)");
+                datos.setearParametro("@Estado", nuevaHistoria.Estado);
+                datos.setearParametro("@Descripcion", nuevaHistoria.Descripcion);
+                datos.setearParametro("@IDUsuario", nuevaHistoria.IDUsuario);
+                datos.setearParametro("@UrlImagen", nuevaHistoria.UrlImagen);
+                datos.setearParametro("@FechaHora", nuevaHistoria.FechaHora);
+
+                datos.ejecutarAccion();
+                insertOk = true;
+                return insertOk;
+
+            }
+            catch (Exception ex)
+            {
+                return insertOk;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
