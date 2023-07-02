@@ -12,6 +12,7 @@ namespace TP_Final
     public partial class Perfil : System.Web.UI.Page
     {
         protected List<Publicacion> publicaciones;
+        protected List<Historias> historias;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] != null)
@@ -23,6 +24,8 @@ namespace TP_Final
                 if (!IsPostBack)
                 {
                     publicaciones=publiNegocio.ListarPorUsuario(usuario.Id);
+                    //cargar historias
+                    //cargar abm de perfil
                 }
             }
             else { Response.Redirect("/default.aspx"); }
@@ -42,6 +45,11 @@ namespace TP_Final
             {
                 return "https://g.petango.com/shared/Photo-Not-Available-dog.gif";
             }
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -86,7 +86,6 @@ namespace Negocio
                     datos.setearParametro("@IDUsuario2", idUsuario);
                     datos.setearParametro("@IDPublicacion2", idPublicacion);
                     datos.setearParametro("@Estado2", (int)estadoFavorito);
-                    datos.ejecutarAccion();
                 }
                 else
                 {

@@ -1,0 +1,32 @@
+﻿*{
+    /*box-sizing:border-box;*/
+}
+
+
+body{
+    background-color:aliceblue;
+}
+ul{
+    list-style:none;
+}
+
+#btnSideBar{
+    position:fixed;
+    z-index:10;
+    border-radius:50%;
+}
+
+.offcanvas-body>ul>li{
+    padding:8px;
+    margin-top:2px;
+    font-size:1.3rem;
+}
+a{
+    text-decoration:none;
+    color:aliceblue;
+}
+
+#offcanvasScrolling{
+     background-color:rgb(248, 105, 41);
+     color:#fff;
+}
