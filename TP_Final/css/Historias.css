@@ -69,3 +69,12 @@
     background-repeat: repeat;
     /*background-size: cover;*/
 }
+.altaExitosa {
+    width: 100%;
+    align-self: center;
+    text-align: center;
+}
+
+    .altaExitosa h3 {
+        color: #24566E;
+    }

@@ -21,9 +21,15 @@ namespace TP_Final
         {
             CargarHistorias();
             CargarUsuarios();
+            if (!IsPostBack)
+            {
+                altaExitosa.Visible = false;
+                formularioH.Visible = false;
+            }
+
         }
 
-        public void CargarHistorias()
+        protected void CargarHistorias()
         {
             HistoriaNegocio negocioH = new HistoriaNegocio();
             ListaHistorias = negocioH.Listar();
@@ -34,7 +40,7 @@ namespace TP_Final
             ListaUsuarios = negocioU.Listar();
         }
 
-        
+
         public string GetUserName(string email)
         {
             string username = "";
@@ -52,7 +58,18 @@ namespace TP_Final
             }
             return username;
         }
+        public void btnExpandir_Click(object sender, EventArgs e)
+        {
+            if (formularioH.Visible == false)
+            {
+                formularioH.Visible = true;
+            }
+            else
+            {
+                formularioH.Visible = false;
 
+            }
+        }
         public void btnAceptar_Click(object sender, EventArgs e)
         {
             HistoriaNegocio negocio = new HistoriaNegocio();
@@ -68,7 +85,7 @@ namespace TP_Final
                 nueva.IDUsuario = usuarioSesion.Id;
                 nueva.Descripcion = tbDescripcion.Text;
                 nueva.FechaHora = DateTime.Now;
-                nueva.Estado = EstadoHistoria.Activo;               
+                nueva.Estado = EstadoHistoria.Activo;
                 nueva.FechaHora = DateTime.Now;
 
 
@@ -85,8 +102,12 @@ namespace TP_Final
                 {
                     nueva.UrlImagen = "";
                 }
-                // altaExitosa.Visible = true;
+
                 negocio.Agregar(nueva);
+                altaExitosa.Visible = true;
+                formularioOculto.Visible = false;
+                contenidoHistorias.Visible = false;
+
             }
 
             catch (Exception ex)
@@ -111,7 +132,7 @@ namespace TP_Final
                 lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
                 return false;
             }
-            else if (tbDescripcion.Text.Length < 50)
+            else if (tbDescripcion.Text.Length < 30)
             {
                 lblErrorDescripcion.Text = "La descripción es demasiado corta.";
                 lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;

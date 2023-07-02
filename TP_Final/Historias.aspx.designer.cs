@@ -15,6 +15,42 @@ namespace TP_Final
     {
 
         /// <summary>
+        /// altaExitosa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl altaExitosa;
+
+        /// <summary>
+        /// formularioOculto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formularioOculto;
+
+        /// <summary>
+        /// btn_expandir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_expandir;
+
+        /// <summary>
+        /// formularioH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formularioH;
+
+        /// <summary>
         /// tbDescripcion control.
         /// </summary>
         /// <remarks>
@@ -58,5 +94,14 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAceptar;
+
+        /// <summary>
+        /// contenidoHistorias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenidoHistorias;
     }
 }
