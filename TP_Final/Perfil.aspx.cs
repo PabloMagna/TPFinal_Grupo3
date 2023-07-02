@@ -12,23 +12,25 @@ namespace TP_Final
     public partial class Perfil : System.Web.UI.Page
     {
         protected List<Publicacion> publicaciones;
-        protected List<Historias> historias;
+        protected List<Historia> historias;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] != null)
             {
-                PublicacionNegocio publiNegocio = new PublicacionNegocio(); 
                 Usuario usuario = (Usuario)Session["Usuario"];
-
+                PublicacionNegocio publiNegocio = new PublicacionNegocio();
+                HistoriaNegocio histoNegocio = new HistoriaNegocio();
+                historias = new List<Historia>();
+                historias = histoNegocio.ListarPorUsuario(usuario.Id);
 
                 if (!IsPostBack)
                 {
-                    publicaciones=publiNegocio.ListarPorUsuario(usuario.Id);
+                    publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
                     //cargar historias
-                    //cargar abm de perfil
+                    
                 }
+                else { Response.Redirect("/default.aspx"); }
             }
-            else { Response.Redirect("/default.aspx"); }
         }
 
         public string obtenerPrimeraImagen(int idPublicacion)

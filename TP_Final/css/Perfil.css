@@ -13,7 +13,6 @@ ul{
 #btnSideBar{
     position:fixed;
     z-index:10;
-    border-radius:50%;
 }
 
 .offcanvas-body>ul>li{

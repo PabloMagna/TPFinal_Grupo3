@@ -70,33 +70,46 @@
             </div>
 
             <hr />
-            <div class="row Historias">
-                <h2>Tus Historias
-                    <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
-                </h2>
-                <hr />
 
 
-                <div class="card card-body">
-                    <asp:UpdatePanel ID="upHistorias" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
+               <% if (historias == null || historias.Count == 0)
+    { %>
+        <div class="col-md-12">
+            <h1>Las historias están disponibles para quienes adopten Mascotas </h1>
+        </div>
+<% }
+else
+{
+    LvHistorias.DataSource = historias;
+    LvHistorias.DataBind();
+} %>
 
-                            <div class="mb-3">
-                                <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="300"></asp:TextBox>
-                                <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Añadir una foto</label>
-                                <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
-                                <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
-                            </div>
-                            <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn" OnClick="btnAceptar_Click" />
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-
-                </div>
+<asp:ListView ID="LvHistorias" runat="server">
+    <ItemTemplate>
+        <div class="row Historias">
+            <h2>Tus Historias
+                <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
+            </h2>
+            <div class="card card-body">
+                <asp:UpdatePanel ID="upHistorias" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="mb-3">
+                            <image src="<%# Eval("UrlImagen") %>"></image>
+                            <label class="form-label">Cambiar foto</label>
+                            <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
+                            <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="mb-3">
+                            <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="300" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
+                            <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
+                        </div>
+                        <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
+        </div>
+    </ItemTemplate>
+</asp:ListView>
 
         </div>
 </asp:Content>
