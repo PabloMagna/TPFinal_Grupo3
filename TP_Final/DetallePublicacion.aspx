@@ -41,7 +41,7 @@
                         <p class="card-text">Provincia: <%= CargarProvincia() %></p>
                         <p class="card-text">Fecha y hora: <%= publicacion.FechaHora.ToString() %></p>
                         <p class="card-text">Estado: <%= publicacion.Estado %></p>
-                        <a href="ContactoAdopcion.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
+                        <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
                         <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" Visible="false" />
                     </div>
                 </div>

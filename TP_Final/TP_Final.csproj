@@ -71,6 +71,7 @@
     <Content Include="AdministrarUsuarios.aspx" />
     <Content Include="Adopciones.aspx" />
     <Content Include="AltaCuenta.aspx" />
+    <Content Include="ConfirmarDatos.aspx" />
     <Content Include="ContactoAdopcion.aspx" />
     <Content Include="css\AltaCuenta.css" />
     <Content Include="css\DetallePublicacion.css" />
@@ -143,6 +144,13 @@
     </Compile>
     <Compile Include="AltaCuenta.aspx.designer.cs">
       <DependentUpon>AltaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmarDatos.aspx.cs">
+      <DependentUpon>ConfirmarDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmarDatos.aspx.designer.cs">
+      <DependentUpon>ConfirmarDatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContactoAdopcion.aspx.cs">
       <DependentUpon>ContactoAdopcion.aspx</DependentUpon>

@@ -16,19 +16,17 @@
             <% if (usuario.Tipo == Dominio.TipoUsuario.PersonaCompleto) { %>
                 <p class="card-text">Nombre: <%= persona.Nombre %></p>
                 <p class="card-text">Apellido: <%= persona.Apellido %></p>
-                <p class="card-text">DNI: <%= persona.Dni %></p>
                 <p class="card-text">Teléfono: <%= persona.Telefono %></p>
-                <p class="card-text">Localidad: <%= persona.IDLocalidad %></p>
-                <p class="card-text">Provincia: <%= persona.IDProvincia %></p>
+                <p class="card-text">Provincia: <%= provincia %></p>
+                <p class="card-text">Localidad: <%= localidad %></p>
             <% } else if (usuario.Tipo == Dominio.TipoUsuario.Refugio) { %>
                 <p class="card-text">Nombre: <%= refugio.Nombre %></p>
-                <p class="card-text">Dirección: <%= refugio.Direccion %></p>
                 <p class="card-text">Teléfono: <%= refugio.Telefono %></p>
-                <p class="card-text">Localidad: <%= refugio.IDLocalidad %></p>
-                <p class="card-text">Provincia: <%= refugio.IDProvincia %></p>
+                <p class="card-text">Provincia: <%= provincia%></p>
+                <p class="card-text">Localidad: <%= localidad %></p>
+                <p class="card-text">Dirección: <%= refugio.Direccion %></p>
             <% } %>
         </div>
     </div>
-
-    <button type="button" class="btn btn-primary mt-3">Confirmar adopción</button>
+    <a href="default.aspx" class="btn btn-primary mt-3">Volver Al Menú</a>
 </asp:Content>

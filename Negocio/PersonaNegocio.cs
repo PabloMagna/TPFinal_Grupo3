@@ -40,6 +40,35 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
             return filas;
         }
+        public void Modificar(Persona persona)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE PERSONAS SET Dni = @Dni, Nombre = @Nombre, Apellido = @Apellido, FechaNacimiento = @FechaNacimiento, UrlImagen = @UrlImagen, IDLocalidad = @IDLocalidad, IDProvincia = @IDProvincia, Telefono = @Telefono WHERE IDUsuario = @IDUsuario");
+
+                datos.setearParametro("@Dni", persona.Dni);
+                datos.setearParametro("@Nombre", persona.Nombre);
+                datos.setearParametro("@Apellido", persona.Apellido);
+                datos.setearParametro("@FechaNacimiento", persona.FechaNacimiento);
+                datos.setearParametro("@UrlImagen", persona.UrlImagen);
+                datos.setearParametro("@IDLocalidad", persona.IDLocalidad);
+                datos.setearParametro("@IDProvincia", persona.IDProvincia);
+                datos.setearParametro("@Telefono", persona.Telefono);
+                datos.setearParametro("@IDUsuario", persona.IDUsuario);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
         public Persona BuscarporUsuario(int idUsuario)
         {
