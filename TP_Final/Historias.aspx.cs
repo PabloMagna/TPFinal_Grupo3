@@ -56,7 +56,7 @@ namespace TP_Final
         public void btnAceptar_Click(object sender, EventArgs e)
         {
             HistoriaNegocio negocio = new HistoriaNegocio();
-            if (!validarDescripcion() || !validarImagen())
+            if (!validarDescripcion())
             {
                 return;
             }
@@ -74,12 +74,12 @@ namespace TP_Final
 
 
                 //Imagenes con archivos
-                if (!string.IsNullOrEmpty(tbImgFile.Value) || !EsImagen(tbImgFile.Value))
+                if (!string.IsNullOrEmpty(tbImgFile.Value) || EsImagen(tbImgFile.Value))
                 {
                     string ruta = Server.MapPath("./imagenes/Historias/");
-                    string nombreFile = ruta + "Historia-IDUser-" + usuarioSesion.Id + "-" + DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".jpg";
-                    tbImgFile.PostedFile.SaveAs(nombreFile);
-                    nueva.UrlImagen = "."+ nombreFile;                   
+                    string nombreFile = "Historia-IDUser-" + usuarioSesion.Id + "-" + DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".jpg";
+                    tbImgFile.PostedFile.SaveAs(ruta + nombreFile);
+                    nueva.UrlImagen = "../imagenes/Historias/" + nombreFile;
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace TP_Final
 
         static bool EsImagen(string fileName)
         {
-            string pattern = @"\.(png|jpe?g)$";
+            string pattern = @"\.(jpg|png|jpeg)$";
             Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
             return regex.IsMatch(fileName);
         }
@@ -124,7 +124,7 @@ namespace TP_Final
             }
 
         }
-
+        /*
         public bool validarImagen()
         {
             if (EsImagen(tbImgFile.Value) == false)
@@ -140,6 +140,6 @@ namespace TP_Final
             }
 
         }        
-
+        */
     }
 }
