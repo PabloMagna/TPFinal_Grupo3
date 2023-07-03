@@ -7,12 +7,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Adopciones</h1>
     <div class="table-responsive">
-        <asp:GridView ID="dgvAdopciones" runat="server" CssClass="table table-striped table-bordered">
+        <asp:GridView ID="dgvAdopciones" runat="server" CssClass="table table-striped table-bordered" OnRowDataBound="dgvAdopciones_RowDataBound">
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" />
-                <asp:BoundField DataField="IDPublicacion" HeaderText="ID Publicación" />
-                <asp:BoundField DataField="IDUsuario" HeaderText="ID Usuario" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                <asp:TemplateField HeaderText="Número de Lista">
+                    <ItemTemplate>
+                        <%# Container.DataItemIndex + 1 %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Detalle Publicación">
+                    <ItemTemplate>
+                        <a href='<%# "DetallePublicacion.aspx?ID=" + Eval("IDPublicacion") %>'>Ver detalle</a>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>

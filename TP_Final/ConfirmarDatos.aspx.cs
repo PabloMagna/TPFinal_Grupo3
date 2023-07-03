@@ -157,9 +157,16 @@ namespace TP_Final
                 personaNegocio.Modificar(persona);
             }
 
-
-            // Obtener el ID de la publicación de la URL actual
             int idPublicacion = Convert.ToInt32(Request["ID"]);
+            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+            if (adopcionNegocio.EnDataBase(IdUsuario, idPublicacion))
+            {
+                adopcionNegocio.ActualizarEstado(IdUsuario, idPublicacion, EstadoAdopcion.Pendiente);
+            }
+            else
+            {
+                adopcionNegocio.Insertar(IdUsuario, idPublicacion);
+            }
             Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
         }
 
