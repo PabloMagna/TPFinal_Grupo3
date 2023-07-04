@@ -125,7 +125,7 @@ namespace TP_Final
                 persona.Dni = Convert.ToInt32(txtDni.Text);
                 persona.Nombre = txtNombre.Text;
                 persona.Apellido = txtApellido.Text;
-                persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+                persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text + " 00:00");
                 persona.Telefono = txtTelefono.Text;
                 persona.IDLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
                 persona.IDProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
@@ -142,7 +142,7 @@ namespace TP_Final
                 persona.Dni = Convert.ToInt32(txtDni.Text);
                 persona.Nombre = txtNombre.Text;
                 persona.Apellido = txtApellido.Text;
-                persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+                persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text + " 00:00");
                 persona.Telefono = txtTelefono.Text;
                 persona.IDLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
                 persona.IDProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
@@ -169,6 +169,5 @@ namespace TP_Final
             }
             Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
         }
-
     }
 }

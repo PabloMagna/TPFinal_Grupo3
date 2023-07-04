@@ -22,6 +22,7 @@ namespace TP_Final
                 CargarAdopciones(idUsuario);
             }
         }
+
         private void CargarAdopciones(int idUsuario)
         {
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
@@ -29,17 +30,10 @@ namespace TP_Final
             // Obtener las adopciones correspondientes al usuario y la publicación
             List<Adopcion> adopciones = adopcionNegocio.ListarPorUsuario(idUsuario);
 
-            // Seleccionar solo las columnas necesarias
-            var adopcionesSeleccionadas = adopciones.Select(a => new { a.Estado }).ToList();
-
             // Configurar el origen de datos para el GridView
-            dgvAdopciones.DataSource = adopcionesSeleccionadas;
+            dgvAdopciones.DataSource = adopciones;
             dgvAdopciones.DataBind();
-
-            // Ocultar la columna "IDPublicacion"
-            dgvAdopciones.Columns[2].Visible = false;
         }
-
 
         protected void dgvAdopciones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
