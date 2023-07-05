@@ -23,8 +23,8 @@
                 <ul>
                     <li><a href="#">Editar datos de Perfil</a></li>
                     <li><a href="#">Foto de Perfil</a></li>
-                    <li><a href="#">Tus Historias</a></li>
-                    <li><a href="#">Tus Publicaciones</a></li>
+                    <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
+                    <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
                 </ul>
                 <button class="btn btn-primary">Boton</button>
             </div>
@@ -32,7 +32,7 @@
     </aside>
     <div class="container">
 
-        <div class="row">
+        <div class="row" id="Publicaciones">
             <asp:Label runat="server" ID="lbNombre"></asp:Label>
         </div>
         <div class="container">
@@ -72,6 +72,8 @@
 
         <hr />
 
+        <%--Este es solo un div para posicionar en historias con click en el Sidebar--%>
+        <div id="Historias"></div>
 
         <% if (historias == null || historias.Count == 0)
             { %>
@@ -90,8 +92,8 @@
                     <div class="card card-body">
 
                         <div class="mb-3">
-                            <img src="<%# Eval("UrlImagen") %>"></img>
-                            <label class="form-label">Cambiar foto</label>
+                            <img ID="imgHistoria" src="<%# Eval("UrlImagen") %>"></img>
+                            <label class="form-label"> Cambiar foto</label>
                             <input type="file" id="tbImgenFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
                             <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
                         </div>

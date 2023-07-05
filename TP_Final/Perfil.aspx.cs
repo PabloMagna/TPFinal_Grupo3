@@ -74,7 +74,7 @@ namespace TP_Final
                     int idHistoria = Convert.ToInt32(hfIDHistoria.Value);
 
                     HistoriaNegocio negocio = new HistoriaNegocio();
-                    negocio.Eliminar(idHistoria);
+                    //negocio.Eliminar(idHistoria);
 
                 }
 
