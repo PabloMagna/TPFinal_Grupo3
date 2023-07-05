@@ -12,8 +12,10 @@ namespace TP_Final
 {
     public partial class AltaCuenta : System.Web.UI.Page
     {
+        protected Usuario usuario { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {   
+            
             ProvinciaNegocio provincias = new ProvinciaNegocio();
             LocalidadNegocio localidades = new LocalidadNegocio();
             string Cuenta = (string)Request.QueryString["Cuenta"];
@@ -38,6 +40,7 @@ namespace TP_Final
 
             if (!IsPostBack)
             {
+                usuario = new Usuario();
                 ddlProvincia.Items.Clear();
                 ddlProvincia.DataSource = provincias.cargarDropDownList();
                 ddlProvincia.DataBind();
@@ -83,13 +86,13 @@ namespace TP_Final
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
             string cuenta = (string)Request.QueryString["Cuenta"];
+            int filasAfectadas = 0;
             Page.Validate("Validaciones");
             if (Page.IsValid)
             {   //acciones a tomar si es valido el ingreso de datos
-                int filasAfectadas = 0;
                 AccesoDatos datos = new AccesoDatos();
                 UsuarioNegocio usuarios = new UsuarioNegocio();
-                Usuario usuario = new Usuario();
+                usuario = new Usuario();
                 usuario.Email = tbEmail.Text;
                 usuario.Password = tbPassword.Text;
                 usuario.Tipo = (TipoUsuario)Enum.Parse(typeof(TipoUsuario), cuenta);
@@ -132,13 +135,15 @@ namespace TP_Final
                     // Insertar en DB
                     filasAfectadas = refugios.Agregar(refugio);
 
+                }              
                     if(filasAfectadas > 0)
                     {
                         //Alta De Refugio o Persona Exitoso
                         // Realizar cualquier otra acción necesaria o mostrar un mensaje de éxito
                         //Autologin
+                        Session["Usuario"] = usuario;
+                        Response.Redirect("default.aspx");
                     }
-                }              
   
             }
         }
