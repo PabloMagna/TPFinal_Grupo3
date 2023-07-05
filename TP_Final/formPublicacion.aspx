@@ -90,9 +90,11 @@
             <hr />
               <div class="mb-3">
                     <label class="form-label">IMAGEN DE LA MASCOTA</label>
-                </div>  
+                </div> 
+                <!--
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
+                        
                         <div class="mb-3">
                             <label class="form-label">Con URL</label>
                             <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...." AutoPostBack="true" OnTextChanged="tbImg_textCanged"></asp:TextBox>   
@@ -101,26 +103,39 @@
                          <div class="mb-3 imgMascota">                   
                              <asp:Image ID="imgMascota" runat="server" CssClass="img-fluid" ImageUrl="../imagenes/pet_placeholder.png"/>
                         </div> 
+                       
                     </ContentTemplate>                    
                 </asp:UpdatePanel>
-                <div class="mb-3">
-                    <label class="form-label">Subir desde el ordenador</label>
-                    <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>                   
-                </div> 
+                     -->
+              <%if (existeImagen == true)
+                {
+                      %>
+                     <div class="mb-3">  
+                        <asp:Image class="imgPublicacionMascota" ID="imgPublicacionMascota" runat="server" CssClass="img-fluid" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/>
+                     </div>
+                <%}
+                else
+                {%>
+                    <div class="mb-3">
+                        <label class="form-label">Subir desde el ordenador</label>
+                        <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>                  
+                    </div> 
+                <%}%>
+                
 
                 <!--Botones-->
                  <div class="mb-3">
-              <%if(Request.QueryString["ID"] != null)
-            {%>
-                    <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CssClass="btn primary" OnClick="btnActualizar_Click"/>
-             <%}
-                else
-            {%>
-                    <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>
+                  <%if(Request.QueryString["ID"] != null)
+                {%>
+                        <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CssClass="btn primary" OnClick="btnActualizar_Click"/>
+                 <%}
+                    else
+                {%>
+                        <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>
 
-            <%}%>
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
-                     </div> 
+                <%}%>
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
+                </div> 
                
             </div>        
         </div>
