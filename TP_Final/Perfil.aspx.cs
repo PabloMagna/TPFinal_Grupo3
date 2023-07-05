@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
@@ -23,11 +25,14 @@ namespace TP_Final
                 historias = new List<Historia>();
                 historias = histoNegocio.ListarPorUsuario(usuario.Id);
 
+                publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
+                //cargar historias
+                rpHistorias.DataSource = historias;
+                rpHistorias.DataBind();
+
                 if (!IsPostBack)
                 {
-                    publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
-                    //cargar historias
-                    
+
                 }
                 else { Response.Redirect("/default.aspx"); }
             }
@@ -53,5 +58,29 @@ namespace TP_Final
         {
 
         }
+
+
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            Button btnDelete = (Button)sender;
+            RepeaterItem repeaterItem = (RepeaterItem)btnDelete.NamingContainer;
+
+            if (repeaterItem != null)
+            {
+                HiddenField hfIDHistoria = (HiddenField)repeaterItem.FindControl("hfIDHistoria");
+                if (hfIDHistoria != null)
+                {
+                    int idHistoria = Convert.ToInt32(hfIDHistoria.Value);
+
+                    HistoriaNegocio negocio = new HistoriaNegocio();
+                    negocio.Eliminar(idHistoria);
+
+                }
+
+            }
+        }
+
+       
     }
 }

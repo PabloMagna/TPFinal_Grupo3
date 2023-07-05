@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="TP_Final.Perfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="css/Perfil.css" rel="stylesheet"/>
+    <link href="css/Perfil.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f9b631791e.js" crossorigin="anonymous"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -67,36 +68,31 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            </div>
+        </div>
 
-            <hr />
+        <hr />
 
 
-               <% if (historias == null || historias.Count == 0)
-    { %>
+        <% if (historias == null || historias.Count == 0)
+            { %>
         <div class="col-md-12">
             <h1>Las historias están disponibles para quienes adopten Mascotas </h1>
         </div>
-<% }
-else
-{
-    LvHistorias.DataSource = historias;
-    LvHistorias.DataBind();
-} %>
-
-<asp:ListView ID="LvHistorias" runat="server">
-    <ItemTemplate>
-        <div class="row Historias">
-            <h2>Tus Historias
+        <% }
+            else
+            { %>
+        <asp:Repeater ID="rpHistorias" runat="server" OnItemCommand="rpHistorias_ItemCommand">
+            <ItemTemplate>
+                <div class="row Historias">
+                    <h2>Tus Historias
                 <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
-            </h2>
-            <div class="card card-body">
-                <asp:UpdatePanel ID="upHistorias" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
+                    </h2>
+                    <div class="card card-body">
+
                         <div class="mb-3">
-                            <image src="<%# Eval("UrlImagen") %>"></image>
+                            <img src="<%# Eval("UrlImagen") %>"></img>
                             <label class="form-label">Cambiar foto</label>
-                            <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
+                            <input type="file" id="tbImgenFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
                             <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
                         </div>
                         <div class="mb-3">
@@ -104,12 +100,15 @@ else
                             <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
                         </div>
                         <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
-        </div>
-    </ItemTemplate>
-</asp:ListView>
+                        <asp:HiddenField id="hfIDHistoria" runat="server" Value='<%# Eval("ID") %>'/>
+                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Eliminar" />
+                        <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("ID") %>' CssClass="fas fa-trash-alt" style="color: #e97a2f;"></asp:LinkButton>
+                    </div>
+                </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
 
-        </div>
+        <% } %>
+    </div>
 </asp:Content>
