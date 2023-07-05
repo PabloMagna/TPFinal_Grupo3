@@ -81,7 +81,7 @@
         <% }
             else
             { %>
-        <asp:Repeater ID="rpHistorias" runat="server" OnItemCommand="rpHistorias_ItemCommand">
+        <asp:Repeater ID="rpHistorias" runat="server">
             <ItemTemplate>
                 <div class="row Historias">
                     <h2>Tus Historias
@@ -102,7 +102,6 @@
                         <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
                         <asp:HiddenField id="hfIDHistoria" runat="server" Value='<%# Eval("ID") %>'/>
                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Eliminar" />
-                        <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("ID") %>' CssClass="fas fa-trash-alt" style="color: #e97a2f;"></asp:LinkButton>
                     </div>
                 </div>
                 </div>
