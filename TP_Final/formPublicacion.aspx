@@ -109,10 +109,19 @@
                 </div> 
 
                 <!--Botones-->
-                <div class="mb-3">
+                 <div class="mb-3">
+              <%if(Request.QueryString["ID"] != null)
+            {%>
+                    <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CssClass="btn primary" OnClick="btnActualizar_Click"/>
+             <%}
+                else
+            {%>
                     <asp:Button ID="btnAceptar" runat="server" Text="Enviar" CssClass="btn primary" OnClick="btnAceptar_Click"/>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
-                </div>
+
+            <%}%>
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
+                     </div> 
+               
             </div>        
         </div>
     </section>

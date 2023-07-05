@@ -14,18 +14,32 @@ namespace TP_Final
     public partial class Publicar : System.Web.UI.Page
     {
         protected Usuario usuarioLogin { set; get; }
+        protected int IDPublicacion { get; set; }
+        protected Publicacion Publicacion { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             usuarioLogin = (Dominio.Usuario)Session["Usuario"];
+
             try
             {
                 if (!IsPostBack)
-                {
+                {                    
                     CargarDropDownListProvincias();
                     CargarLocalidades(1);
                     altaExitosa.Visible = false;
                     formulario.Visible = true;
+                    if (Request.QueryString["ID"] != null)
+                    {
+                        IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
+                        PublicacionNegocio negocio = new PublicacionNegocio();
+                        Publicacion = negocio.ObtenerPorId(IDPublicacion);
+                        CargarForm(Publicacion);
+                    }
+                    else
+                    {
+                        IDPublicacion = 0;
+                    }
                 }
 
             }
@@ -243,6 +257,43 @@ namespace TP_Final
                 lblErrorDescripcion.Visible = false;
                 return true;
             }
+
+        }
+
+        protected void CargarForm(Publicacion publicacion)
+        {           
+            try
+            {
+                
+                tbNombre.Text = publicacion.Titulo;
+                ddlEspecie.SelectedValue = publicacion.Especie.ToString() ;
+                tbDescripcion.Text = publicacion.Descripcion;
+                ddlProvincia.SelectedValue = publicacion.IDProvincia.ToString();
+                ddlLocalidad.SelectedValue = publicacion.IDLocalidad.ToString();
+                ddlSexo.SelectedValue = publicacion.Sexo.ToString();
+                tbRaza.Text = publicacion.Raza;
+                if (publicacion.Edad >= 12)
+                {
+                    tbEdad.Text = (publicacion.Edad / 12).ToString();
+                    ddlEdad.SelectedValue = "A";
+                }
+                else
+                {
+                    tbEdad.Text = publicacion.Edad.ToString();
+                    ddlEdad.SelectedValue = "M";
+                }
+               //Falta cargar las imágenes
+            }
+
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
+        }
+
+        public void btnActualizar_Click(object sender, EventArgs e)
+        {
 
         }
 
