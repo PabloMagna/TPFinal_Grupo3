@@ -299,6 +299,7 @@ namespace TP_Final
                         Image image = new Image();
                         image.ImageUrl = img.urlImagen;
                         image.CssClass = "fotosMascota";
+                        image.Attributes["onerror"] = "this.src='https://g.petango.com/shared/Photo-Not-Available-dog.gif'";
                         foto.Controls.Add(image);
                     }
                 }

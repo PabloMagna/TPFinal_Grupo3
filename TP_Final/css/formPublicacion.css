@@ -63,7 +63,7 @@ div.col-4 {
     .altaExitosa h3 {
         color: #24566E;
     }
-
+/*
 .imgMascota {
     width: 100px !important;
     height: 100px !important;
@@ -76,10 +76,10 @@ div.col-4 {
     width:auto;
     overflow:hidden;
 }
-
-.fotosMascota {
-    max-width: 80%;
+*/
+.fotosMascota {    
     height: 200px;
-    width: auto;    
+    width: auto;
     margin: 15px;
+    background-color: #D2E3EB;
 }
