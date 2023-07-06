@@ -24,6 +24,15 @@ namespace TP_Final
         protected global::System.Web.UI.ScriptManager scriptManager;
 
         /// <summary>
+        /// subtitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl subtitulo;
+
+        /// <summary>
         /// formulario control.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,15 @@ namespace TP_Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgMascota;
+
+        /// <summary>
+        /// imgPublicacionMascota control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPublicacionMascota;
 
         /// <summary>
         /// tbImgFile control.

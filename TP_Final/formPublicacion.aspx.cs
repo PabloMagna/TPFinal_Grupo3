@@ -16,6 +16,7 @@ namespace TP_Final
         protected Usuario usuarioLogin { set; get; }
         protected int IDPublicacion { get; set; }
         protected Publicacion Publicacion { get; set; }
+        protected bool existeImagen = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,13 +105,14 @@ namespace TP_Final
                 nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id);
 
                 //Imagenes con URL
+                /*
                 if (!string.IsNullOrEmpty(tbImg.Text))
                 {
                     nuevaImg.urlImagen = tbImg.Text;
                     //Insert Imágenes: 
                     imagenNegocio.Agregar(nuevaImg);
                 }
-
+                */
 
                 //Imagenes con archivos
                 if (!string.IsNullOrEmpty(tbImgFile.Value))
@@ -126,6 +128,7 @@ namespace TP_Final
                 }
 
                 formulario.Visible = false;
+                subtitulo.Visible = false;
                 altaExitosa.Visible = true;
             }
 
@@ -135,7 +138,7 @@ namespace TP_Final
                 throw;
             }
         }
-
+        
         protected void tbImg_textCanged(object sender, EventArgs e)
         {
             try
@@ -147,7 +150,7 @@ namespace TP_Final
                 Session.Add("Error", ex);
             }
         }
-
+        
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -162,8 +165,8 @@ namespace TP_Final
             List<KeyValuePair<int, string>> localidades = localidadNegocio.ListarClaveValor(idProvincia);
 
             ddlLocalidad.DataSource = localidades;
-            ddlLocalidad.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
-            ddlLocalidad.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
+            ddlLocalidad.DataTextField = "Value";
+            ddlLocalidad.DataValueField = "Key";
             ddlLocalidad.DataBind();
         }
         private void CargarDropDownListProvincias()
@@ -172,8 +175,8 @@ namespace TP_Final
             List<KeyValuePair<int, string>> provincias = provinciaNegocio.ListarClaveValor();
 
             ddlProvincia.DataSource = provincias;
-            ddlProvincia.DataTextField = "Value"; // Nombre de la propiedad para mostrar (valor)
-            ddlProvincia.DataValueField = "Key"; // Nombre de la propiedad para el valor (clave)
+            ddlProvincia.DataTextField = "Value";
+            ddlProvincia.DataValueField = "Key";
             ddlProvincia.DataBind();
         }
 
@@ -263,8 +266,7 @@ namespace TP_Final
         protected void CargarForm(Publicacion publicacion)
         {           
             try
-            {
-                
+            {                
                 tbNombre.Text = publicacion.Titulo;
                 ddlEspecie.SelectedValue = publicacion.Especie.ToString() ;
                 tbDescripcion.Text = publicacion.Descripcion;
@@ -282,6 +284,13 @@ namespace TP_Final
                     tbEdad.Text = publicacion.Edad.ToString();
                     ddlEdad.SelectedValue = "M";
                 }
+
+                if(BuscarImagenesPublicacion(publicacion.Id).Count >0)
+                {
+                    existeImagen = true;
+                    string urlPrimeraImg = BuscarImagenesPublicacion(publicacion.Id)[0].urlImagen;
+                    imgPublicacionMascota.ImageUrl = urlPrimeraImg;
+                }
                //Falta cargar las imágenes
             }
 
@@ -292,9 +301,88 @@ namespace TP_Final
             }
         }
 
+        
+        public List<ImagenMascota> BuscarImagenesPublicacion(int idPublicacion)
+        {
+            List<ImagenMascota> imagenesMascota = null;
+            ImagenMascotaNegocio negocioImagenes = new ImagenMascotaNegocio();
+            if(negocioImagenes.listar(idPublicacion) != null)
+            {
+                imagenesMascota = negocioImagenes.listar(idPublicacion);
+            }            
+
+            return imagenesMascota;
+        }
+
         public void btnActualizar_Click(object sender, EventArgs e)
         {
+            if (!ValidarForm())
+            {
+                return;
+            }
+            try
+            {
+                //Seteo publicacion: 
+                Publicacion nueva = new Publicacion();
+                nueva.Titulo = tbNombre.Text;
+                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);
+                nueva.Descripcion = tbDescripcion.Text;
+                nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
+                nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
+                nueva.Sexo = ddlSexo.SelectedValue[0];
+                nueva.IdUsuario = usuarioLogin.Id;
+                nueva.FechaHora = DateTime.Now;
 
+                if (ddlEdad.SelectedValue == "A")
+                {
+                    nueva.Edad = int.Parse(tbEdad.Text) * 12;
+                }
+                else
+                {
+                    nueva.Edad = int.Parse(tbEdad.Text);
+                }
+
+                if (tbRaza.Text.Length == 0 || tbRaza.Text == null)
+                {
+                    nueva.Raza = "Sin especificar";
+                }
+                else
+                {
+                    nueva.Raza = tbRaza.Text;
+                }
+
+                ImagenMascotaNegocio imagenNegocio = new ImagenMascotaNegocio();
+                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+
+                //Insert Publicacion: 
+                publicacionNegocio.Actualizar(nueva);
+
+                //Seteo Imágenes: 
+                ImagenMascota nuevaImg = new ImagenMascota();
+                nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id); 
+               
+                if (!string.IsNullOrEmpty(tbImgFile.Value))
+                {
+                    string ruta = Server.MapPath("./imagenes/publicaciones/");
+                    string nombre = nuevaImg.IdPublicacion.ToString();
+                    DateTime fechaHora = DateTime.Now;
+                    tbImgFile.PostedFile.SaveAs(ruta + "Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg");
+                    nuevaImg.urlImagen = "../imagenes/publicaciones/Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg";
+
+                    //Insert Imágenes: 
+                    imagenNegocio.Agregar(nuevaImg);
+                }
+
+                formulario.Visible = false;
+                subtitulo.Visible = false;
+                altaExitosa.Visible = true;
+            }
+
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
         }
 
 

@@ -253,6 +253,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+       
         public void ActualizarEstado(int idPublicacion, Estado nuevoEstado)
         {
             AccesoDatos datos = new AccesoDatos();
