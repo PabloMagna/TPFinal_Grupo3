@@ -54,4 +54,9 @@ a{
 
 .perfil{
     max-width:500px;
+    margin:200px auto;
+}
+
+.perfil>.form-label{
+    width:50%;
 }

@@ -38,9 +38,6 @@ namespace TP_Final
 
                 if (!IsPostBack)
                 {
-                    //cargar historias
-                    rpHistorias.DataSource = historias;
-                    rpHistorias.DataBind();
                     //Carga Publicaciones
                     PublicacionNegocio publiNegocio = new PublicacionNegocio();
                     publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
@@ -98,7 +95,7 @@ namespace TP_Final
                     int idHistoria = Convert.ToInt32(hfIDHistoria.Value);
 
                     HistoriaNegocio negocio = new HistoriaNegocio();
-                    //negocio.Eliminar(idHistoria);
+                    negocio.Eliminar(idHistoria);
 
                 }
 
@@ -118,7 +115,7 @@ namespace TP_Final
                 CargarDropDownListLocalidad(idProvinciaPreseleccionada);
             }
         }
-        private void CargarProvinciaYLocalidadPreseleccionadas(TipoUsuario tipo)
+        protected void CargarProvinciaYLocalidadPreseleccionadas(TipoUsuario tipo)
         {
             if (tipo == TipoUsuario.Persona)
             {
@@ -137,7 +134,7 @@ namespace TP_Final
         //    ddlProvincia.SelectedIndexChanged += ddlProvincia_SelectedIndexChanged;
         //}
 
-        private void CargarDropDownListProvincia()
+        protected void CargarDropDownListProvincia()
         {
             ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio();
             List<KeyValuePair<int, string>> provincias = provinciaNegocio.ListarClaveValor();
@@ -154,7 +151,7 @@ namespace TP_Final
             }
         }
 
-        private void CargarDropDownListLocalidad(int idProvincia)
+        protected void CargarDropDownListLocalidad(int idProvincia)
         {
             LocalidadNegocio localidadNegocio = new LocalidadNegocio();
             List<KeyValuePair<int, string>> localidades = localidadNegocio.ListarClaveValor(idProvincia);
@@ -171,7 +168,7 @@ namespace TP_Final
             }
         }
 
-        void cargarFormPersona(Persona persona)
+        protected void cargarFormPersona(Persona persona)
         {
             tbNombre.Text = persona.Nombre;
             tbApellido.Text = persona.Apellido;

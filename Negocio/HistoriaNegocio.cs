@@ -121,5 +121,27 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool Eliminar(int idHistoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool deleteOk = false;
+            try
+            {
+                datos.setearConsulta("Delete from Historias where ID="+idHistoria);
+                datos.ejecutarAccion();
+                deleteOk = true;
+            }
+            catch (Exception ex)
+            {   
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return deleteOk;
+        }
+
     }
 }
