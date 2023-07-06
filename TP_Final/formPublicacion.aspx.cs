@@ -128,6 +128,7 @@ namespace TP_Final
                 }
 
                 formulario.Visible = false;
+                subtitulo.Visible = false;
                 altaExitosa.Visible = true;
             }
 
@@ -315,7 +316,73 @@ namespace TP_Final
 
         public void btnActualizar_Click(object sender, EventArgs e)
         {
+            if (!ValidarForm())
+            {
+                return;
+            }
+            try
+            {
+                //Seteo publicacion: 
+                Publicacion nueva = new Publicacion();
+                nueva.Titulo = tbNombre.Text;
+                nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);
+                nueva.Descripcion = tbDescripcion.Text;
+                nueva.IDProvincia = int.Parse(ddlProvincia.SelectedValue);
+                nueva.IDLocalidad = int.Parse(ddlLocalidad.SelectedValue);
+                nueva.Sexo = ddlSexo.SelectedValue[0];
+                nueva.IdUsuario = usuarioLogin.Id;
+                nueva.FechaHora = DateTime.Now;
 
+                if (ddlEdad.SelectedValue == "A")
+                {
+                    nueva.Edad = int.Parse(tbEdad.Text) * 12;
+                }
+                else
+                {
+                    nueva.Edad = int.Parse(tbEdad.Text);
+                }
+
+                if (tbRaza.Text.Length == 0 || tbRaza.Text == null)
+                {
+                    nueva.Raza = "Sin especificar";
+                }
+                else
+                {
+                    nueva.Raza = tbRaza.Text;
+                }
+
+                ImagenMascotaNegocio imagenNegocio = new ImagenMascotaNegocio();
+                PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+
+                //Insert Publicacion: 
+                publicacionNegocio.Actualizar(nueva);
+
+                //Seteo Imágenes: 
+                ImagenMascota nuevaImg = new ImagenMascota();
+                nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id); 
+               
+                if (!string.IsNullOrEmpty(tbImgFile.Value))
+                {
+                    string ruta = Server.MapPath("./imagenes/publicaciones/");
+                    string nombre = nuevaImg.IdPublicacion.ToString();
+                    DateTime fechaHora = DateTime.Now;
+                    tbImgFile.PostedFile.SaveAs(ruta + "Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg");
+                    nuevaImg.urlImagen = "../imagenes/publicaciones/Mascota-" + nombre + "-" + fechaHora.ToString("yyyyMMdd_HHmmss") + ".jpg";
+
+                    //Insert Imágenes: 
+                    imagenNegocio.Agregar(nuevaImg);
+                }
+
+                formulario.Visible = false;
+                subtitulo.Visible = false;
+                altaExitosa.Visible = true;
+            }
+
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
         }
 
 

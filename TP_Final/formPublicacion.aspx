@@ -18,7 +18,7 @@
   
      <section class="portada">
         <h1 id="titulo">Publicación de mascota en adopción</h1>
-        <h4><em>Necesitaremos que completes algunos datos.</em></h4>
+        <h4 id="subtitulo" runat="server"><em>Necesitaremos que completes algunos datos.</em></h4>
     </section>
     <section class="formulario" id="formulario" runat="server">
         <div class="row">
@@ -108,22 +108,25 @@
                 </asp:UpdatePanel>
                      -->
               <%if (existeImagen == true)
-                {
-                      %>
+                {%>
+                      
                      <div class="mb-3">  
                         <asp:Image class="imgPublicacionMascota" ID="imgPublicacionMascota" runat="server" CssClass="img-fluid" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/>
                      </div>
-                <%}
-                else
-                {%>
+                <hr />
+                    <div class="mb-3">
+                        <label class="form-label">¿QUERÉS AGREGAR OTRA IMAGEN?</label>
+                    </div> 
+                <%}%>
+               
                     <div class="mb-3">
                         <label class="form-label">Subir desde el ordenador</label>
                         <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>                  
                     </div> 
-                <%}%>
+               
                 
 
-                <!--Botones-->
+                    <!--Botones-->
                  <div class="mb-3">
                   <%if(Request.QueryString["ID"] != null)
                 {%>
