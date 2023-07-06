@@ -241,6 +241,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="imagenes\Historias\" />
+    <Folder Include="imagenes\Perfiles\" />
     <Folder Include="imagenes\publicaciones\" />
     <Folder Include="Models\" />
   </ItemGroup>

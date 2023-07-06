@@ -213,6 +213,15 @@ namespace TP_Final
         protected global::System.Web.UI.HtmlControls.HtmlImage imgPerfil;
 
         /// <summary>
+        /// Control tbImgFile.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile tbImgFile;
+
+        /// <summary>
         /// Control Modificar.
         /// </summary>
         /// <remarks>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
@@ -16,12 +17,12 @@ namespace TP_Final
     {
         protected List<Publicacion> publicaciones;
         protected List<Historia> historias;
-        protected Usuario userLogeado= new Usuario();
+        protected Usuario userLogeado = new Usuario();
         protected Persona persona = new Persona();
         protected Refugio refugio = new Refugio();
         protected int idProvinciaPreseleccionada;
         protected int idLocalidadPreseleccionada;
-        protected const string placeholderImg ="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
+        protected const string placeholderImg = "https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {
             userLogeado = (Usuario)Session["Usuario"];
@@ -37,26 +38,26 @@ namespace TP_Final
                 rpHistorias.DataSource = historias;
                 rpHistorias.DataBind();
 
-                //Carga Datos perfil
-                if (usuario.Tipo == TipoUsuario.Persona)
-                {
-                    PersonaNegocio negocio = new PersonaNegocio();                   
-                    persona=negocio.BuscarporUsuario(usuario.Id);
-                    cargarFormPersona(persona);
-                }
-                else
-                {
-                    RefugioNegocio negocio = new RefugioNegocio();
-                    refugio = negocio.BuscarporUsuario(usuario.Id);
-                }
 
                 if (!IsPostBack)
                 {
                     CargarProvinciaYLocalidadPreseleccionadas(usuario.Tipo);
                     PublicacionNegocio publiNegocio = new PublicacionNegocio();
                     publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
+                    //Carga Datos perfil
+                    if (usuario.Tipo == TipoUsuario.Persona)
+                    {
+                        PersonaNegocio negocio = new PersonaNegocio();
+                        persona = negocio.BuscarporUsuario(usuario.Id);
+                        cargarFormPersona(persona);
+                    }
+                    else
+                    {
+                        RefugioNegocio negocio = new RefugioNegocio();
+                        refugio = negocio.BuscarporUsuario(usuario.Id);
+                    }
                 }
-                
+
             }
         }
 
@@ -118,7 +119,7 @@ namespace TP_Final
         }
         private void CargarProvinciaYLocalidadPreseleccionadas(TipoUsuario tipo)
         {
-            if (tipo==TipoUsuario.Persona)
+            if (tipo == TipoUsuario.Persona)
             {
                 idProvinciaPreseleccionada = persona.IDProvincia;
                 idLocalidadPreseleccionada = persona.IDLocalidad;
@@ -169,23 +170,41 @@ namespace TP_Final
             }
         }
 
-        void cargarFormPersona(Persona persona) {
+        void cargarFormPersona(Persona persona)
+        {
             tbNombre.Text = persona.Nombre;
             tbApellido.Text = persona.Apellido;
             tbDni.Text = persona.Dni.ToString();
             tbFechaNac.Text = persona.FechaNacimiento.ToString("yyyy-MM-dd");
             tbTel.Text = persona.Telefono;
-            if(persona.UrlImagen!=null && persona.UrlImagen != "")
+            if (persona.UrlImagen != null && persona.UrlImagen != "")
             {
-                imgPerfil.Src = persona.UrlImagen;               
+                imgPerfil.Src = persona.UrlImagen;
             }
             else { imgPerfil.Src = placeholderImg; }
-            
+
         }
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
+            if (userLogeado.Tipo == TipoUsuario.Persona)
+            {
+                Page.Validate("ValPersona");
+                if (Page.IsValid)
+                {
+                    PersonaNegocio negocio = new PersonaNegocio();
+                    persona.Nombre = tbNombre.Text;
+                    persona.Apellido = tbApellido.Text;
+                    persona.Dni = int.Parse(tbDni.Text);
+                    persona.IDProvincia = ddlProvincia.SelectedIndex + 1;
+                    persona.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
+                    persona.Telefono = tbTel.Text;
+                    //VALIDAR IMG Y TRAERLA PARA EL UPDATE
+                    //persona.UrlImagen = ...
 
+                    negocio.Modificar(persona);
+                }
+            }
         }
     }
 }

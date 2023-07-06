@@ -189,7 +189,11 @@
             this.src='<%:placeholderImg %>;'"/>
             </div>
             <div class="mb-3">
-                <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" />
+                        <label class="form-label">Subir desde el ordenador</label>
+                        <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>                  
+                    </div> 
+            <div class="mb-3">
+                <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true"/>
             </div>
     </div>
 </asp:Content>

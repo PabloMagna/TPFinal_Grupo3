@@ -30,11 +30,15 @@ a{
      color:#fff;
 }
 
-#imgHistoria,#imgPerfil{
+#imgHistoria{
     display:block;
     max-width:500px;
 }
 
+#ContentPlaceHolder1_imgPerfil {
+    display: block;
+    max-width: 500px;
+}
 .perfil{
     max-width:500px;
 }
