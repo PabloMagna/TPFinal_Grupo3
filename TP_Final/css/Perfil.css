@@ -3,8 +3,10 @@
 }
 
 
-body{
-    background-color:aliceblue;
+body {
+    background-color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+    font-size:1.3rem;
 }
 ul{
     list-style:none;
@@ -35,10 +37,21 @@ a{
     max-width:500px;
 }
 
-#ContentPlaceHolder1_imgPerfil {
-    display: block;
-    max-width: 500px;
+.contenedorImgPerfil {
+    display: flex;
+    justify-content: space-around;
 }
+
+.imgPerfil {
+    display: block;
+    max-width: 250px;
+    border-radius:50%;
+    padding:30px;
+}
+#lbImgPerfil{
+    align-self:center;
+}
+
 .perfil{
     max-width:500px;
 }

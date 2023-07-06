@@ -34,14 +34,14 @@ namespace TP_Final
                 historias = new List<Historia>();
                 historias = histoNegocio.ListarPorUsuario(usuario.Id);
 
-                //cargar historias
-                rpHistorias.DataSource = historias;
-                rpHistorias.DataBind();
 
 
                 if (!IsPostBack)
                 {
-                    CargarProvinciaYLocalidadPreseleccionadas(usuario.Tipo);
+                    //cargar historias
+                    rpHistorias.DataSource = historias;
+                    rpHistorias.DataBind();
+                    //Carga Publicaciones
                     PublicacionNegocio publiNegocio = new PublicacionNegocio();
                     publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
                     //Carga Datos perfil
@@ -56,6 +56,7 @@ namespace TP_Final
                         RefugioNegocio negocio = new RefugioNegocio();
                         refugio = negocio.BuscarporUsuario(usuario.Id);
                     }
+                    CargarProvinciaYLocalidadPreseleccionadas(usuario.Tipo);
                 }
 
             }
@@ -206,5 +207,7 @@ namespace TP_Final
                 }
             }
         }
+
+   
     }
 }

@@ -3,6 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/Perfil.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f9b631791e.js" crossorigin="anonymous"></script>
+    <%--scripts para incluir jquery y jquery validation--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <%--GOOGLE FONTS--%>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -48,8 +56,9 @@
                         <div class="col-md-12">
                             <h1>No tienes Mascotas publicadas </h1>
                         </div>
-                        <%}
-                            else
+                        <%}%>
+
+                        <%else
                             {%>
                         <% foreach (var item in publicaciones)
                             { %>
@@ -115,85 +124,86 @@
         %>
         <hr />
 
-        <%if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)       
+        <%if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
             {
         %>
         <div class="container perfil">
 
-        <div class="row">
-            <div id="formPersona" runat="server">
-                <h2>Edita tus datos de perfil</h2>
-                <div class="mb-3">
-                    <label class="form-label">Nombre </label>
-                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" ></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+            <div class="row">
+                <div id="formPersona" runat="server">
+                    <h2>Edita tus datos de perfil</h2>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre </label>
+                        <asp:TextBox ID="tbNombre" runat="server" class="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <asp:TextBox ID="tbApellido" runat="server" class="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">DNI</label>
+                        <asp:TextBox ID="tbDni" runat="server" class="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Ingrese solo números, maximo 12 digitos" ValidationExpression="^\d{1,12}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha de Nacimiento </label>
+                        <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="tbTel">Telefono</label>
+                        <asp:TextBox ID="tbTel" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Apellido</label>
-                    <asp:TextBox ID="tbApellido" runat="server" class="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">DNI</label>
-                    <asp:TextBox ID="tbDni" runat="server" class="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Ingrese solo números, maximo 12 digitos" ValidationExpression="^\d{1,12}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha de Nacimiento </label>
-                    <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tbTel">Telefono</label>
-                    <asp:TextBox ID="tbTel" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
-                </div>
-            </div>
 
             </div>
             <%}
-            else
-            { %>
-            
+                else
+                { %>
+
 
 
             <%} %>
 
             <%--LOCALIDADES Y PROVINCIAS--%>
-             <div class="mb-3">
-            <label for="ddlProvincia" class="form-label">Provincia:</label>
-            <asp:UpdatePanel ID="updatePanelProvincia" runat="server">
-                <ContentTemplate>
-                    <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div class="mb-3">
-            <label for="ddlLocalidad" class="form-label">Localidad:</label>
-            <asp:UpdatePanel ID="updatePanelLocalidad" runat="server">
-                <ContentTemplate>
-                    <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
-                </ContentTemplate>
-                <%--<Triggers>
+            <div class="mb-3">
+                <label for="ddlProvincia" class="form-label">Provincia:</label>
+                <asp:UpdatePanel ID="updatePanelProvincia" runat="server">
+                    <ContentTemplate>
+                        <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div class="mb-3">
+                <label for="ddlLocalidad" class="form-label">Localidad:</label>
+                <asp:UpdatePanel ID="updatePanelLocalidad" runat="server">
+                    <ContentTemplate>
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
+                    </ContentTemplate>
+                    <%--  <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="ddlProvincia" EventName="SelectedIndexChanged" />
                 </Triggers>--%>
-            </asp:UpdatePanel>
-        </div>
+                </asp:UpdatePanel>
+            </div>
 
             <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
-            <div class="mb-3">
-                <label for="tbUrlImg" class="form-label">Imagen de Perfil</label>
-                <img id="imgPerfil" runat="server" src="" alt="foto de perfil" onerror="this.onerror=null; 
-            this.src='<%:placeholderImg %>;'"/>
+            <div class="mb-3 contenedorImgPerfil">
+                <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
+                <img id="imgPerfil" runat="server" src="" class="imgPerfil" alt="foto de perfil" onerror="this.onerror=null; 
+            this.src='<%:placeholderImg %>;'" />
             </div>
             <div class="mb-3">
-                        <label class="form-label">Subir desde el ordenador</label>
-                        <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control"/>                  
-                    </div> 
-            <div class="mb-3">
-                <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true"/>
+                <label class="form-label">Subir desde el ordenador</label>
+                <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
             </div>
-    </div>
+            <div class="mb-3">
+                <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true" />
+            </div>
+        </div>
+    
 </asp:Content>
