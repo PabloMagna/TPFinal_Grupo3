@@ -30,7 +30,11 @@ a{
      color:#fff;
 }
 
-#imgHistoria{
+#imgHistoria,#imgPerfil{
     display:block;
+    max-width:500px;
+}
+
+.perfil{
     max-width:500px;
 }

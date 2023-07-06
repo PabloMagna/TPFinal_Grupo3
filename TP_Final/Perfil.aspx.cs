@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using static System.Net.WebRequestMethods;
 
 namespace TP_Final
 {
@@ -15,26 +16,47 @@ namespace TP_Final
     {
         protected List<Publicacion> publicaciones;
         protected List<Historia> historias;
+        protected Usuario userLogeado= new Usuario();
+        protected Persona persona = new Persona();
+        protected Refugio refugio = new Refugio();
+        protected int idProvinciaPreseleccionada;
+        protected int idLocalidadPreseleccionada;
+        protected const string placeholderImg ="https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {
+            userLogeado = (Usuario)Session["Usuario"];
+            //No hace falta preguntar si hay usuario en sesion
             if (Session["Usuario"] != null)
             {
                 Usuario usuario = (Usuario)Session["Usuario"];
-                PublicacionNegocio publiNegocio = new PublicacionNegocio();
                 HistoriaNegocio histoNegocio = new HistoriaNegocio();
                 historias = new List<Historia>();
                 historias = histoNegocio.ListarPorUsuario(usuario.Id);
 
-                publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
                 //cargar historias
                 rpHistorias.DataSource = historias;
                 rpHistorias.DataBind();
 
+                //Carga Datos perfil
+                if (usuario.Tipo == TipoUsuario.Persona)
+                {
+                    PersonaNegocio negocio = new PersonaNegocio();                   
+                    persona=negocio.BuscarporUsuario(usuario.Id);
+                    cargarFormPersona(persona);
+                }
+                else
+                {
+                    RefugioNegocio negocio = new RefugioNegocio();
+                    refugio = negocio.BuscarporUsuario(usuario.Id);
+                }
+
                 if (!IsPostBack)
                 {
-
+                    CargarProvinciaYLocalidadPreseleccionadas(usuario.Tipo);
+                    PublicacionNegocio publiNegocio = new PublicacionNegocio();
+                    publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
                 }
-                else { Response.Redirect("/default.aspx"); }
+                
             }
         }
 
@@ -81,6 +103,89 @@ namespace TP_Final
             }
         }
 
-       
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
+            CargarDropDownListLocalidad(idProvincia);
+        }
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                CargarDropDownListProvincia();
+                CargarDropDownListLocalidad(idProvinciaPreseleccionada);
+            }
+        }
+        private void CargarProvinciaYLocalidadPreseleccionadas(TipoUsuario tipo)
+        {
+            if (tipo==TipoUsuario.Persona)
+            {
+                idProvinciaPreseleccionada = persona.IDProvincia;
+                idLocalidadPreseleccionada = persona.IDLocalidad;
+            }
+            else
+            {
+                idProvinciaPreseleccionada = refugio.IDProvincia;
+                idLocalidadPreseleccionada = refugio.IDLocalidad;
+            }
+        }
+
+        //protected void Page_Init(object sender, EventArgs e)
+        //{
+        //    ddlProvincia.SelectedIndexChanged += ddlProvincia_SelectedIndexChanged;
+        //}
+
+        private void CargarDropDownListProvincia()
+        {
+            ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio();
+            List<KeyValuePair<int, string>> provincias = provinciaNegocio.ListarClaveValor();
+            ddlProvincia.DataSource = provincias;
+            ddlProvincia.DataTextField = "Value";
+            ddlProvincia.DataValueField = "Key";
+            ddlProvincia.DataBind();
+
+            // Obtener el índice de la provincia preseleccionada
+            int index = idProvinciaPreseleccionada - 1;
+            if (index >= 0 && index < ddlProvincia.Items.Count)
+            {
+                ddlProvincia.SelectedIndex = index;
+            }
+        }
+
+        private void CargarDropDownListLocalidad(int idProvincia)
+        {
+            LocalidadNegocio localidadNegocio = new LocalidadNegocio();
+            List<KeyValuePair<int, string>> localidades = localidadNegocio.ListarClaveValor(idProvincia);
+            ddlLocalidad.DataSource = localidades;
+            ddlLocalidad.DataTextField = "Value";
+            ddlLocalidad.DataValueField = "Key";
+            ddlLocalidad.DataBind();
+
+            // Obtener el índice de la localidad preseleccionada
+            int index = idLocalidadPreseleccionada - 1;
+            if (index >= 0 && index < ddlLocalidad.Items.Count)
+            {
+                ddlLocalidad.SelectedIndex = index;
+            }
+        }
+
+        void cargarFormPersona(Persona persona) {
+            tbNombre.Text = persona.Nombre;
+            tbApellido.Text = persona.Apellido;
+            tbDni.Text = persona.Dni.ToString();
+            tbFechaNac.Text = persona.FechaNacimiento.ToString("yyyy-MM-dd");
+            tbTel.Text = persona.Telefono;
+            if(persona.UrlImagen!=null && persona.UrlImagen != "")
+            {
+                imgPerfil.Src = persona.UrlImagen;               
+            }
+            else { imgPerfil.Src = placeholderImg; }
+            
+        }
+
+        protected void Modificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
