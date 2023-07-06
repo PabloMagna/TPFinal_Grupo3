@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using static System.Net.WebRequestMethods;
-
+using System.Web.Compilation;
 
 namespace TP_Final
 {
@@ -17,6 +17,7 @@ namespace TP_Final
         protected int IDPublicacion { get; set; }
         protected Publicacion Publicacion { get; set; }
         protected bool existeImagen = false;
+        protected List<ImagenMascota> listaImg { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -287,11 +288,20 @@ namespace TP_Final
 
                 if(BuscarImagenesPublicacion(publicacion.Id).Count >0)
                 {
+                    listaImg = BuscarImagenesPublicacion(publicacion.Id);
                     existeImagen = true;
                     string urlPrimeraImg = BuscarImagenesPublicacion(publicacion.Id)[0].urlImagen;
                     imgPublicacionMascota.ImageUrl = urlPrimeraImg;
+
+                    
+                    foreach (ImagenMascota img in listaImg)
+                    {
+                        Image image = new Image();
+                        image.ImageUrl = img.urlImagen;
+                        image.CssClass = "fotosMascota";
+                        foto.Controls.Add(image);
+                    }
                 }
-               //Falta cargar las imágenes
             }
 
             catch (Exception ex)
@@ -324,6 +334,7 @@ namespace TP_Final
             {
                 //Seteo publicacion: 
                 Publicacion nueva = new Publicacion();
+                nueva.Id = int.Parse(Request.QueryString["ID"]);
                 nueva.Titulo = tbNombre.Text;
                 nueva.Especie = (Especie)Enum.Parse(typeof(Especie), ddlEspecie.SelectedValue);
                 nueva.Descripcion = tbDescripcion.Text;
@@ -359,7 +370,7 @@ namespace TP_Final
 
                 //Seteo Imágenes: 
                 ImagenMascota nuevaImg = new ImagenMascota();
-                nuevaImg.IdPublicacion = publicacionNegocio.GetIdPublicacionCreada(usuarioLogin.Id); 
+                nuevaImg.IdPublicacion = int.Parse(Request.QueryString["ID"]); 
                
                 if (!string.IsNullOrEmpty(tbImgFile.Value))
                 {

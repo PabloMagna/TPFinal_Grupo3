@@ -89,7 +89,7 @@
                 </div>
             <hr />
               <div class="mb-3">
-                    <label class="form-label">IMAGEN DE LA MASCOTA</label>
+                    <label class="form-label">IMÁGENES DE LA MASCOTA</label>
                 </div> 
                 <!--
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -110,8 +110,8 @@
               <%if (existeImagen == true)
                 {%>
                       
-                     <div class="mb-3">  
-                        <asp:Image class="imgPublicacionMascota" ID="imgPublicacionMascota" runat="server" CssClass="img-fluid" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/>
+                     <div class="flex-column d-flex justify-content-between align-items-center" id="foto" runat="server">  
+                    <!--    <asp:Image class="imgPublicacionMascota" ID="imgPublicacionMascota" runat="server" CssClass="img-fluid" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/> -->
                      </div>
                 <hr />
                     <div class="mb-3">

@@ -76,3 +76,10 @@ div.col-4 {
     width:auto;
     overflow:hidden;
 }
+
+.fotosMascota {
+    max-width: 80%;
+    height: 200px;
+    width: auto;    
+    margin: 15px;
+}
