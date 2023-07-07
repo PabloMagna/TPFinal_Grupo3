@@ -41,11 +41,21 @@
                         <p class="card-text">Provincia: <%= CargarProvincia() %></p>
                         <p class="card-text">Fecha y hora: <%= publicacion.FechaHora.ToString() %></p>
                         <p class="card-text">Estado: <%= publicacion.Estado %></p>
-                        <%if (Session["Uusario"] != null)
-                            { %>
-                        <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
-                        <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" Visible="false" />
+                        <%if (Session["Usuario"] != null)
+                            {
+                                if (ComprobarAdopcion(((Usuario)Session["Usuario"]).Id, publicacion.Id))
+                                { %>
+                        <div>
+                            <h1>Ya estás en Proceso de Adopción con este animal</h1>
+                        </div>
+                        <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
                         <%}
+                            else
+                            {%>
+                        <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
+                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" Visible="false" />
+                        <%}
+                            }
                             else
                             {%>
                         <a href="Login.aspx" class="btn btn-primary">Adoptar</a>

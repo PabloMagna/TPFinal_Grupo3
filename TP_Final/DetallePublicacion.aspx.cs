@@ -167,6 +167,11 @@ namespace TP_Final
                     btnFavorito.Text = "Agregar a favoritos";
             }
         }
+        protected bool ComprobarAdopcion(int idUser, int idPublicacion)
+        {
+            AdopcionNegocio negocio = new AdopcionNegocio();
+            return negocio.EnDataBase(idUser,idPublicacion);
+        }
 
     }
 }
