@@ -47,6 +47,17 @@ a{
     max-width:500px;
 }
 
+.contenedorBotones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.botonPad {
+    padding:10px;
+}
+
 .contenedorImgPerfil {
     display: flex;
     justify-content: space-around;
