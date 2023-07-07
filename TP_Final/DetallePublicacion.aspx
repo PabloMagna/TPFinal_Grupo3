@@ -41,8 +41,16 @@
                         <p class="card-text">Provincia: <%= CargarProvincia() %></p>
                         <p class="card-text">Fecha y hora: <%= publicacion.FechaHora.ToString() %></p>
                         <p class="card-text">Estado: <%= publicacion.Estado %></p>
+                        <%if (Session["Uusario"] != null)
+                            { %>
                         <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
                         <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" Visible="false" />
+                        <%}
+                            else
+                            {%>
+                        <a href="Login.aspx" class="btn btn-primary">Adoptar</a>
+                        <a href="Login.aspx" class="btn btn-primary">Agregar a Favoritos</a>
+                        <%} %>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -73,14 +81,15 @@
     <%--COMENTARIOS--%>
 
     <%if (comentarios.Count() > 0)
-        { int i = 0;%>
+        {
+            int i = 0;%>
     <% foreach (var coment in comentarios)
         {
-         %>
+    %>
     <section class="container-sm comentarios">
         <div class="cabecera">
             <img class="imgUser" src="<%:camposUsuario[i].UrlImg %>" onerror="this.onerror=null; 
-            this.src='<%:ImgPlaceHolder %>;'"/>
+            this.src='<%:ImgPlaceHolder %>;'" />
             <label name="Nombre-Usuario" class="lbNombre"><%:camposUsuario[i].Nombre %></label>
             <label class="fecha"><%=coment.FechaHora.ToString()%></label>
         </div>
@@ -89,7 +98,8 @@
         </div>
     </section>
 
-    <% i++; } %>
+    <% i++;
+        } %>
     <%} %>
 
     <%--INSERTAR COMENTARIO--%>
@@ -97,8 +107,8 @@
     </div>
     <section class="container-sm nuevoComent">
         <div class="cabecera Usuario">
-            <img ID="imgComentador" class="imgUser" src="<%:camposSesion.UrlImg %>" onerror="this.onerror=null; 
-            this.src='<%:ImgPlaceHolder %>;'"/>
+            <img id="imgComentador" class="imgUser" src="<%:camposSesion.UrlImg %>" onerror="this.onerror=null; 
+            this.src='<%:ImgPlaceHolder %>;'" />
             <label id="lbNombreLogeado" class="lbNombre"><%:camposSesion.Nombre %></label>
         </div>
         <asp:TextBox ID="tbNuevoComentario" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control Campo" MaxLength="300"></asp:TextBox>
