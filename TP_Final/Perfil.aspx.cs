@@ -16,7 +16,7 @@ namespace TP_Final
     public partial class Perfil : System.Web.UI.Page
     {
         protected List<Publicacion> publicaciones;
-        protected List<Historia> historias;
+        protected List<Historia> historias = new List<Historia>();
         protected Usuario userLogeado = new Usuario();
         protected Persona persona = new Persona();
         protected Refugio refugio = new Refugio();
@@ -25,35 +25,31 @@ namespace TP_Final
         protected const string placeholderImg = "https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {
-            userLogeado = (Usuario)Session["Usuario"];
             //No hace falta preguntar si hay usuario en sesion
+            userLogeado = (Usuario)Session["Usuario"];
             if (Session["Usuario"] != null)
             {
-                Usuario usuario = (Usuario)Session["Usuario"];
-                HistoriaNegocio histoNegocio = new HistoriaNegocio();
-                historias = new List<Historia>();
-                historias = histoNegocio.ListarPorUsuario(usuario.Id);
-
-
-
                 if (!IsPostBack)
-                {
+                {   //Usuario en sesion
+                    //Usuario usuario = (Usuario)Session["Usuario"];
+                    HistoriaNegocio histoNegocio = new HistoriaNegocio();
+                    historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
                     //Carga Publicaciones
                     PublicacionNegocio publiNegocio = new PublicacionNegocio();
-                    publicaciones = publiNegocio.ListarPorUsuario(usuario.Id);
+                    publicaciones = publiNegocio.ListarPorUsuario(userLogeado.Id);
                     //Carga Datos perfil
-                    if (usuario.Tipo == TipoUsuario.Persona)
+                    if (userLogeado.Tipo == TipoUsuario.Persona)
                     {
                         PersonaNegocio negocio = new PersonaNegocio();
-                        persona = negocio.BuscarporUsuario(usuario.Id);
+                        persona = negocio.BuscarporUsuario(userLogeado.Id);
                         cargarFormPersona(persona);
                     }
                     else
                     {
                         RefugioNegocio negocio = new RefugioNegocio();
-                        refugio = negocio.BuscarporUsuario(usuario.Id);
+                        refugio = negocio.BuscarporUsuario(userLogeado.Id);
                     }
-                    CargarProvinciaYLocalidadPreseleccionadas(usuario.Tipo);
+                    CargarProvinciaYLocalidadPreseleccionadas(userLogeado.Tipo);
                 }
 
             }
@@ -183,11 +179,24 @@ namespace TP_Final
 
         }
 
+        protected void cargarFormRefugio(Refugio refugio)
+        {
+            tbNombreRefugio.Text = refugio.Nombre;
+            tbDireccion.Text = refugio.Direccion;
+            tbTel.Text = refugio.Telefono;
+            if (refugio.UrlImagen != null && refugio.UrlImagen != "")
+            {
+                imgPerfil.Src = refugio.UrlImagen;
+            }
+            else { imgPerfil.Src = placeholderImg; }
+        }
+
         protected void Modificar_Click(object sender, EventArgs e)
         {
             if (userLogeado.Tipo == TipoUsuario.Persona)
             {
                 Page.Validate("ValPersona");
+                Page.Validate("ValAmbos");
                 if (Page.IsValid)
                 {
                     PersonaNegocio negocio = new PersonaNegocio();
@@ -202,6 +211,23 @@ namespace TP_Final
 
                     negocio.Modificar(persona);
                 }
+            }
+            else
+            {
+                Page.Validate("ValRefugio");
+                Page.Validate("ValAmbos");
+                if (Page.IsValid)
+                {
+                    RefugioNegocio negocio = new RefugioNegocio();
+                    refugio.Nombre = tbNombreRefugio.Text;
+                    refugio.Direccion = tbDireccion.Text;
+                    refugio.Telefono = tbTel.Text;
+                    refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
+                    refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
+                    //VALIDAR IMG Y TRAERLA PARA EL UPDATE
+                    //refugio.UrlImagen = ...
+                }
+                
             }
         }
 

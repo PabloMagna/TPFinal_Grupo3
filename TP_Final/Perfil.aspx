@@ -34,17 +34,19 @@
                     <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
                     <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
                 </ul>
-                <button class="btn btn-primary">Boton</button>
             </div>
         </div>
     </aside>
+
+
     <div class="container">
 
-        <div class="row" id="Publicaciones">
+        <h2 id="Publicaciones">Tus Publicaciones</h2>
+        <%--SECCION PUBLICACIONES--%>
+        <div class="row">
             <asp:Label runat="server" ID="lbNombre"></asp:Label>
         </div>
         <div class="container">
-            <h2>Tus Publicaciones</h2>
         </div>
         <div class="col-md-8">
             <asp:ScriptManager ID="smTarjetas" runat="server"></asp:ScriptManager>
@@ -80,11 +82,11 @@
         </div>
     </div>
 
+    <%--SECCION HISTORIAS--%>
 
-    <%--Este es solo un div para posicionar en historias con click en el Sidebar--%>
-    <div id="Historias"></div>
-    <hr />
-
+    <h2 id="Historias">Tus Historias 
+        <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
+    </h2>
 
     <% if (historias == null || historias.Count == 0)
         { %>
@@ -100,9 +102,7 @@
     <asp:Repeater ID="rpHistorias" runat="server">
         <ItemTemplate>
             <div class="row Historias">
-                <h2>Tus Historias
-                <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
-                </h2>
+
                 <div class="card card-body">
 
                     <div class="mb-3">
@@ -140,31 +140,26 @@
                 <h2>Edita tus datos de perfil</h2>
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
-                    <asp:TextBox ID="tbNombre" runat="server" class="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Apellido</label>
-                    <asp:TextBox ID="tbApellido" runat="server" class="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="tbApellido" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">DNI</label>
-                    <asp:TextBox ID="tbDni" runat="server" class="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Ingrese solo números, maximo 12 digitos" ValidationExpression="^\d{1,12}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
+                    <asp:TextBox ID="tbDni" runat="server" class="form-control" MaxLength="12"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Ingrese solo números, maximo 12 digitos" ValidationExpression="^\d{1,12}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Fecha de Nacimiento </label>
                     <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tbTel">Telefono</label>
-                    <asp:TextBox ID="tbTel" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
-                </div>
+
             </div>
 
         </div>
@@ -172,9 +167,28 @@
             else
             { %>
 
-
+        <div id="formRefugio" runat="server">
+            <div class="mb-3">
+                <label class="form-label">Nombre del Refugio </label>
+                <asp:TextBox ID="tbNombreRefugio" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvNombreRefugio" runat="server" ControlToValidate="tbNombreRefugio" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValRefugio"></asp:RequiredFieldValidator>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dirección </label>
+                <asp:TextBox ID="tbDireccion" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="tbDireccion" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValRefugio"></asp:RequiredFieldValidator>
+            </div>
+        </div>
 
         <%} %>
+
+        <%--TELEFONO--%>
+        <div class="mb-3">
+            <label class="form-label">Telefono</label>
+            <asp:TextBox ID="tbTel" runat="server" class="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Red" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValAmbos"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>
+        </div>
 
         <%--LOCALIDADES Y PROVINCIAS--%>
         <div class="mb-3">
