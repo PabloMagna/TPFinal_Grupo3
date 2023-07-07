@@ -41,7 +41,7 @@
 
     <div class="container">
 
-        <h2 id="Publicaciones">Tus Publicaciones</h2>
+        <h2 id="Publicaciones" class="titulo">Tus Publicaciones</h2>
         <%--SECCION PUBLICACIONES--%>
         <div class="row">
             <asp:Label runat="server" ID="lbNombre"></asp:Label>
@@ -56,7 +56,7 @@
                         <% if (publicaciones == null || publicaciones.Count == 0)
                             {%>
                         <div class="col-md-12">
-                            <h1>No tienes Mascotas publicadas </h1>
+                            <h3 class="leyenda">No tienes Mascotas publicadas </h3>
                         </div>
                         <%}%>
 
@@ -84,14 +84,14 @@
 
     <%--SECCION HISTORIAS--%>
 
-    <h2 id="Historias">Tus Historias 
+    <h2 id="Historias" class="titulo">Tus Historias 
         <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
     </h2>
 
     <% if (historias == null || historias.Count == 0)
         { %>
     <div class="col-md-12">
-        <h2>Las historias están disponibles para quienes adopten Mascotas </h2>
+        <h3 class="leyenda">Las historias están disponibles para quienes adopten Mascotas </h3>
     </div>
     <% }
         else
@@ -128,16 +128,16 @@
     %>
     <hr />
 
-    <%--Solo para referenciar sidebar--%>
-    <div id="Perfil"></div>
+    <%--SECCION PERFIL--%>
     <%if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
+            
     %>
     <div class="container perfil">
 
         <div class="row">
             <div id="formPersona" runat="server">
-                <h2>Edita tus datos de perfil</h2>
+                <h2 id="Perfil" class="titulo">Edita tus datos de perfil</h2>
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
                     <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
@@ -163,11 +163,12 @@
             </div>
 
         </div>
+        </div>
         <%}
             else
             { %>
 
-        <div id="formRefugio" runat="server">
+        <div id="formRefugio" class="container divForm" runat="server">
             <div class="mb-3">
                 <label class="form-label">Nombre del Refugio </label>
                 <asp:TextBox ID="tbNombreRefugio" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
@@ -182,47 +183,49 @@
 
         <%} %>
 
-        <%--TELEFONO--%>
-        <div class="mb-3">
-            <label class="form-label">Telefono</label>
-            <asp:TextBox ID="tbTel" runat="server" class="form-control"></asp:TextBox>
+        <div class="container divForm">
+            <%--TELEFONO--%>
+            <div class="mb-3">
+                <label class="form-label">Telefono</label>
+                <asp:TextBox ID="tbTel" runat="server" class="form-control"></asp:TextBox>
+            </div>
             <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Red" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValAmbos"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>
-        </div>
+            <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="Números entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>
 
-        <%--LOCALIDADES Y PROVINCIAS--%>
-        <div class="mb-3">
-            <label for="ddlProvincia" class="form-label">Provincia:</label>
-            <asp:UpdatePanel ID="updatePanelProvincia" runat="server">
-                <ContentTemplate>
-                    <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div class="mb-3">
-            <label for="ddlLocalidad" class="form-label">Localidad:</label>
-            <asp:UpdatePanel ID="updatePanelLocalidad" runat="server">
-                <ContentTemplate>
-                    <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
-                </ContentTemplate>
-                <%--  <Triggers>
+            <%--LOCALIDADES Y PROVINCIAS--%>
+            <div class="mb-3">
+                <label for="ddlProvincia" class="form-label">Provincia:</label>
+                <asp:UpdatePanel ID="updatePanelProvincia" runat="server">
+                    <ContentTemplate>
+                        <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div class="mb-3">
+                <label for="ddlLocalidad" class="form-label">Localidad:</label>
+                <asp:UpdatePanel ID="updatePanelLocalidad" runat="server">
+                    <ContentTemplate>
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
+                    </ContentTemplate>
+                    <%--  <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="ddlProvincia" EventName="SelectedIndexChanged" />
                 </Triggers>--%>
-            </asp:UpdatePanel>
-        </div>
+                </asp:UpdatePanel>
+            </div>
 
-        <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
-        <div class="mb-3 contenedorImgPerfil">
-            <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
-            <img id="imgPerfil" runat="server" src="" class="imgPerfil" alt="foto de perfil" onerror="this.onerror=null; 
+            <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
+            <div class="mb-3 contenedorImgPerfil">
+                <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
+                <img id="imgPerfil" runat="server" src="" class="imgPerfil" alt="foto de perfil" onerror="this.onerror=null; 
             this.src='<%:placeholderImg %>;'" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Subir desde el ordenador</label>
+                <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true" />
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Subir desde el ordenador</label>
-            <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
-        </div>
-        <div class="mb-3">
-            <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true" />
-        </div>
-    </div>
+    
 </asp:Content>

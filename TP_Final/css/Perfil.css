@@ -2,6 +2,16 @@
     box-sizing:border-box;
 }
 
+.titulo{
+    text-align:center;
+    font-size:2.4rem;
+    margin:10px auto;
+    padding:20px;
+}
+
+.leyenda{
+    text-align:center;
+}
 
 body {
     background-color: aliceblue;
@@ -54,7 +64,14 @@ a{
 
 .perfil{
     max-width:500px;
-    margin:200px auto;
+    margin:100px auto;
+}
+.divForm{
+    max-width:500px;
+}
+
+.formbody{
+    width:50%;
 }
 
 .perfil>.form-label{

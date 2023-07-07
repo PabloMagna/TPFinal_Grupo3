@@ -25,13 +25,12 @@ namespace TP_Final
         protected const string placeholderImg = "https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //No hace falta preguntar si hay usuario en sesion
-            userLogeado = (Usuario)Session["Usuario"];
+            //Para prevenir que entren sin logearse por url
             if (Session["Usuario"] != null)
-            {
+            {    
+                userLogeado = (Usuario)Session["Usuario"];
                 if (!IsPostBack)
-                {   //Usuario en sesion
-                    //Usuario usuario = (Usuario)Session["Usuario"];
+                {   
                     HistoriaNegocio histoNegocio = new HistoriaNegocio();
                     historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
                     //Carga Publicaciones
@@ -48,11 +47,13 @@ namespace TP_Final
                     {
                         RefugioNegocio negocio = new RefugioNegocio();
                         refugio = negocio.BuscarporUsuario(userLogeado.Id);
+                        cargarFormRefugio(refugio);
                     }
                     CargarProvinciaYLocalidadPreseleccionadas(userLogeado.Tipo);
                 }
 
             }
+            else { Response.Redirect("default.aspx"); }
         }
 
         public string obtenerPrimeraImagen(int idPublicacion)
@@ -226,6 +227,7 @@ namespace TP_Final
                     refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
                     //refugio.UrlImagen = ...
+                    negocio.Modificar(refugio);
                 }
                 
             }
