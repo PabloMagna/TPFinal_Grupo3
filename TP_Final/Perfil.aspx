@@ -46,8 +46,6 @@
         <div class="row">
             <asp:Label runat="server" ID="lbNombre"></asp:Label>
         </div>
-        <div class="container">
-        </div>
         <div class="col-md-8">
             <asp:ScriptManager ID="smTarjetas" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server" ID="upTarjetas" UpdateMode="Conditional">
@@ -105,9 +103,11 @@
 
                 <div class="card card-body">
 
-                    <div class="mb-3">
+                    <div class="row">
                         <img id="imgHistoria" src="<%# Eval("UrlImagen") %>"></img>
                         <label class="form-label">Cambiar foto</label>
+                    </div>
+                    <div class="mb-3">
                         <input type="file" id="tbImgenFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
                         <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
                     </div>
@@ -218,8 +218,7 @@
         <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
         <div class="mb-3 contenedorImgPerfil">
             <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
-            <img id="imgPerfil" runat="server" src="" class="imgPerfil" alt="foto de perfil" onerror="this.onerror=null; 
-            this.src='<%:placeholderImg %>;'" />
+            <img id="imgPerfil" runat="server" src="" class="imgPerfil" alt="foto de perfil" onerror="this.src='<%:placeholderImg %>;'" />
         </div>
         <div class="mb-3">
             <label class="form-label">Subir desde el ordenador</label>

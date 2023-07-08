@@ -27,10 +27,10 @@ namespace TP_Final
         {
             //Para prevenir que entren sin logearse por url
             if (Session["Usuario"] != null)
-            {    
+            {
                 userLogeado = (Usuario)Session["Usuario"];
                 if (!IsPostBack)
-                {   
+                {
                     HistoriaNegocio histoNegocio = new HistoriaNegocio();
                     historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
                     //Carga Publicaciones
@@ -207,9 +207,10 @@ namespace TP_Final
                     persona.IDProvincia = ddlProvincia.SelectedIndex + 1;
                     persona.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     persona.Telefono = tbTel.Text;
-                    //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    //persona.UrlImagen = ...
+                    persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
 
+                    //VALIDAR IMG Y TRAERLA PARA EL UPDATE
+                    persona.UrlImagen = imgPerfil.Src;
                     negocio.Modificar(persona);
                 }
             }
@@ -226,13 +227,13 @@ namespace TP_Final
                     refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
                     refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    //refugio.UrlImagen = ...
+                    refugio.UrlImagen = imgPerfil.Src;
                     negocio.Modificar(refugio);
                 }
-                
+
             }
         }
 
-   
+
     }
 }
