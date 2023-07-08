@@ -31,12 +31,9 @@ namespace TP_Final
                 userLogeado = (Usuario)Session["Usuario"];
                 if (!IsPostBack)
                 {
-                    HistoriaNegocio histoNegocio = new HistoriaNegocio();
-                    historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
-                    //Carga Publicaciones
-                    PublicacionNegocio publiNegocio = new PublicacionNegocio();
-                    publicaciones = publiNegocio.ListarPorUsuario(userLogeado.Id);
-                    //Carga Datos perfil
+                    cargarHistorias();
+                    cargarPublicaciones();
+
                     if (userLogeado.Tipo == TipoUsuario.Persona)
                     {
                         PersonaNegocio negocio = new PersonaNegocio();
@@ -54,6 +51,18 @@ namespace TP_Final
 
             }
             else { Response.Redirect("default.aspx"); }
+        }
+
+        protected void cargarHistorias()
+        {
+            HistoriaNegocio histoNegocio = new HistoriaNegocio();
+            historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
+        }
+
+        protected void cargarPublicaciones()
+        {
+            PublicacionNegocio publiNegocio = new PublicacionNegocio();
+            publicaciones = publiNegocio.ListarPorUsuario(userLogeado.Id);
         }
 
         public string obtenerPrimeraImagen(int idPublicacion)
@@ -212,6 +221,10 @@ namespace TP_Final
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
                     persona.UrlImagen = imgPerfil.Src;
                     negocio.Modificar(persona);
+
+                    //Se actualizan las otras listas por postback
+                    cargarHistorias();
+                    cargarPublicaciones();
                 }
             }
             else
@@ -229,6 +242,9 @@ namespace TP_Final
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
                     refugio.UrlImagen = imgPerfil.Src;
                     negocio.Modificar(refugio);
+                    //Se actualizan las otras listas por postback
+                    cargarHistorias();
+                    cargarPublicaciones();
                 }
 
             }
