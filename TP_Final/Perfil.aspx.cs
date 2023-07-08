@@ -19,8 +19,8 @@ namespace TP_Final
         protected List<Publicacion> publicaciones;
         protected List<Historia> historias = new List<Historia>();
         protected Usuario userLogeado = new Usuario();
-        protected Persona persona = new Persona();
-        protected Refugio refugio = new Refugio();
+        protected Persona persona;
+        protected Refugio refugio;
         protected int idProvinciaPreseleccionada;
         protected int idLocalidadPreseleccionada;
         protected const string placeholderImg = "https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
@@ -36,15 +36,17 @@ namespace TP_Final
                     cargarPublicaciones();
 
                     if (userLogeado.Tipo == TipoUsuario.Persona)
-                    {
+                    {   
                         PersonaNegocio negocio = new PersonaNegocio();
                         persona = negocio.BuscarporUsuario(userLogeado.Id);
+                        Session["Persona"] = persona;
                         cargarFormPersona(persona);
                     }
                     else
                     {
                         RefugioNegocio negocio = new RefugioNegocio();
                         refugio = negocio.BuscarporUsuario(userLogeado.Id);
+                        Session["Refugio"] = refugio;
                         cargarFormRefugio(refugio);
                     }
                     CargarProvinciaYLocalidadPreseleccionadas(userLogeado.Tipo);
@@ -211,14 +213,20 @@ namespace TP_Final
                 // Piso la imagen anterior si es que tiene una
                 EliminarImgExistente(ruta,nombreArchivo);
                 tbImgFile.PostedFile.SaveAs(nombreArchivo);
-                string url = "../imagenes/Perfiles-" + userLogeado.Id + ".jpg";
+                string url = "../imagenes/Perfiles/Usuario-" + userLogeado.Id + ".jpg";
 
                 //Update Imagen en objeto Persona logeada:
                 if (userLogeado.Tipo == TipoUsuario.Persona)
                 {
-                persona.UrlImagen = url;
+                    persona = (Persona)Session["Persona"];
+                    persona.UrlImagen = url;
+                    Session["Persona"] = persona;
                 }
-                else { refugio.UrlImagen = url; }
+                else {
+                    Refugio refugio = (Refugio)Session["Refugio"];
+                    refugio.UrlImagen = url;
+                    Session["Refugio"] = refugio;
+                }
                 //PersonaNegocio negocio = new PersonaNegocio();
                 //negocio.Modificar(persona);
             }
@@ -239,12 +247,13 @@ namespace TP_Final
         protected void Modificar_Click(object sender, EventArgs e)
         {
             if (userLogeado.Tipo == TipoUsuario.Persona)
-            {
+            {   
                 Page.Validate("ValPersona");
                 Page.Validate("ValAmbos");
                 if (Page.IsValid)
                 {
                     PersonaNegocio negocio = new PersonaNegocio();
+                    Persona persona = (Persona)Session["Persona"];
                     persona.Nombre = tbNombre.Text;
                     persona.Apellido = tbApellido.Text;
                     persona.Dni = int.Parse(tbDni.Text);
@@ -256,8 +265,8 @@ namespace TP_Final
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
                     CargarImagenPerfil();
                     negocio.Modificar(persona);
-                    persona.UrlImagen = imgPerfil.Src;
-
+                    imgPerfil.Src = persona.UrlImagen;
+                    Session["Persona"] = persona;
                     //Se actualizan las otras listas por postback
                     cargarHistorias();
                     cargarPublicaciones();
@@ -270,6 +279,7 @@ namespace TP_Final
                 if (Page.IsValid)
                 {
                     RefugioNegocio negocio = new RefugioNegocio();
+                    Refugio refugio = (Refugio)Session["Refugio"]; 
                     refugio.Nombre = tbNombreRefugio.Text;
                     refugio.Direccion = tbDireccion.Text;
                     refugio.Telefono = tbTel.Text;
@@ -279,6 +289,7 @@ namespace TP_Final
                     CargarImagenPerfil();
                     refugio.UrlImagen = imgPerfil.Src;
                     negocio.Modificar(refugio);
+                    Session["Refugio"]=refugio;
                     //Se actualizan las otras listas por postback
                     cargarHistorias();
                     cargarPublicaciones();
