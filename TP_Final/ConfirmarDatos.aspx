@@ -49,7 +49,7 @@
             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="mb-3">
-            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click"/>
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar y ver Datos de adopcion" CssClass="btn btn-primary" OnClick="btnGuardar_Click"/>
         </div>
     </div>
     

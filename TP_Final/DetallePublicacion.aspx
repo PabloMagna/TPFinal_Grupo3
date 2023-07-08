@@ -53,7 +53,7 @@
                             else
                             {%>
                         <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
-                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" Visible="false" />
+                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos"/>
                         <%}
                             }
                             else

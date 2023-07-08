@@ -86,6 +86,7 @@ namespace Negocio
                     datos.setearParametro("@IDUsuario2", idUsuario);
                     datos.setearParametro("@IDPublicacion2", idPublicacion);
                     datos.setearParametro("@Estado2", (int)estadoFavorito);
+                    datos.ejecutarLectura();
                 }
                 else
                 {
@@ -94,7 +95,7 @@ namespace Negocio
                     datos.setearParametro("@IDUsuario3", idUsuario);
                     datos.setearParametro("@IDPublicacion3", idPublicacion);
                     datos.setearParametro("@Estado3", (int)estadoFavorito);
-                    datos.ejecutarAccion();
+                    datos.ejecutarLectura();
                 }
             }
             catch (Exception ex)
