@@ -17,7 +17,7 @@ namespace Negocio
             List<Publicacion> publicaciones = new List<Publicacion>();
             try
             {
-                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones");
+                datos.setearConsulta("SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones WHERE Estado = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

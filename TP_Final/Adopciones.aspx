@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script>
-    function ConfirmarEliminar() {
-        return confirm("¿Estás seguro de que quieres eliminar esta adopción?");
-    }
+        function ConfirmarEliminar() {
+            return confirm("¿Estás seguro de que quieres eliminar esta adopción?");
+        }
     </script>
 </asp:Content>
 
@@ -31,7 +31,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Eliminar adopcion">
                     <ItemTemplate>
-                       <asp:LinkButton ID="lnkEliminar" runat="server" Text="Ya no quiero adoptarlo" OnClientClick="return ConfirmarEliminar();" OnClick="lnkEliminar_Click" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
+                        <asp:LinkButton ID="lnkEliminar" runat="server" Text="Ya no quiero adoptarlo" OnClientClick="return ConfirmarEliminar();" OnClick="lnkEliminar_Click" CommandArgument='<%# Eval("IDPublicacion") %>'></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

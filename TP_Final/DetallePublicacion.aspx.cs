@@ -170,7 +170,7 @@ namespace TP_Final
         protected bool ComprobarAdopcion(int idUser, int idPublicacion)
         {
             AdopcionNegocio negocio = new AdopcionNegocio();
-            return negocio.EnDataBase(idUser,idPublicacion);
+            return negocio.EnDataBaseActivo(idUser,idPublicacion);
         }
     }
 }

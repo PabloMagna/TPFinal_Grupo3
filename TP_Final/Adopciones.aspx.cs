@@ -57,9 +57,17 @@ namespace TP_Final
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
             adopcionNegocio.ActualizarEstado(idAdopcion, EstadoAdopcion.Eliminada);
 
+            // Obtener el ID de la publicación desde el CommandArgument del LinkButton
+            int idPublicacion = Convert.ToInt32(lnkEliminar.CommandArgument);
+
+            // Actualizar el estado de la publicación a "EnProceso" en la base de datos
+            PublicacionNegocio publicacionNeg = new PublicacionNegocio();
+            publicacionNeg.ActualizarEstado(idPublicacion, Estado.Activa);
+
             // Volver a cargar las adopciones del usuario en el GridView
             int idUsuario = ((Usuario)Session["Usuario"]).Id;
             CargarAdopciones(idUsuario);
         }
+
     }
 }

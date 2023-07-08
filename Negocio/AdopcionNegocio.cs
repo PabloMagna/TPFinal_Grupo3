@@ -178,11 +178,36 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
-        public bool EnDataBase(int idUsuario, int idPublicacion){
+        public bool EnDataBaseActivo(int idUsuario, int idPublicacion){
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("select ID from adopciones where IDUsuario = @IDUsuario and IDPublicacion = @IDPublicacion AND Estado <> 4");
+                datos.setearParametro("@IDUsuario", idUsuario);
+                datos.setearParametro("@IDPublicacion", idPublicacion);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+        public bool EnDataBase(int idUsuario, int idPublicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("select ID from adopciones where IDUsuario = @IDUsuario and IDPublicacion = @IDPublicacion");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.setearParametro("@IDPublicacion", idPublicacion);
                 datos.ejecutarLectura();

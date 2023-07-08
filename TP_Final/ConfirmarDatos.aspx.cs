@@ -159,6 +159,7 @@ namespace TP_Final
 
             int idPublicacion = Convert.ToInt32(Request["ID"]);
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+            PublicacionNegocio publicacionNeg = new PublicacionNegocio();
             if (adopcionNegocio.EnDataBase(IdUsuario, idPublicacion))
             {
                 adopcionNegocio.ActualizarEstado(IdUsuario, idPublicacion, EstadoAdopcion.Pendiente);
@@ -167,6 +168,7 @@ namespace TP_Final
             {
                 adopcionNegocio.Insertar(IdUsuario, idPublicacion);
             }
+            publicacionNeg.ActualizarEstado(idPublicacion,Estado.EnProceso);
             Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
         }
     }
