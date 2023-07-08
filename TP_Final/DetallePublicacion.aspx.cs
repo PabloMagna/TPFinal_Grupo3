@@ -172,6 +172,5 @@ namespace TP_Final
             AdopcionNegocio negocio = new AdopcionNegocio();
             return negocio.EnDataBase(idUser,idPublicacion);
         }
-
     }
 }

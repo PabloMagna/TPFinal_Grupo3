@@ -10,7 +10,8 @@ namespace Dominio
     {
         Pendiente = 1,
         Aceptada = 2,
-        Rechazada = 3
+        Rechazada = 3,
+        Eliminada = 4,
     }
     public class Adopcion
     {

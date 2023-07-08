@@ -46,14 +46,21 @@
                                 if (ComprobarAdopcion(((Usuario)Session["Usuario"]).Id, publicacion.Id))
                                 { %>
                         <div>
-                            <h1>Ya estás en Proceso de Adopción con este animal</h1>
+                            <h5>Ya estás en Proceso de Adopción con este animal</h5>
                         </div>
                         <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                        <%}
+                            else if (publicacion.Estado == Estado.EnProceso)
+                            {%>
+                        <div>
+                            <h5>Publicacion Pausada por estar en proceso de Adopcion</h5>
+                        </div>
+                        <asp:Button ID="btnFavorito2" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
                         <%}
                             else
                             {%>
                         <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
-                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos"/>
+                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
                         <%}
                             }
                             else

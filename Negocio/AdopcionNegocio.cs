@@ -44,7 +44,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado from adopciones WHERE IDUsuario = @IDUsuario");
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado from adopciones WHERE IDUsuario = @IDUsuario and Estado <> 4");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.ejecutarLectura();
 
@@ -182,7 +182,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select ID from adopciones where IDUsuario = @IDUsuario and IDPublicacion = @IDPublicacion");
+                datos.setearConsulta("select ID from adopciones where IDUsuario = @IDUsuario and IDPublicacion = @IDPublicacion AND Estado <> 4");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.setearParametro("@IDPublicacion", idPublicacion);
                 datos.ejecutarLectura();

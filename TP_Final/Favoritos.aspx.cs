@@ -18,6 +18,8 @@ namespace TP_Final
         {
             if (!IsPostBack)
             {
+                if (Session["Usuario"] == null)
+                    Response.Redirect("Login.aspx");
                 CargarFavoritos();
             }
         }

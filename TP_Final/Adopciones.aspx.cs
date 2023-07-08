@@ -13,6 +13,8 @@ namespace TP_Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"] == null)
+                Response.Redirect("Login.aspx");
             if (!IsPostBack)
             {
                 // Obtener el ID del usuario desde la sesión "Usuario"
@@ -43,6 +45,21 @@ namespace TP_Final
                 int numeroLista = e.Row.RowIndex + 1;
                 e.Row.Cells[0].Text = numeroLista.ToString();
             }
+        }
+
+        protected void lnkEliminar_Click(object sender, EventArgs e)
+        {
+            // Obtener el IDAdopcion del LinkButton que se hizo clic
+            LinkButton lnkEliminar = (LinkButton)sender;
+            int idAdopcion = Convert.ToInt32(lnkEliminar.CommandArgument);
+
+            // Actualizar el estado de la adopción a "eliminado" en la base de datos
+            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+            adopcionNegocio.ActualizarEstado(idAdopcion, EstadoAdopcion.Eliminada);
+
+            // Volver a cargar las adopciones del usuario en el GridView
+            int idUsuario = ((Usuario)Session["Usuario"]).Id;
+            CargarAdopciones(idUsuario);
         }
     }
 }
