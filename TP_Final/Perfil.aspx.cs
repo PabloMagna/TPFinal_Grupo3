@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
@@ -201,6 +202,40 @@ namespace TP_Final
             else { imgPerfil.Src = placeholderImg; }
         }
 
+        protected void CargarImagenPerfil()
+        {
+            if (!string.IsNullOrEmpty(tbImgFile.Value))
+            {
+                string ruta = Server.MapPath("./imagenes/Perfiles/");
+                string nombreArchivo = ruta + "Usuario-" + userLogeado.Id + ".jpg";
+                // Piso la imagen anterior si es que tiene una
+                EliminarImgExistente(ruta,nombreArchivo);
+                tbImgFile.PostedFile.SaveAs(nombreArchivo);
+                string url = "../imagenes/Perfiles-" + userLogeado.Id + ".jpg";
+
+                //Update Imagen en objeto Persona logeada:
+                if (userLogeado.Tipo == TipoUsuario.Persona)
+                {
+                persona.UrlImagen = url;
+                }
+                else { refugio.UrlImagen = url; }
+                //PersonaNegocio negocio = new PersonaNegocio();
+                //negocio.Modificar(persona);
+            }
+        }
+
+        protected void EliminarImgExistente(string carpeta,string nombreArchivo)
+        {
+            // Ruta completa de la imagen anterior
+            string rutaImagenAnterior = Path.Combine(carpeta, nombreArchivo);
+
+            // Verifico si la imagen anterior existe y eliminarla si es así
+            if (System.IO.File.Exists(rutaImagenAnterior))
+            {
+                System.IO.File.Delete(rutaImagenAnterior);
+            }
+        }
+
         protected void Modificar_Click(object sender, EventArgs e)
         {
             if (userLogeado.Tipo == TipoUsuario.Persona)
@@ -219,8 +254,9 @@ namespace TP_Final
                     persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
 
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    persona.UrlImagen = imgPerfil.Src;
+                    CargarImagenPerfil();
                     negocio.Modificar(persona);
+                    persona.UrlImagen = imgPerfil.Src;
 
                     //Se actualizan las otras listas por postback
                     cargarHistorias();
@@ -240,6 +276,7 @@ namespace TP_Final
                     refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
                     refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
+                    CargarImagenPerfil();
                     refugio.UrlImagen = imgPerfil.Src;
                     negocio.Modificar(refugio);
                     //Se actualizan las otras listas por postback

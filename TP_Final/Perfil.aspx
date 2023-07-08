@@ -131,9 +131,10 @@
     <hr />
 
     <%--SECCION PERFIL--%>
-    <%if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
+    <%  string urlImgUser = "";
+        if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
-
+            urlImgUser = persona.UrlImagen;
     %>
     <div class="container perfil">
 
@@ -168,8 +169,9 @@
     </div>
     <%}
         else
-        { %>
-
+        { urlImgUser = refugio.UrlImagen;
+            %>
+            
     <div id="formRefugio" class="container divForm" runat="server">
         <div class="mb-3">
             <label class="form-label">Nombre del Refugio </label>
@@ -216,10 +218,15 @@
         </div>
 
         <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
-        <div class="mb-3 contenedorImgPerfil">
-            <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
-            <img id="imgPerfil" runat="server" src="" class="imgPerfil" alt="foto de perfil" onerror="this.src='<%:placeholderImg %>;'" />
-        </div>
+        <asp:UpdatePanel ID="upImgPerfil" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="mb-3 contenedorImgPerfil">
+                    <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
+                    <img id="imgPerfil" runat="server" src='<%=urlImgUser %>' class="imgPerfil" alt="foto de perfil" onerror="this.src=<%:placeholderImg %>;'" />
+                </div>
+            </ContentTemplate>
+            
+        </asp:UpdatePanel>
         <div class="mb-3">
             <label class="form-label">Subir desde el ordenador</label>
             <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
