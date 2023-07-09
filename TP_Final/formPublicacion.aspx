@@ -84,29 +84,73 @@
               <div class="mb-3">
                     <label class="form-label">IMÁGENES DE LA MASCOTA</label>
                 </div> 
-                <!--
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Con URL</label>
-                            <asp:TextBox ID="tbImg" runat="server" class="form-control" MaxLength="500" placeholder="https://www...." AutoPostBack="true" OnTextChanged="tbImg_textCanged"></asp:TextBox>   
+               
+                  <%
+                      if (existeImagen == true)
+                      {
+                          int i = 0;
+                          int j = 0;
+                  %>
                     
-                        </div> 
-                         <div class="mb-3 imgMascota">                   
-                             <asp:Image ID="imgMascota" runat="server" CssClass="img-fluid" ImageUrl="../imagenes/pet_placeholder.png"/>
-                        </div> 
-                       
-                    </ContentTemplate>                    
-                </asp:UpdatePanel>
-                     -->
-              <%if (existeImagen == true)
-                {%>
-                      
-                     <div class="flex-column d-flex justify-content-between align-items-center" id="foto" runat="server">  
-                    <!--    <asp:Image class="imgPublicacionMascota" ID="imgPublicacionMascota" runat="server" CssClass="img-fluid" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/> -->
-                     </div>
-                <hr />
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                      <div class="carousel-indicators">
+
+                        <%
+                        foreach (Dominio.ImagenMascota img in listaImg)
+                        {
+                        %>
+                          <%if (i == 0)
+                            {%>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i %>" class="active" aria-current="true" aria-label="Slide <%= i %>"></button>
+                            <%}
+                            else
+                            {%>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i %>"  aria-current="true" aria-label="Slide <%= i %>"></button>
+                            <%}%>
+                            
+                        <%
+                            i++;
+                        }%>                        
+                      </div>
+                      <div class="carousel-inner">
+                          <%
+                        foreach (Dominio.ImagenMascota img in listaImg)
+                        {
+                        %>
+                          <%if (j == 0)
+                            {%>
+                                <div class="carousel-item active">
+                                  <img src="<%=img.urlImagen%>" class="d-block w-100" alt="Img Publicación <%=img.IdPublicacion %>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'">
+                                </div>
+                            <%}
+                            else
+                            {%>
+                                <div class="carousel-item">
+                                  <img src="<%=img.urlImagen%>" class="d-block w-100" alt="Img Publicación <%=img.IdPublicacion %>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'">
+                                </div>
+                            <%}%>
+                            
+                        <%
+                            j++;
+                        }%>   
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div> 
+                    <hr />
+                    <div class="mb-3">
+                        <label class="form-label">¿QUERÉS BORRAR ALGUNA IMAGEN?</label>
+                    </div>
+                    <div class="mb-3">
+                           <asp:Button ID="btnBorrar" runat="server" Text="Borrar imágenes" CssClass="btn primary borrar" OnClick="btnBorrar_Click"/>
+                    </div>
+                    <hr />
                     <div class="mb-3">
                         <label class="form-label">¿QUERÉS AGREGAR OTRA IMAGEN?</label>
                     </div> 

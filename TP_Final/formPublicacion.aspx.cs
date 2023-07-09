@@ -29,6 +29,12 @@ namespace TP_Final
 
             usuarioLogin = (Dominio.Usuario)Session["Usuario"];
 
+            if (Request.QueryString["ID"] != null)
+            {
+                IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
+                cargarImagenes(IDPublicacion);
+            }
+
             try
             {
                 if (!IsPostBack)
@@ -148,6 +154,7 @@ namespace TP_Final
         
         protected void tbImg_textCanged(object sender, EventArgs e)
         {
+            /*
             try
             {
                 imgMascota.ImageUrl = tbImg.Text;
@@ -156,6 +163,7 @@ namespace TP_Final
             {
                 Session.Add("Error", ex);
             }
+            */
         }
         
 
@@ -254,12 +262,15 @@ namespace TP_Final
             {
                 lblErrorDescripcion.Text = "Debe agregar una descripción.";
                 lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                lblErrorDescripcion.Visible = true;
                 return false;
             }
-            else if (tbDescripcion.Text.Length < 100)
+            else if (tbDescripcion.Text.Length < 50)
             {
                 lblErrorDescripcion.Text = "La descripción es demasiado corta.";
                 lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                lblErrorDescripcion.Visible = true;
+
                 return false;
             }
             else
@@ -292,23 +303,13 @@ namespace TP_Final
                     ddlEdad.SelectedValue = "M";
                 }
 
-                if(BuscarImagenesPublicacion(publicacion.Id).Count >0)
+                /*
+                if (BuscarImagenesPublicacion(publicacion.Id).Count >0)
                 {
                     listaImg = BuscarImagenesPublicacion(publicacion.Id);
                     existeImagen = true;
-                    string urlPrimeraImg = BuscarImagenesPublicacion(publicacion.Id)[0].urlImagen;
-                    imgPublicacionMascota.ImageUrl = urlPrimeraImg;
-
-                    
-                    foreach (ImagenMascota img in listaImg)
-                    {
-                        Image image = new Image();
-                        image.ImageUrl = img.urlImagen;
-                        image.CssClass = "fotosMascota";
-                        image.Attributes["onerror"] = "this.src='https://g.petango.com/shared/Photo-Not-Available-dog.gif'";
-                        foto.Controls.Add(image);
-                    }
                 }
+                */
             }
 
             catch (Exception ex)
@@ -318,7 +319,15 @@ namespace TP_Final
             }
         }
 
-        
+        public void cargarImagenes(int id)
+        {
+            if (BuscarImagenesPublicacion(id).Count > 0)
+            {
+                listaImg = BuscarImagenesPublicacion(id);
+                existeImagen = true;
+            }
+        }
+
         public List<ImagenMascota> BuscarImagenesPublicacion(int idPublicacion)
         {
             List<ImagenMascota> imagenesMascota = null;
@@ -401,6 +410,11 @@ namespace TP_Final
                 Session.Add("Error", ex);
                 throw;
             }
+        }
+
+        public void btnBorrar_Click(object sender, EventArgs e)
+        {
+
         }
 
 

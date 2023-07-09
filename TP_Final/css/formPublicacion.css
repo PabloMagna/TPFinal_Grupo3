@@ -63,23 +63,26 @@ div.col-4 {
     .altaExitosa h3 {
         color: #24566E;
     }
-/*
-.imgMascota {
-    width: 100px !important;
-    height: 100px !important;
-    margin-top: 10px;
-    align-self: center;
-}
 
-.imgPublicacionMascota{
-    max-height: 150px !important;
-    width:auto;
-    overflow:hidden;
-}
-*/
 .fotosMascota {    
     height: 200px;
     width: auto;
     margin: 15px;
     background-color: #D2E3EB;
+}
+
+.carousel-inner {
+    background-color: #D2E3EB;
+    height: 200px;
+}
+
+.carousel-item img {
+    height: 200px;
+    width: auto;
+    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+}
+.borrar{
+    width:100% !important;
 }

@@ -186,49 +186,13 @@ namespace TP_Final
         protected global::System.Web.UI.WebControls.Label lblErrorDescripcion;
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnBorrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-
-        /// <summary>
-        /// tbImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbImg;
-
-        /// <summary>
-        /// imgMascota control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgMascota;
-
-        /// <summary>
-        /// foto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl foto;
-
-        /// <summary>
-        /// imgPublicacionMascota control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPublicacionMascota;
+        protected global::System.Web.UI.WebControls.Button btnBorrar;
 
         /// <summary>
         /// tbImgFile control.
