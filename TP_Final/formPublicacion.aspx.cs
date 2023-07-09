@@ -150,21 +150,7 @@ namespace TP_Final
                 Session.Add("Error", ex);
                 throw;
             }
-        }
-        
-        protected void tbImg_textCanged(object sender, EventArgs e)
-        {
-            /*
-            try
-            {
-                imgMascota.ImageUrl = tbImg.Text;
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", ex);
-            }
-            */
-        }
+        }        
         
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -302,14 +288,7 @@ namespace TP_Final
                     tbEdad.Text = publicacion.Edad.ToString();
                     ddlEdad.SelectedValue = "M";
                 }
-
-                /*
-                if (BuscarImagenesPublicacion(publicacion.Id).Count >0)
-                {
-                    listaImg = BuscarImagenesPublicacion(publicacion.Id);
-                    existeImagen = true;
-                }
-                */
+               
             }
 
             catch (Exception ex)
@@ -414,7 +393,8 @@ namespace TP_Final
 
         public void btnBorrar_Click(object sender, EventArgs e)
         {
-
+            int idPublicacion = int.Parse( Request.QueryString["ID"]);
+            Response.Redirect("EditarImagenesMascota.aspx?ID="+idPublicacion);
         }
 
 
