@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Services.Description;
@@ -96,22 +97,23 @@ namespace TP_Final
                 HiddenField hfIDHistoria = (HiddenField)repeaterItem.FindControl("hfIDHistoria");
                 TextBox tbDescripcion = (TextBox)repeaterItem.FindControl("tbDescripcion");
                 HtmlInputFile tbImgenFile = (HtmlInputFile)repeaterItem.FindControl("tbImgenFile");
-                
+
                 if (hfIDHistoria != null && tbDescripcion != null)
                 {
                     int idHistoria = Convert.ToInt32(hfIDHistoria.Value);
                     string descripcion = tbDescripcion.Text;
-
+                   
                     // Obtener el objeto Historia y actualizar los campos
                     HistoriaNegocio negocio = new HistoriaNegocio();
-                    Historia historia = negocio.Buscar(idHistoria);
+                    Historia nueva = negocio.Buscar(idHistoria);
                     
-                    if (historia != null)
+                    if (nueva != null)
                     {
-                        historia.Descripcion = descripcion;
-
+                        nueva.Descripcion = descripcion;
+                        // si el cliente cargo una img, la actualizo, sino queda la que ya tenia.
+                        ActualizarImagenHistoria(ref nueva,tbImgenFile);
                         // Actualizar el objeto en tu lógica de negocio o base de datos
-                        negocio.Actualizar(historia);
+                        negocio.Actualizar(nueva);
 
                         // Actualizar el repeater
                         historias = negocio.ListarPorUsuario(userLogeado.Id);
@@ -236,9 +238,16 @@ namespace TP_Final
             else { imgPerfil.Src = placeholderImg; }
         }
 
+        static bool EsImagen(string fileName)
+        {
+            string pattern = @"\.(jpg|png|jpeg)$";
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(fileName);
+        }
+
         protected void CargarImagenPerfil()
         {
-            if (!string.IsNullOrEmpty(tbImgFile.Value))
+            if (!string.IsNullOrEmpty(tbImgFile.Value) && EsImagen(tbImgFile.Value))
             {
                 string ruta = Server.MapPath("./imagenes/Perfiles/");
                 string nombreArchivo = ruta + "Usuario-" + userLogeado.Id + ".jpg";
@@ -259,6 +268,19 @@ namespace TP_Final
                     refugio.UrlImagen = url;
                     Session["Refugio"] = refugio;
                 }
+            }
+        }
+
+        protected void ActualizarImagenHistoria(ref Historia nueva, HtmlInputFile f)
+        {
+            if (!string.IsNullOrEmpty(f.Value) && EsImagen(f.Value))
+            {
+                string ruta = Server.MapPath("./imagenes/Historias/");
+                string nombreFile = ruta + "Historia-IDUser-" + userLogeado.Id + "-" + DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".jpg";
+                EliminarImgExistente(ruta, nombreFile);
+                f.PostedFile.SaveAs(ruta + nombreFile);             
+                nueva.UrlImagen = nombreFile;
+                f.PostedFile.SaveAs(nueva.UrlImagen);
             }
         }
 
@@ -327,7 +349,6 @@ namespace TP_Final
 
             }
         }
-
 
     }
 }

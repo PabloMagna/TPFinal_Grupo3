@@ -109,7 +109,7 @@
                         <label class="form-label">Cambiar foto</label>
                     </div>
                     <div class="mb-3">
-                        <input type="file" id="tbImgenFile" runat="server" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
+                        <input type="file" id="tbImgenFile" runat="server" accept="image/jpeg, image/png, image/jpg" class="form-control" />
                         <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="mb-3">
