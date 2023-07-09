@@ -16,6 +16,22 @@
     background-color: #D2E3EB;
 }
 
-.card{
-    margin: 25px 10px !important;
+.card {
+    margin: 20px 10px !important;
+    height: 400px !important;
+    position:relative;
+}
+
+.custom-btn{
+    position:absolute;
+    bottom: 8px;
+}
+.content-text {
+    height: 120px;
+    margin-top: 0;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+}
+.content-text p {
+    
 }

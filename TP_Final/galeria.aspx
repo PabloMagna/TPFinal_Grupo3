@@ -59,12 +59,14 @@
                                 {%>
                             <% foreach (var item in publicaciones)
                                 { %>
-                            <div class="col-md-6">
+                            <div class="col-md-6 cards">
                                 <div class="card">
                                     <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="<% %>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'">
                                     <div class="card-body">
-                                        <h5 class="card-title"><%= item.Titulo %></h5>
-                                        <p class="card-text"><%= item.Descripcion %></p>
+                                        <div class="content-text">
+                                            <h5 class="card-title"><%= item.Titulo %></h5>
+                                            <p class="card-text"><%= item.Descripcion %></p>
+                                        </div>                                        
                                         <a href="DetallePublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Ver más</a>
                                     </div>
                                 </div>
