@@ -1,0 +1,40 @@
+﻿body {
+}
+
+.portada {
+    background-color: #D2E3EB;
+    height: auto;
+    padding: 20px 0;
+    text-align: center;
+    /*margin-top: 60px;*/
+}
+
+#titulo {
+    color: #24566E;
+}
+
+
+.divMascota {
+    background-color: #D2E3EB;
+    height: 80px;
+    width: 100px;
+    border: 2px solid #24566E;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+
+.imgMascota {
+    height: 80px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.row {
+    margin: 20px auto;
+    background-color: #D2E3EB;
+    height: 80px;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+}

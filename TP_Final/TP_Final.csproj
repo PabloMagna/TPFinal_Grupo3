@@ -76,6 +76,7 @@
     <Content Include="css\AltaCuenta.css" />
     <Content Include="css\ConfirmarDatos.css" />
     <Content Include="css\DetallePublicacion.css" />
+    <Content Include="css\EditarImagenesMascota.css" />
     <Content Include="css\Historias.css" />
     <Content Include="css\master.css" />
     <Content Include="css\home.css" />
@@ -84,6 +85,7 @@
     <Content Include="css\Perfil.css" />
     <Content Include="default.aspx" />
     <Content Include="DetallePublicacion.aspx" />
+    <Content Include="EditarImagenesMascota.aspx" />
     <Content Include="Favoritos.aspx" />
     <Content Include="galeria.aspx" />
     <Content Include="Global.asax" />
@@ -175,6 +177,13 @@
     </Compile>
     <Compile Include="DetallePublicacion.aspx.designer.cs">
       <DependentUpon>DetallePublicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarImagenesMascota.aspx.cs">
+      <DependentUpon>EditarImagenesMascota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarImagenesMascota.aspx.designer.cs">
+      <DependentUpon>EditarImagenesMascota.aspx</DependentUpon>
     </Compile>
     <Compile Include="Favoritos.aspx.cs">
       <DependentUpon>Favoritos.aspx</DependentUpon>
