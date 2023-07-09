@@ -22,16 +22,25 @@
     position:relative;
 }
 
-.custom-btn{
-    position:absolute;
+.custom-btn {
+    position: absolute;
     bottom: 8px;
+    color: #24566E;
+    background-color: #D2E3EB;
+    padding: 4px 8px;
+    border-radius: 10px;
+    border: 2px solid #24566E;
 }
+
+    .custom-btn:hover {
+        color: #24566E;
+        background-color: #C45F2E;
+        border: 2px solid #24566E;
+    }
+
 .content-text {
     height: 120px;
     margin-top: 0;
     overflow-y: scroll;
     text-overflow: ellipsis;
-}
-.content-text p {
-    
 }

@@ -15,6 +15,14 @@ namespace TP_Final
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            if (Request.QueryString["ID"] == null)
+            {
+                Response.Redirect("Galeria.aspx");
+            }
             if (!IsPostBack)
             {
                 CargarUsuario();

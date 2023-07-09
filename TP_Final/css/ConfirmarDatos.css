@@ -1,0 +1,44 @@
+﻿body {
+}
+
+
+.formulario {
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    color: #fff;
+}
+
+.titulo {
+    font-size: 30px;
+}
+
+.row {
+    margin: auto;
+    margin-top: 15px;
+    background: #C45F2E;
+    width: 500px;
+    min-height: 600px;
+    padding: 30px;
+    flex: 1 1 300px;
+    max-width: 600px;
+    justify-self: center;
+}
+
+div.col-4 {
+    width: 100%;
+    height: fit-content;
+}
+
+.btn {
+    padding: 7px 10px !important;
+    background-color: #D2E3EB !important;
+    color: #24566E !important;
+    font-weight: bold !important;
+    margin-right: 10px !important;
+    margin-top: 15px !important;
+}
+
+    .btn:hover {
+        background-color: #9dc2d3 !important;
+    }

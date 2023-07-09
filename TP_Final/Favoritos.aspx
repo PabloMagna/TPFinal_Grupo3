@@ -23,8 +23,10 @@
                                         <div class="card">
                                             <img runat="server" id="imgTarjeta" src="" style="max-height: 19rem" class="card-img-top" alt="" />
                                             <div class="card-body">
-                                                <h5 class="card-title"><%# Eval("Titulo") %></h5>
-                                                <p class="card-text"><%# Eval("Descripcion") %></p>
+                                                 <div class="content-text">
+                                                    <h5 class="card-title"><%# Eval("Titulo") %></h5>
+                                                    <p class="card-text"><%# Eval("Descripcion") %></p>
+                                                </div>
                                                 <a href='<%# "DetallePublicacion.aspx?ID=" + Eval("Id") %>' class="btn btn-primary custom-btn">Ver más</a>
                                                 <asp:HiddenField runat="server" ID="hfIdPublicacion" Value='<%# Eval("Id") %>' />
                                                 <asp:Button runat="server" ID="btnQuitarFavorito" Text="Quitar de favoritos" OnClick="btnQuitarFavorito_Click" CssClass="btn btn-primary custom-btn" Style="margin-top: 5px;" />

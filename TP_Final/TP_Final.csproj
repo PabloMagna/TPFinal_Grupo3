@@ -74,6 +74,7 @@
     <Content Include="ConfirmarDatos.aspx" />
     <Content Include="ContactoAdopcion.aspx" />
     <Content Include="css\AltaCuenta.css" />
+    <Content Include="css\ConfirmarDatos.css" />
     <Content Include="css\DetallePublicacion.css" />
     <Content Include="css\Historias.css" />
     <Content Include="css\master.css" />
