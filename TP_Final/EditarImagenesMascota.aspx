@@ -27,10 +27,10 @@
                          <input type="checkbox" value="" id="<%=img.Id%>" >
                     </div>
                     <div class="col-4 divMascota">
-                        <img class="imgMascota" src="<%=img.urlImagen%>"/>                    
-                        <label class="form-check-label" for="id" style="display: none;" ><%=img.Id %></label>
+                        <img class="imgMascota" src="<%=img.urlImagen%>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/>                  
                     </div>
                     <div class="col-4">
+                        <label class="form-check-label" for="id" style="display: none;" ><%=img.Id %></label>
                         <button type="button" class="btn primary borrar">Borrar</button>
                     </div>    
                 </div>
