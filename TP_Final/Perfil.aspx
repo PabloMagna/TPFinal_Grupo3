@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
     <%--GOOGLE FONTS--%>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -108,7 +109,7 @@
                         <label class="form-label">Cambiar foto</label>
                     </div>
                     <div class="mb-3">
-                        <input type="file" id="tbImgenFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
+                        <input type="file" id="tbImgenFile" runat="server" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
                         <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="mb-3">
@@ -131,10 +132,8 @@
     <hr />
 
     <%--SECCION PERFIL--%>
-    <%  string urlImgUser = "";
-        if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
+    <%  if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
-            urlImgUser=persona.UrlImagen;
     %>
     <div class="container perfil">
 
@@ -170,9 +169,8 @@
     <%}
         else
         {
-            urlImgUser = refugio.UrlImagen;
-            %>
-            
+    %>
+
     <div id="formRefugio" class="container divForm" runat="server">
         <div class="mb-3">
             <label class="form-label">Nombre del Refugio </label>
@@ -230,8 +228,8 @@
                     </div>
                 </div>
             </ContentTemplate>
-            
         </asp:UpdatePanel>
+
         <div class="mb-3">
             <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true" />
         </div>

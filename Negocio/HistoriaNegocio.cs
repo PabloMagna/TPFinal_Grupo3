@@ -93,6 +93,35 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
         }
 
+        public Historia Buscar(int IDHistoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Historia aux = new Historia();
+
+            try
+            {
+                datos.setearConsulta("select ID, IDUsuario, Descripcion,UrlImagen,FechaHora,Estado from Historias Where Id = "+IDHistoria);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    aux.ID = datos.Lector.GetInt32(0);
+                    aux.IDUsuario = datos.Lector.GetInt32(1);
+                    aux.Descripcion = datos.Lector.GetString(2);
+                    aux.UrlImagen = datos.Lector.GetString(3);
+                    aux.FechaHora = datos.Lector.GetDateTime(4);
+                    aux.Estado = (EstadoHistoria)datos.Lector.GetInt32(5);
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
         public bool Agregar(Historia nuevaHistoria)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -120,6 +149,33 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public bool Actualizar(Historia historia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool insertOk = false;
+            try
+            {
+                datos.setearConsulta("update Historias set Descripcion = @Descripcion, UrlImagen = @UrlImagen, FechaHora = @FechaHora, " +
+                    "Estado = @Estado where ID = "+historia.ID);
+                datos.setearParametro("@Descripcion", historia.Descripcion);
+                datos.setearParametro("@UrlImagen", historia.UrlImagen);
+                datos.setearParametro("@FechaHora", historia.FechaHora);
+                datos.setearParametro("@Estado", (int)historia.Estado);
+                datos.ejecutarAccion();
+                insertOk = true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return insertOk;
         }
 
         public bool Eliminar(int idHistoria)

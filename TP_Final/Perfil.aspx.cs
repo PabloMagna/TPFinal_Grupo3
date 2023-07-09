@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Services.Description;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
@@ -21,6 +22,7 @@ namespace TP_Final
         protected Usuario userLogeado = new Usuario();
         protected Persona persona;
         protected Refugio refugio;
+        protected string urlImgUser;
         protected int idProvinciaPreseleccionada;
         protected int idLocalidadPreseleccionada;
         protected const string placeholderImg = "https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
@@ -86,7 +88,37 @@ namespace TP_Final
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Button btnAceptar = (Button)sender;
+            RepeaterItem repeaterItem = (RepeaterItem)btnAceptar.NamingContainer;
 
+            if (repeaterItem != null)
+            {
+                HiddenField hfIDHistoria = (HiddenField)repeaterItem.FindControl("hfIDHistoria");
+                TextBox tbDescripcion = (TextBox)repeaterItem.FindControl("tbDescripcion");
+                HtmlInputFile tbImgenFile = (HtmlInputFile)repeaterItem.FindControl("tbImgenFile");
+                
+                if (hfIDHistoria != null && tbDescripcion != null)
+                {
+                    int idHistoria = Convert.ToInt32(hfIDHistoria.Value);
+                    string descripcion = tbDescripcion.Text;
+
+                    // Obtener el objeto Historia y actualizar los campos
+                    HistoriaNegocio negocio = new HistoriaNegocio();
+                    Historia historia = negocio.Buscar(idHistoria);
+                    
+                    if (historia != null)
+                    {
+                        historia.Descripcion = descripcion;
+
+                        // Actualizar el objeto en tu lógica de negocio o base de datos
+                        negocio.Actualizar(historia);
+
+                        // Actualizar el repeater
+                        historias = negocio.ListarPorUsuario(userLogeado.Id);
+                        rpHistorias.DataBind();
+                    }
+                }
+            }
         }
 
 
@@ -227,8 +259,6 @@ namespace TP_Final
                     refugio.UrlImagen = url;
                     Session["Refugio"] = refugio;
                 }
-                //PersonaNegocio negocio = new PersonaNegocio();
-                //negocio.Modificar(persona);
             }
         }
 
