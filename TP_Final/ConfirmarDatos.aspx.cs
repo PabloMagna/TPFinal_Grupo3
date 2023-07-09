@@ -15,10 +15,12 @@ namespace TP_Final
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Requiere inicio de sesión
             if (Session["Usuario"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
+            //Requiere ID de publicación como parámetro
             if (Request.QueryString["ID"] == null)
             {
                 Response.Redirect("Galeria.aspx");

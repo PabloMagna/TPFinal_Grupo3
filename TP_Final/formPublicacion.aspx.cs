@@ -21,6 +21,7 @@ namespace TP_Final
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Requiere inicio de sesión
             if (Session["Usuario"] == null)
             {
                 Response.Redirect("Login.aspx");

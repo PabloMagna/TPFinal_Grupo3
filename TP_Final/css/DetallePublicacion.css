@@ -121,3 +121,17 @@ textarea.form-control:focus {
     justify-content: flex-end;
     margin-top: 6px;
 }
+
+.btn {
+    color: #24566E;
+    background-color: #D2E3EB;
+    padding: 4px 8px;
+    border-radius: 10px;
+    border: 2px solid #24566E;
+}
+
+    .btn:hover {
+        color: #24566E;
+        background-color: #C45F2E;
+        border: 2px solid #24566E;
+    }

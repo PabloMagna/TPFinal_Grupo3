@@ -24,6 +24,17 @@ namespace TP_Final
         protected const string ImgPlaceHolder = "https://img.freepik.com/vector-gratis/ilustracion-icono-vector-dibujos-animados-lindo-gato-sentado-concepto-icono-naturaleza-animal-aislado-premium-vector-estilo-dibujos-animados-plana_138676-4148.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Requiere inicio de sesión
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            //Requiere ID de publicación como parámetro
+            if (Request.QueryString["ID"] == null)
+            {
+                Response.Redirect("Galeria.aspx");
+            }
+
             IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
 
             if (Session["Usuario"] != null)
