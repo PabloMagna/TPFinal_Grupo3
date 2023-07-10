@@ -98,6 +98,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="formPublicacion.aspx" />
+    <Content Include="RecuperarContrasenia.aspx" />
+    <Content Include="ResetearContrasenia.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +232,20 @@
     </Compile>
     <Compile Include="formPublicacion.aspx.designer.cs">
       <DependentUpon>formPublicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecuperarContrasenia.aspx.cs">
+      <DependentUpon>RecuperarContrasenia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecuperarContrasenia.aspx.designer.cs">
+      <DependentUpon>RecuperarContrasenia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetearContrasenia.aspx.cs">
+      <DependentUpon>ResetearContrasenia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetearContrasenia.aspx.designer.cs">
+      <DependentUpon>ResetearContrasenia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

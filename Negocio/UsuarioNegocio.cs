@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -211,6 +212,60 @@ namespace Negocio
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
+        }
+        public Usuario BuscarPorEmail(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Usuario aux = new Usuario();
+                datos.setearConsulta("select ID, IDTipoUsuario,Contrasenia, Email, Estado, EsAdmin, ResetToken, ResetTokenExpiracion from Usuarios where Email = @Email");
+                datos.setearParametro("@Email", email);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
+                    aux.Password = datos.Lector.GetString(2);
+                    aux.Email = datos.Lector.GetString(3);
+                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(4);
+                    aux.EsAdmin = datos.Lector.GetBoolean(5);
+
+                    if (!datos.Lector.IsDBNull(6))
+                    {
+                        aux.Token = datos.Lector.GetString(6);
+                    }
+
+                    if (!datos.Lector.IsDBNull(7))
+                    {
+                        aux.TokenExpiracion = datos.Lector.GetDateTime(7);
+                    }
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+        public void InsertarToken(int idUser, string token, DateTime tokenDate)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET ResetToken = @token, ResetTokenExpiracion = @tokenDate WHERE id = @id");
+                datos.setearParametro("@id", idUser);
+                datos.setearParametro("@token", token);
+                datos.setearParametro("@tokenDate", tokenDate);
+                datos.ejecutarLectura();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            } finally { datos.cerrarConexion(); }
         }
     }
 }
