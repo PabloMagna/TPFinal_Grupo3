@@ -53,7 +53,7 @@ namespace TP_Final
             string fromEmail = "PetNetNoResponder@gmail.com";
             string fromName = "PetNet";
             string subject = "Recuperación de Contraseña";
-            string body = $"Hola,\n\nHaz clic en el siguiente enlace para restablecer tu contraseña:\n\n{recoveryLink} \n Tienes 24 horas para activarlo";
+            string body = $"Hola,\n\nHaz clic en el siguiente enlace para restablecer tu contraseña:\n\n{recoveryLink} \n Tienes 24 horas para activarlo \n\n Si no has sido tú, desestimá este mensaje";
 
             // Crear el mensaje de correo electrónico
             MailMessage message = new MailMessage(new MailAddress(fromEmail, fromName), new MailAddress(email))
@@ -66,7 +66,7 @@ namespace TP_Final
             // Configurar el cliente SMTP para enviar el correo electrónico
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
             {
-                Credentials = new NetworkCredential(fromEmail, "Programacion.3"),
+                Credentials = new NetworkCredential(fromEmail, "urimyhukiycpxxap"),
                 EnableSsl = true
             };
 

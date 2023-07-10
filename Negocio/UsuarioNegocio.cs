@@ -267,5 +267,65 @@ namespace Negocio
                 throw ex;
             } finally { datos.cerrarConexion(); }
         }
+
+        public void CambiarContrasenia(int id, string newPassword)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET Contrasenia = @newPassword WHERE ID = @id");
+                datos.setearParametro("@newPassword", newPassword);
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ActualizarToken(int id, string token, DateTime? tokenDate)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET ResetToken = @token, ResetTokenExpiracion = @tokenDate WHERE ID = @id");
+                datos.setearParametro("@id", id);
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    datos.setearParametro("@token", DBNull.Value);
+                }
+                else
+                {
+                    datos.setearParametro("@token", token);
+                }
+
+                if (tokenDate.HasValue)
+                {
+                    datos.setearParametro("@tokenDate", tokenDate.Value);
+                }
+                else
+                {
+                    datos.setearParametro("@tokenDate", DBNull.Value);
+                }
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }

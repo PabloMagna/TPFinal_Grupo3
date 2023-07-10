@@ -39,7 +39,7 @@
                     </div>
                     <div class="my-3">
                         <span>No tienes cuenta? <a href="AltaCuenta.aspx">Registrate</a> / <a href="/AltaCuenta.aspx?Cuenta=Refugio">Registrar un refugio</a></span>
-                        <span>No recuerdas tu contraseña? <a href="#">Recuperar Contraseña</a></span>
+                        <span>No recuerdas tu contraseña? <a href="RecuperarContrasenia.aspx">Recuperar Contraseña</a></span>
                     </div>
                 </div>
             </div>
