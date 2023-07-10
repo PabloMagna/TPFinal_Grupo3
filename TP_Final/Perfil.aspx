@@ -4,7 +4,7 @@
     <link href="css/Perfil.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f9b631791e.js" crossorigin="anonymous"></script>
     <%--scripts para incluir jquery y jquery validation--%>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
@@ -94,7 +94,7 @@
     </div>
     <% }
         else
-        {       
+        {
     %>
     <asp:Repeater ID="rpHistorias" runat="server">
         <ItemTemplate>
@@ -220,9 +220,22 @@
                 <div class="mb-3 contenedorImgPerfil">
                     <label id="lbImgPerfil" for="tbUrlImg" class="form-label">Imagen de Perfil</label>
                     <img id="imgPerfil" runat="server" src='<%=urlImgUser %>' class="imgPerfil" alt="foto de perfil" onerror="this.src=<%:placeholderImg %>;'" />
+                    <script>
+                        function previewImage(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    document.getElementById('<%= imgPerfil.ClientID %>').setAttribute('src', e.target.result);
+                                };
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                    </script>
                     <div class="mb-3">
                         <label class="form-label">Subir desde el ordenador</label>
-                        <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
+                        <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" onchange="previewImage(this)" class="form-control" />
                     </div>
                 </div>
             </ContentTemplate>

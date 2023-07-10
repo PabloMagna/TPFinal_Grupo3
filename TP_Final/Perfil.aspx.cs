@@ -305,6 +305,28 @@ namespace TP_Final
             }
         }
 
+        protected string ObtenerUrlImagenPerfil()
+        {
+            string imageUrl = string.Empty;
+
+            // Verificar si se cargó una nueva imagen de perfil
+            if (tbImgFile.PostedFile != null && tbImgFile.PostedFile.ContentLength > 0)
+            {
+                string nombreArchivo = Path.GetFileName(tbImgFile.PostedFile.FileName);
+                string extension = Path.GetExtension(nombreArchivo);
+                if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
+                {
+                    string carpeta = Server.MapPath("~/imagenes/Perfiles/");
+                    string ruta = carpeta + "Usuario-" + userLogeado.Id + extension;
+                    //EliminarImgExistente(carpeta,ruta);
+                    tbImgFile.PostedFile.SaveAs(ruta);
+                    imageUrl = "../imagenes/Perfiles/Usuario-" + userLogeado.Id + extension;
+                }
+            }
+
+            return imageUrl;
+        }
+
         protected void Modificar_Click(object sender, EventArgs e)
         {
             if (userLogeado.Tipo == TipoUsuario.Persona)
@@ -323,8 +345,12 @@ namespace TP_Final
                     persona.Telefono = tbTel.Text;
                     persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
 
-                    //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    CargarImagenPerfil();
+                    //CargarImagenPerfil();
+                    string urlAux = ObtenerUrlImagenPerfil();
+                    if(urlAux != null)
+                    {
+                        persona.UrlImagen = urlAux;
+                    }
                     negocio.Modificar(persona);
                     imgPerfil.Src = persona.UrlImagen;
                     Session["Persona"] = persona;
@@ -347,8 +373,12 @@ namespace TP_Final
                     refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
                     refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    CargarImagenPerfil();
-                    refugio.UrlImagen = imgPerfil.Src;
+                    //CargarImagenPerfil();
+                    string urlAux = ObtenerUrlImagenPerfil();
+                    if (urlAux != null)
+                    {
+                        refugio.UrlImagen = urlAux;
+                    }
                     negocio.Modificar(refugio);
                     Session["Refugio"]=refugio;
                     //Se actualizan las otras listas por postback
