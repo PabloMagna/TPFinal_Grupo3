@@ -63,6 +63,8 @@ namespace TP_Final
         {
             HistoriaNegocio histoNegocio = new HistoriaNegocio();
             historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
+            rpHistorias.DataSource = historias;
+            rpHistorias.DataBind();
         }
 
         protected void cargarPublicaciones()
@@ -115,9 +117,11 @@ namespace TP_Final
                         // Actualizar el objeto en tu lógica de negocio o base de datos
                         negocio.Actualizar(nueva);
 
-                        // Actualizar el repeater
+                        // Actualizar datos por postback
                         historias = negocio.ListarPorUsuario(userLogeado.Id);
                         rpHistorias.DataBind();
+                        cargarHistorias();
+                        cargarPublicaciones();
                     }
                 }
             }
@@ -139,6 +143,11 @@ namespace TP_Final
 
                     HistoriaNegocio negocio = new HistoriaNegocio();
                     negocio.Eliminar(idHistoria);
+                    // Actualizar datos por postback
+                    historias = negocio.ListarPorUsuario(userLogeado.Id);
+                    rpHistorias.DataBind();
+                    cargarHistorias();
+                    cargarPublicaciones();
 
                 }
 

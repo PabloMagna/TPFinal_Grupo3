@@ -4,7 +4,7 @@
     <link href="css/Perfil.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f9b631791e.js" crossorigin="anonymous"></script>
     <%--scripts para incluir jquery y jquery validation--%>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
@@ -94,9 +94,7 @@
     </div>
     <% }
         else
-        {       //cargar historias
-            rpHistorias.DataSource = historias;
-            rpHistorias.DataBind();
+        {       
     %>
     <asp:Repeater ID="rpHistorias" runat="server">
         <ItemTemplate>
