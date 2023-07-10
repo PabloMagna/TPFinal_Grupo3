@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado from adopciones");
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,6 +26,7 @@ namespace Negocio
                     aux.IDPublicacion = datos.Lector.GetInt32(1);
                     aux.IDUsuario = datos.Lector.GetInt32(2);
                     aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
+                    aux.FechaHora = datos.Lector.GetDateTime(4);
                     lista.Add(aux);
                 }
                 return lista;
@@ -44,7 +45,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado from adopciones WHERE IDUsuario = @IDUsuario and Estado <> 4");
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE IDUsuario = @IDUsuario and Estado <> 4");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.ejecutarLectura();
 
@@ -55,6 +56,7 @@ namespace Negocio
                     aux.IDPublicacion = datos.Lector.GetInt32(1);
                     aux.IDUsuario = datos.Lector.GetInt32(2);
                     aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
+                    aux.FechaHora = datos.Lector.GetDateTime(4);
                     lista.Add(aux);
                 }
                 return lista;
@@ -73,7 +75,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado from adopciones WHERE IDPublicacion = @IDPublicacion");
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE IDPublicacion = @IDPublicacion");
                 datos.setearParametro("@IDPublicacion", idPublicacion);
                 datos.ejecutarLectura();
 
@@ -84,6 +86,7 @@ namespace Negocio
                     aux.IDPublicacion = datos.Lector.GetInt32(1);
                     aux.IDUsuario = datos.Lector.GetInt32(2);
                     aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
+                    aux.FechaHora = datos.Lector.GetDateTime(4);
                     lista.Add(aux);
                 }
                 return lista;
@@ -102,7 +105,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado from adopciones WHERE ID = @ID");
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE ID = @ID");
                 datos.setearParametro("@ID", id);
                 datos.ejecutarLectura();
 
@@ -113,6 +116,7 @@ namespace Negocio
                     aux.IDPublicacion = datos.Lector.GetInt32(1);
                     aux.IDUsuario = datos.Lector.GetInt32(2);
                     aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
+                    aux.FechaHora = datos.Lector.GetDateTime(4);
                     lista.Add(aux);
                 }
                 return lista;
@@ -165,10 +169,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("insert into adopciones (IDPublicacion, IDUsuario, Estado) values (@IDPublicacion, @IDUsuario, @Estado)");
+                datos.setearConsulta("insert into adopciones (IDPublicacion, IDUsuario, Estado, FechaHora) values (@IDPublicacion, @IDUsuario, @Estado, @FechaHora)");
                 datos.setearParametro("@IDPublicacion", IdPublicacion);
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.setearParametro("@Estado", EstadoAdopcion.Pendiente);
+                datos.setearParametro("@FechaHora", DateTime.Now);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

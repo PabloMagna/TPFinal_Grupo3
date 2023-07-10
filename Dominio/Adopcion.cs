@@ -19,5 +19,6 @@ namespace Dominio
         public int IDUsuario { get; set; }
         public int IDPublicacion { get; set; }
         public EstadoAdopcion Estado { get; set; }
+        public DateTime FechaHora { get; set; }
     }
 }

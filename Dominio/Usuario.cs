@@ -13,20 +13,24 @@ namespace Dominio
         Eliminado = 3,
         Comprobado = 4
     }
+
     public enum TipoUsuario
     {
         Persona = 1,
-        PersonaCompleto = 2,
-        Refugio = 3
+        PersonaCompleto = 3,
+        Refugio = 2
     }
+
     public class Usuario
-    {   
+    {
         public int Id { get; set; }
         public TipoUsuario Tipo { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        
+
         public EstadoUsuario Estado { get; set; }
         public bool EsAdmin { get; set; }
+        public string Token { get; set; }
+        public DateTime? TokenExpiracion { get; set; }
     }
 }

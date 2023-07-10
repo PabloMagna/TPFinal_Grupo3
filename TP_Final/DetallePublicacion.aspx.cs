@@ -173,9 +173,18 @@ namespace TP_Final
                 bool esFavorito = favoritoNegocio.EsFavorito(idUsuario, idPublicacion);
 
                 if (esFavorito)
+                {
                     btnFavorito.Text = "Quitar de favoritos";
+                    btnFavorito2.Text = "Quitar de favoritos";
+                    btnFavorito3.Text = "Quitar de favoritos";
+                }
+                    
                 else
+                {
                     btnFavorito.Text = "Agregar a favoritos";
+                    btnFavorito2.Text = "Agregar a favoritos";
+                    btnFavorito3.Text = "Agregar a favoritos";
+                }
             }
         }
         protected bool ComprobarAdopcion(int idUser, int idPublicacion)

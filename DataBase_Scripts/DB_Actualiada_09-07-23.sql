@@ -1,5 +1,5 @@
---DROP DATABASE DBTPFinalGRUPO3;
-
+DROP DATABASE DBTPFinalGRUPO3;
+go
 CREATE DATABASE DBTPFinalGRUPO3;
 go
 
@@ -20,19 +20,17 @@ CREATE TABLE Localidades (
   Nombre varchar(255) NOT NULL,
   PRIMARY KEY (ID),
   FOREIGN KEY (IDProvincia) REFERENCES Provincias(ID) );
-
-
-
 GO
 CREATE TABLE Usuarios (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
-	IDTipoUsuario INT NOT NULL,
-	Contrasenia VARCHAR(20) NOT NULL,
-	Email VARCHAR(50) UNIQUE NOT NULL,
-	Estado INT NOT NULL,
-	EsAdmin BIT NOT NULL,
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    IDTipoUsuario INT NOT NULL,
+    Contrasenia VARCHAR(20) NOT NULL,
+    Email VARCHAR(50) UNIQUE NOT NULL,
+    Estado INT NOT NULL,
+    EsAdmin BIT NOT NULL,
+    ResetToken VARCHAR(50),
+    ResetTokenExpiracion DATETIME
 );
-GO
 
 
 GO
@@ -134,6 +132,7 @@ CREATE TABLE Adopciones (
 	IDUsuario INT NOT NULL,
 	IDPublicacion INT NOT NULL,
 	Estado INT NOT NULL,
+	FechaHora datetime not null,
 	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID),
 	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
 );
