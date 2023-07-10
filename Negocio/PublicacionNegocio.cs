@@ -394,6 +394,30 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public int BuscarIdUsuario(int idPublicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                int idUsuario = 0;
+                datos.setearConsulta("SELECT IDUsuario FROM Publicaciones WHERE ID = @ID");
+                datos.setearParametro("@ID", idPublicacion);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    idUsuario = datos.Lector.GetInt32(0);
+                }
+                return idUsuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }
