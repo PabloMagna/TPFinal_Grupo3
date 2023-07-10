@@ -124,62 +124,121 @@ namespace TP_Final
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            PersonaNegocio personaNegocio = new PersonaNegocio();
-            int IdUsuario = ((Usuario)Session["Usuario"]).Id;
-
-            if (persona == null)
+            // Validar los campos
+            if (ValidarCampos())
             {
-                // Persona es null, realizar inserción
-                persona = new Persona();
-                persona.IDUsuario = usuario.Id;
-                persona.Dni = Convert.ToInt32(txtDni.Text);
-                persona.Nombre = txtNombre.Text;
-                persona.Apellido = txtApellido.Text;
-                persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text + " 00:00");
-                persona.Telefono = txtTelefono.Text;
-                persona.IDLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
-                persona.IDProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
-                persona.IDUsuario = IdUsuario;
+                PersonaNegocio personaNegocio = new PersonaNegocio();
+                int IdUsuario = ((Usuario)Session["Usuario"]).Id;
 
-                // Establecer el valor del parámetro @UrlImagen como cadena vacía
-                persona.UrlImagen = "";
-
-                personaNegocio.Agregar(persona);
-            }
-            else
-            {
-                // Persona no es null, realizar modificación
-                persona.Dni = Convert.ToInt32(txtDni.Text);
-                persona.Nombre = txtNombre.Text;
-                persona.Apellido = txtApellido.Text;
-                persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text + " 00:00");
-                persona.Telefono = txtTelefono.Text;
-                persona.IDLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
-                persona.IDProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
-                persona.IDUsuario = IdUsuario;
-                // Verificar si la UrlImagen es nula antes de establecer el valor del parámetro
-                if (persona.UrlImagen == null)
+                if (persona == null)
                 {
-                    // Establecer el valor del parámetro @UrlImagen
-                    persona.UrlImagen = ""; // Puedes asignar otro valor si es necesario
+                    // Persona es null, realizar inserción
+                    persona = new Persona();
+                    persona.IDUsuario = usuario.Id;
+                    persona.Dni = Convert.ToInt32(txtDni.Text);
+                    persona.Nombre = txtNombre.Text;
+                    persona.Apellido = txtApellido.Text;
+                    persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text + " 00:00");
+                    persona.Telefono = txtTelefono.Text;
+                    persona.IDLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
+                    persona.IDProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
+                    persona.IDUsuario = IdUsuario;
+
+                    // Establecer el valor del parámetro @UrlImagen como cadena vacía
+                    persona.UrlImagen = "";
+
+                    personaNegocio.Agregar(persona);
+                }
+                else
+                {
+                    // Persona no es null, realizar modificación
+                    persona.Dni = Convert.ToInt32(txtDni.Text);
+                    persona.Nombre = txtNombre.Text;
+                    persona.Apellido = txtApellido.Text;
+                    persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text + " 00:00");
+                    persona.Telefono = txtTelefono.Text;
+                    persona.IDLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
+                    persona.IDProvincia = Convert.ToInt32(ddlProvincia.SelectedValue);
+                    persona.IDUsuario = IdUsuario;
+                    // Verificar si la UrlImagen es nula antes de establecer el valor del parámetro
+                    if (persona.UrlImagen == null)
+                    {
+                        // Establecer el valor del parámetro @UrlImagen
+                        persona.UrlImagen = ""; // Puedes asignar otro valor si es necesario
+                    }
+
+                    personaNegocio.Modificar(persona);
                 }
 
-                personaNegocio.Modificar(persona);
+                int idPublicacion = Convert.ToInt32(Request["ID"]);
+                AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+                PublicacionNegocio publicacionNeg = new PublicacionNegocio();
+                if (adopcionNegocio.EnDataBase(IdUsuario, idPublicacion))
+                {
+                    adopcionNegocio.ActualizarEstado(IdUsuario, idPublicacion, EstadoAdopcion.Pendiente);
+                }
+                else
+                {
+                    adopcionNegocio.Insertar(IdUsuario, idPublicacion);
+                }
+                publicacionNeg.ActualizarEstado(idPublicacion, Estado.EnProceso);
+                Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
+            }
+        }
+
+        private bool ValidarCampos()
+        {
+            if (string.IsNullOrWhiteSpace(txtDni.Text) || txtDni.Text.Length < 6 || txtDni.Text.Length > 7)
+            {
+                MostrarError("El DNI debe tener entre 6 y 7 caracteres.");
+                return false;
             }
 
-            int idPublicacion = Convert.ToInt32(Request["ID"]);
-            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
-            PublicacionNegocio publicacionNeg = new PublicacionNegocio();
-            if (adopcionNegocio.EnDataBase(IdUsuario, idPublicacion))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text.Length < 2)
             {
-                adopcionNegocio.ActualizarEstado(IdUsuario, idPublicacion, EstadoAdopcion.Pendiente);
+                MostrarError("El nombre debe tener al menos 2 caracteres.");
+                return false;
             }
-            else
+
+            if (string.IsNullOrWhiteSpace(txtApellido.Text) || txtApellido.Text.Length < 2)
             {
-                adopcionNegocio.Insertar(IdUsuario, idPublicacion);
+                MostrarError("El apellido debe tener al menos 2 caracteres.");
+                return false;
             }
-            publicacionNeg.ActualizarEstado(idPublicacion,Estado.EnProceso);
-            Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
+
+            DateTime fechaNacimiento;
+            if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
+            {
+                MostrarError("La fecha de nacimiento no es válida.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTelefono.Text) || txtTelefono.Text.Length < 10 || txtTelefono.Text.Length > 20)
+            {
+                MostrarError("El teléfono debe tener entre 10 y 20 caracteres.");
+                return false;
+            }
+
+            if (ddlProvincia.SelectedIndex <= 0)
+            {
+                MostrarError("Debes seleccionar una provincia.");
+                return false;
+            }
+
+            if (ddlLocalidad.SelectedIndex <= 0)
+            {
+                MostrarError("Debes seleccionar una localidad.");
+                return false;
+            }
+
+            return true;
         }
+
+        private void MostrarError(string mensaje)
+        {
+            lblMessage.InnerText = mensaje;
+            lblMessage.Visible = true;
+        }
+
     }
 }

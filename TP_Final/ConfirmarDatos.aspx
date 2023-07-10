@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ConfirmarDatos.aspx.cs" Inherits="TP_Final.ConfirmarDatos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-        <link href="css/formPublicacion.css" rel="stylesheet" type="text/css" />    
+    <link href="css/formPublicacion.css" rel="stylesheet" type="text/css" />    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -14,6 +13,7 @@
     <section class="formulario" id="formulario" runat="server">
         <div class="container row">
             <h1>Confirmar Datos</h1>
+            <div class="alert alert-danger" id="lblMessage" runat="server" visible="false"></div>
             <div class="mb-3">
                 <label for="txtDni" class="form-label">DNI:</label>
                 <asp:TextBox ID="txtDni" runat="server" CssClass="form-control"></asp:TextBox>

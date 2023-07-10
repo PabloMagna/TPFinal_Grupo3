@@ -43,31 +43,37 @@ namespace TP_Final
 
             if (usuario != null && usuario.Token == token && usuario.TokenExpiracion > DateTime.Now)
             {
-                if (newPassword == confirmPassword)
+                if (newPassword.Length >= 8 && confirmPassword.Length >= 8)
                 {
-                    // Cambiar la contraseña del usuario
-                    negocio.CambiarContrasenia(usuario.Id, newPassword);
+                    if (newPassword == confirmPassword)
+                    {
+                        // Cambiar la contraseña del usuario
+                        negocio.CambiarContrasenia(usuario.Id, newPassword);
 
-                    // Restablecer el token y la fecha de expiración a null
-                    negocio.ActualizarToken(usuario.Id, null, null);
+                        // Restablecer el token y la fecha de expiración a null
+                        negocio.ActualizarToken(usuario.Id, null, null);
 
-                    // Mostrar un mensaje emergente (popup) en el cliente
-                    string script = "alert('Contraseña cambiada correctamente.'); window.location.href = 'Default.aspx';";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SuccessMessage", script, true);
+                        // Mostrar un mensaje emergente (popup) en el cliente
+                        string script = "alert('Contraseña cambiada correctamente.'); window.location.href = 'Default.aspx';";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SuccessMessage", script, true);
+                    }
+                    else
+                    {
+                        lblMessage.InnerText = "Las contraseñas no coinciden.";
+                        lblMessage.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblMessage.InnerText = "Las contraseñas no coinciden.";
+                    lblMessage.InnerText = "La contraseña debe tener al menos 8 caracteres.";
                     lblMessage.Visible = true;
                 }
             }
             else
             {
-                lblMessage.InnerText = "No estás autorizado a esta página.";
+                lblMessage.InnerText = "No estás autorizado a esta página - Token expirado";
                 lblMessage.Visible = true;
             }
         }
-
     }
-
 }
