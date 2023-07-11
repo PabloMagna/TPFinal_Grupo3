@@ -13,6 +13,22 @@ namespace TP_Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if ((Usuario)Session["Usuario"] == null)
+            {
+                string script = "alert('Debes iniciar sesión para acceder.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", script, true);
+
+                Response.Redirect("Login.aspx");
+            }
+            else if (!((Usuario)Session["Usuario"]).EsAdmin)
+            {
+                string script = "alert('Debes ser administrador para acceder.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", script, true);
+
+                Response.Redirect("Login.aspx");
+            }
+
+
             if (!IsPostBack)
             {
                 CargarComentarios();
