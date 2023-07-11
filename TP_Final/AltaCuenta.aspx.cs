@@ -13,42 +13,44 @@ namespace TP_Final
     public partial class AltaCuenta : System.Web.UI.Page
     {
         protected Usuario usuario { get; set; }
+        protected string Cuenta { get; set; }   
         protected void Page_Load(object sender, EventArgs e)
-        {   
-            
+        {               
             ProvinciaNegocio provincias = new ProvinciaNegocio();
             LocalidadNegocio localidades = new LocalidadNegocio();
-            string Cuenta = (string)Request.QueryString["Cuenta"];
+            Cuenta = (string)Request.QueryString["Cuenta"];
             if (Cuenta == "Persona") {
 
                 formRefugio.Visible = false;
-                formPersona.Visible = true;
                 rfvNombreRefugio.Enabled = false;
                 rfvDireccion.Enabled = false;
-                
+                cvLocalidad.Enabled = false;
+                cvProvincia.Enabled = false;
+                rfvTelefono.Enabled = false;
             }
             else
             {
-                formPersona.Visible = false;
                 formRefugio.Visible = true;
-                rfvApellido.Enabled = false;
-                rfvNombre.Enabled = false;
-                rfvFechaNac.Enabled = false;
-                rfvDni.Enabled = false;
-                revDni.Enabled = false;
+                //*
+                rfvNombreRefugio.Enabled = true;
+                rfvDireccion.Enabled = true;
             }
 
             if (!IsPostBack)
             {
                 usuario = new Usuario();
-                ddlProvincia.Items.Clear();
-                ddlProvincia.DataSource = provincias.cargarDropDownList();
-                ddlProvincia.DataBind();
-                ddlProvincia.SelectedIndex = 0;
+                if (Cuenta == "Refugio")
+                {
+                    ddlProvincia.Items.Clear();
+                    ddlProvincia.DataSource = provincias.cargarDropDownList();
+                    ddlProvincia.DataBind();
+                    ddlProvincia.SelectedIndex = 0;
 
-                ddlLocalidad.DataSource = localidades.CargarDropDownList(ddlProvincia.SelectedIndex);
-                ddlLocalidad.DataBind();
-                ddlLocalidad.SelectedIndex = 0;
+                    ddlLocalidad.DataSource = localidades.CargarDropDownList(ddlProvincia.SelectedIndex);
+                    ddlLocalidad.DataBind();
+                    ddlLocalidad.SelectedIndex = 0;
+                }
+                
             }
             
            
@@ -87,41 +89,39 @@ namespace TP_Final
         {
             string cuenta = (string)Request.QueryString["Cuenta"];
             int filasAfectadas = 0;
+
             Page.Validate("Validaciones");
             if (Page.IsValid)
             {   //acciones a tomar si es valido el ingreso de datos
                 AccesoDatos datos = new AccesoDatos();
                 UsuarioNegocio usuarios = new UsuarioNegocio();
                 usuario = new Usuario();
-                usuario.Email = tbEmail.Text;
-                usuario.Password = tbPassword.Text;
-                usuario.Tipo = (TipoUsuario)Enum.Parse(typeof(TipoUsuario), cuenta);
-                usuario.EsAdmin = false;
-                usuario.Estado = EstadoUsuario.Activo;
-                int idUsuario = usuarios.Agregar(usuario);
+                int idUsuario=0;
 
-                LocalidadNegocio localidades = new LocalidadNegocio();
-                ProvinciaNegocio provincias = new ProvinciaNegocio();
-                int idLocalidad = localidades.BuscarId(ddlLocalidad.SelectedItem.ToString());
-                int idProvincia = provincias.BuscarID(ddlProvincia.SelectedItem.ToString());
+                if (cuenta == "Persona")
+                {
+                    usuario.Email = tbEmail.Text;
+                    usuario.Password = tbPassword.Text;
+                    usuario.Tipo = TipoUsuario.Persona;
+                    usuario.EsAdmin = false;
+                    usuario.Estado = EstadoUsuario.Activo;
+                    filasAfectadas = usuarios.Agregar(usuario);
 
-                if (cuenta == "Persona") {
-                    PersonaNegocio personas = new PersonaNegocio();
-                    Persona persona = new Persona();
-                    persona.IDUsuario = idUsuario;
-                    persona.Nombre = tbNombre.Text;
-                    persona.Apellido = tbApellido.Text;
-                    persona.Dni = int.Parse(tbDni.Text);
-                    persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
-                    persona.IDProvincia = idProvincia;
-                    persona.IDLocalidad = idLocalidad;
-                    persona.UrlImagen = "";
-                    persona.Telefono = tbTelefono.Text;
-                    // Insertar en DB
-                    filasAfectadas=personas.Agregar(persona);
                 }
                 else
-                {
+                {   
+                    //Datos de usuario
+                    usuario.Email = tbEmail.Text;
+                    usuario.Password = tbPassword.Text;
+                    usuario.Tipo = TipoUsuario.Persona;
+                    usuario.EsAdmin = false;
+                    usuario.Estado = EstadoUsuario.Activo;
+                    idUsuario = usuarios.Agregar(usuario);
+                    //Localidad y Provincia
+                    LocalidadNegocio localidades = new LocalidadNegocio();
+                    ProvinciaNegocio provincias = new ProvinciaNegocio();
+                    int idLocalidad = localidades.BuscarId(ddlLocalidad.SelectedItem.ToString());
+                    int idProvincia = provincias.BuscarID(ddlProvincia.SelectedItem.ToString());
                     //Refugio
                     Refugio refugio = new Refugio();
                     RefugioNegocio refugios = new RefugioNegocio();
@@ -134,8 +134,8 @@ namespace TP_Final
                     refugio.Telefono = tbTelefono.Text;
                     // Insertar en DB
                     filasAfectadas = refugios.Agregar(refugio);
-
-                }              
+                }
+             
                     if(filasAfectadas > 0)
                     {
                         //Alta De Refugio o Persona Exitoso

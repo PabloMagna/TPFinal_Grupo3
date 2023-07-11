@@ -23,13 +23,15 @@ namespace Negocio
 
                 if (datos.Lector.Read())
                 {
-                    Usuario aux = new Usuario();
-                    aux.Id = datos.Lector.GetInt32(0);
-                    aux.Email = email;
-                    aux.Password = contrasenia;
-                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
-                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(2);
-                    aux.EsAdmin = datos.Lector.GetBoolean(3);
+                    Usuario aux = new Usuario
+                    {
+                        Id = datos.Lector.GetInt32(0),
+                        Email = email,
+                        Password = contrasenia,
+                        Tipo = (TipoUsuario)datos.Lector.GetInt32(1),
+                        Estado = (EstadoUsuario)datos.Lector.GetInt32(2),
+                        EsAdmin = datos.Lector.GetBoolean(3)
+                    };
                     return aux;
                 }
                 else
@@ -121,13 +123,15 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Usuario aux = new Usuario();
-                    aux.Id = datos.Lector.GetInt32(0);
-                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
-                    aux.Password = datos.Lector.GetString(2);
-                    aux.Email = datos.Lector.GetString(3);
-                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(4);
-                    aux.EsAdmin = datos.Lector.GetBoolean(5);
+                    Usuario aux = new Usuario
+                    {
+                        Id = datos.Lector.GetInt32(0),
+                        Tipo = (TipoUsuario)datos.Lector.GetInt32(1),
+                        Password = datos.Lector.GetString(2),
+                        Email = datos.Lector.GetString(3),
+                        Estado = (EstadoUsuario)datos.Lector.GetInt32(4),
+                        EsAdmin = datos.Lector.GetBoolean(5)
+                    };
                     lista.Add(aux);
                 }
                 return lista;
@@ -194,13 +198,15 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Usuario aux = new Usuario();
-                    aux.Id = datos.Lector.GetInt32(0);
-                    aux.Tipo = (TipoUsuario)datos.Lector.GetInt32(1);
-                    aux.Password = datos.Lector.GetString(2);
-                    aux.Email = datos.Lector.GetString(3);
-                    aux.Estado = (EstadoUsuario)datos.Lector.GetInt32(4);
-                    aux.EsAdmin = datos.Lector.GetBoolean(5);
+                    Usuario aux = new Usuario
+                    {
+                        Id = datos.Lector.GetInt32(0),
+                        Tipo = (TipoUsuario)datos.Lector.GetInt32(1),
+                        Password = datos.Lector.GetString(2),
+                        Email = datos.Lector.GetString(3),
+                        Estado = (EstadoUsuario)datos.Lector.GetInt32(4),
+                        EsAdmin = datos.Lector.GetBoolean(5)
+                    };
                     lista.Add(aux);
                 }
                 return lista;

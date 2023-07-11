@@ -26,38 +26,18 @@
                             <asp:TextBox ID="tbEmail" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationExpression="" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Formato inválido" SetFocusOnError="true" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password </label>
                     <asp:TextBox ID="tbPassword" runat="server" class="form-control" AutoPostBack="false" TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="tbPassword" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                </div>
-                <%-- Opciones exclusivas para Persona   --%>
-                <div id="formPersona" runat="server">
-                    <div class="mb-3">
-                        <label class="form-label">Nombre </label>
-                        <asp:TextBox ID="tbNombre" runat="server" class="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Apellido</label>
-                        <asp:TextBox ID="tbApellido" runat="server" class="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">DNI</label>
-                        <asp:TextBox ID="tbDni" runat="server" class="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Cyan" ErrorMessage="Ingrese solo números, maximo 12 digitos" ValidationExpression="^\d{1,12}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Fecha de Nacimiento </label>
-                        <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
+                </div>     
+
+                <%if (Cuenta=="Refugio")
+            { %>
+
 
                 <%--Opciones exclusivas para Refugio--%>
                 <div id="formRefugio" runat="server">
@@ -97,6 +77,8 @@
                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTelefono" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTelefono" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
                 </div>
+            <% } %>
+
                 <%--Botones--%>
                 <div class="mb-3">
                     <%--Enviar--%>

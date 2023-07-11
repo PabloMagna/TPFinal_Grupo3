@@ -3,7 +3,6 @@
     height: auto;
     padding: 20px 0;
     text-align: center;
-   /* margin-top: 60px;*/
 }
 
 #titulo {
@@ -13,7 +12,6 @@
 .formulario {
     display:flex;
     width:100vw;
-    /*background:rgb(0, 148, 255);*/
     height:100%;
     color:#fff;
 }
@@ -21,7 +19,7 @@
 
 .titulo{
     font-size:30px;
-    margin
+    /*margin*/
 }
 
 .row {
@@ -30,7 +28,7 @@
     margin-top: 15px;
     background: #C45F2E;
     width: 500px;
-    min-height: 600px;
+    /*min-height: 600px;*/
     padding: 30px;
     flex: 1 1 300px;
     max-width: 600px;
