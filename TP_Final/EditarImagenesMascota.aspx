@@ -23,7 +23,7 @@
                                 <img class="imgMascota" src="<%#Eval("urlImagen")%>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/>                  
                             </div>
                             <div class="col-4">
-                                <asp:Button ID="btnBorrar" runat="server" Text="Borrar" cssclass="btn primary borrar" OnClick="btnBorrar_Click" CommandArgument='<%#Eval("Id")%>'  CommandName="ImgID" />
+                                <asp:Button ID="btnBorrar" runat="server" Text="Borrar" CssClass="btn primary borrar" OnClick="btnBorrar_Click" CommandArgument='<%#Eval("Id")%>'  CommandName="ImgID" />
                             </div>  
                             <div class="col-2">                         
                             </div>
@@ -37,7 +37,7 @@
          </asp:UpdatePanel>
         -->
         <div>
-            <asp:Button ID="btnVolver" runat="server" Text="Volver a la publicación" cssclass="btn primary borrar" OnClick="btnVolver_Click"/>
+            <asp:Button ID="btnVolver" runat="server" Text="Volver a la publicación" CssClass="btn primary" OnClick="btnVolver_Click"/>
         </div>
     </section>
 

@@ -57,10 +57,10 @@ namespace TP_Final
             ImagenMascotaNegocio negocio = new ImagenMascotaNegocio();
             negocio.Borrar(idImg);
 
-            /*
+            
             int idPublicacion = int.Parse(Request.QueryString["ID"]);
             Response.Redirect("EditarImagenesMascota.aspx?ID=" + idPublicacion);
-            */
+            
         }
 
         public void btnVolver_Click(object sender, EventArgs e)

@@ -40,6 +40,7 @@ namespace TP_Final
         public void btnsalir_Click(object sender, EventArgs e)
         {
             Session.Remove("Usuario");
+            Response.Redirect("default.aspx");
         }
 
         public void btnperfil_Click(object sender, EventArgs e)
