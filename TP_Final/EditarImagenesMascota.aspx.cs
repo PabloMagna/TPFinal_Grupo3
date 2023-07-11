@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -23,23 +24,18 @@ namespace TP_Final
                 Response.Redirect("default.aspx");
             }
 
-            IDPublicacion = int.Parse(Request.QueryString["ID"]);           
+            IDPublicacion = int.Parse(Request.QueryString["ID"]);
+            listaImg = BuscarImagenesPublicacion(IDPublicacion);
+            
 
             if (!IsPostBack)
             {
-                cargarImagenes(IDPublicacion);
+                repImagenes.DataSource = listaImg;
+                repImagenes.DataBind();
             }
 
         }
-
-        public void cargarImagenes(int id)
-        {
-            if (BuscarImagenesPublicacion(id).Count > 0)
-            {
-                listaImg = BuscarImagenesPublicacion(id);
-                existeImagen = true;
-            }
-        }
+     
 
         public List<ImagenMascota> BuscarImagenesPublicacion(int idPublicacion)
         {
@@ -53,7 +49,26 @@ namespace TP_Final
             return imagenesMascota;
         }
 
+        public void btnBorrar_Click(object sender, EventArgs e)
+        {
+            string valorId = ((Button)sender).CommandArgument;
+            int idImg = int.Parse(valorId);
+            
+            ImagenMascotaNegocio negocio = new ImagenMascotaNegocio();
+            negocio.Borrar(idImg);
 
+            /*
+            int idPublicacion = int.Parse(Request.QueryString["ID"]);
+            Response.Redirect("EditarImagenesMascota.aspx?ID=" + idPublicacion);
+            */
+        }
+
+        public void btnVolver_Click(object sender, EventArgs e)
+        {
+            int idPublicacion = int.Parse(Request.QueryString["ID"]);
+            Response.Redirect("formPublicacion.aspx?ID=" + idPublicacion);
+        }
+        
 
     }
 }

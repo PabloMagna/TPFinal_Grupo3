@@ -93,5 +93,29 @@ namespace Negocio
             }
         }
 
+        public bool Borrar (int idImg)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Delete from ImagenesMascota where ID =" + idImg);
+                int filas = datos.ejecutar_FilasAfectadas();
+                if (filas > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
