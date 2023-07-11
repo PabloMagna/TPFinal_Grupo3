@@ -102,7 +102,12 @@
             int i = 0;%>
     <% foreach (var coment in comentarios)
         {
+
+
     %>
+
+    <%if (((Usuario)Session["Usuario"]).Tipo != TipoUsuario.Persona)
+        {%>
     <section class="container-sm comentarios">
         <div class="cabecera">
             <img class="imgUser" src="<%:camposUsuario[i].UrlImg %>" onerror="this.onerror=null; 
@@ -114,6 +119,9 @@
             <p id="pComentario"><%=coment.Descripcion %></p>
         </div>
     </section>
+    <%
+        } %>
+
 
     <% i++;
         } %>

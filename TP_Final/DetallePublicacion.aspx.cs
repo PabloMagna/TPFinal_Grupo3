@@ -37,19 +37,7 @@ namespace TP_Final
 
             IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
 
-            if (Session["Usuario"] != null)
-            {
-                userSession = (Usuario)Session["Usuario"];
-                ComentarioNegocio negocioComentario = new ComentarioNegocio();
-                camposSesion = new Campos();
-                camposSesion=negocioComentario.CamposUsuarioComentario(userSession);
-                if(camposSesion.UrlImg is null || camposSesion.UrlImg == string.Empty)
-                {
-                    camposSesion.UrlImg = ImgPlaceHolder;
-                }
-                ComprobarFavorito();
-            }
-            else
+            if (Session["Usuario"] == null)
             {
                 camposSesion = new Campos();
                 camposSesion.Nombre = "Logeate para comentar";
@@ -57,15 +45,56 @@ namespace TP_Final
                 btnEnviar.Enabled = false;
                 tbNuevoComentario.ReadOnly = true;
             }
-            
+            else if (((Usuario)Session["Usuario"]).Tipo == TipoUsuario.Persona)
+            {
+                camposSesion = new Campos();
+                camposSesion.Nombre = "Completa tus datos personales para comentar";
+                camposSesion.UrlImg = ImgPlaceHolder;
+                btnEnviar.Enabled = false;
+                tbNuevoComentario.ReadOnly = true;
+            }
+            else
+            {
+                userSession = (Usuario)Session["Usuario"];
+                ComentarioNegocio negocioComentario = new ComentarioNegocio();
+                camposSesion = CargarCampo();
+                if (camposSesion.UrlImg is null || camposSesion.UrlImg == string.Empty)
+                {
+                    camposSesion.UrlImg = ImgPlaceHolder;
+                }
+                ComprobarFavorito();
+            }
+
 
             if (!IsPostBack)
             {
                 if (Request.QueryString["ID"] != null)
-                {   
+                {
                     CargaInicial();
                     CargaComentarios();
                 }
+            }
+        }
+        private Campos CargarCampo()
+        {
+            Campos campos = new Campos();
+            if (((Usuario)Session["Usuario"]).Tipo == TipoUsuario.Persona)
+                return null;
+            if (((Usuario)Session["Usuario"]).Tipo == TipoUsuario.PersonaCompleto)
+            {
+                PersonaNegocio personaNegocio = new PersonaNegocio();
+                Persona persona = personaNegocio.BuscarporUsuario(((Usuario)Session["Usuario"]).Id);
+                campos.Nombre = persona.Nombre + " " + persona.Apellido;
+                campos.UrlImg = persona.UrlImagen;
+                return campos;
+            }
+            else
+            {
+                RefugioNegocio refugioNegocio = new RefugioNegocio();
+                Refugio refugio = refugioNegocio.BuscarporUsuario(((Usuario)Session["Usuario"]).Id);
+                campos.Nombre = refugio.Nombre;
+                campos.UrlImg = refugio.UrlImagen;
+                return campos;
             }
         }
         private void CargaInicial()
@@ -77,7 +106,7 @@ namespace TP_Final
             listaImagenes = imagenNegocio.ObtenerUrlsImagenes(id);
         }
 
-        
+
         private void CargaComentarios()
         {
             int id = Convert.ToInt32(Request.QueryString["ID"]);
@@ -95,10 +124,10 @@ namespace TP_Final
                 Usuario user = new Usuario();
                 user = usuarioNego.BuscarxID(idUser);
                 Campos camposAux = new Campos();
-                camposAux = comentarioNego.CamposUsuarioComentario(user);
+                camposAux = CargarCampo();
                 camposUsuario.Add(camposAux);
             }
-            
+
         }
         protected string CargarLocalidad()
         {
@@ -129,8 +158,8 @@ namespace TP_Final
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
-        {   
-            if(tbNuevoComentario.Text.Length > 0)
+        {
+            if (tbNuevoComentario.Text.Length > 0)
             {
                 //Se puede enviar el comentario (Implementar validacion en front)
                 ComentarioNegocio negocio = new ComentarioNegocio();
@@ -143,7 +172,7 @@ namespace TP_Final
                     FechaHora = DateTime.Now
                 };
                 negocio.Agregar(nuevo);
-                Response.Redirect("DetallePublicacion.aspx?ID="+IDPublicacion);
+                Response.Redirect("DetallePublicacion.aspx?ID=" + IDPublicacion);
             }
         }
         protected void btnFavorito_Click(object sender, EventArgs e)
@@ -178,7 +207,7 @@ namespace TP_Final
                     btnFavorito2.Text = "Quitar de favoritos";
                     btnFavorito3.Text = "Quitar de favoritos";
                 }
-                    
+
                 else
                 {
                     btnFavorito.Text = "Agregar a favoritos";
@@ -190,7 +219,7 @@ namespace TP_Final
         protected bool ComprobarAdopcion(int idUser, int idPublicacion)
         {
             AdopcionNegocio negocio = new AdopcionNegocio();
-            return negocio.EnDataBaseActivo(idUser,idPublicacion);
+            return negocio.EnDataBaseActivo(idUser, idPublicacion);
         }
     }
 }

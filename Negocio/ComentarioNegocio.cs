@@ -31,39 +31,6 @@ namespace Negocio
             }
         }
 
-        public Campos CamposUsuarioComentario(Usuario user)
-        {
-            Campos campos = new Campos();
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                if (user.Tipo == TipoUsuario.PersonaCompleto)
-                {
-                    PersonaNegocio negocioPersona = new PersonaNegocio();
-                    Persona nueva = negocioPersona.BuscarporUsuario(user.Id);
-                    if (nueva != null)
-                    {
-                        campos.Nombre = nueva.Nombre + " " + nueva.Apellido;
-                        campos.UrlImg = nueva.UrlImagen;
-                    }
-                }
-                else
-                {
-                    RefugioNegocio negocioRefugio = new RefugioNegocio();
-                    Refugio nuevo = new Refugio();
-                    nuevo = negocioRefugio.BuscarporUsuario(user.Id);
-                    campos.Nombre = nuevo.Nombre;
-                    campos.UrlImg = nuevo.UrlImagen;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally { datos.cerrarConexion(); }
-            return campos;
-        }
-
         public List<Comentario> Listar()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -203,7 +170,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into Comentarios values(@IDPublicacion,@Descripcion,1,GETDATE(),@IdUsuario)");
+                datos.setearConsulta("Insert into Comentarios (IDPublicacion, Descripcion, Estado, FechaHora, IDUsuario) values(@IDPublicacion,@Descripcion,1,GETDATE(),@IdUsuario)");
                 datos.setearParametro("@IDPublicacion", nuevo.IdPublicacion);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@IdUsuario", nuevo.IdUsuario);
