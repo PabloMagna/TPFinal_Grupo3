@@ -2,7 +2,6 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace TP_Final
@@ -12,21 +11,9 @@ namespace TP_Final
         protected void Page_Load(object sender, EventArgs e)
         {
             if ((Usuario)Session["Usuario"] == null)
-            {
-                string script = "alert('Debes iniciar sesión para acceder.');";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
-
                 Response.Redirect("Login.aspx");
-            }
-            else if (!((Usuario)Session["Usuario"]).EsAdmin)
-            {
-                string script = "alert('Debes ser administrador para acceder.');";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
-
+             else if (!((Usuario)Session["Usuario"]).EsAdmin)
                 Response.Redirect("Login.aspx");
-            }
-
-
 
             if (!IsPostBack)
             {
