@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Negocio
-{   
+{
     public class ComentarioNegocio
     {
         public void ActualizarEstado(int idComentario, EstadoComentario estado)
@@ -37,12 +37,15 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (user.Tipo == TipoUsuario.Persona)
+                if (user.Tipo == TipoUsuario.PersonaCompleto)
                 {
                     PersonaNegocio negocioPersona = new PersonaNegocio();
                     Persona nueva = negocioPersona.BuscarporUsuario(user.Id);
-                    campos.Nombre = nueva.Nombre + " " + nueva.Apellido;
-                    campos.UrlImg = nueva.UrlImagen;
+                    if (nueva != null)
+                    {
+                        campos.Nombre = nueva.Nombre + " " + nueva.Apellido;
+                        campos.UrlImg = nueva.UrlImagen;
+                    }
                 }
                 else
                 {
@@ -201,7 +204,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("Insert into Comentarios values(@IDPublicacion,@Descripcion,1,GETDATE(),@IdUsuario)");
-                datos.setearParametro("@IDPublicacion",nuevo.IdPublicacion);
+                datos.setearParametro("@IDPublicacion", nuevo.IdPublicacion);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@IdUsuario", nuevo.IdUsuario);
                 datos.ejecutarAccion();

@@ -63,10 +63,18 @@ namespace TP_Final
 
         private void CargarProvinciaYLocalidadPreseleccionadas()
         {
+            PersonaNegocio negocio = new PersonaNegocio();
+
+            persona = negocio.BuscarporUsuario(((Usuario)Session["Usuario"]).Id);
             if (persona != null)
             {
                 idProvinciaPreseleccionada = persona.IDProvincia;
                 idLocalidadPreseleccionada = persona.IDLocalidad;
+            }
+            else
+            {
+                idProvinciaPreseleccionada = 1; 
+                idLocalidadPreseleccionada = 1; 
             }
         }
 
@@ -128,6 +136,7 @@ namespace TP_Final
         {
             PersonaNegocio personaNegocio = new PersonaNegocio();
             usuario = (Usuario)Session["Usuario"];
+            persona = personaNegocio.BuscarporUsuario(usuario.Id);
             int idUsuario = usuario.Id;
             Page.Validate("Validaciones");
             if (Page.IsValid)
@@ -342,7 +351,21 @@ namespace TP_Final
 
         protected void cvLocalidad_ServerValidate(Object source, ServerValidateEventArgs args)
         {
-            args.IsValid = (ddlLocalidad.SelectedIndex >= 0);
+            args.IsValid = (ddlLocalidad.SelectedValue != "");
+        }
+        protected void cvFechaNac_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime fechaNacimiento;
+            bool isValid = DateTime.TryParse(args.Value, out fechaNacimiento);
+
+            if (isValid && fechaNacimiento.Year >= 1900)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
     }
 }
