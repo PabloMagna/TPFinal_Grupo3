@@ -126,13 +126,12 @@ namespace TP_Final
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Validar los campos
-            if (ValidarCampos())
+            PersonaNegocio personaNegocio = new PersonaNegocio();
+            usuario = (Usuario)Session["Usuario"];
+            int idUsuario = usuario.Id;
+            Page.Validate("Validaciones");
+            if (Page.IsValid)
             {
-                PersonaNegocio personaNegocio = new PersonaNegocio();
-                usuario = (Usuario)Session["Usuario"];
-                int idUsuario = usuario.Id;
-
                 if (persona == null)
                 {
                     // Persona es null, realizar inserción
@@ -187,57 +186,9 @@ namespace TP_Final
                 publicacionNeg.ActualizarEstado(idPublicacion, Estado.EnProceso);
 
                 EnviarCorreoAdopcion(usuario.Email, idPublicacion);
-                EnviarCorreoDonante(idPublicacion,usuario.Id);
+                EnviarCorreoDonante(idPublicacion, usuario.Id);
                 Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
-            }
-        }
-
-        private bool ValidarCampos()
-        {
-            // Validar que todos los campos estén completos
-            if (string.IsNullOrWhiteSpace(txtDni.Text) ||
-                string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                ddlProvincia.SelectedIndex <= 0 ||
-                ddlLocalidad.SelectedIndex <= 0)
-            {
-                lblMessage.InnerText = "Debe completar todos los campos.";
-                lblMessage.Visible = true;
-                return false;
-            }
-
-            // Validar el formato de la fecha de nacimiento
-            if (!DateTime.TryParse(txtFechaNacimiento.Text, out DateTime fechaNacimiento))
-            {
-                lblMessage.InnerText = "El formato de la fecha de nacimiento no es válido.";
-                lblMessage.Visible = true;
-                return false;
-            }
-
-            // Validar el formato del número de teléfono
-            if (!string.IsNullOrEmpty(txtTelefono.Text) && (txtTelefono.Text.Length < 10 || txtTelefono.Text.Length > 20))
-            {
-                lblMessage.InnerText = "El número de teléfono debe tener entre 10 y 20 caracteres.";
-                lblMessage.Visible = true;
-                return false;
-            }
-
-            // Validar que el DNI tenga 6 o 7 caracteres
-            if (txtDni.Text.Length < 6 || txtDni.Text.Length > 7)
-            {
-                lblMessage.InnerText = "El DNI debe tener entre 6 y 7 caracteres.";
-                lblMessage.Visible = true;
-                return false;
-            }
-
-            // Validación adicional según tus requisitos
-            // ...
-
-            // Si todos los campos son válidos, ocultar el mensaje de error
-            lblMessage.Visible = false;
-            return true;
+            }           
         }
 
         private void EnviarCorreoAdopcion(string emailUsuario, int idPublicacion)
@@ -383,6 +334,15 @@ namespace TP_Final
                 }
             }
         }
+        protected void cvProvincia_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            //Comprueba si se seleccionó una provincia en el ddl de provincia.
+            args.IsValid = (ddlProvincia.SelectedIndex >= 0);
+        }
 
+        protected void cvLocalidad_ServerValidate(Object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = (ddlLocalidad.SelectedIndex >= 0);
+        }
     }
 }

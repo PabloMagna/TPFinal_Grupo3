@@ -49,23 +49,18 @@ namespace TP_Final
 
         protected void lnkEliminar_Click(object sender, EventArgs e)
         {
-            // Obtener el IDAdopcion del LinkButton que se hizo clic
             LinkButton lnkEliminar = (LinkButton)sender;
-            int idAdopcion = Convert.ToInt32(lnkEliminar.CommandArgument);
+            int idPublicacion = Convert.ToInt32(lnkEliminar.CommandArgument);
 
             // Actualizar el estado de la adopción a "eliminado" en la base de datos
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
-            adopcionNegocio.ActualizarEstado(idAdopcion, EstadoAdopcion.Eliminada);
-
-            // Obtener el ID de la publicación desde el CommandArgument del LinkButton
-            int idPublicacion = Convert.ToInt32(lnkEliminar.CommandArgument);
+            int idUsuario = ((Usuario)Session["Usuario"]).Id;
+            adopcionNegocio.ActualizarEstado(idUsuario,idPublicacion, EstadoAdopcion.Eliminada);
 
             // Actualizar el estado de la publicación a "EnProceso" en la base de datos
             PublicacionNegocio publicacionNeg = new PublicacionNegocio();
             publicacionNeg.ActualizarEstado(idPublicacion, Estado.Activa);
 
-            // Volver a cargar las adopciones del usuario en el GridView
-            int idUsuario = ((Usuario)Session["Usuario"]).Id;
             CargarAdopciones(idUsuario);
         }
 
