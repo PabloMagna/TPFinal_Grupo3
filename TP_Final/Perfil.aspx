@@ -103,13 +103,26 @@
                 <div class="card card-body">
 
                     <div class="row">
-                        <img id="imgHistoria" src="<%# Eval("UrlImagen") %>"></img>
+                        <img id="imgHistoria" class="imagenPreview" src='<%# Eval("UrlImagen") %>' alt="Imagen Mascota">
                         <label class="form-label">Cambiar foto</label>
                     </div>
                     <div class="mb-3">
-                        <input type="file" id="tbImgenFile" runat="server" accept="image/jpeg, image/png, image/jpg" class="form-control" />
-                        <asp:Label ID="lblErrorImg" runat="server" Text=""></asp:Label>
+                        <input type="file" id="tbImagenHistoria" runat="server" accept="image/jpeg, image/png, image/jpg" onchange="previewImageHistoria(this)" class="form-control"/>
                     </div>
+                    <script>
+                        function previewImageHistoria(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    var imgElement = input.parentNode.previousElementSibling.querySelector(".imagenPreview");
+                                    imgElement.src = e.target.result;
+                                };
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                    </script>
                     <div class="mb-3">
                         <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="300" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
                         <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>

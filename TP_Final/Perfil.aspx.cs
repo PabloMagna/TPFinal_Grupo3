@@ -98,7 +98,7 @@ namespace TP_Final
             {
                 HiddenField hfIDHistoria = (HiddenField)repeaterItem.FindControl("hfIDHistoria");
                 TextBox tbDescripcion = (TextBox)repeaterItem.FindControl("tbDescripcion");
-                HtmlInputFile tbImgenFile = (HtmlInputFile)repeaterItem.FindControl("tbImgenFile");
+                HtmlInputFile tbImgenFile = (HtmlInputFile)repeaterItem.FindControl("tbImagenHistoria");
 
                 if (hfIDHistoria != null && tbDescripcion != null)
                 {
@@ -113,7 +113,11 @@ namespace TP_Final
                     {
                         nueva.Descripcion = descripcion;
                         // si el cliente cargo una img, la actualizo, sino queda la que ya tenia.
-                        ActualizarImagenHistoria(ref nueva,tbImgenFile);
+                        string urlAux =ObtenerUrlImagenHistoria(nueva.ID, tbImgenFile);
+                        if (urlAux != null)
+                        {
+                            nueva.UrlImagen = urlAux;
+                        }
                         // Actualizar el objeto en tu lógica de negocio o base de datos
                         negocio.Actualizar(nueva);
 
@@ -180,11 +184,6 @@ namespace TP_Final
                 idLocalidadPreseleccionada = refugio.IDLocalidad;
             }
         }
-
-        //protected void Page_Init(object sender, EventArgs e)
-        //{
-        //    ddlProvincia.SelectedIndexChanged += ddlProvincia_SelectedIndexChanged;
-        //}
 
         protected void CargarDropDownListProvincia()
         {
@@ -254,56 +253,39 @@ namespace TP_Final
             return regex.IsMatch(fileName);
         }
 
-        protected void CargarImagenPerfil()
-        {
-            if (!string.IsNullOrEmpty(tbImgFile.Value) && EsImagen(tbImgFile.Value))
-            {
-                string ruta = Server.MapPath("./imagenes/Perfiles/");
-                string nombreArchivo = ruta + "Usuario-" + userLogeado.Id + ".jpg";
-                // Piso la imagen anterior si es que tiene una
-                EliminarImgExistente(ruta,nombreArchivo);
-                tbImgFile.PostedFile.SaveAs(nombreArchivo);
-                string url = "../imagenes/Perfiles/Usuario-" + userLogeado.Id + ".jpg";
+  
+        //protected void ActualizarImagenHistoria(ref Historia nueva, HtmlInputFile f)
+        //{
+        //    if (!string.IsNullOrEmpty(f.Value) && EsImagen(f.Value))
+        //    {
+        //        string carpeta = Server.MapPath("~/imagenes/Historias/");
+        //        string ruta = carpeta + "Historia-IDUser-" + userLogeado.Id +".jpg";
+    
+        //        f.PostedFile.SaveAs(ruta);             
+        //        nueva.UrlImagen = ruta;
+        //    }
+        //}
 
-                //Update Imagen en objeto Persona logeada:
-                if (userLogeado.Tipo == TipoUsuario.Persona)
+        protected string ObtenerUrlImagenHistoria(int idHistoria, HtmlInputFile inputFile)
+        {
+            string imageUrl = string.Empty;
+
+            // Verificar si se cargó una nueva imagen
+            if (inputFile.PostedFile != null && inputFile.PostedFile.ContentLength > 0)
+            {
+                string nombreArchivo = Path.GetFileName(inputFile.PostedFile.FileName);
+                string extension = Path.GetExtension(nombreArchivo);
+                if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
                 {
-                    persona = (Persona)Session["Persona"];
-                    persona.UrlImagen = url;
-                    Session["Persona"] = persona;
-                }
-                else {
-                    Refugio refugio = (Refugio)Session["Refugio"];
-                    refugio.UrlImagen = url;
-                    Session["Refugio"] = refugio;
+                    string carpeta = Server.MapPath("~/imagenes/Historias/");
+                    string ruta = carpeta + "Historia-IDUser-" + idHistoria + extension;
+                    inputFile.PostedFile.SaveAs(ruta);
+                    imageUrl="../imagenes/Historias/"+ "Historia-IDUser-" + idHistoria + extension;
                 }
             }
+            return imageUrl;
         }
 
-        protected void ActualizarImagenHistoria(ref Historia nueva, HtmlInputFile f)
-        {
-            if (!string.IsNullOrEmpty(f.Value) && EsImagen(f.Value))
-            {
-                string ruta = Server.MapPath("./imagenes/Historias/");
-                string nombreFile = ruta + "Historia-IDUser-" + userLogeado.Id + "-" + DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".jpg";
-                EliminarImgExistente(ruta, nombreFile);
-                f.PostedFile.SaveAs(ruta + nombreFile);             
-                nueva.UrlImagen = nombreFile;
-                f.PostedFile.SaveAs(nueva.UrlImagen);
-            }
-        }
-
-        protected void EliminarImgExistente(string carpeta,string nombreArchivo)
-        {
-            // Ruta completa de la imagen anterior
-            string rutaImagenAnterior = Path.Combine(carpeta, nombreArchivo);
-
-            // Verifico si la imagen anterior existe y eliminarla si es así
-            if (System.IO.File.Exists(rutaImagenAnterior))
-            {
-                System.IO.File.Delete(rutaImagenAnterior);
-            }
-        }
 
         protected string ObtenerUrlImagenPerfil()
         {
@@ -318,7 +300,6 @@ namespace TP_Final
                 {
                     string carpeta = Server.MapPath("~/imagenes/Perfiles/");
                     string ruta = carpeta + "Usuario-" + userLogeado.Id + extension;
-                    //EliminarImgExistente(carpeta,ruta);
                     tbImgFile.PostedFile.SaveAs(ruta);
                     imageUrl = "../imagenes/Perfiles/Usuario-" + userLogeado.Id + extension;
                 }
@@ -373,7 +354,6 @@ namespace TP_Final
                     refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
                     refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    //CargarImagenPerfil();
                     string urlAux = ObtenerUrlImagenPerfil();
                     if (urlAux != null)
                     {
@@ -389,5 +369,6 @@ namespace TP_Final
             }
         }
 
+       
     }
 }
