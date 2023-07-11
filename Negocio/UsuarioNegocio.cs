@@ -325,6 +325,25 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void ActualizarTipo(int idUsuario, TipoUsuario tipo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET IDTipoUsuario = @tipo WHERE ID = @idUsuario");
+                datos.setearParametro("@tipo", (int)tipo);
+                datos.setearParametro("@idUsuario", idUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
     }

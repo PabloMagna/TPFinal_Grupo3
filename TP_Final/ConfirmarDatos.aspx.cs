@@ -159,6 +159,9 @@ namespace TP_Final
                     persona.UrlImagen = "";
 
                     personaNegocio.Agregar(persona);
+                    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                    usuarioNegocio.ActualizarTipo(idUsuario, TipoUsuario.PersonaCompleto);
+                    
                 }
                 else
                 {
