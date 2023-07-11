@@ -165,7 +165,7 @@ namespace TP_Final
                 ComentarioNegocio negocio = new ComentarioNegocio();
                 Comentario nuevo = new Comentario
                 {
-                    IdUsuario = userSession.Id,
+                    IdUsuario = ((Usuario)Session["Usuario"]).Id,
                     IdPublicacion = IDPublicacion,
                     Descripcion = tbNuevoComentario.Text,
                     Estado = EstadoComentario.Activo,
