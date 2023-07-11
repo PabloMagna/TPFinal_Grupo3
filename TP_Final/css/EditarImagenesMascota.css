@@ -14,42 +14,47 @@
 }
 
 
-.divMascota {   
-    height: 80px;
-    width: 150px;        
+.divMascota {
+    height: 100px;
+    width: 150px;
 }
 
 
 .imgMascota {
     width: 100%;
-    height: 80px;
+    height: 100px;
     object-fit: contain;
     object-position: center;
-    background-color: #D2E3EB;
+    background-color: #C45F2E;
     border: 2px solid #24566E;
-    margin:0;
+    margin: 0;
 }
 
-.row {
-    margin: 20px auto;
-    background-color: #D2E3EB;
-    height: 80px;
+.row, .content {
+    margin: 20px auto;    
+    height: 100px;
+    /*
     display:flex;
     justify-content:space-around;
+        */
     align-items: center;
+}
+
+.content {
+    background-color: #D2E3EB;
 }
 
 
 .btn {
-    color: #24566E;
-    background-color: #D2E3EB;
-    padding: 4px 8px;
-    border-radius: 10px;
-    border: 2px solid #24566E;
+    color: #24566E !important;
+    background-color: #D2E3EB !important;
+    padding: 4px 8px !important;
+    border-radius: 10px !important;
+    border: 2px solid #24566E !important;
 }
 
-    .btn:hover {
-        color: #24566E;
-        background-color: #C45F2E;
-        border: 2px solid #24566E;
-    }
+.btn:hover {
+    color: #24566E !important;
+    background-color: #C45F2E !important;
+}
+

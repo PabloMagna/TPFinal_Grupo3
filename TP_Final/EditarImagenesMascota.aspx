@@ -13,31 +13,25 @@
     </section>
    
     <section class="repetidor listaImagenes">
-       
-                <asp:Repeater ID="repImagenes" runat="server">
-                    <ItemTemplate>
-                        <div class="row"> 
-                            <div class="col-2">                         
-                            </div>
-                            <div class="col-4 divMascota">
-                                <img class="imgMascota" src="<%#Eval("urlImagen")%>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/>                  
-                            </div>
-                            <div class="col-4">
-                                <asp:Button ID="btnBorrar" runat="server" Text="Borrar" CssClass="btn primary borrar" OnClick="btnBorrar_Click" CommandArgument='<%#Eval("Id")%>'  CommandName="ImgID" />
-                            </div>  
-                            <div class="col-2">                         
-                            </div>
+        <div class="container text-center">
+            <asp:Repeater ID="repImagenes" runat="server">
+                <ItemTemplate>
+                    <div class="row content">                             
+                        <div class="col text-center">
+                            <div class="divMascota">
+                                <img class="imgMascota" src="<%#Eval("urlImagen")%>" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'"/> 
+                            </div>                                                 
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-        <!--
-         <asp:UpdatePanel runat="server" ID="updateImagenes" >
-            <ContentTemplate>
-            </ContentTemplate>
-         </asp:UpdatePanel>
-        -->
-        <div>
-            <asp:Button ID="btnVolver" runat="server" Text="Volver a la publicación" CssClass="btn primary" OnClick="btnVolver_Click"/>
+                        <div class="col text-center">
+                            <asp:Button ID="btnBorrar" runat="server" Text="Borrar" CssClass="btn btn-primary" OnClick="btnBorrar_Click" CommandArgument='<%#Eval("Id")%>'  CommandName="ImgID" />
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        
+            <div class="row container text-center">
+                <asp:Button ID="btnVolver" runat="server" Text="Volver a la publicación" CssClass="btn btn-primary" OnClick="btnVolver_Click"/>
+            </div>
         </div>
     </section>
 

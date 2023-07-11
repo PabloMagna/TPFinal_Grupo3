@@ -1,33 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ContactoAdopcion.aspx.cs" Inherits="TP_Final.ContactoAdopcion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .card {
-            width: 400px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .card-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .card-text {
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            margin-top: 20px;
-        }
-    </style>
+    <link href="css/ContactoAdopcion.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      
@@ -52,7 +25,7 @@
                 <p class="card-text">Dirección: <%= refugio.Direccion %></p>
             <% } %>
 
-            <a href="default.aspx" class="btn btn-primary">Volver al Menú</a>
+            <a href="default.aspx" class="btn btn-primary custom-btn">Volver al Menú</a>
         </div>
     </div>
 </asp:Content>
