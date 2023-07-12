@@ -24,8 +24,8 @@ namespace TP_Final
         protected Persona persona;
         protected Refugio refugio;
         protected string urlImgUser;
-        protected int idProvinciaPreseleccionada;
-        protected int idLocalidadPreseleccionada;
+        protected int idProvinciaPreseleccionada=1;
+        protected int idLocalidadPreseleccionada=1;
         protected const string placeholderImg = "https://img.freepik.com/vector-premium/historieta-divertida-cara-perrito-beagle_42750-489.jpg?w=2000";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -184,8 +184,8 @@ namespace TP_Final
             }
             else if(tipo == TipoUsuario.Persona)
             {
-                idProvinciaPreseleccionada = 0;
-                idLocalidadPreseleccionada = 0;
+                idProvinciaPreseleccionada = 1;
+                idLocalidadPreseleccionada = 1;
             }
             else
             {   //Es Refugio
@@ -371,7 +371,8 @@ namespace TP_Final
             else
             {   //Es Persona incompleta
                 Page.Validate("ValPersona");
-                if (!Page.IsValid)
+                Page.Validate("ValAmbos");
+                if (Page.IsValid)
                 {
                     PersonaNegocio negocio = new PersonaNegocio();
                     Persona persona = new Persona();
@@ -389,8 +390,12 @@ namespace TP_Final
                     if(filasAfectadas > 0)
                     {
                         //Informar alta exitoso, actualizo tipoUser, Persona en session y recargar pagina
-                        userLogeado.Tipo = TipoUsuario.PersonaCompleto;
-                        Session["Usuario"] = userLogeado;
+
+                        //userLogeado.Tipo = TipoUsuario.PersonaCompleto;
+                        //Session["Usuario"] = userLogeado;
+                        UsuarioNegocio userNego = new UsuarioNegocio();
+                        userNego.ActualizarTipo(userLogeado.Id, TipoUsuario.PersonaCompleto);
+                        Session["Usuario"]=userNego.BuscarxID(userLogeado.Id);
                         Session["Persona"] = persona;
                         Response.Redirect("Perfil.aspx");
                     }
@@ -398,6 +403,15 @@ namespace TP_Final
             }
         }
 
-       
+        protected void cvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = (ddlLocalidad.SelectedIndex >= 0);
+        }
+
+        protected void cvProvincia_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = (ddlProvincia.SelectedIndex >= 0);
+        }
+
     }
 }

@@ -218,8 +218,7 @@
         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Red" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValAmbos"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="Números entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>
 
-        <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-            { %>
+       
 
         <%--LOCALIDADES Y PROVINCIAS--%>
         <div class="mb-3">
@@ -227,6 +226,7 @@
             <asp:UpdatePanel ID="updatePanelProvincia" runat="server">
                 <ContentTemplate>
                     <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:CustomValidator ID="cvProvincia" runat="server" ControlToValidate="ddlProvincia" ForeColor="Red" ErrorMessage="Por favor, seleccione una Provincia" SetFocusOnError="true" OnServerValidate="cvProvincia_ServerValidate" ValidationGroup="ValAmbos"></asp:CustomValidator>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
@@ -235,6 +235,7 @@
             <asp:UpdatePanel ID="updatePanelLocalidad" runat="server">
                 <ContentTemplate>
                     <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
+                    <asp:CustomValidator ID="cvLocalidad" runat="server" ControlToValidate="ddlLocalidad" ForeColor="Red" ErrorMessage="Por favor, seleccione una Localidad" SetFocusOnError="true" OnServerValidate="cvLocalidad_ServerValidate" ValidationGroup="ValAmbos"></asp:CustomValidator>
                 </ContentTemplate>
                 <%--  <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlProvincia" EventName="SelectedIndexChanged" />
@@ -242,6 +243,8 @@
             </asp:UpdatePanel>
         </div>
 
+         <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+            { %>
         <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
         <asp:UpdatePanel ID="upImgPerfil" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
