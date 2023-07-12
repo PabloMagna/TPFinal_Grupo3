@@ -29,7 +29,7 @@ namespace TP_Final
             {
                 if (Request.QueryString["ID"] != null)
                 {
-                    publicaciones = negocio.ListarPorUsuario(Convert.ToInt32(Request.QueryString["ID"]));
+                    publicaciones = negocio.ListarPorUsuarioAdmin(Convert.ToInt32(Request.QueryString["ID"]));
                 }
                 else if (Request.QueryString["IDP"] != null)
                 {

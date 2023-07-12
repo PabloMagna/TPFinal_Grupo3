@@ -9,7 +9,7 @@ namespace Dominio
     public enum EstadoAdopcion
     {
         Pendiente = 1,
-        Aceptada = 2,
+        Completada = 2,
         Rechazada = 3,
         Eliminada = 4,
     }

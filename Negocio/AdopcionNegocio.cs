@@ -45,6 +45,36 @@ namespace Negocio
 
             try
             {
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE IDUsuario = @IDUsuario and Estado = 1");
+                datos.setearParametro("@IDUsuario", idUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Adopcion aux = new Adopcion();
+                    aux.ID = datos.Lector.GetInt32(0);
+                    aux.IDPublicacion = datos.Lector.GetInt32(1);
+                    aux.IDUsuario = datos.Lector.GetInt32(2);
+                    aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
+                    aux.FechaHora = datos.Lector.GetDateTime(4);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+        public List<Adopcion> ListarPorUsuarioAdmin(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Adopcion> lista = new List<Adopcion>();
+
+            try
+            {
                 datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE IDUsuario = @IDUsuario and Estado <> 4");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.ejecutarLectura();
@@ -77,36 +107,6 @@ namespace Negocio
             {
                 datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE IDPublicacion = @IDPublicacion");
                 datos.setearParametro("@IDPublicacion", idPublicacion);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    Adopcion aux = new Adopcion();
-                    aux.ID = datos.Lector.GetInt32(0);
-                    aux.IDPublicacion = datos.Lector.GetInt32(1);
-                    aux.IDUsuario = datos.Lector.GetInt32(2);
-                    aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
-                    aux.FechaHora = datos.Lector.GetDateTime(4);
-                    lista.Add(aux);
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally { datos.cerrarConexion(); }
-        }
-        public List<Adopcion> ListarPorID(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            List<Adopcion> lista = new List<Adopcion>();
-
-            try
-            {
-                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE ID = @ID");
-                datos.setearParametro("@ID", id);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -187,7 +187,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select ID from adopciones where IDUsuario = @IDUsuario and IDPublicacion = @IDPublicacion AND Estado <> 4");
+                datos.setearConsulta("select ID from adopciones where IDUsuario = @IDUsuario and IDPublicacion = @IDPublicacion AND Estado = 1");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.setearParametro("@IDPublicacion", idPublicacion);
                 datos.ejecutarLectura();
@@ -232,5 +232,43 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public void BajarAdopcionPorPublicacion(int idPublicacion, EstadoAdopcion estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update adopciones set Estado = @Estado where IDPublicacion = @IDPublicacion");
+                datos.setearParametro("@Estado", estado);
+                datos.setearParametro("@IDPublicacion", idPublicacion);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void CompletarAdopcionPendiente(int idPublicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update adopciones set Estado = 2 where IDPublicacion = @IDPublicacion AND Estado = 1");
+                datos.setearParametro("@IDPublicacion", idPublicacion);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

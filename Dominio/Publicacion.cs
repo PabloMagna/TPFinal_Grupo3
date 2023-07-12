@@ -33,7 +33,9 @@ namespace Dominio
         EnProceso = 4,
 
         [Description("Baneada")]
-        Baneada = 5
+        Baneada = 5,
+        [Description("Suspendida")]
+        Suspendida = 6,
     }
     public class Publicacion
     {

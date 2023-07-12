@@ -398,5 +398,46 @@ namespace TP_Final
         }
 
 
+        protected void btnConfirmarAccion_Click(object sender, EventArgs e)
+        {
+            string opcionSeleccionada = rbOpcionesBaja.SelectedValue;
+            PublicacionNegocio publicacionNego = new PublicacionNegocio();
+            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+            int idPublicacion = int.Parse(Request.QueryString["ID"]);
+            switch (opcionSeleccionada)
+            {
+                case "EliminarPublicacion":
+                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Borrada);
+                    adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.Eliminada);
+                    //mensaje
+                    break;
+                case "EliminarAdopcion":
+                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Finalizada);
+                    adopcionNegocio.CompletarAdopcionPendiente(idPublicacion);
+                    //mensaje
+                    break;
+                case "SuspenderPublicacion":
+                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Suspendida);
+                    adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.Rechazada);
+                    // ...
+                    break;
+                default:
+                    // Opción no válida
+                    // ...
+                    break;
+            }
+        }
+
+        protected void btn_expandir_Click(object sender, EventArgs e)
+        {
+            formularioH.Style["display"] = "block"; // Mostrar el formularioH estableciendo su estilo a "block"
+        }
+        
+        public Estado ObtenerEstadoPublicacion()
+        {
+            PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+            Publicacion publicacion = publicacionNegocio.ObtenerPorId(int.Parse(Request.QueryString["ID"]));
+            return publicacion.Estado;
+        }
     }
 }

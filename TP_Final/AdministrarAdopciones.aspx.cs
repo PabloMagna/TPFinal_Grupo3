@@ -29,7 +29,7 @@ namespace TP_Final
                 List<Adopcion> lista = new List<Adopcion>();
                 if (Request.QueryString["IDU"] != null)
                 {
-                    lista = negocio.ListarPorUsuario(Convert.ToInt32(Request.QueryString["IDU"]));
+                    lista = negocio.ListarPorUsuarioAdmin(Convert.ToInt32(Request.QueryString["IDU"]));
                 }
                 else if (Request.QueryString["IDP"] != null)
                 {
