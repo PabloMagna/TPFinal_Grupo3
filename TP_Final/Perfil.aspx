@@ -31,9 +31,12 @@
                 <p>Estas son las opciones de navegacion del menú de usuario</p>
                 <ul>
                     <li><a href="Perfil.aspx#Perfil">Editar datos de Perfil</a></li>
-                    <li><a href="#">Foto de Perfil</a></li>
-                    <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
-                    <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
+                    <% if(userLogeado.Tipo != Dominio.TipoUsuario.Persona) {%>             
+                        <li><a href="#">Foto de Perfil</a></li>
+                        <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
+                        <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
+                        <li><a href="Adopciones.aspx">Tus Adopciones</a></li>                  
+                    <% } %>
                 </ul>
             </div>
         </div>
