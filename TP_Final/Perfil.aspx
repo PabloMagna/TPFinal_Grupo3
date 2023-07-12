@@ -30,12 +30,17 @@
             <div class="offcanvas-body">
                 <p>Estas son las opciones de navegacion del menú de usuario</p>
                 <ul>
-                    <li><a href="Perfil.aspx#Perfil">Editar datos de Perfil</a></li>
-                    <% if(userLogeado.Tipo != Dominio.TipoUsuario.Persona) {%>             
-                        <li><a href="#">Foto de Perfil</a></li>
-                        <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
-                        <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
-                        <li><a href="Adopciones.aspx">Tus Adopciones</a></li>                  
+                    <li><a href="Perfil.aspx#PerfilTitulo">Editar datos de Perfil</a></li>
+                    <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+                        {%>
+                    <li><a href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a></li>
+                    <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
+                    <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
+                        <%if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
+                            {%>
+                            <li><a href="Adopciones.aspx">Tus Adopciones</a></li>
+
+                           <% } %>
                     <% } %>
                 </ul>
             </div>
@@ -151,10 +156,10 @@
     %>
     <%else
         {%>
-            <div class="col-md-12">
-                <h3 class="leyenda"> Completa registro para poder acceder a todo el contenido del Sitio </h3>
-            </div>
-         <% } %>
+    <div class="col-md-12">
+        <h3 class="leyenda">Completa registro para poder acceder a todo el contenido del Sitio </h3>
+    </div>
+    <% } %>
 
 
     <%--SECCION PERFIL--%>
@@ -165,7 +170,7 @@
 
         <div class="row">
             <div id="formPersona" runat="server">
-                <h2 id="PerfilTitulo" runat="server" class="titulo">Tus datos de perfil</h2>
+                <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
                     <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
@@ -221,7 +226,7 @@
         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Red" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValAmbos"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="Números entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>
 
-       
+
 
         <%--LOCALIDADES Y PROVINCIAS--%>
         <div class="mb-3">
@@ -246,7 +251,7 @@
             </asp:UpdatePanel>
         </div>
 
-         <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+        <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
             { %>
         <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
         <asp:UpdatePanel ID="upImgPerfil" runat="server" UpdateMode="Conditional">
