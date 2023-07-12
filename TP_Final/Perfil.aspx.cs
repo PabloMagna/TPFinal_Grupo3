@@ -35,24 +35,28 @@ namespace TP_Final
                 userLogeado = (Usuario)Session["Usuario"];
                 if (!IsPostBack)
                 {
-                    cargarHistorias();
-                    cargarPublicaciones();
 
-                    if (userLogeado.Tipo == TipoUsuario.Persona)
-                    {   
-                        PersonaNegocio negocio = new PersonaNegocio();
-                        persona = negocio.BuscarporUsuario(userLogeado.Id);
-                        Session["Persona"] = persona;
-                        cargarFormPersona(persona);
-                    }
-                    else
+                    if(userLogeado.Tipo != TipoUsuario.Persona)
                     {
-                        RefugioNegocio negocio = new RefugioNegocio();
-                        refugio = negocio.BuscarporUsuario(userLogeado.Id);
-                        Session["Refugio"] = refugio;
-                        cargarFormRefugio(refugio);
+                        cargarHistorias();
+                        cargarPublicaciones();
+                        if (userLogeado.Tipo == TipoUsuario.PersonaCompleto)
+                        {   
+                            PersonaNegocio negocio = new PersonaNegocio();
+                            persona = negocio.BuscarporUsuario(userLogeado.Id);
+                            Session["Persona"] = persona;
+                            cargarFormPersona(persona);
+                        }
+                        else
+                        {
+                            RefugioNegocio negocio = new RefugioNegocio();
+                            refugio = negocio.BuscarporUsuario(userLogeado.Id);
+                            Session["Refugio"] = refugio;
+                            cargarFormRefugio(refugio);
+                        }
+                        CargarProvinciaYLocalidadPreseleccionadas(userLogeado.Tipo);
                     }
-                    CargarProvinciaYLocalidadPreseleccionadas(userLogeado.Tipo);
+
                 }
 
             }
@@ -173,13 +177,18 @@ namespace TP_Final
         }
         protected void CargarProvinciaYLocalidadPreseleccionadas(TipoUsuario tipo)
         {
-            if (tipo == TipoUsuario.Persona)
+            if (tipo == TipoUsuario.PersonaCompleto)
             {
                 idProvinciaPreseleccionada = persona.IDProvincia;
                 idLocalidadPreseleccionada = persona.IDLocalidad;
             }
-            else
+            else if(tipo == TipoUsuario.Persona)
             {
+                idProvinciaPreseleccionada = 0;
+                idLocalidadPreseleccionada = 0;
+            }
+            else
+            {   //Es Refugio
                 idProvinciaPreseleccionada = refugio.IDProvincia;
                 idLocalidadPreseleccionada = refugio.IDLocalidad;
             }
@@ -253,19 +262,6 @@ namespace TP_Final
             return regex.IsMatch(fileName);
         }
 
-  
-        //protected void ActualizarImagenHistoria(ref Historia nueva, HtmlInputFile f)
-        //{
-        //    if (!string.IsNullOrEmpty(f.Value) && EsImagen(f.Value))
-        //    {
-        //        string carpeta = Server.MapPath("~/imagenes/Historias/");
-        //        string ruta = carpeta + "Historia-IDUser-" + userLogeado.Id +".jpg";
-    
-        //        f.PostedFile.SaveAs(ruta);             
-        //        nueva.UrlImagen = ruta;
-        //    }
-        //}
-
         protected string ObtenerUrlImagenHistoria(int idHistoria, HtmlInputFile inputFile)
         {
             string imageUrl = string.Empty;
@@ -309,15 +305,77 @@ namespace TP_Final
         }
 
         protected void Modificar_Click(object sender, EventArgs e)
-        {
-            if (userLogeado.Tipo == TipoUsuario.Persona)
-            {   
+        {   
+
+
+            if(userLogeado.Tipo != TipoUsuario.Persona)
+            {
+                if (userLogeado.Tipo == TipoUsuario.PersonaCompleto)
+                {   
+                    Page.Validate("ValPersona");
+                    Page.Validate("ValAmbos");
+                    if (Page.IsValid)
+                    {
+                        PersonaNegocio negocio = new PersonaNegocio();
+                        Persona persona = (Persona)Session["Persona"];
+                        persona.Nombre = tbNombre.Text;
+                        persona.Apellido = tbApellido.Text;
+                        persona.Dni = int.Parse(tbDni.Text);
+                        persona.IDProvincia = ddlProvincia.SelectedIndex + 1;
+                        persona.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
+                        persona.Telefono = tbTel.Text;
+                        persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
+
+                        //CargarImagenPerfil();
+                        string urlAux = ObtenerUrlImagenPerfil();
+                        if(urlAux != null)
+                        {
+                            persona.UrlImagen = urlAux;
+                        }
+                        negocio.Modificar(persona);
+                        imgPerfil.Src = persona.UrlImagen;
+                        Session["Persona"] = persona;
+                        //Se actualizan las otras listas por postback
+                        cargarHistorias();
+                        cargarPublicaciones();
+                    }
+                }
+                else
+                {   //Es Refugio
+                    Page.Validate("ValRefugio");
+                    Page.Validate("ValAmbos");
+                    if (Page.IsValid)
+                    {
+                        RefugioNegocio negocio = new RefugioNegocio();
+                        Refugio refugio = (Refugio)Session["Refugio"]; 
+                        refugio.Nombre = tbNombreRefugio.Text;
+                        refugio.Direccion = tbDireccion.Text;
+                        refugio.Telefono = tbTel.Text;
+                        refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
+                        refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
+                        //VALIDAR IMG Y TRAERLA PARA EL UPDATE
+                        string urlAux = ObtenerUrlImagenPerfil();
+                        if (urlAux != null)
+                        {
+                            refugio.UrlImagen = urlAux;
+                        }
+                        negocio.Modificar(refugio);
+                        Session["Refugio"]=refugio;
+                        //Se actualizan las otras listas por postback
+                        cargarHistorias();
+                        cargarPublicaciones();
+                    }
+
+                }
+            }
+            else
+            {   //Es Persona incompleta
                 Page.Validate("ValPersona");
-                Page.Validate("ValAmbos");
-                if (Page.IsValid)
+                if (!Page.IsValid)
                 {
                     PersonaNegocio negocio = new PersonaNegocio();
-                    Persona persona = (Persona)Session["Persona"];
+                    Persona persona = new Persona();
+                    persona.IDUsuario = userLogeado.Id;
                     persona.Nombre = tbNombre.Text;
                     persona.Apellido = tbApellido.Text;
                     persona.Dni = int.Parse(tbDni.Text);
@@ -325,47 +383,18 @@ namespace TP_Final
                     persona.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                     persona.Telefono = tbTel.Text;
                     persona.FechaNacimiento = DateTime.Parse(tbFechaNac.Text);
-
-                    //CargarImagenPerfil();
-                    string urlAux = ObtenerUrlImagenPerfil();
-                    if(urlAux != null)
+                    //Placeholder imagen url
+                    persona.UrlImagen = placeholderImg;
+                    int filasAfectadas = negocio.Agregar(persona);
+                    if(filasAfectadas > 0)
                     {
-                        persona.UrlImagen = urlAux;
+                        //Informar alta exitoso, actualizo tipoUser, Persona en session y recargar pagina
+                        userLogeado.Tipo = TipoUsuario.PersonaCompleto;
+                        Session["Usuario"] = userLogeado;
+                        Session["Persona"] = persona;
+                        Response.Redirect("Perfil.aspx");
                     }
-                    negocio.Modificar(persona);
-                    imgPerfil.Src = persona.UrlImagen;
-                    Session["Persona"] = persona;
-                    //Se actualizan las otras listas por postback
-                    cargarHistorias();
-                    cargarPublicaciones();
                 }
-            }
-            else
-            {
-                Page.Validate("ValRefugio");
-                Page.Validate("ValAmbos");
-                if (Page.IsValid)
-                {
-                    RefugioNegocio negocio = new RefugioNegocio();
-                    Refugio refugio = (Refugio)Session["Refugio"]; 
-                    refugio.Nombre = tbNombreRefugio.Text;
-                    refugio.Direccion = tbDireccion.Text;
-                    refugio.Telefono = tbTel.Text;
-                    refugio.IDProvincia = ddlProvincia.SelectedIndex + 1;
-                    refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
-                    //VALIDAR IMG Y TRAERLA PARA EL UPDATE
-                    string urlAux = ObtenerUrlImagenPerfil();
-                    if (urlAux != null)
-                    {
-                        refugio.UrlImagen = urlAux;
-                    }
-                    negocio.Modificar(refugio);
-                    Session["Refugio"]=refugio;
-                    //Se actualizan las otras listas por postback
-                    cargarHistorias();
-                    cargarPublicaciones();
-                }
-
             }
         }
 

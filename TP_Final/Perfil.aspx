@@ -40,6 +40,9 @@
     </aside>
 
 
+    <%if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+        { %>
+
     <div class="container">
 
         <h2 id="Publicaciones" class="titulo">Tus Publicaciones</h2>
@@ -65,7 +68,7 @@
                             { %>
                         <div class="col-md-6">
                             <div class="card">
-                                <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="<% %>">
+                                <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="Imagen mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
                                 <div class="card-body">
                                     <h5 class="card-title"><%= item.Titulo %></h5>
                                     <p class="card-text"><%= item.Descripcion %></p>
@@ -84,7 +87,7 @@
     <%--SECCION HISTORIAS--%>
 
     <h2 id="Historias" class="titulo">Tus Historias 
-        <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
+            <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
     </h2>
 
     <% if (historias == null || historias.Count == 0)
@@ -103,11 +106,11 @@
                 <div class="card card-body">
 
                     <div class="row">
-                        <img id="imgHistoria" class="imagenPreview" src='<%# Eval("UrlImagen") %>' alt="Imagen Mascota">
+                        <img id="imgHistoria" class="imagenPreview" src='<%# Eval("UrlImagen") %>' alt="Imagen Mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
                         <label class="form-label">Cambiar foto</label>
                     </div>
                     <div class="mb-3">
-                        <input type="file" id="tbImagenHistoria" runat="server" accept="image/jpeg, image/png, image/jpg" onchange="previewImageHistoria(this)" class="form-control"/>
+                        <input type="file" id="tbImagenHistoria" runat="server" accept="image/jpeg, image/png, image/jpg" onchange="previewImageHistoria(this)" class="form-control" />
                     </div>
                     <script>
                         function previewImageHistoria(input) {
@@ -137,20 +140,29 @@
             </div>
         </ItemTemplate>
     </asp:Repeater>
+    <hr />
+    <% } %>
+
     <% }
 
     %>
-    <hr />
+    <%else
+        {%>
+            <div class="col-md-12">
+                <h3 class="leyenda"> Completa registro para poder acceder a todo el contenido del Sitio </h3>
+            </div>
+         <% } %>
+
 
     <%--SECCION PERFIL--%>
-    <%  if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
+    <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
     %>
     <div class="container perfil">
 
         <div class="row">
             <div id="formPersona" runat="server">
-                <h2 id="Perfil" class="titulo">Edita tus datos de perfil</h2>
+                <h2 id="PerfilTitulo" runat="server" class="titulo">Tus datos de perfil</h2>
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
                     <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
@@ -206,6 +218,9 @@
         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Red" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValAmbos"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="Números entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>
 
+        <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+            { %>
+
         <%--LOCALIDADES Y PROVINCIAS--%>
         <div class="mb-3">
             <label for="ddlProvincia" class="form-label">Provincia:</label>
@@ -222,8 +237,8 @@
                     <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
                 </ContentTemplate>
                 <%--  <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="ddlProvincia" EventName="SelectedIndexChanged" />
-                </Triggers>--%>
+                        <asp:AsyncPostBackTrigger ControlID="ddlProvincia" EventName="SelectedIndexChanged" />
+                    </Triggers>--%>
             </asp:UpdatePanel>
         </div>
 
@@ -253,6 +268,7 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <% } %>
 
         <div class="mb-3">
             <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true" />
