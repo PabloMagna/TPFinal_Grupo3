@@ -92,7 +92,6 @@
     <Content Include="Global.asax" />
     <Content Include="Historias.aspx" />
     <Content Include="imagenes\leftarrow.png" />
-    <Content Include="imagenes\Perfiles\Usuario-1.jpg" />
     <Content Include="imagenes\slider2.jpg" />
     <Content Include="imagenes\slider3.jpg" />
     <Content Include="imagenes\slider4.jpg" />
@@ -269,6 +268,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="imagenes\Historias\" />
+    <Folder Include="imagenes\Perfiles\" />
     <Folder Include="imagenes\publicaciones\" />
     <Folder Include="Models\" />
   </ItemGroup>
