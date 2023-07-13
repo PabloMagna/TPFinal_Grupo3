@@ -67,6 +67,7 @@ namespace TP_Final
 
         protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblMensaje.Visible = false;
             DropDownList ddlEstado = (DropDownList)sender;
             GridViewRow row = (GridViewRow)ddlEstado.NamingContainer;
             int idAdopcion = Convert.ToInt32(gvAdopciones.DataKeys[row.RowIndex].Value);
@@ -74,19 +75,28 @@ namespace TP_Final
 
             // Actualizar el estado de la adopción en el negocio
             AdopcionNegocio negocio = new AdopcionNegocio();
-            negocio.ActualizarEstado(idAdopcion, estado);
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
             Adopcion adopcion = negocio.ObtenerAdopcionPorID(idAdopcion);
-            if(estado == EstadoAdopcion.Pendiente)
+            Publicacion publicacion = publicacionNegocio.ObtenerPorId(adopcion.IDPublicacion);
+
+            if(estado == EstadoAdopcion.Pendiente && (publicacion.Estado == Estado.Activa || publicacion.Estado == Estado.Suspendida || publicacion.Estado == Estado.Borrada || publicacion.Estado == Estado.Finalizada))
             {
+                negocio.ActualizarEstado(idAdopcion, estado);
                 publicacionNegocio.ActualizarEstado(adopcion.IDPublicacion, Estado.EnProceso);
             }
-            else if(estado == EstadoAdopcion.Completada) {
+            else if(estado == EstadoAdopcion.Completada && publicacion.Estado == Estado.EnProceso) {
+                negocio.ActualizarEstado(idAdopcion, estado);
                 publicacionNegocio.ActualizarEstado(adopcion.IDPublicacion, Estado.Finalizada);
             }
-            else
+            else if((estado == EstadoAdopcion.Eliminada || estado == EstadoAdopcion.Rechazada) && publicacion.Estado == Estado.EnProceso)
             {
+                negocio.ActualizarEstado(idAdopcion, estado);
                 publicacionNegocio.ActualizarEstado(adopcion.IDPublicacion, Estado.Activa);
+            }
+            else 
+            {
+                lblMensaje.Text = "No se pueden realizar los cambios, por incompatibilidad de las publicaciones";
+                lblMensaje.Visible = true;
             }
 
             // Volver a cargar las adopciones en el GridView
