@@ -78,8 +78,10 @@
                             <div class="card">
                                 <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="Imagen mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= item.Titulo %></h5>
-                                    <p class="card-text"><%= item.Descripcion %></p>
+                                     <div class="content-text">
+                                        <h5 class="card-title"><%= item.Titulo %></h5>
+                                        <p class="card-text"><%= item.Descripcion %></p>
+                                     </div>
                                     <%if (item.Estado == Dominio.Estado.Suspendida)
                                         { %>
                                     <p class="card-text" style="color:red"> Pausada - Activala para publicitar</p>

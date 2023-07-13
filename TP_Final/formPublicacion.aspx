@@ -185,7 +185,7 @@
         <h3 id="h3alta">¡Gracias!</h3>
         <p>
             La publicación se realizó correctamente.<br />
-            Porás verta en la sección de mascotas <a href="galeria.aspx">en adopción</a>.
+            Porás verla en la sección de mascotas <a href="galeria.aspx">en adopción</a>.
         </p>
     </section>
    
