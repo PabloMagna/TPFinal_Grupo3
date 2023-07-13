@@ -19,11 +19,18 @@ namespace TP_Final
             if (Session["Usuario"] == null)
             {
                 Response.Redirect("Login.aspx");
-            }           
-
+            }
+            PublicacionNegocio negocio = new PublicacionNegocio();
             if (Request.QueryString["ID"] == null)
             {
                 Response.Redirect("default.aspx");
+            }
+            else if (!negocio.EsPublicacionDelUsuario(int.Parse(Request.QueryString["ID"]), ((Usuario)Session["Usuario"]).Id))
+            {
+                string script = "alert('Error: Esta publicación pertenece a otro usuario.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "PopupError", script, true);
+
+                Response.Redirect("Perfil.aspx");
             }
 
             usuarioLogin = (Dominio.Usuario)Session["Usuario"];

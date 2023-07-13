@@ -36,7 +36,7 @@ namespace TP_Final
                 }
                 else
                 {
-                    listaHistorias = negocio.Listar();
+                    listaHistorias = negocio.ListarAdmin();
                 }
                 dgvHistorias.DataSource = listaHistorias;
                 dgvHistorias.DataBind();

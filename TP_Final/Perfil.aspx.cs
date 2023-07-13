@@ -338,6 +338,7 @@ namespace TP_Final
                         //Se actualizan las otras listas por postback
                         cargarHistorias();
                         cargarPublicaciones();
+                        Session["ImagenPerfilActualizada"] = true;
                     }
                 }
                 else
@@ -364,6 +365,7 @@ namespace TP_Final
                         //Se actualizan las otras listas por postback
                         cargarHistorias();
                         cargarPublicaciones();
+                        Session["ImagenPerfilActualizada"] = true;
                     }
 
                 }
@@ -398,6 +400,8 @@ namespace TP_Final
                         Session["Usuario"]=userNego.BuscarxID(userLogeado.Id);
                         Session["Persona"] = persona;
                         Response.Redirect("Perfil.aspx");
+                        Session["ImagenPerfilActualizada"] = true;
+                        Response.Redirect(Request.Url.ToString());
                     }
                 }
             }
