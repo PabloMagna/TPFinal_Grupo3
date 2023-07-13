@@ -269,6 +269,38 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public Adopcion ObtenerAdopcionPorID(int idAdopcion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Adopcion adopcion = null;
+
+            try
+            {
+                datos.setearConsulta("select ID, IDPublicacion, IDUsuario, Estado, FechaHora from adopciones WHERE ID = @ID");
+                datos.setearParametro("@ID", idAdopcion);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    adopcion = new Adopcion();
+                    adopcion.ID = datos.Lector.GetInt32(0);
+                    adopcion.IDPublicacion = datos.Lector.GetInt32(1);
+                    adopcion.IDUsuario = datos.Lector.GetInt32(2);
+                    adopcion.Estado = (EstadoAdopcion)datos.Lector.GetInt32(3);
+                    adopcion.FechaHora = datos.Lector.GetDateTime(4);
+                }
+
+                return adopcion;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

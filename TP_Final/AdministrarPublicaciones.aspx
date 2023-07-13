@@ -4,6 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h2>Nota: Los cambios en los Estados van a afectar a las Adopciones relacionadas dandolas de baja</h2>
     <asp:GridView ID="dgvPublicaciones" runat="server" CssClass="table table-striped" AutoGenerateColumns="false"
         DataKeyNames="Id">
         <Columns>

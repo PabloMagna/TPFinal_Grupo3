@@ -75,6 +75,19 @@ namespace TP_Final
             // Actualizar el estado de la adopción en el negocio
             AdopcionNegocio negocio = new AdopcionNegocio();
             negocio.ActualizarEstado(idAdopcion, estado);
+            PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+            Adopcion adopcion = negocio.ObtenerAdopcionPorID(idAdopcion);
+            if(estado == EstadoAdopcion.Pendiente)
+            {
+                publicacionNegocio.ActualizarEstado(adopcion.IDPublicacion, Estado.EnProceso);
+            }
+            else if(estado == EstadoAdopcion.Completada) {
+                publicacionNegocio.ActualizarEstado(adopcion.IDPublicacion, Estado.Finalizada);
+            }
+            else
+            {
+                publicacionNegocio.ActualizarEstado(adopcion.IDPublicacion, Estado.Activa);
+            }
 
             // Volver a cargar las adopciones en el GridView
             CargarAdopciones();

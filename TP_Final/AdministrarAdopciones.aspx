@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h3>Nota: Los cambios en las Adopciones pueden afectar la visibilidad de las publicaciones en la web, activandolas en caso de baja y viceversa</h3>
     <asp:GridView ID="gvAdopciones" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" DataKeyNames="ID" OnRowDataBound="gvAdopciones_RowDataBound">
         <Columns>
             <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" />
