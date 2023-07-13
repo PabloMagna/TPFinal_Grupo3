@@ -13,10 +13,7 @@
         <h1 id="titulo">Publicación de mascota en adopción</h1>
         <h4 id="subtitulo" runat="server"><em>Necesitaremos que completes algunos datos.</em></h4>
     </section>
-    <%if (Request.QueryString["ID"] != null && ObtenerEstadoPublicacion() == Dominio.Estado.Suspendida)
-        {  %>
-        <h4>Tu publicacion esta pausada clica aqui para Activarla</h4>
-    <%} %>
+   
     <section class="formulario" id="formulario" runat="server">
         <div class="row">
             <div class="col-4">
@@ -180,8 +177,8 @@
                     <%}%>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn primary" OnClick="btnCancelar_Click" />
                 </div>
-
             </div>
+
         </div>
     </section>
     <section id="altaExitosa" class="altaExitosa" runat="server">
@@ -191,24 +188,7 @@
             Porás verta en la sección de mascotas <a href="galeria.aspx">en adopción</a>.
         </p>
     </section>
-    <%if (Request.QueryString["ID"] != null) {  %>
-        <section id="formularioOculto" class="formularioOculto" runat="server">
-            <div class="contenidoForm">
-                <asp:Button ID="btn_expandir" runat="server" Text="Borrar Publicacion" class="btn border-orange" OnClick="btn_expandir_Click" />
-                <div class="formularioH" id="formularioH" runat="server" style="display: none;">
-                    <div class="card card-body">
-                        <h4>Opciones de baja:</h4>
-                        <asp:RadioButtonList ID="rbOpcionesBaja" runat="server">
-                            <asp:ListItem Text="Eliminar publicación" Value="EliminarPublicacion" />
-                            <asp:ListItem Text="Eliminar por Adopción Concretada" Value="EliminarAdopcion" />
-                            <asp:ListItem Text="Suspender Publicación (No se muestra en galería - cancela solicitudes)" Value="SuspenderPublicacion" />
-                        </asp:RadioButtonList>
-                        <asp:Button ID="btnConfirmarAccion" runat="server" Text="Confirmar Acción" CssClass="btn" OnClick="btnConfirmarAccion_Click" />
-                    </div>
-                </div>
-            </div>
-        </section>
-    <%} %>
+   
 
 
 </asp:Content>
