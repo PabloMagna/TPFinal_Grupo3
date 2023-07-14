@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdministrarAdopciones.aspx.cs" Inherits="TP_Final.AdministrarAdopciones" %>
+﻿<%--<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdministrarAdopciones.aspx.cs" Inherits="TP_Final.AdministrarAdopciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,4 +28,4 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-</asp:Content>
+</asp:Content>--%>

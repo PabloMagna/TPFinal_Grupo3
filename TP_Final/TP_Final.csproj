@@ -107,7 +107,6 @@
   <ItemGroup>
     <Compile Include="AdministrarAdopciones.aspx.cs">
       <DependentUpon>AdministrarAdopciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdministrarAdopciones.aspx.designer.cs">
       <DependentUpon>AdministrarAdopciones.aspx</DependentUpon>

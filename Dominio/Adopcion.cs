@@ -10,15 +10,15 @@ namespace Dominio
     {
         Pendiente = 1,
         Completada = 2,
-        Rechazada = 3,
-        Eliminada = 4,
+        RechazadaPorDonante = 3,
+        EliminadaPorAdoptante = 4
     }
     public class Adopcion
     {
-        public int ID { get; set; }
         public int IDUsuario { get; set; }
         public int IDPublicacion { get; set; }
         public EstadoAdopcion Estado { get; set; }
         public DateTime FechaHora { get; set; }
+        public string Comentario { get; set; }
     }
 }

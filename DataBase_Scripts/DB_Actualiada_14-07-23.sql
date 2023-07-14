@@ -128,13 +128,14 @@ CREATE TABLE Historias (
 
 GO
 CREATE TABLE Adopciones (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
-	IDUsuario INT NOT NULL,
-	IDPublicacion INT NOT NULL,
-	Estado INT NOT NULL,
-	FechaHora datetime not null,
-	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID),
-	FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
+    IDUsuario INT NOT NULL,
+    IDPublicacion INT NOT NULL,
+    Estado INT NOT NULL,
+    FechaHora DATETIME NOT NULL,
+    Comentario VARCHAR(200) NULL,
+    PRIMARY KEY (IDUsuario, IDPublicacion),
+    FOREIGN KEY (IDUsuario) REFERENCES Usuarios(ID),
+    FOREIGN KEY (IDPublicacion) REFERENCES Publicaciones(ID)
 );
 GO
 
