@@ -30,7 +30,7 @@ namespace TP_Final
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
 
             // Obtener las adopciones correspondientes al usuario y la publicación
-            List<Adopcion> adopciones = adopcionNegocio.ListarPorUsuario(idUsuario);
+            List<Adopcion> adopciones = adopcionNegocio.ListarPorUsuarioActivas(idUsuario);
 
             // Configurar el origen de datos para el GridView
             dgvAdopciones.DataSource = adopciones;
