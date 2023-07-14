@@ -21,6 +21,12 @@
 
     <section class="formulario" id="formulario" runat="server">
         <div class="row">
+            <%if (publi != null && publi.Estado == Dominio.Estado.Pausada)
+                { %>
+            <div class="col-4">
+               <h2 style="color:crimson"> Publicación Pausada! Reactive para verla en Galería</h2>
+            </div>
+            <%} %>
             <div class="col-4">
                 <asp:Label ID="lbTitulo" runat="server" CssClass="titulo">Formulario de alta de Publicación</asp:Label>
 

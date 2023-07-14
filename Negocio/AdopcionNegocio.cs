@@ -372,7 +372,7 @@ namespace Negocio
                 datos.setearConsulta("SELECT IDPublicacion, IDUsuario, Estado, FechaHora, Comentario FROM Adopciones WHERE IDUsuario = @IDUsuario AND IDPublicacion = @IDPublicacion");
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.setearParametro("@IDPublicacion", idPublicacion);
-                datos.ejecutarLectura();
+                datos.ejecutarAccion();
 
                 if (datos.Lector.Read())
                 {
@@ -395,5 +395,29 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void ActualizarEstadoActivaActual(int idPublicacion, EstadoAdopcion estadoAdopcion, string comentario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Adopciones SET Estado = @Estado, Comentario = @Comentario WHERE IDPublicacion = @IDPublicacion AND Estado = 1");
+                datos.setearParametro("@Estado", estadoAdopcion);
+                datos.setearParametro("@IDPublicacion", idPublicacion);
+                if (comentario != null)
+                    datos.setearParametro("@Comentario", comentario);
+                else
+                    datos.setearParametro("@Comentario", DBNull.Value);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

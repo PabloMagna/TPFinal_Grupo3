@@ -35,7 +35,7 @@ namespace TP_Final
             {
                 IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
                 cargarImagenes(IDPublicacion);
-                CargarPublicacionEliminar();
+               // CargarPublicacionEliminar();
             }
 
             try
@@ -45,7 +45,6 @@ namespace TP_Final
                     CargarDropDownListProvincias();
                     CargarLocalidades(1);
 
-                    CargarPublicacionEliminar();
                     altaExitosa.Visible = false;
                     formulario.Visible = true;
                     if (Request.QueryString["ID"] != null)
@@ -54,14 +53,14 @@ namespace TP_Final
                         PublicacionNegocio negocio = new PublicacionNegocio();
                         Publicacion = negocio.ObtenerPorId(IDPublicacion);
                         CargarForm(Publicacion);
+                        CargarPublicacionEliminar();
+                        CargarOpcionesBaja();
                     }
                     else
                     {
                         IDPublicacion = 0;
                     }
 
-                    // Cargar opciones de baja
-                    CargarOpcionesBaja();
                 }
             }
             catch (Exception ex)
@@ -418,64 +417,86 @@ namespace TP_Final
         private void CargarOpcionesBaja()
         {
             List<ListItem> opcionesBaja = new List<ListItem>();
-
-            switch (publi.Estado)
+            if (publi != null)
             {
-                case Dominio.Estado.Activa:
-                    opcionesBaja.Add(new ListItem("Pausar Temportalmente (No se muestra en galería - cancela solicitudes)", "PausarPublicacion"));
-                    opcionesBaja.Add(new ListItem("Eliminar Publicación definitivamente", "EliminarDefinitivamente"));
-                    txtComentario.Visible = false;
-                    break;
-                case Dominio.Estado.FinalizadaConExito:
-                    opcionesBaja.Add(new ListItem("Reactivar Publicación - Devolución de la mascota", "DevolucionMascota"));
-                    break;
-                case Dominio.Estado.EnProceso:
-                    // para eliminar debe primero o confirmar adopción o dar de baja la  misma
-                    opcionesBaja.Add(new ListItem("Rechazar Adoptante - Reactiva Publicacion", "RechazarAdoptante"));
-                    opcionesBaja.Add(new ListItem("Finalizar por Adopción Concretada", "AdopcionConcretada"));
-                    break;
-                case Dominio.Estado.Pausada:
-                    opcionesBaja.Add(new ListItem("Reactivar Publicación", "ReactivarPublicacion"));
-                    txtComentario.Visible=false;
-                    break;
-            }
+                switch (publi.Estado)
+                {
+                    case Dominio.Estado.Activa:
+                        opcionesBaja.Add(new ListItem("Pausar Temportalmente (No se muestra en galería - cancela solicitudes)", "PausarPublicacion"));
+                        opcionesBaja.Add(new ListItem("Eliminar Publicación definitivamente", "EliminarDefinitivamente"));
+                        txtComentario.Visible = false;
+                        break;
+                    case Dominio.Estado.FinalizadaConExito:
+                        opcionesBaja.Add(new ListItem("Reactivar Publicación - Devolución de la mascota", "DevolucionMascota"));
+                        break;
+                    case Dominio.Estado.EnProceso:
+                        // para eliminar debe primero o confirmar adopción o dar de baja la  misma
+                        opcionesBaja.Add(new ListItem("Rechazar Adoptante - Reactiva Publicacion", "RechazarAdoptante"));
+                        opcionesBaja.Add(new ListItem("Finalizar por Adopción Concretada", "AdopcionConcretada"));
+                        break;
+                    case Dominio.Estado.Pausada:
+                        opcionesBaja.Add(new ListItem("Reactivar Publicación", "ReactivarPublicacion"));
+                        txtComentario.Visible = false;
+                        break;
+                }
 
-            rbOpcionesBaja.DataSource = opcionesBaja;
-            rbOpcionesBaja.DataBind();
+                rbOpcionesBaja.DataSource = opcionesBaja;
+                rbOpcionesBaja.DataBind();
+            }
         }
 
         protected void btnConfirmarAccion_Click(object sender, EventArgs e)
         {
             string opcionSeleccionada = rbOpcionesBaja.SelectedValue;
             int idPublicacion = int.Parse(Request.QueryString["id"]);
-            int idUsuario = ((Usuario)Session["Usuario"]).Id;
+            int idDonante = ((Usuario)Session["Usuario"]).Id;
+            PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+
+            string mensajeExito = string.Empty;
+            string redireccion = string.Empty;
 
             switch (opcionSeleccionada)
             {
                 case "PausarPublicacion":
-                    // Acción cuando se selecciona "PausarPublicacion"
+                    publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Pausada);
+                    mensajeExito = "La publicación ha sido pausada.";
+                    redireccion = Request.Url.AbsoluteUri;
                     break;
                 case "EliminarDefinitivamente":
-                    // Acción cuando se selecciona "EliminarDefinitivamente"
+                    publicacionNegocio.ActualizarEstado(idPublicacion, Estado.BorradaPorUsuario);
+                    mensajeExito = "La publicación ha sido eliminada definitivamente.";
+                    redireccion = "perfil.aspx";
                     break;
                 case "DevolucionMascota":
-                    // Acción cuando se selecciona "DevolucionMascota"
+                    publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.Devuelto, txtComentario.Text);
+                    mensajeExito = "La devolución de la mascota ha sido registrada.";
+                    redireccion = Request.Url.AbsoluteUri;
                     break;
                 case "RechazarAdoptante":
-                    // Acción cuando se selecciona "RechazarAdoptante"
+                    publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.RechazadaPorDonante, txtComentario.Text);
+                    mensajeExito = "El adoptante ha sido rechazado y la publicación ha sido reactivada.";
+                    redireccion = Request.Url.AbsoluteUri;
                     break;
                 case "AdopcionConcretada":
-                    // Acción cuando se selecciona "AdopcionConcretada"
+                    publicacionNegocio.ActualizarEstado(idPublicacion, Estado.FinalizadaConExito);
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.Completada, txtComentario.Text);
+                    mensajeExito = "La adopción ha sido concretada y la publicación ha sido finalizada con éxito.";
+                    redireccion = Request.Url.AbsoluteUri;
                     break;
                 case "ReactivarPublicacion":
-                    // Acción cuando se selecciona "ReactivarPublicacion"
-                    break;
-                default:
-                    // Acción por defecto si no se selecciona ninguna opción válida
+                    publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
+                    mensajeExito = "La publicación ha sido reactivada.";
+                    redireccion = Request.Url.AbsoluteUri;
                     break;
             }
-        }
 
+            // Llama a una función JavaScript para mostrar el mensaje emergente y redireccionar después de hacer clic en "Aceptar"
+            string script = "<script>alert('" + mensajeExito + "'); window.location.href = '" + redireccion + "';</script>";
+            ScriptManager.RegisterStartupScript(this, GetType(), "Popup", script, false);
+        }
 
     }
 }
