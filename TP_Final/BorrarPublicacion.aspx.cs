@@ -37,7 +37,7 @@ namespace TP_Final
 
             if (!IsPostBack)
             {
-                if (ObtenerEstadoPublicacion() == Dominio.Estado.Suspendida)
+                if (ObtenerEstadoPublicacion() == Dominio.Estado.Pausada)
                 {
                     mensajeSuspendido.Visible = true;
                 }
@@ -63,22 +63,22 @@ namespace TP_Final
             switch (opcionSeleccionada)
             {
                 case "EliminarPublicacion":
-                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Borrada);
-                    adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.Eliminada);
+                    publicacionNego.ActualizarEstado(idPublicacion, Estado.BorradaPorUsuario);
+                    adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.PublicacionBorrada);
                     // Mostrar mensaje emergente de confirmación y redirigir a Perfil.aspx
                     ScriptManager.RegisterStartupScript(this, GetType(), "DeleteConfirmation", "alert('La publicación ha sido eliminada.'); window.location = 'Perfil.aspx';", true);
                     break;
 
                 case "EliminarAdopcion":
-                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Finalizada);
+                    publicacionNego.ActualizarEstado(idPublicacion, Estado.FinalizadaConExito);
                     adopcionNegocio.CompletarAdopcionPendiente(idPublicacion);
                     // Mostrar mensaje emergente de confirmación y redirigir a Perfil.aspx
                     ScriptManager.RegisterStartupScript(this, GetType(), "DeleteConfirmation", "alert('La adopción ha sido eliminada.'); window.location = 'Perfil.aspx';", true);
                     break;
 
                 case "SuspenderPublicacion":
-                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Suspendida);
-                    adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.Rechazada);
+                    publicacionNego.ActualizarEstado(idPublicacion, Estado.Pausada);
+                    adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.PublicacionBorrada);
                     // Mostrar mensaje de suspensión y actualizar la misma página
                     ScriptManager.RegisterStartupScript(this, GetType(), "SuspensionMessage", "alert('La publicación ha sido suspendida.'); window.location = 'Perfil.aspx';", true);
                     break;
@@ -106,7 +106,7 @@ namespace TP_Final
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
             publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
-            adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.Rechazada);
+            adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.EliminadaPorAdoptante);
             Response.Redirect(Request.RawUrl);
         }
 

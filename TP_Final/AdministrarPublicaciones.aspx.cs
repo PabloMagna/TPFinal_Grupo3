@@ -83,7 +83,7 @@ namespace TP_Final
             PublicacionNegocio negocio = new PublicacionNegocio();
             negocio.ActualizarEstado(idPublicacion, nuevoEstado);
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
-            adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.Eliminada);
+            adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.EliminadoPorAdmin);
 
             // Actualizar el DGV
             CargarPublicaciones();

@@ -82,7 +82,7 @@
                                         <h5 class="card-title"><%= item.Titulo %></h5>
                                         <p class="card-text"><%= item.Descripcion %></p>
                                      </div>
-                                    <%if (item.Estado == Dominio.Estado.Suspendida)
+                                    <%if (item.Estado == Dominio.Estado.Pausada)
                                         { %>
                                     <p class="card-text" style="color:red"> Pausada - Activala para publicitar</p>
                                     <%} %>

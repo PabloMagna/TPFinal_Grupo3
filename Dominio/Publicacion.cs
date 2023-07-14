@@ -23,19 +23,19 @@ namespace Dominio
         [Description("Activa")]
         Activa = 1,
 
-        [Description("Borrada")]
-        Borrada = 2,
+        [Description("Borrada por Usuario")]
+        BorradaPorUsuario = 2,
 
-        [Description("Finalizada")]
-        Finalizada = 3,
+        [Description("Finalizada Con Exito")]
+        FinalizadaConExito = 3,
 
-        [Description("En Proceso")]
+        [Description("En Proceso de Adopcion")]
         EnProceso = 4,
 
-        [Description("Baneada")]
+        [Description("Baneada Por Moderador")]
         Baneada = 5,
-        [Description("Suspendida")]
-        Suspendida = 6,
+        [Description("Pausada Por Usuario")]
+        Pausada = 6
     }
     public class Publicacion
     {

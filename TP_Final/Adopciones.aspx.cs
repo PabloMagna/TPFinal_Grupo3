@@ -51,18 +51,35 @@ namespace TP_Final
         {
             LinkButton lnkEliminar = (LinkButton)sender;
             int idPublicacion = Convert.ToInt32(lnkEliminar.CommandArgument);
-
-            // Actualizar el estado de la adopción a "eliminado" en la base de datos
-            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
-            int idUsuario = ((Usuario)Session["Usuario"]).Id;
-            adopcionNegocio.ActualizarEstado(idUsuario,idPublicacion, EstadoAdopcion.Eliminada);
-
-            // Actualizar el estado de la publicación a "EnProceso" en la base de datos
             PublicacionNegocio publicacionNeg = new PublicacionNegocio();
+            Publicacion publicacion = publicacionNeg.ObtenerPorId(idPublicacion);
+
+            // Obtener el ID del usuario desde la sesión "Usuario"
+            int idUsuario = ((Usuario)Session["Usuario"]).Id;
+
+            // Obtener el comentario ingresado por el usuario
+            GridViewRow row = (GridViewRow)lnkEliminar.NamingContainer;
+            TextBox txtComentario = (TextBox)row.FindControl("txtComentario");
+            string comentario = txtComentario.Text.Trim();
+
+            // Actualizar el estado de la adopción y la publicación en la base de datos
+            AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+
+            if (publicacion.Estado == Estado.FinalizadaConExito)
+            {
+                adopcionNegocio.ActualizarEstado(idUsuario, idPublicacion, EstadoAdopcion.Devuelto, comentario);
+            }
+            else if (publicacion.Estado == Estado.EnProceso)
+            {
+                adopcionNegocio.ActualizarEstado(idUsuario, idPublicacion, EstadoAdopcion.EliminadaPorAdoptante, comentario);
+            }
+
             publicacionNeg.ActualizarEstado(idPublicacion, Estado.Activa);
 
+            // Cargar las adopciones actualizadas
             CargarAdopciones(idUsuario);
         }
+
 
     }
 }

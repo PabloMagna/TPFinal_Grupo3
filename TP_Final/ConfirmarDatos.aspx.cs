@@ -193,7 +193,7 @@ namespace TP_Final
                 }
                 else
                 {
-                    adopcionNegocio.Insertar(idUsuario, idPublicacion);
+                    adopcionNegocio.Insertar(idUsuario, idPublicacion, null);
                 }
                 publicacionNeg.ActualizarEstado(idPublicacion, Estado.EnProceso);
 

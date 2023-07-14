@@ -24,6 +24,11 @@
                         <%# ((Dominio.EstadoAdopcion)Eval("Estado")).ToString() %>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="Comentario">
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtComentario" runat="server" MaxLength="200" CssClass="form-control"></asp:TextBox>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Detalle Publicación">
                     <ItemTemplate>
                         <a href='<%# "DetallePublicacion.aspx?ID=" + Eval("IDPublicacion") %>'>Ver detalle</a>
