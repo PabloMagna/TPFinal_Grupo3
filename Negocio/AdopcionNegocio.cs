@@ -73,6 +73,38 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Adopcion> ListarPorUsuarioPerfil(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Adopcion> lista = new List<Adopcion>();
+
+            try
+            {
+                datos.setearConsulta("SELECT IDPublicacion, IDUsuario, Estado, FechaHora, Comentario FROM Adopciones WHERE IDUsuario = @IDUsuario AND Estado IN (1,2,3,4,5)");
+                datos.setearParametro("@IDUsuario", idUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Adopcion aux = new Adopcion();
+                    aux.IDPublicacion = datos.Lector.GetInt32(0);
+                    aux.IDUsuario = datos.Lector.GetInt32(1);
+                    aux.Estado = (EstadoAdopcion)datos.Lector.GetInt32(2);
+                    aux.FechaHora = datos.Lector.GetDateTime(3);
+                    aux.Comentario = datos.Lector.IsDBNull(4) ? null : datos.Lector.GetString(4);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Adopcion> ListarPorUsuarioActivas(int idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();

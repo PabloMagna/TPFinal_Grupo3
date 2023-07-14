@@ -15,6 +15,7 @@ namespace TP_Final
         protected Persona persona;
         protected Refugio refugio;
         protected List<Adopcion> adopcionList;
+        protected List<Publicacion> publicaciones;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["ID"] == null)
@@ -24,7 +25,7 @@ namespace TP_Final
             CargarUsuario();
             CargarPersonaORefugio();
             CargarAdopciones();
-
+            CargarPublicaciones();
         }
         private void CargarUsuario()
         {
@@ -47,7 +48,17 @@ namespace TP_Final
         private void CargarAdopciones()
         {
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
-            adopcionList = adopcionNegocio.ListarPorUsuario(usuario.Id);
+            adopcionList = adopcionNegocio.ListarPorUsuarioPerfil(usuario.Id);
+        }
+        private void CargarPublicaciones()
+        {
+            PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+            publicaciones = publicacionNegocio.ListarPorUsuarioAdmin(usuario.Id);
+        }
+        protected string CargarPrimerImagenPublicacion(int idPublicacion)
+        {
+            ImagenMascotaNegocio imagenMascotaNegocio  = new ImagenMascotaNegocio();
+            return imagenMascotaNegocio.ObtenerUrlsImagenes(idPublicacion)[0];
         }
     }
 }
