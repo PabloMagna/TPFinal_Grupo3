@@ -25,11 +25,9 @@ namespace TP_Final
             {
                 Response.Redirect("default.aspx");
             }
+            //verifica que sea dueño de la publicacion el usuario
             else if (!negocio.EsPublicacionDelUsuario(int.Parse(Request.QueryString["ID"]), ((Usuario)Session["Usuario"]).Id))
             {
-                string script = "alert('Error: Esta publicación pertenece a otro usuario.');";
-                ClientScript.RegisterStartupScript(this.GetType(), "PopupError", script, true);
-
                 Response.Redirect("Perfil.aspx");
             }
 

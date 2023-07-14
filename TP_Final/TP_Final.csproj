@@ -99,6 +99,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="formPublicacion.aspx" />
+    <Content Include="PerfilPublico.aspx" />
     <Content Include="RecuperarContrasenia.aspx" />
     <Content Include="ResetearContrasenia.aspx" />
     <Content Include="Web.config" />
@@ -232,6 +233,13 @@
     </Compile>
     <Compile Include="Perfil.aspx.designer.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilPublico.aspx.cs">
+      <DependentUpon>PerfilPublico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfilPublico.aspx.designer.cs">
+      <DependentUpon>PerfilPublico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="formPublicacion.aspx.cs">
