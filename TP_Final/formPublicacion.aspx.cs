@@ -19,6 +19,8 @@ namespace TP_Final
         protected bool existeImagen = false;
         protected List<ImagenMascota> listaImg { get; set; }
 
+        protected Publicacion publi;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Requiere inicio de sesión
@@ -33,14 +35,17 @@ namespace TP_Final
             {
                 IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
                 cargarImagenes(IDPublicacion);
+                CargarPublicacionEliminar();
             }
 
             try
             {
                 if (!IsPostBack)
-                {                    
+                {
                     CargarDropDownListProvincias();
                     CargarLocalidades(1);
+
+                    CargarPublicacionEliminar();
                     altaExitosa.Visible = false;
                     formulario.Visible = true;
                     if (Request.QueryString["ID"] != null)
@@ -54,16 +59,18 @@ namespace TP_Final
                     {
                         IDPublicacion = 0;
                     }
-                }
 
+                    // Cargar opciones de baja
+                    CargarOpcionesBaja();
+                }
             }
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
                 throw;
             }
-
         }
+
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("default.aspx");
@@ -150,8 +157,8 @@ namespace TP_Final
                 Session.Add("Error", ex);
                 throw;
             }
-        }        
-        
+        }
+
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -268,11 +275,11 @@ namespace TP_Final
         }
 
         protected void CargarForm(Publicacion publicacion)
-        {           
+        {
             try
-            {                
+            {
                 tbNombre.Text = publicacion.Titulo;
-                ddlEspecie.SelectedValue = publicacion.Especie.ToString() ;
+                ddlEspecie.SelectedValue = publicacion.Especie.ToString();
                 tbDescripcion.Text = publicacion.Descripcion;
                 ddlProvincia.SelectedValue = publicacion.IDProvincia.ToString();
                 ddlLocalidad.SelectedValue = publicacion.IDLocalidad.ToString();
@@ -288,7 +295,7 @@ namespace TP_Final
                     tbEdad.Text = publicacion.Edad.ToString();
                     ddlEdad.SelectedValue = "M";
                 }
-               
+
             }
 
             catch (Exception ex)
@@ -311,10 +318,10 @@ namespace TP_Final
         {
             List<ImagenMascota> imagenesMascota = null;
             ImagenMascotaNegocio negocioImagenes = new ImagenMascotaNegocio();
-            if(negocioImagenes.listar(idPublicacion) != null)
+            if (negocioImagenes.listar(idPublicacion) != null)
             {
                 imagenesMascota = negocioImagenes.listar(idPublicacion);
-            }            
+            }
 
             return imagenesMascota;
         }
@@ -365,8 +372,8 @@ namespace TP_Final
 
                 //Seteo Imágenes: 
                 ImagenMascota nuevaImg = new ImagenMascota();
-                nuevaImg.IdPublicacion = int.Parse(Request.QueryString["ID"]); 
-               
+                nuevaImg.IdPublicacion = int.Parse(Request.QueryString["ID"]);
+
                 if (!string.IsNullOrEmpty(tbImgFile.Value))
                 {
                     string ruta = Server.MapPath("./imagenes/publicaciones/");
@@ -396,5 +403,79 @@ namespace TP_Final
             int idPublicacion = int.Parse(Request.QueryString["ID"]);
             Response.Redirect("EditarImagenesMascota.aspx?ID=" + idPublicacion);
         }
+        private void CargarPublicacionEliminar()
+        {
+            PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
+            Publicacion auxiliar = publicacionNegocio.ObtenerPorId(int.Parse(Request.QueryString["ID"]));
+            if(auxiliar != null && auxiliar.Estado != Estado.BorradaPorUsuario && auxiliar.Estado != Estado.Baneada) {
+                publi = auxiliar;
+            }
+            else
+            {
+                publi = null;
+            }
+        }
+        private void CargarOpcionesBaja()
+        {
+            List<ListItem> opcionesBaja = new List<ListItem>();
+
+            switch (publi.Estado)
+            {
+                case Dominio.Estado.Activa:
+                    opcionesBaja.Add(new ListItem("Pausar Temportalmente (No se muestra en galería - cancela solicitudes)", "PausarPublicacion"));
+                    opcionesBaja.Add(new ListItem("Eliminar Publicación definitivamente", "EliminarDefinitivamente"));
+                    txtComentario.Visible = false;
+                    break;
+                case Dominio.Estado.FinalizadaConExito:
+                    opcionesBaja.Add(new ListItem("Reactivar Publicación - Devolución de la mascota", "DevolucionMascota"));
+                    break;
+                case Dominio.Estado.EnProceso:
+                    // para eliminar debe primero o confirmar adopción o dar de baja la  misma
+                    opcionesBaja.Add(new ListItem("Rechazar Adoptante - Reactiva Publicacion", "RechazarAdoptante"));
+                    opcionesBaja.Add(new ListItem("Finalizar por Adopción Concretada", "AdopcionConcretada"));
+                    break;
+                case Dominio.Estado.Pausada:
+                    opcionesBaja.Add(new ListItem("Reactivar Publicación", "ReactivarPublicacion"));
+                    txtComentario.Visible=false;
+                    break;
+            }
+
+            rbOpcionesBaja.DataSource = opcionesBaja;
+            rbOpcionesBaja.DataBind();
+        }
+
+        protected void btnConfirmarAccion_Click(object sender, EventArgs e)
+        {
+            string opcionSeleccionada = rbOpcionesBaja.SelectedValue;
+            int idPublicacion = int.Parse(Request.QueryString["id"]);
+            int idUsuario = ((Usuario)Session["Usuario"]).Id;
+
+            switch (opcionSeleccionada)
+            {
+                case "PausarPublicacion":
+                    // Acción cuando se selecciona "PausarPublicacion"
+                    break;
+                case "EliminarDefinitivamente":
+                    // Acción cuando se selecciona "EliminarDefinitivamente"
+                    break;
+                case "DevolucionMascota":
+                    // Acción cuando se selecciona "DevolucionMascota"
+                    break;
+                case "RechazarAdoptante":
+                    // Acción cuando se selecciona "RechazarAdoptante"
+                    break;
+                case "AdopcionConcretada":
+                    // Acción cuando se selecciona "AdopcionConcretada"
+                    break;
+                case "ReactivarPublicacion":
+                    // Acción cuando se selecciona "ReactivarPublicacion"
+                    break;
+                default:
+                    // Acción por defecto si no se selecciona ninguna opción válida
+                    break;
+            }
+        }
+
+
     }
 }

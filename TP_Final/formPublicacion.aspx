@@ -3,6 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Alta Publicacion</title>
     <link href="css/formPublicacion.css" rel="stylesheet" type="text/css" />
+    <style>
+        .radio-options label {
+            color: black;
+        }
+    </style>
 
 </asp:Content>
 
@@ -13,7 +18,7 @@
         <h1 id="titulo">Publicación de mascota en adopción</h1>
         <h4 id="subtitulo" runat="server"><em>Necesitaremos que completes algunos datos.</em></h4>
     </section>
-   
+
     <section class="formulario" id="formulario" runat="server">
         <div class="row">
             <div class="col-4">
@@ -162,7 +167,25 @@
                     <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
                 </div>
 
-
+                <%--Activar/Desactivar Publicaciones - Adopciones--%>
+                <% if (publi != null && publi.Estado != Dominio.Estado.Baneada && publi.Estado != Dominio.Estado.BorradaPorUsuario)
+                    { %>
+                <section id="FormBorrarPublicacion" runat="server" visible="true">
+                    <div id="formBorrar" class="formularioOculto" runat="server">
+                        <div class="contenidoForm">
+                            <div>
+                                <h3>Baja de publicación</h3>
+                            </div>
+                            <div class="card card-body">
+                                <h4 style="color: black;">Opciones de baja:</h4>
+                                <asp:RadioButtonList ID="rbOpcionesBaja" runat="server" DataTextField="Text" DataValueField="Value" CssClass="radio-options"></asp:RadioButtonList>
+                                <asp:TextBox ID="txtComentario" runat="server" MaxLength="199" placeholder="Razones de la baja"></asp:TextBox>
+                                <asp:Button ID="btnConfirmarAccion" runat="server" Text="Confirmar Acción" CssClass="btn" OnClick="btnConfirmarAccion_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <% } %>
 
                 <!--Botones-->
                 <div class="mb-3">
@@ -179,6 +202,7 @@
                 </div>
             </div>
 
+
         </div>
     </section>
     <section id="altaExitosa" class="altaExitosa" runat="server">
@@ -188,7 +212,5 @@
             Porás verla en la sección de mascotas <a href="galeria.aspx">en adopción</a>.
         </p>
     </section>
-   
-
 
 </asp:Content>

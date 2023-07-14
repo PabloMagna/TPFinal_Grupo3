@@ -36,11 +36,11 @@
                     <li><a href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a></li>
                     <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
                     <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
-                        <%if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
-                            {%>
-                            <li><a href="Adopciones.aspx">Tus Adopciones</a></li>
+                    <%if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
+                        {%>
+                    <li><a href="Adopciones.aspx">Tus Adopciones</a></li>
 
-                           <% } %>
+                    <% } %>
                     <% } %>
                 </ul>
             </div>
@@ -78,22 +78,22 @@
                             <div class="card">
                                 <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="Imagen mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
                                 <div class="card-body">
-                                     <div class="content-text">
+                                    <div class="content-text">
                                         <h5 class="card-title"><%= item.Titulo %></h5>
                                         <p class="card-text"><%= item.Descripcion %></p>
-                                     </div>
-                                    <%if (item.Estado == Dominio.Estado.Pausada)
+                                    </div>
+    <%--                                <% if (item.Estado == Dominio.Estado.Pausada)
                                         { %>
-                                    <p class="card-text" style="color:red"> Pausada - Activala para publicitar</p>
-                                    <%} %>
+                                    <p class="card-text" style="color: red">Pausada - Actívala para publicitar</p>
+                                    <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
+                                    <% } %>--%>
                                     <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
                                     <a href="BorrarPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Activar/Desactivar</a>
                                 </div>
                             </div>
+                            <% }
+                                } %>
                         </div>
-                        <% }
-                            } %>
-                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
