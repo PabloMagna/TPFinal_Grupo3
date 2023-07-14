@@ -44,3 +44,8 @@
     overflow-y: scroll;
     text-overflow: ellipsis;
 }
+
+.colFiltro {
+    margin-top: 20px;
+    border-radius: 10px;
+}

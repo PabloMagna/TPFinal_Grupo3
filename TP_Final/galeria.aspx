@@ -14,11 +14,11 @@
     <br />
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3 colFiltro bg-orange">
                 <section class="filtro mt-3">
                     <asp:UpdatePanel runat="server" ID="updatePanelProvincia">
                         <ContentTemplate>
-                            <div class="bg-orange rounded p-3">
+                            <div class="p-3">
                                 <h3 class="text-white">FILTROS</h3>
                                 <div class="form-group mb-3">
                                     <asp:Label runat="server" ID="lblProvincia" Text="Elige Provincia:" CssClass="form-label text-white"></asp:Label>
@@ -45,7 +45,7 @@
                     </asp:UpdatePanel>
                 </section>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <asp:UpdatePanel runat="server" ID="updatePanelTarjetas" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="row">
