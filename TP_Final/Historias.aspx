@@ -5,8 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="portada">
-        <h1 id="titulo">Historias</h1>
-        <h4><em>Relatos de adopciones a través de Pet Net.</em></h4>
+        <h1 id="titulo">Relatos de adopciones a través de Pet Net.</h1>       
     </section>
      <section id="altaExitosa" class="altaExitosa" runat="server">
         <h3 id="h3alta">¡Gracias por compartirnos tu historia!</h3>

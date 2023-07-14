@@ -9,8 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <section class="portada">
-        <h1 id="titulo">Formulario de solicitud</h1>
-        <h4 id="subtitulo" runat="server"><em>Necesitaremos que confirmes y/o completes tus datos para comenzar el proceso de adopción.</em></h4>
+        <h1 id="titulo">Formulario de solicitud</h1>       
     </section>
 
     <section class="formulario" id="formulario" runat="server">

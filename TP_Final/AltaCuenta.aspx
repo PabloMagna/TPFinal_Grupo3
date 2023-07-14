@@ -10,8 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="smUbicacion" runat="server"></asp:ScriptManager>
     <section class="portada">
-        <h1 id="titulo">Gracias por ser parte del cambio</h1>
-        <h4><em>Vamos a necesitar que completes algunos datos.</em></h4>
+        <h1 id="titulo">Gracias por ser parte del cambio</h1>        
     </section>
     <section class="formulario">
         <div class="row">

@@ -1,13 +1,6 @@
 ﻿body {
 }
 
-.carousel-inner {
-    height: 600px;
-    overflow: hidden;
-    max-height: 100%;
-    max-height: 100vh;
-}
-
 .quienes_somos {
     height: auto;
     padding: 30px 0;
@@ -24,7 +17,7 @@
     background-color: #D2E3EB;
     padding: 40px 0;
     text-align: center;
-    margin-top: 70px;
+    /*margin-top: 70px;*/
 }
 
 
@@ -47,3 +40,51 @@
     text-align: center !important;
     margin-top: 50px;
 }
+.home {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/005/007/244/original/muddy-brown-paws-texture-background-free-vector.jpg");
+    background-repeat: repeat;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+
+
+.btnGaleria a {
+    text-decoration: none;
+    color: white;
+    margin: 10px 0;
+    background-color: #C45F2E;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 30%;
+   
+}
+    .btnGaleria a:hover {
+        color: antiquewhite;
+        background-color: #FFA066;
+    }
+.userlog {
+    background-color: #D2E3EB;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 30%;
+    margin-bottom: 10px;
+    height:50%;
+}
+    .userlog p {
+        font-size: 25px;
+        color: #24566E;
+    }
+
+

@@ -24,7 +24,7 @@ header {
 
 .bg-orange {
     background-color: #C45F2E !important;
-    min-height: 100px !important;
+    min-height: 70px !important;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -32,7 +32,7 @@ header {
 }
 
 .contenido {
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 #botones a {

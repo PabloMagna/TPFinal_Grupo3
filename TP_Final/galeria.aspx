@@ -9,7 +9,7 @@
     <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
     <section class="portada">
         <h1 id="titulo">Adoptá, salvá una vida</h1>
-        <h4><em>- Ayudalos a encontrar un lugar donde pertenecer -</em></h4>
+       
     </section>
     <br />
     <div class="container">

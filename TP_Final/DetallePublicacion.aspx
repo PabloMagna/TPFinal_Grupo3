@@ -18,8 +18,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="portada">
-        <h1 id="titulo">Detalles de la publicación</h1>
-        <h4><em>- Ofrece un hogar, recibe felicidad. -</em></h4>
+        <h1 id="titulo">Detalles de la publicación</h1>       
     </section>
     <br />
     <div class="container">

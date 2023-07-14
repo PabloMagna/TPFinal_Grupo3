@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <section class="slider">
+   <!-- <section class="slider">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -27,6 +27,27 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
+    </section>-->
+   
+    <section class="home">
+        <%if (Session["Usuario"]!=null)
+            {%>
+        <div class="userlog d-flex align-self-center">
+             <div id="userlog">                                     
+                <p>¡Hola <%=GetUserName()%>!</p>
+            </div>
+            <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 4.0rem; height: 4.0rem;">
+                <img src="<%=ObtenerUrl() %>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />                               
+            </div>           
+        </div>
+            <% }%>
+          
+         
+            <div class="btnGaleria">
+                <a href="galeria.aspx">Ver mascotas en adopción</a>
+            </div>
+
+          
     </section>
     <section id="about" class="quienes_somos">
         <h1 id="titulo1">Quiénes somos</h1>  

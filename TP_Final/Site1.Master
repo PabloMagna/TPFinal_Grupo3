@@ -77,14 +77,11 @@
                         <% if (Session["Usuario"] != null)
                             { %>
                         <!-- Elementos de navegación para un usuario con sesión iniciada -->
-                            <div class="d-flex justify-content-end ">
-                                <div id="userlog" class="d-flex align-self-center">                                     
-                                    <p>¡Hola <%=GetUserName()%>!</p>
-                                </div>
-                                <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 3.5rem; height: 3.5rem;">
+                            <div class="d-flex justify-content-end ">                                
+                                <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 3.0rem; height: 3.0rem;">
                                   <img src="<%=ObtenerUrl() %>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />                               
                                 </div>
-                                <div id="botones" class="d-flex flex-column"> 
+                                <div id="botones" class="d-flex flex-row"> 
                                     <asp:Button ID="btnsalir" class="botones" runat="server" Text="Cerrar sesión" OnClick="btnsalir_Click"/>
                                     <asp:Button ID="btnperfil" class="botones" runat="server" Text="Ir al perfil" OnClick="btnperfil_Click" />
                                 </div>

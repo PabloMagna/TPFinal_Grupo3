@@ -15,8 +15,7 @@
     <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
 
     <section class="portada">
-        <h1 id="titulo">Publicación de mascota en adopción</h1>
-        <h4 id="subtitulo" runat="server"><em>Necesitaremos que completes algunos datos.</em></h4>
+        <h1 id="titulo">Publicación de mascota en adopción</h1>       
     </section>
 
     <section class="formulario" id="formulario" runat="server">

@@ -146,8 +146,7 @@ namespace TP_Final
                     imagenNegocio.Agregar(nuevaImg);
                 }
 
-                formulario.Visible = false;
-                subtitulo.Visible = false;
+                formulario.Visible = false;                
                 altaExitosa.Visible = true;
             }
 
@@ -385,8 +384,7 @@ namespace TP_Final
                     imagenNegocio.Agregar(nuevaImg);
                 }
 
-                formulario.Visible = false;
-                subtitulo.Visible = false;
+                formulario.Visible = false;                
                 altaExitosa.Visible = true;
             }
 
