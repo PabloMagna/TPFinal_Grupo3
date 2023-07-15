@@ -153,6 +153,40 @@ namespace TP_Final
             Response.Redirect("default.aspx");
         }
 
-    
+        protected void cvPasswordRepeat_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string password = tbPassword.Text;
+            string passwordRepeat = PasswordRepeat.Text;
+
+            args.IsValid = (password == passwordRepeat);
+        }
+
+        protected void cvPasswordRequirements_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string password = tbPassword.Text;
+
+            // Validar longitud
+            if (password.Length < 8 || password.Length > 20)
+            {
+                args.IsValid = false;
+                return;
+            }
+
+            // Validar al menos una mayúscula
+            if (!password.Any(char.IsUpper))
+            {
+                args.IsValid = false;
+                return;
+            }
+
+            // Validar al menos un número
+            if (!password.Any(char.IsDigit))
+            {
+                args.IsValid = false;
+                return;
+            }
+
+            args.IsValid = true;
+        }
     }
 }
