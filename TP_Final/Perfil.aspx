@@ -13,24 +13,24 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     </style>
     <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
-   <script>
-       function soloLetras(event) {
-           var charCode = event.keyCode || event.which;
+    <script>
+        function soloLetras(event) {
+            var charCode = event.keyCode || event.which;
 
-           // Permitir tecla Backspace (8) y tecla Delete (46)
-           if (charCode === 8 || charCode === 46) {
-               return true;
-           }
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
 
-           var charStr = String.fromCharCode(charCode);
-           var pattern = /^[A-Za-z]+$/;
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^[A-Za-z]+$/;
 
-           if (!pattern.test(charStr)) {
-               event.preventDefault();
-               return false;
-           }
-       }
-   </script>
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
     <script>
         function soloNumeros(event) {
             var charCode = event.keyCode || event.which;
@@ -51,10 +51,10 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <section class="portada">
-        <h1 id="titulo">Editar datos de Perfil</h1>       
+    <section class="portada">
+        <h1 id="titulo">Editar datos de Perfil</h1>
     </section>
-   
+
     <!--
     <aside>
         <button id="btnSideBar" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
@@ -72,12 +72,12 @@
                 <ul>
                     <li><a href="Perfil.aspx#PerfilTitulo">Editar datos de Perfil</a></li>
                     <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-                        {%>
+        {%>
                     <li><a href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a></li>
                     <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
                     <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
                     <%if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
-                        {%>
+        {%>
                     <li><a href="Adopciones.aspx">Tus Adopciones</a></li>
 
                     <% } %>
@@ -88,18 +88,18 @@
     </aside>
     -->
     <section class="menu-tabs">
-        <ul class="nav nav-tabs">          
-             <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-                        {%>
-          <li class="nav-item">
-            <a class="nav-link" href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
-          </li>           
+        <ul class="nav nav-tabs">
+            <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+                {%>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
+            </li>
             <% } %>
         </ul>
 
@@ -138,19 +138,19 @@
                                 <div class="card-body">
                                     <div class="content-text">
                                         <h5 class="card-title"><%= item.Titulo %></h5>
+                                        <% if (item.Estado == Dominio.Estado.Pausada)
+                                            { %>
+                                        <div class="card-text">
+                                            <div class="alert alert-warning" role="alert">
+                                                Publicación Pausada
+                                            </div>
+                                        </div>
+                                        <% } %>
                                         <p class="card-text"><%= item.Descripcion %></p>
                                     </div>
-    <%--                                <% if (item.Estado == Dominio.Estado.Pausada)
-                                        { %>
-                                    <p class="card-text" style="color: red">Pausada - Actívala para publicitar</p>
-                                    <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
-                                    <% } %>--%>
                                     <div class="botonesPerfil">
-                                         <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
-                                    <a href="BorrarPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Activar/Desactivar</a>
-
+                                        <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
                                     </div>
-                                   
                                 </div>
                             </div>
                             <% }
@@ -242,7 +242,7 @@
                 <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
-                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);" ></asp:TextBox>
+                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mb-3">
