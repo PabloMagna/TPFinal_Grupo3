@@ -5,6 +5,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+     <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
+    <script>
+        function soloLetras(event) {
+            var charCode = event.keyCode || event.which;
+
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
+
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^[A-Za-z]+$/;
+
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+    <script>
+        function soloNumeros(event) {
+            var charCode = event.keyCode || event.which;
+
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
+
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^\d+$/;
+
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -18,21 +55,21 @@
             <div class="alert alert-danger" id="lblMessage" runat="server" visible="false"></div>
             <div class="mb-3">
                 <label for="txtDni" class="form-label">DNI:</label>
-                <asp:TextBox ID="txtDni" TextMode="Number" MaxLength="9" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txtDni" ForeColor="Cyan" ErrorMessage="Ingrese solo números, máximo 9 dígitos" ValidationExpression="^\d{7,9}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="txtDni" TextMode="Number" MaxLength="10" runat="server" CssClass="form-control" onkeydown="return soloNumeros(event);"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txtDni" ForeColor="Cyan" ErrorMessage="Solo números, máximo 10 dígitos" ValidationExpression="^\d{7,10}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDni" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
             </div>
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre:</label>
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ForeColor="Cyan" ErrorMessage="Máximo 19 caracteres" ValidationExpression="^.{0,19}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ForeColor="Cyan" ErrorMessage="Máximo 20 caracteres" ValidationExpression="^.{0,20}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
             </div>
             <div class="mb-3">
                 <label for="txtApellido" class="form-label">Apellido:</label>
-                <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" ForeColor="Cyan" ErrorMessage="Máximo 19 caracteres" ValidationExpression="^.{0,19}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" ForeColor="Cyan" ErrorMessage="Máximo 20 caracteres" ValidationExpression="^.{0,20}$" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
             </div>
             <div class="mb-3">
                 <label for="txtFechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
@@ -63,9 +100,9 @@
             </div>
             <div class="mb-3">
                 <label for="txtTelefono" class="form-label">Teléfono:</label>
-                <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" MaxLength="20" onkeydown="return soloNumeros(event);"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" SetFocusOnError="true" ErrorMessage="Sólo números ingrese entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
             </div>
             <div class="mb-3">
                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar y ver Datos de adopcion" CssClass="btn btn-primary" OnClick="btnGuardar_Click" ValidationGroup="Validaciones" />

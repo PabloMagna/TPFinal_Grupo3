@@ -73,8 +73,8 @@
                 <div class="mb-3">
                     <label class="form-label">Repetir Password</label>
                     <asp:TextBox ID="PasswordRepeat" runat="server" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
-                    <asp:CustomValidator ID="cvPasswordRepeat" runat="server" ControlToValidate="PasswordRepeat" ErrorMessage="Las contraseñas no coinciden" ForeColor="Cyan" OnServerValidate="cvPasswordRepeat_ServerValidate" ValidationGroup="Validaciones"></asp:CustomValidator>
-                     <asp:CustomValidator ID="cvPasswordRequirements" runat="server" ControlToValidate="tbPassword" ErrorMessage="La contraseña debe tener entre 8 y 20 caracteres y contener al menos una mayúscula y un número" ForeColor="Cyan" OnServerValidate="cvPasswordRequirements_ServerValidate" ValidationGroup="Validaciones"></asp:CustomValidator>
+                    <asp:CustomValidator ID="cvPasswordRepeat" runat="server" ControlToValidate="PasswordRepeat" ErrorMessage="Las contraseñas no coinciden. " ForeColor="Cyan" OnServerValidate="cvPasswordRepeat_ServerValidate" ValidationGroup="Validaciones"></asp:CustomValidator>
+                     <asp:CustomValidator ID="cvPasswordRequirements" runat="server" ControlToValidate="tbPassword" ErrorMessage="La contraseña debe tener entre 8 y 20 caracteres y contener al menos una mayúscula y un número." ForeColor="Cyan" OnServerValidate="cvPasswordRequirements_ServerValidate" ValidationGroup="Validaciones"></asp:CustomValidator>
                 </div>
 
                 <%if (Cuenta=="Refugio")
