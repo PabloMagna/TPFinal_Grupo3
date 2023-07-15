@@ -68,7 +68,7 @@
                                 <h5>Publicaciones:</h5>
                                 <ul>
                                     <% foreach (var publicacion in publicaciones) { %>
-                                        <% if (publicacion.Estado != Dominio.Estado.Baneada) { %>
+                                        <% if (publicacion.Estado != Dominio.Estado.EliminadaPorAdmin) { %>
                                             <li>
                                                 Título: <%= publicacion.Titulo %>,
                                                 <div style="width: 100px; height: 100px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center;">
@@ -86,7 +86,7 @@
                                 <h5>Publicaciones Históricas Del Usuario:</h5>
                                 <ul>
                                     <% foreach (var publicacion in publicaciones) { %>
-                                        <% if (publicacion.Estado != Dominio.Estado.Baneada) { %>
+                                        <% if (publicacion.Estado != Dominio.Estado.EliminadaPorAdmin) { %>
                                             <li>
                                                  - <%= publicacion.Titulo %>,
                                                 <div style="width: 100px; height: 100px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center;">

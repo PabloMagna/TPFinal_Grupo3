@@ -12,7 +12,7 @@ namespace TP_Final
         {
             if ((Usuario)Session["Usuario"] == null)
                 Response.Redirect("Login.aspx");
-             else if (!((Usuario)Session["Usuario"]).EsAdmin)
+            else if (!((Usuario)Session["Usuario"]).EsAdmin)
                 Response.Redirect("Login.aspx");
 
             if (!IsPostBack)
@@ -33,7 +33,7 @@ namespace TP_Final
                 }
                 else if (Request.QueryString["IDP"] != null)
                 {
-                        publicaciones = negocio.ListarPorIDPublicacion(Convert.ToInt32(Request.QueryString["IDP"]));
+                    publicaciones = negocio.ListarPorIDPublicacion(Convert.ToInt32(Request.QueryString["IDP"]));
                 }
                 else
                 {
@@ -44,21 +44,28 @@ namespace TP_Final
 
                 foreach (GridViewRow row in dgvPublicaciones.Rows)
                 {
-                    DropDownList ddlEstado = (DropDownList)row.FindControl("ddlEstado");
-                    ddlEstado.DataSource = Enum.GetValues(typeof(Estado));
-                    ddlEstado.DataBind();
-                    ddlEstado.Enabled = true; // Habilitar el DDL
-
                     Publicacion publicacion = publicaciones[row.RowIndex];
-                    ddlEstado.SelectedValue = publicacion.Estado.ToString();
+                    DropDownList ddlEstado = (DropDownList)row.FindControl("ddlEstado");
+                    Label lblEstado = (Label)row.FindControl("lblEstado");
+
+                    if (ddlEstado != null)
+                    {
+                        ddlEstado.DataSource = Enum.GetValues(typeof(Estado));
+                        ddlEstado.DataBind();
+                        ddlEstado.Enabled = true;
+                        ddlEstado.SelectedValue = publicacion.Estado.ToString();
+
+                        ddlEstado.Visible = true;
+                        lblEstado.Visible = false;
+                    }
 
                     // Obtener nombres de provincia y localidad
                     int idProvincia = publicacion.IDProvincia;
                     int idLocalidad = publicacion.IDLocalidad;
                     ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio();
                     LocalidadNegocio localNegocio = new LocalidadNegocio();
-                    string nombreProvincia = provinciaNegocio.ObtenerNombrePorId(idProvincia); // Llama a la función existente para obtener el nombre de provincia
-                    string nombreLocalidad = localNegocio.ObtnerNombrePorID(idLocalidad); // Llama a la función existente para obtener el nombre de localidad
+                    string nombreProvincia = provinciaNegocio.ObtenerNombrePorId(idProvincia);
+                    string nombreLocalidad = localNegocio.ObtnerNombrePorID(idLocalidad);
 
                     // Buscar las celdas correspondientes en la fila y asignar los nombres
                     row.Cells[10].Text = nombreLocalidad; // La columna 10 (celda 10) es la de Localidad
@@ -71,22 +78,31 @@ namespace TP_Final
             }
         }
 
-
-        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnAcciones_Click(object sender, EventArgs e)
         {
-            DropDownList ddlEstado = (DropDownList)sender;
-            GridViewRow row = (GridViewRow)ddlEstado.NamingContainer;
-            int idPublicacion = Convert.ToInt32(dgvPublicaciones.DataKeys[row.RowIndex].Value);
-            Estado nuevoEstado = (Estado)Enum.Parse(typeof(Estado), ddlEstado.SelectedValue);
+            Button btnAccion = (Button)sender;
+            int idPublicacion = Convert.ToInt32(btnAccion.CommandArgument);
 
-            // Actualizar el estado en la base de datos
             PublicacionNegocio negocio = new PublicacionNegocio();
-            negocio.ActualizarEstado(idPublicacion, nuevoEstado);
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
-            adopcionNegocio.BajarAdopcionPorPublicacion(idPublicacion, EstadoAdopcion.EliminadoPorAdmin);
-
-            // Actualizar el DGV
-            CargarPublicaciones();
+            string comentario;
+            switch (btnAccion.CommandName)
+            {
+                case "Activar":
+                    comentario = "Adopcion eliminada por Administrador";
+                    negocio.ActualizarEstado(idPublicacion, Estado.Activa);
+                    //Si hay una adopcion en proceso se da de baja
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.EliminadaPorAdoptante,comentario);
+                    CargarPublicaciones();
+                    break;
+                case "Eliminar":
+                    comentario = "Publicación eliminada por Administrador";
+                    negocio.ActualizarEstado(idPublicacion, Estado.EliminadaPorAdmin);
+                    //Si hay una adopcion en proceso se da de baja
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.EliminadaPorAdoptante, comentario);
+                    CargarPublicaciones();
+                    break;
+            }
         }
     }
 }

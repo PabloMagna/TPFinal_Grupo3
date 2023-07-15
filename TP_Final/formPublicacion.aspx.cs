@@ -404,7 +404,7 @@ namespace TP_Final
         {
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
             Publicacion auxiliar = publicacionNegocio.ObtenerPorId(int.Parse(Request.QueryString["ID"]));
-            if(auxiliar != null && auxiliar.Estado != Estado.BorradaPorUsuario && auxiliar.Estado != Estado.Baneada) {
+            if(auxiliar != null && auxiliar.Estado != Estado.BorradaPorUsuario && auxiliar.Estado != Estado.EliminadaPorAdmin) {
                 publi = auxiliar;
             }
             else

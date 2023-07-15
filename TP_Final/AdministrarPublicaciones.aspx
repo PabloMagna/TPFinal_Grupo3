@@ -8,20 +8,18 @@
     <asp:GridView ID="dgvPublicaciones" runat="server" CssClass="table table-striped" AutoGenerateColumns="false"
         DataKeyNames="Id">
         <Columns>
-            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="true" />
-            <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" ReadOnly="true" />
-            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ReadOnly="true" />
+            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="true" Visible="false" />
+            <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="Titulo" HeaderText="Título" ReadOnly="true" />
+            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ReadOnly="true" />
             <asp:BoundField DataField="Especie" HeaderText="Especie" ReadOnly="true" />
             <asp:BoundField DataField="Raza" HeaderText="Raza" ReadOnly="true" />
             <asp:BoundField DataField="Edad" HeaderText="Edad" ReadOnly="true" />
-            <asp:BoundField DataField="Sexo" HeaderText="Sexo" ReadOnly="true" />
+            <asp:BoundField DataField="Sexo" HeaderText="Sexo" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="FechaHora" HeaderText="Fecha y Hora" ReadOnly="true" />
             <asp:TemplateField HeaderText="Estado">
                 <ItemTemplate>
-                    <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control" Enabled="true"
-                        OnSelectedIndexChanged="ddlEstado_SelectedIndexChanged" AutoPostBack="true">
-                    </asp:DropDownList>
+                    <asp:Label ID="lblEstado" runat="server" Text='<%# Eval("Estado") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="IDLocalidad" HeaderText="Localidad" ReadOnly="true" />
@@ -44,12 +42,15 @@
                         NavigateUrl='<%# "AdministrarComentarios.aspx?IDP=" + Eval("ID") %>'></asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Adopcion">
+            <asp:TemplateField HeaderText="Acciones">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlAdopcion" runat="server" Text="Adopcion"
-                        NavigateUrl='<%# "AdministrarAdopciones.aspx?IDP=" + Eval("ID") %>'></asp:HyperLink>
+                    <asp:Button ID="btnActivar" runat="server" Text="Activar" CommandName="Activar" CommandArgument='<%# Eval("Id") %>'
+                        CssClass="btn btn-success" OnClick="btnAcciones_Click" />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>'
+                        CssClass="btn btn-danger" OnClick="btnAcciones_Click" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>
+

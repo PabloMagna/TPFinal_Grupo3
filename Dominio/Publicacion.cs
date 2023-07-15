@@ -32,14 +32,15 @@ namespace Dominio
         [Description("En Proceso de Adopcion")]
         EnProceso = 4,
 
-        [Description("Baneada Por Moderador")]
-        Baneada = 5,
+        [Description("Eliminada Por Moderador")]
+        EliminadaPorAdmin = 5,
+
         [Description("Pausada Por Usuario")]
         Pausada = 6
     }
     public class Publicacion
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public int IdUsuario { get; set; }
         public string Descripcion { get; set; }
         public string Titulo { get; set; }

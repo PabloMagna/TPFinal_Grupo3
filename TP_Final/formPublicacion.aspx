@@ -173,7 +173,7 @@
                 </div>
 
                 <%--Activar/Desactivar Publicaciones - Adopciones--%>
-                <% if (publi != null && publi.Estado != Dominio.Estado.Baneada && publi.Estado != Dominio.Estado.BorradaPorUsuario)
+                <% if (publi != null && publi.Estado != Dominio.Estado.EliminadaPorAdmin && publi.Estado != Dominio.Estado.BorradaPorUsuario)
                     { %>
                 <section id="FormBorrarPublicacion" runat="server" visible="true">
                     <div id="formBorrar" class="formularioOculto" runat="server">
