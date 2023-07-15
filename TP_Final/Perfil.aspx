@@ -143,7 +143,7 @@
         <ItemTemplate>
             <div class="container Historias">
 
-                <div class="card card-body">
+                <div class="card-body">
 
                     <div class="row">
                         <img id="imgHistoria" class="imagenPreview" src='<%# Eval("UrlImagen") %>' alt="Imagen Mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
