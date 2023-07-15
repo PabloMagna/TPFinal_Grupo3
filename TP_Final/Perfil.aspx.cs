@@ -328,10 +328,11 @@ namespace TP_Final
 
                         //CargarImagenPerfil();
                         string urlAux = ObtenerUrlImagenPerfil();
-                        if(urlAux != null)
+                        if(!string.IsNullOrEmpty(urlAux))
                         {
                             persona.UrlImagen = urlAux;
                         }
+           
                         negocio.Modificar(persona);
                         imgPerfil.Src = persona.UrlImagen;
                         Session["Persona"] = persona;
@@ -356,7 +357,7 @@ namespace TP_Final
                         refugio.IDLocalidad = ddlLocalidad.SelectedIndex + 1;
                         //VALIDAR IMG Y TRAERLA PARA EL UPDATE
                         string urlAux = ObtenerUrlImagenPerfil();
-                        if (urlAux != null)
+                        if (!string.IsNullOrEmpty(urlAux))
                         {
                             refugio.UrlImagen = urlAux;
                         }
