@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Mail;
 using System.Web;
 using System.Web.UI.WebControls;
 using Dominio;
@@ -74,8 +72,8 @@ namespace TP_Final
             }
             else
             {
-                idProvinciaPreseleccionada = 1; 
-                idLocalidadPreseleccionada = 1; 
+                idProvinciaPreseleccionada = 1;
+                idLocalidadPreseleccionada = 1;
             }
         }
 
@@ -162,7 +160,7 @@ namespace TP_Final
                     personaNegocio.Agregar(persona);
                     UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
                     usuarioNegocio.ActualizarTipo(idUsuario, TipoUsuario.PersonaCompleto);
-                    
+
                 }
                 else
                 {
@@ -201,7 +199,7 @@ namespace TP_Final
                 EnviarCorreoAdopcion(usuario.Email, idPublicacion);
                 EnviarCorreoDonante(idPublicacion, usuario.Id);
                 Response.Redirect("ContactoAdopcion.aspx?ID=" + idPublicacion);
-            }           
+            }
         }
 
         private void EnviarCorreoAdopcion(string emailUsuario, int idPublicacion)
@@ -223,9 +221,9 @@ namespace TP_Final
                     Persona persona = personaNegocio.BuscarporUsuario(donante.Id);
                     if (persona != null)
                     {
-                        donanteInfo = $"Donante: {persona.Nombre} {persona.Apellido}\n" +
-                                      $"Email: {donante.Email}\n" +
-                                      $"Teléfono: {persona.Telefono}\n";
+                        donanteInfo = $"Donante: {persona.Nombre} {persona.Apellido}<br>" +
+                                      $"Email: {donante.Email}<br>" +
+                                      $"Teléfono: {persona.Telefono}<br>";
                     }
                 }
                 else if (donante.Tipo == TipoUsuario.Refugio)
@@ -234,53 +232,29 @@ namespace TP_Final
                     Refugio refugio = refugioNegocio.BuscarporUsuario(donante.Id);
                     if (refugio != null)
                     {
-                        donanteInfo = $"Donante: {refugio.Nombre}\n" +
-                                      $"Email: {donante.Email}\n" +
-                                      $"Teléfono: {refugio.Telefono}\n" +
-                                      $"Dirección: {refugio.Direccion}\n";
+                        string perfilPublicoUrl = GetAbsoluteUrl($"PerfilPublico.aspx?ID={donante.Id}");
+                        donanteInfo = $"Donante: {refugio.Nombre}<br>" +
+                                      $"Email: {donante.Email}<br>" +
+                                      $"Teléfono: {refugio.Telefono}<br>" +
+                                      $"Dirección: {refugio.Direccion}<br>" +
+                                      $"Link al Perfil Público con Historial:{perfilPublicoUrl}<br>";
                     }
                 }
             }
 
-            // Crear el cuerpo del correo electrónico
-            string body = $"¡Felicitaciones por tu adopción!\n\n" +
-                          $"Detalles de la adopción:\n" +
-                          $"Publicación: {publicacion.Titulo}\n" +
-                          $"{donanteInfo}";
+            // Crear el cuerpo del correo electrónico en formato HTML
+            string body = $"<html><body>" +
+                          $"<h2>¡Mandamos tu solicitud de Adopción!</h2><br>" +
+                          $"<h3>Detalles de la adopción:</h3><br>" +
+                          $"<h3><strong>Publicación:</strong> {publicacion.Titulo}</h3><br>" +
+                          $"<h3>{donanteInfo}</h3>" +
+                          $"</body></html>";
 
-            // Configurar los detalles del correo electrónico
-            string fromEmail = "PetNetNoResponder@gmail.com";
-            string fromName = "PetNet";
-            string subject = "Adopción Confirmada";
-
-            // Crear el mensaje de correo electrónico
-            MailMessage message = new MailMessage(new MailAddress(fromEmail, fromName), new MailAddress(emailUsuario))
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = false
-            };
-
-            // Configurar el cliente SMTP para enviar el correo electrónico
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
-            {
-                Credentials = new NetworkCredential(fromEmail, "urimyhukiycpxxap"),
-                EnableSsl = true
-            };
-
-            try
-            {
-                // Enviar el correo electrónico
-                smtpClient.Send(message);
-            }
-            catch (Exception)
-            {
-                // Manejar cualquier error de envío de correo electrónico
-                lblMessage.InnerText = "Error al enviar el correo electrónico de confirmación de adopción.";
-                lblMessage.Visible = true;
-                return;
-            }
+            // Enviar el correo electrónico
+            EmailSender emailSender = new EmailSender();
+            emailSender.SendEmail(emailUsuario, "PetNet", "Tu solicitud de adopción fue enviada", body);
         }
+
         private void EnviarCorreoDonante(int idPublicacion, int idUsuarioAdoptante)
         {
             // Obtener los datos del adoptante
@@ -295,22 +269,19 @@ namespace TP_Final
                 if (persona != null)
                 {
                     string perfilPublicoUrl = GetAbsoluteUrl($"PerfilPublico.aspx?ID={adoptante.Id}");
-                    adoptanteInfo = $"Adoptante: {persona.Nombre} {persona.Apellido}\n" +
-                                    $"Email: {adoptante.Email}\n" +
-                                    $"Teléfono: {persona.Telefono}\n\n" +
-                                    $"Link al Perfil Público con Historial:\n {perfilPublicoUrl}\n";
+                    adoptanteInfo = $"Adoptante: {persona.Nombre} {persona.Apellido}<br>" +
+                                    $"Email: {adoptante.Email}<br>" +
+                                    $"Teléfono: {persona.Telefono}<br>" +
+                                    $"Link al Perfil Público con Historial:{perfilPublicoUrl}<br>";
                 }
             }
 
-            // Crear el cuerpo del correo electrónico
-            string body = $"¡Hay un Interesado en tu Mascota!\n\n" +
-                          $"Detalles de la adopción:\n" +
-                          $"{adoptanteInfo}";
-
-            // Configurar los detalles del correo electrónico
-            string fromEmail = "PetNetNoResponder@gmail.com";
-            string fromName = "PetNet";
-            string subject = "Adopción Confirmada";
+            // Crear el cuerpo del correo electrónico en formato HTML
+            string body = $"<html><body>" +
+                          $"<h2>¡Hay un Interesado en tu Mascota!</h2><br>" +
+                          $"<h3>Detalles de la adopción:</h3><br>" +
+                          $"<h3>{adoptanteInfo}</h3>" +
+                          $"</body></html>";
 
             // Obtener el correo electrónico del donante
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
@@ -319,38 +290,16 @@ namespace TP_Final
 
             if (donante != null)
             {
-                // Crear el mensaje de correo electrónico
-                MailMessage message = new MailMessage(new MailAddress(fromEmail, fromName), new MailAddress(donante.Email))
-                {
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = false
-                };
-
-                // Configurar el cliente SMTP para enviar el correo electrónico
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    Credentials = new NetworkCredential(fromEmail, "urimyhukiycpxxap"),
-                    EnableSsl = true
-                };
-
-                try
-                {
-                    // Enviar el correo electrónico
-                    smtpClient.Send(message);
-                }
-                catch (Exception)
-                {
-                    // Manejar cualquier error de envío de correo electrónico
-                    lblMessage.InnerText = "Error al enviar el correo electrónico al donante.";
-                    lblMessage.Visible = true;
-                    return;
-                }
+                // Enviar el correo electrónico
+                EmailSender emailSender = new EmailSender();
+                emailSender.SendEmail(donante.Email, "PetNet", "Tu publicación tiene un Interesado", body);
             }
         }
+
+
         protected void cvProvincia_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            //Comprueba si se seleccionó una provincia en el ddl de provincia.
+            // Comprueba si se seleccionó una provincia en el ddl de provincia.
             args.IsValid = (ddlProvincia.SelectedIndex >= 0);
         }
 
@@ -358,6 +307,7 @@ namespace TP_Final
         {
             args.IsValid = (ddlLocalidad.SelectedValue != "");
         }
+
         protected void cvFechaNac_ServerValidate(object source, ServerValidateEventArgs args)
         {
             DateTime fechaNacimiento;
@@ -372,6 +322,7 @@ namespace TP_Final
                 args.IsValid = false;
             }
         }
+
         private string GetAbsoluteUrl(string relativeUrl)
         {
             var httpContext = HttpContext.Current;
@@ -383,6 +334,5 @@ namespace TP_Final
             }
             return relativeUrl;
         }
-
     }
 }
