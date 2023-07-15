@@ -12,6 +12,31 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     </style>
+    <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
+    <script>
+        function soloLetras(event) {
+            var charCode = event.keyCode || event.which;
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^[A-Za-z]+$/;
+
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+    <script>
+        function soloNumeros(event) {
+            var charCode = event.keyCode || event.which;
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^\d+$/;
+
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <section class="portada">
@@ -205,19 +230,19 @@
                 <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
-                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
+                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);" ></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Apellido</label>
-                    <asp:TextBox ID="tbApellido" runat="server" class="form-control" MaxLength="20"></asp:TextBox>
+                    <asp:TextBox ID="tbApellido" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">DNI</label>
-                    <asp:TextBox ID="tbDni" runat="server" class="form-control" MaxLength="12"></asp:TextBox>
+                    <asp:TextBox ID="tbDni" runat="server" class="form-control" MaxLength="10" onkeypress="return soloNumeros(event);"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Ingrese solo números, maximo 12 digitos" ValidationExpression="^\d{1,12}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Ingrese solo números, maximo 10 digitos" ValidationExpression="^\d{1,10}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Fecha de Nacimiento </label>
@@ -237,7 +262,7 @@
     <div id="formRefugio" class="container divForm" runat="server">
         <div class="mb-3">
             <label class="form-label">Nombre del Refugio </label>
-            <asp:TextBox ID="tbNombreRefugio" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+            <asp:TextBox ID="tbNombreRefugio" runat="server" CssClass="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvNombreRefugio" runat="server" ControlToValidate="tbNombreRefugio" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValRefugio"></asp:RequiredFieldValidator>
         </div>
         <div class="mb-3">
@@ -314,7 +339,7 @@
         <% } %>
 
         <div class="mb-3">
-            <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-light" CausesValidation="true" />
+            <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-primary" CausesValidation="true" />
         </div>
     </div>
 
