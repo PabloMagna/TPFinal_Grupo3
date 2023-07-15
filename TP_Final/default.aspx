@@ -37,7 +37,7 @@
                 <p>¡Hola <%=GetUserName()%>!</p>
             </div>
             <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 4.0rem; height: 4.0rem;">
-                <img src="<%=ObtenerUrl() %>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />                               
+                <img src="<%=ObtenerUrl() %>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" onerror="cargarImagenPredeterminada(this)" />                               
             </div>           
         </div>
             <% }%>
