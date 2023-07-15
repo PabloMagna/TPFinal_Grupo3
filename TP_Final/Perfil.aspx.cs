@@ -74,7 +74,7 @@ namespace TP_Final
         protected void cargarPublicaciones()
         {
             PublicacionNegocio publiNegocio = new PublicacionNegocio();
-            publicaciones = publiNegocio.ListarPorUsuario(userLogeado.Id);
+            publicaciones = publiNegocio.ListarPorUsuarioPerfil(userLogeado.Id);
         }
 
         public string obtenerPrimeraImagen(int idPublicacion)

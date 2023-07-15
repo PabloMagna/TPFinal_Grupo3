@@ -446,5 +446,28 @@ namespace Negocio
             }
         }
 
+        public void ActualizarEstadoConcretada(int idPublicacion, EstadoAdopcion estadoAdopcion, string comentario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Adopciones SET Estado = @Estado, Comentario = @Comentario WHERE IDPublicacion = @IDPublicacion AND Estado = 2");
+                datos.setearParametro("@Estado", estadoAdopcion);
+                datos.setearParametro("@IDPublicacion", idPublicacion);
+                if (comentario != null)
+                    datos.setearParametro("@Comentario", comentario);
+                else
+                    datos.setearParametro("@Comentario", DBNull.Value);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

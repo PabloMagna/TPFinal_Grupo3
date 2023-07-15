@@ -146,6 +146,14 @@
                                             </div>
                                         </div>
                                         <% } %>
+                                                <% if (item.Estado == Dominio.Estado.FinalizadaConExito)
+                                            { %>
+                                        <div class="card-text">
+                                            <div class="alert alert-success" role="alert">
+                                                Adopción Concretada
+                                            </div>
+                                        </div>
+                                        <% } %>
                                         <p class="card-text"><%= item.Descripcion %></p>
                                     </div>
                                     <div class="botonesPerfil">

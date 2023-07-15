@@ -477,8 +477,8 @@ namespace TP_Final
                         return;
                     }
                     publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
-                    idAdoptante = adopcionNegocio.BuscarAdoptanteActivoPorPublicacion(idPublicacion);
-                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.Devuelto, txtComentario.Text);
+                    //idAdoptante = adopcionNegocio.BuscarAdoptanteConcretada(idPublicacion);
+                    adopcionNegocio.ActualizarEstadoConcretada(idPublicacion, EstadoAdopcion.Devuelto, txtComentario.Text);
                     mensajeExito = "La devolución de la mascota ha sido registrada.";
                     redireccion = Request.Url.AbsoluteUri;
                     break;
