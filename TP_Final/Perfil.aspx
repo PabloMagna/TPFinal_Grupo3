@@ -13,21 +13,33 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     </style>
     <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
-    <script>
-        function soloLetras(event) {
-            var charCode = event.keyCode || event.which;
-            var charStr = String.fromCharCode(charCode);
-            var pattern = /^[A-Za-z]+$/;
+   <script>
+       function soloLetras(event) {
+           var charCode = event.keyCode || event.which;
 
-            if (!pattern.test(charStr)) {
-                event.preventDefault();
-                return false;
-            }
-        }
-    </script>
+           // Permitir tecla Backspace (8) y tecla Delete (46)
+           if (charCode === 8 || charCode === 46) {
+               return true;
+           }
+
+           var charStr = String.fromCharCode(charCode);
+           var pattern = /^[A-Za-z]+$/;
+
+           if (!pattern.test(charStr)) {
+               event.preventDefault();
+               return false;
+           }
+       }
+   </script>
     <script>
         function soloNumeros(event) {
             var charCode = event.keyCode || event.which;
+
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
+
             var charStr = String.fromCharCode(charCode);
             var pattern = /^\d+$/;
 
@@ -278,7 +290,7 @@
         <%--TELEFONO--%>
         <div class="mb-3">
             <label class="form-label">Telefono</label>
-            <asp:TextBox ID="tbTel" runat="server" class="form-control"></asp:TextBox>
+            <asp:TextBox ID="tbTel" runat="server" class="form-control" MaxLength="20" onkeypress="return soloNumeros(event);"></asp:TextBox>
         </div>
         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTel" ForeColor="Red" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="ValAmbos"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTel" SetFocusOnError="true" ForeColor="Red" ErrorMessage="Números entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="ValAmbos"></asp:RegularExpressionValidator>

@@ -6,6 +6,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+     <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
+    <script>
+        function soloLetras(event) {
+            var charCode = event.keyCode || event.which;
+
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
+
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^[A-Za-z]+$/;
+
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+    <script>
+        function soloNumeros(event) {
+            var charCode = event.keyCode || event.which;
+
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
+
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^\d+$/;
+
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="smUbicacion" runat="server"></asp:ScriptManager>
@@ -22,7 +59,7 @@
                         <ContentTemplate>
 
                             <label class="form-label">Email </label>
-                            <asp:TextBox ID="tbEmail" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
+                            <asp:TextBox ID="tbEmail" runat="server" AutoPostBack="true" class="form-control" MaxLength="50"></asp:TextBox>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="tbEmail" ForeColor="Cyan" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
@@ -30,12 +67,12 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password </label>
-                    <asp:TextBox ID="tbPassword" runat="server" class="form-control" AutoPostBack="false" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="tbPassword" runat="server" class="form-control" AutoPostBack="false" TextMode="Password" MaxLength="20"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="tbPassword" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Repetir Password</label>
-                    <asp:TextBox ID="PasswordRepeat" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="PasswordRepeat" runat="server" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
                     <asp:CustomValidator ID="cvPasswordRepeat" runat="server" ControlToValidate="PasswordRepeat" ErrorMessage="Las contraseñas no coinciden" ForeColor="Cyan" OnServerValidate="cvPasswordRepeat_ServerValidate" ValidationGroup="Validaciones"></asp:CustomValidator>
                      <asp:CustomValidator ID="cvPasswordRequirements" runat="server" ControlToValidate="tbPassword" ErrorMessage="La contraseña debe tener entre 8 y 20 caracteres y contener al menos una mayúscula y un número" ForeColor="Cyan" OnServerValidate="cvPasswordRequirements_ServerValidate" ValidationGroup="Validaciones"></asp:CustomValidator>
                 </div>
@@ -48,12 +85,12 @@
                 <div id="formRefugio" runat="server">
                     <div class="mb-3">
                         <label class="form-label">Nombre del Refugio </label>
-                        <asp:TextBox ID="tbNombreRefugio" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbNombreRefugio" runat="server" CssClass="form-control" onkeydown="return soloLetras(event);" MaxLength="20"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvNombreRefugio" runat="server" ControlToValidate="tbNombreRefugio" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Dirección </label>
-                        <asp:TextBox ID="tbDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbDireccion" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="tbDireccion" ForeColor="Cyan" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     </div>
                 </div>
@@ -78,7 +115,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Telefono</label>
-                    <asp:TextBox ID="tbTelefono" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tbTelefono" runat="server" class="form-control" MaxLength="20" onkeydown="return soloNumeros(event);" ></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="tbTelefono" ForeColor="Cyan" SetFocusOnError="true" ErrorMessage="Campo Obligatorio" ValidationGroup="Validaciones"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="tbTelefono" SetFocusOnError="true" ErrorMessage="El teléfono debe contener solo números y tener entre 10 y 20 dígitos" ValidationExpression="^\d{10,20}$" ValidationGroup="Validaciones"></asp:RegularExpressionValidator>
                 </div>
