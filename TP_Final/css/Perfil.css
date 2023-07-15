@@ -127,3 +127,31 @@ a{
     overflow-y: scroll;
     text-overflow: ellipsis;
 }
+
+.menu-tabs {
+    text-transform: uppercase;
+    background-color: #C45F2E;
+}
+    .menu-tabs a {
+        color: #D2E3EB;
+        text-decoration: none;
+    }
+        .menu-tabs a:hover {
+            color: #24566E !important;
+        }
+    .menu-tabs li:hover {
+        background-color: #D2E3EB;
+        text-decoration: none;
+    }
+
+.portada {
+    background-color: #D2E3EB;
+    height: auto;
+    padding: 20px 0;
+    text-align: center;
+    /*  margin-top: 60px;*/
+}
+
+#titulo {
+    color: #24566E;
+}

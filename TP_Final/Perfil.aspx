@@ -14,8 +14,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <br />
+     <section class="portada">
+        <h1 id="titulo">Editar datos de Perfil</h1>       
+    </section>
+   
+    <!--
     <aside>
         <button id="btnSideBar" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
@@ -46,6 +49,24 @@
             </div>
         </div>
     </aside>
+    -->
+    <section class="menu-tabs">
+        <ul class="nav nav-tabs">          
+             <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+                        {%>
+          <li class="nav-item">
+            <a class="nav-link" href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
+          </li>           
+            <% } %>
+        </ul>
+
+    </section>
 
 
     <%if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
