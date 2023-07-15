@@ -420,7 +420,7 @@ namespace TP_Final
                 switch (publi.Estado)
                 {
                     case Dominio.Estado.Activa:
-                        opcionesBaja.Add(new ListItem("Pausar Temportalmente (No se muestra en galería - cancela solicitudes)", "PausarPublicacion"));
+                        opcionesBaja.Add(new ListItem("Pausar Temportalmente (Cancela solicitudes)", "PausarPublicacion"));
                         opcionesBaja.Add(new ListItem("Eliminar Publicación definitivamente", "EliminarDefinitivamente"));
                         txtComentario.Visible = false;
                         break;
@@ -450,9 +450,11 @@ namespace TP_Final
             int idDonante = ((Usuario)Session["Usuario"]).Id;
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 
             string mensajeExito = string.Empty;
             string redireccion = string.Empty;
+            int idAdoptante;
 
             switch (opcionSeleccionada)
             {
@@ -468,15 +470,30 @@ namespace TP_Final
                     break;
                 case "DevolucionMascota":
                     publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
+                    idAdoptante = adopcionNegocio.BuscarAdoptanteActivoPorPublicacion(idPublicacion);
                     adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.Devuelto, txtComentario.Text);
                     mensajeExito = "La devolución de la mascota ha sido registrada.";
                     redireccion = Request.Url.AbsoluteUri;
                     break;
                 case "RechazarAdoptante":
+                    if (!ValidarComentario())
+                    {
+                        updateEliminacion.Update();
+                        return;
+                    }
+
+                    mensajeExito = "El adoptante ha sido rechazado y la publicación ha sido reactivada.";
+
+                    // Enviar correo de rechazo al adoptante
+                    idAdoptante = adopcionNegocio.BuscarAdoptanteActivoPorPublicacion(idPublicacion);
+                    Usuario adoptante = usuarioNegocio.BuscarxID(idAdoptante);
+
+                    string motivoRechazo = txtComentario.Text;
+                    EmailSender emailSender = new EmailSender();
+                    emailSender.EnviarCorreoRechazoAdopcion(adoptante.Email, motivoRechazo);
+                    redireccion = Request.Url.AbsoluteUri;
                     publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
                     adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.RechazadaPorDonante, txtComentario.Text);
-                    mensajeExito = "El adoptante ha sido rechazado y la publicación ha sido reactivada.";
-                    redireccion = Request.Url.AbsoluteUri;
                     break;
                 case "AdopcionConcretada":
                     publicacionNegocio.ActualizarEstado(idPublicacion, Estado.FinalizadaConExito);
@@ -495,6 +512,30 @@ namespace TP_Final
             string script = "<script>alert('" + mensajeExito + "'); window.location.href = '" + redireccion + "';</script>";
             ScriptManager.RegisterStartupScript(this, GetType(), "Popup", script, false);
         }
+
+        public bool ValidarComentario()
+        {
+            if (string.IsNullOrEmpty(txtComentario.Text))
+            {
+                lblError.Text = "Se requiere un comentario.";
+                lblError.ForeColor = System.Drawing.Color.Cyan;
+                lblError.Visible = true;  // Establecer la visibilidad en true
+                return false;
+            }
+            else if (txtComentario.Text.Length < 20)
+            {
+                lblError.Text = "El comentario debe tener al menos 20 caracteres.";
+                lblError.ForeColor = System.Drawing.Color.Cyan;
+                lblError.Visible = true;  // Establecer la visibilidad en true
+                return false;
+            }
+            else
+            {
+                lblError.Visible = false;  // Establecer la visibilidad en false
+                return true;
+            }
+        }
+
 
     }
 }

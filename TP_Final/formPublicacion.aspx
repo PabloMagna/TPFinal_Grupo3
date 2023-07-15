@@ -15,7 +15,7 @@
     <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
 
     <section class="portada">
-        <h1 id="titulo">Publicación de mascota en adopción</h1>       
+        <h1 id="titulo">Publicación de mascota en adopción</h1>
     </section>
 
     <section class="formulario" id="formulario" runat="server">
@@ -23,7 +23,7 @@
             <%if (publi != null && publi.Estado == Dominio.Estado.Pausada)
                 { %>
             <div class="col-4">
-               <h2 style="color:crimson"> Publicación Pausada! Reactive para verla en Galería</h2>
+                <h2 style="color: crimson">Publicación Pausada! Reactive para verla en Galería</h2>
             </div>
             <%} %>
             <div class="col-4">
@@ -172,25 +172,31 @@
                     <input type="file" id="tbImgFile" accept="image/jpeg, image/png, image/jpg" runat="server" class="form-control" />
                 </div>
 
-                <%--Activar/Desactivar Publicaciones - Adopciones--%>
-                <% if (publi != null && publi.Estado != Dominio.Estado.EliminadaPorAdmin && publi.Estado != Dominio.Estado.BorradaPorUsuario)
-                    { %>
-                <section id="FormBorrarPublicacion" runat="server" visible="true">
-                    <div id="formBorrar" class="formularioOculto" runat="server">
-                        <div class="contenidoForm">
-                            <div>
-                                <h3>Baja de publicación</h3>
+                <asp:UpdatePanel ID="updateEliminacion" UpdateMode="Conditional" runat="server">
+                    <ContentTemplate>
+                        <%--Activar/Desactivar Publicaciones - Adopciones--%>
+                        <% if (publi != null && publi.Estado != Dominio.Estado.EliminadaPorAdmin && publi.Estado != Dominio.Estado.BorradaPorUsuario)
+                            { %>
+                        <section id="FormBorrarPublicacion" runat="server" visible="true">
+                            <div id="formBorrar" class="formularioOculto" runat="server">
+                                <div class="contenidoForm">
+                                    <div>
+                                        <h3>Baja de publicación</h3>
+                                    </div>
+                                    <div class="card card-body">
+                                        <h4 style="color: black;">Opciones de baja:</h4>
+                                        <asp:RadioButtonList ID="rbOpcionesBaja" runat="server" DataTextField="Text" DataValueField="Value" CssClass="radio-options"></asp:RadioButtonList>
+                                        <asp:TextBox ID="txtComentario" runat="server" MaxLength="199" placeholder="Razones de la baja"></asp:TextBox>
+                                        <asp:Label ID="lblError" runat="server"></asp:Label>
+                                        <asp:Button ID="btnConfirmarAccion" runat="server" Text="Confirmar Acción" CssClass="btn" OnClick="btnConfirmarAccion_Click" />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card card-body">
-                                <h4 style="color: black;">Opciones de baja:</h4>
-                                <asp:RadioButtonList ID="rbOpcionesBaja" runat="server" DataTextField="Text" DataValueField="Value" CssClass="radio-options"></asp:RadioButtonList>
-                                <asp:TextBox ID="txtComentario" runat="server" MaxLength="199" placeholder="Razones de la baja"></asp:TextBox>
-                                <asp:Button ID="btnConfirmarAccion" runat="server" Text="Confirmar Acción" CssClass="btn" OnClick="btnConfirmarAccion_Click" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <% } %>
+                        </section>
+                        <% } %>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
 
                 <!--Botones-->
                 <div class="mb-3">

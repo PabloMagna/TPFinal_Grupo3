@@ -42,5 +42,19 @@ namespace Dominio
                 throw ex;
             }
         }
+        public void EnviarCorreoRechazoAdopcion(string emailAdoptante, string motivoRechazo)
+        {
+            string asunto = "Adopción rechazada";
+            string cuerpo = "<html><body>";
+            cuerpo += "<h2>Adopción rechazada</h2>";
+            cuerpo += "<p>El donante de la mascota ha rechazado tu adopción.</p>";
+            cuerpo += "<p>Estas son las razones:</p>";
+            cuerpo += "<p>" + motivoRechazo.Replace("\n", "<br>") + "</p>";
+            cuerpo += "</body></html>";
+
+            SendEmail(emailAdoptante, "", asunto, cuerpo);
+        }
+
+
     }
 }

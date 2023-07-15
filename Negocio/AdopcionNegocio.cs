@@ -418,6 +418,33 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public int BuscarAdoptanteActivoPorPublicacion(int idPublicacion)
+        {
+            int adoptanteActivo = 0; // Valor predeterminado
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT IDUsuario FROM Adopciones WHERE IDPublicacion = @IDPublicacion AND Estado = 1");
+                datos.setearParametro("@IDPublicacion", idPublicacion);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    adoptanteActivo = datos.Lector.GetInt32(0);
+                }
+
+                return adoptanteActivo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }
