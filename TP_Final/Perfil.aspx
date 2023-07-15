@@ -108,8 +108,12 @@
                                     <p class="card-text" style="color: red">Pausada - Actívala para publicitar</p>
                                     <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
                                     <% } %>--%>
-                                    <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
+                                    <div class="botones">
+                                         <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
                                     <a href="BorrarPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Activar/Desactivar</a>
+
+                                    </div>
+                                   
                                 </div>
                             </div>
                             <% }

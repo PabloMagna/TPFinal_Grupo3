@@ -6,6 +6,7 @@
     DataKeyNames="ID">
     <Columns>
         <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" />
+        <a href="AdministrarHistorias.aspx">AdministrarHistorias.aspx</a>
         <asp:BoundField DataField="IDUsuario" HeaderText="ID Usuario" ReadOnly="true" />
         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ReadOnly="true" />
         <asp:BoundField DataField="FechaHora" HeaderText="Fecha y Hora" ReadOnly="true" />

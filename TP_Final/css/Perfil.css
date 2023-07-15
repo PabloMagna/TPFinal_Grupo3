@@ -105,9 +105,13 @@ a{
     position: relative;
 }
 
-.custom-btn {
+.botones {
     position: absolute;
     bottom: 8px;
+}
+
+.custom-btn {
+    
     color: #24566E;
     background-color: #D2E3EB;
     padding: 4px 8px;

@@ -6,14 +6,7 @@
     <link href="css/DetallePublicacion.css" rel="stylesheet" type="text/css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-    </style>
-    <style>
-        /* Estilos personalizados */
-        .carousel-item img {
-            max-height: 30rem;
-            max-width: 30rem;
-        }
-    </style>
+    </style>   
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,7 +21,7 @@
                     <img src="imagenes/leftarrow.png" class="volver" /></a>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card-body">
                         <h5 class="card-title"><%= publicacion.Titulo %></h5>
                         <p class="card-text"><%= publicacion.Descripcion %></p>
@@ -39,34 +32,7 @@
                         <p class="card-text">Localidad: <%= CargarLocalidad() %></p>
                         <p class="card-text">Provincia: <%= CargarProvincia() %></p>
                         <p class="card-text">Fecha y hora: <%= publicacion.FechaHora.ToString() %></p>
-                        <p class="card-text">Estado: <%= publicacion.Estado %></p>
-                        <%if (Session["Usuario"] != null)
-                            {
-                                if (ComprobarAdopcion(((Usuario)Session["Usuario"]).Id, publicacion.Id))
-                                { %>
-                        <div>
-                            <h5>Ya estás en Proceso de Adopción con este animal</h5>
-                        </div>
-                        <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        <%}
-                            else if (publicacion.Estado == Estado.EnProceso)
-                            {%>
-                        <div>
-                            <h5>Publicacion Pausada por estar en proceso de Adopcion</h5>
-                        </div>
-                        <asp:Button ID="btnFavorito2" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        <%}
-                            else
-                            {%>
-                        <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
-                        <asp:Button ID="btnFavorito3" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        <%}
-                            }
-                            else
-                            {%>
-                        <a href="Login.aspx" class="btn btn-primary">Adoptar</a>
-                        <a href="Login.aspx" class="btn btn-primary">Agregar a Favoritos</a>
-                        <%} %>
+                        <p class="card-text">Estado: <%= publicacion.Estado %></p>                      
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -89,6 +55,52 @@
                             <span class="visually-hidden">Siguiente</span>
                         </a>
                     </div>
+                </div>
+                <div class="col-md-2 div-botones">
+                      <%if (Session["Usuario"] != null)
+                            {
+                                if (ComprobarAdopcion(((Usuario)Session["Usuario"]).Id, publicacion.Id))
+                                { %>
+                        <div>
+                            <h5>Ya estás en Proceso de Adopción con este animal</h5>
+                        </div>
+                        <div>
+                             <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                        </div>
+                       
+                        <%}
+                            else if (publicacion.Estado == Estado.EnProceso)
+                            {%>
+                        <div>
+                            <h5>Publicacion Pausada por estar en proceso de Adopcion</h5>
+                        </div>
+                        <div>
+                            <asp:Button ID="btnFavorito2" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                        </div>
+                        
+                        <%}
+                            else
+                            {%>
+                        <div>
+                            <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
+                        </div>
+                        <div>
+                            <asp:Button ID="btnFavorito3" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                        </div>                        
+                        
+                        <%}
+                            }
+                            else
+                            {%>
+                        <div>
+                            <a href="Login.aspx" class="btn btn-primary">Adoptar</a>
+                        </div>
+                        <div>
+                             <a href="Login.aspx" class="btn btn-primary">Agregar a Favoritos</a>
+                        </div>
+                        
+                       
+                        <%} %>
                 </div>
             </div>
         </section>

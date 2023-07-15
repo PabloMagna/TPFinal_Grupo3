@@ -128,6 +128,7 @@ textarea.form-control:focus {
     padding: 4px 8px;
     border-radius: 10px;
     border: 2px solid #24566E;
+    margin:15px 0;
 }
 
     .btn:hover {
@@ -135,3 +136,26 @@ textarea.form-control:focus {
         background-color: #C45F2E;
         border: 2px solid #24566E;
     }
+
+
+.carousel-inner {
+    background-color: #D2E3EB;
+    height: 400px;
+    width:500px;
+}
+
+.carousel-item img {
+    height: 400px;
+    width: auto;
+    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+}
+
+.div-botones{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+}

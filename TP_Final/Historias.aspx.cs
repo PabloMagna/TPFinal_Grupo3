@@ -129,13 +129,13 @@ namespace TP_Final
             if (string.IsNullOrEmpty(tbDescripcion.Text))
             {
                 lblErrorDescripcion.Text = "Debe agregar una descripción.";
-                lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                lblErrorDescripcion.ForeColor = System.Drawing.Color.Coral;
                 return false;
             }
             else if (tbDescripcion.Text.Length < 30)
             {
                 lblErrorDescripcion.Text = "La descripción es demasiado corta.";
-                lblErrorDescripcion.ForeColor = System.Drawing.Color.Cyan;
+                lblErrorDescripcion.ForeColor = System.Drawing.Color.Coral;
                 return false;
             }
             else
