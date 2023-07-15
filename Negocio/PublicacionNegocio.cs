@@ -86,13 +86,13 @@ namespace Negocio
             }
         }
 
-        public List<Publicacion> Filtrar(int provincia, int localidad, int especie, char sexo, int edad)
+        public List<Publicacion> FiltrarActivos(int provincia, int localidad, int especie, char sexo, int edad)
         {
             AccesoDatos datos = new AccesoDatos();
             List<Publicacion> publicacionesFiltradas = new List<Publicacion>();
             try
             {
-                string consulta = "SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones WHERE 1 = 1";
+                string consulta = "SELECT ID, Titulo, CONVERT(int, Especie) AS Especie, Raza, Edad, Sexo, IDUsuario, Descripcion, FechaHora, Estado, IDLocalidad, IDProvincia FROM Publicaciones WHERE Estado = 1";
 
                 if (localidad != 0)
                     consulta += " AND IDLocalidad = " + localidad;

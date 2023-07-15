@@ -86,7 +86,7 @@ namespace TP_Final
             int especie = Convert.ToInt32(ddlEspecies.SelectedValue);
             char sexo = ddlSexo.SelectedValue[0];
 
-            List<Publicacion> listaFiltrada = negocio.Filtrar(provincia, localidad, especie, sexo, edad);
+            List<Publicacion> listaFiltrada = negocio.FiltrarActivos(provincia, localidad, especie, sexo, edad);
             Session["Publicaciones"] = listaFiltrada;
             publicaciones = listaFiltrada;
             updatePanelTarjetas.Update();
