@@ -1,25 +1,36 @@
 ﻿*{
     box-sizing:border-box;
 }
-
-.titulo{
-    text-align:center;
-    font-size:2.4rem;
-    margin:10px auto;
-    padding:20px;
-}
-
-.leyenda{
-    text-align:center;
-}
-
+/*Ojo con los estilos del body que afectan a la navbar también y cambia mucho el estilo en comparación con las otras páginas
+    Si se quiere agregar estilos a esta página, se puede encerrar todo en una section con un id o clase 
+    y aplicarlos sobre esa setcion contenedora
+*/
 body {
-    background-color: aliceblue;
-    font-family: 'Roboto', sans-serif;
-    font-size:1.3rem;
+    /*background-color: aliceblue;*/ /*lo pasé al master*/
+   /*font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;*/   
 }
+/*También hay que tener cuidado al dat estilo a etiquietas (ej "a" o "ul") sin especificar a qué contenedor pertenecen 
+    (ej: ".divx a") porque cambia el estilo de todas las "a" y las "ul" de la página*/
+/*
 ul{
     list-style:none;
+}*/
+/*
+a{
+    text-decoration:none;
+    color:aliceblue;
+}
+*/
+
+.titulo {
+    text-align: center;
+    font-size: 2.4rem;
+    margin: 10px auto;
+    padding: 20px;
+}
+.leyenda{
+    text-align:center;
 }
 
 #btnSideBar{
@@ -31,10 +42,6 @@ ul{
     padding:8px;
     margin-top:2px;
     font-size:1.3rem;
-}
-a{
-    text-decoration:none;
-    color:aliceblue;
 }
 
 #offcanvasScrolling{
@@ -105,13 +112,12 @@ a{
     position: relative;
 }
 
-.botones {
+.botonesPerfil {
     position: absolute;
     bottom: 8px;
 }
 
-.custom-btn {
-    
+.btn-perfil {
     color: #24566E;
     background-color: #D2E3EB;
     padding: 4px 8px;
@@ -119,7 +125,7 @@ a{
     border: 2px solid #24566E;
 }
 
-    .custom-btn:hover {
+    .btn-perfil:hover {
         color: #24566E;
         background-color: #C45F2E;
         border: 2px solid #24566E;
@@ -142,10 +148,11 @@ a{
     }
         .menu-tabs a:hover {
             color: #24566E !important;
+            background-color: #D2E3EB;
+            text-decoration: none;
         }
-    .menu-tabs li:hover {
-        background-color: #D2E3EB;
-        text-decoration: none;
+    .menu-tabs li {
+        border: 1px solid #D2E3EB;
     }
 
 .portada {

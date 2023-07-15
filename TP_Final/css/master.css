@@ -8,6 +8,7 @@ body {
     min-height: 100%;
     min-height: 100vh;
     position: relative;
+    background-color: aliceblue;
 }
 
 header {
@@ -53,7 +54,6 @@ header {
     padding: 4px 8px;
     border-radius: 10px;
 }
-
 
 #userlog, #avatar {
     margin: 0 20px;
