@@ -11,7 +11,7 @@
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="Titulo" HeaderText="Título" ReadOnly="true" />
-            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ReadOnly="true" />
+            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="Especie" HeaderText="Especie" ReadOnly="true" />
             <asp:BoundField DataField="Raza" HeaderText="Raza" ReadOnly="true" />
             <asp:BoundField DataField="Edad" HeaderText="Edad" ReadOnly="true" />

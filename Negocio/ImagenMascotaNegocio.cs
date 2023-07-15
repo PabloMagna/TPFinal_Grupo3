@@ -44,7 +44,6 @@ namespace Negocio
         {
             List<string> listaUrls = new List<string>();
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setearConsulta("SELECT UrlImagen FROM ImagenesMascota WHERE IDPublicacion = @idPublicacion");

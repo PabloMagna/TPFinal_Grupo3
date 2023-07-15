@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
@@ -293,11 +294,12 @@ namespace TP_Final
                 Persona persona = personaNegocio.BuscarporUsuario(adoptante.Id);
                 if (persona != null)
                 {
+                    string perfilPublicoUrl = GetAbsoluteUrl($"PerfilPublico.aspx?ID={adoptante.Id}");
                     adoptanteInfo = $"Adoptante: {persona.Nombre} {persona.Apellido}\n" +
                                     $"Email: {adoptante.Email}\n" +
-                                    $"Teléfono: {persona.Telefono}\n";
+                                    $"Teléfono: {persona.Telefono}\n\n" +
+                                    $"Link al Perfil Público con Historial:\n {perfilPublicoUrl}\n";
                 }
-
             }
 
             // Crear el cuerpo del correo electrónico
@@ -370,5 +372,17 @@ namespace TP_Final
                 args.IsValid = false;
             }
         }
+        private string GetAbsoluteUrl(string relativeUrl)
+        {
+            var httpContext = HttpContext.Current;
+            if (httpContext != null)
+            {
+                var request = httpContext.Request;
+                var baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/');
+                return new Uri(new Uri(baseUrl), relativeUrl).AbsoluteUri;
+            }
+            return relativeUrl;
+        }
+
     }
 }

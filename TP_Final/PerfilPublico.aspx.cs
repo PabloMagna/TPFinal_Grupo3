@@ -57,8 +57,18 @@ namespace TP_Final
         }
         protected string CargarPrimerImagenPublicacion(int idPublicacion)
         {
-            ImagenMascotaNegocio imagenMascotaNegocio  = new ImagenMascotaNegocio();
-            return imagenMascotaNegocio.ObtenerUrlsImagenes(idPublicacion)[0];
+            ImagenMascotaNegocio imagenMascotaNegocio = new ImagenMascotaNegocio();
+            List<string> urls = imagenMascotaNegocio.ObtenerUrlsImagenes(idPublicacion);
+
+            if (urls != null && urls.Count > 0)
+            {
+                return urls[0];
+            }
+
+            // Si no se encuentran URLs de imágenes, se devuelve la URL predeterminada
+            return "https://thumbs.dreamstime.com/b/ilustraci%C3%B3n-vectorial-del-logotipo-de-la-cara-perro-logo-cabeza-emblema-sobre-fondo-blanco-166636491.jpg";
         }
+
+
     }
 }
