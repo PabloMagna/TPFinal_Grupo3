@@ -23,7 +23,7 @@
             <%if (publi != null && publi.Estado == Dominio.Estado.Pausada)
                 { %>
             <div class="col-4">
-                <h2 style="color: crimson">Publicación Pausada! Reactive para verla en Galería</h2>
+                <h2 style="color:cyan">Publicación Pausada! Reactive para verla en Galería</h2>
             </div>
             <%} %>
             <div class="col-4">

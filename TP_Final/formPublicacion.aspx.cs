@@ -35,7 +35,7 @@ namespace TP_Final
             {
                 IDPublicacion = Convert.ToInt32(Request.QueryString["ID"]);
                 cargarImagenes(IDPublicacion);
-               // CargarPublicacionEliminar();
+                // CargarPublicacionEliminar();
             }
 
             try
@@ -146,7 +146,7 @@ namespace TP_Final
                     imagenNegocio.Agregar(nuevaImg);
                 }
 
-                formulario.Visible = false;                
+                formulario.Visible = false;
                 altaExitosa.Visible = true;
             }
 
@@ -384,7 +384,7 @@ namespace TP_Final
                     imagenNegocio.Agregar(nuevaImg);
                 }
 
-                formulario.Visible = false;                
+                formulario.Visible = false;
                 altaExitosa.Visible = true;
             }
 
@@ -404,7 +404,8 @@ namespace TP_Final
         {
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
             Publicacion auxiliar = publicacionNegocio.ObtenerPorId(int.Parse(Request.QueryString["ID"]));
-            if(auxiliar != null && auxiliar.Estado != Estado.BorradaPorUsuario && auxiliar.Estado != Estado.EliminadaPorAdmin) {
+            if (auxiliar != null && auxiliar.Estado != Estado.BorradaPorUsuario && auxiliar.Estado != Estado.EliminadaPorAdmin)
+            {
                 publi = auxiliar;
             }
             else
@@ -451,10 +452,11 @@ namespace TP_Final
             PublicacionNegocio publicacionNegocio = new PublicacionNegocio();
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-
+            publi = publicacionNegocio.ObtenerPorId(idPublicacion);
             string mensajeExito = string.Empty;
             string redireccion = string.Empty;
             int idAdoptante;
+           
 
             switch (opcionSeleccionada)
             {
@@ -469,9 +471,14 @@ namespace TP_Final
                     redireccion = "perfil.aspx";
                     break;
                 case "DevolucionMascota":
+                    if (!ValidarComentario())
+                    {
+                        updateEliminacion.Update();
+                        return;
+                    }
                     publicacionNegocio.ActualizarEstado(idPublicacion, Estado.Activa);
-                    idAdoptante = adopcionNegocio.BuscarAdoptanteActivoPorPublicacion(idPublicacion);
-                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.Devuelto, txtComentario.Text);
+                    //idAdoptante = adopcionNegocio.BuscarAdoptanteConcretada(idPublicacion);
+                    adopcionNegocio.ActualizarEstadoConcretada(idPublicacion, EstadoAdopcion.Devuelto, txtComentario.Text);
                     mensajeExito = "La devolución de la mascota ha sido registrada.";
                     redireccion = Request.Url.AbsoluteUri;
                     break;
@@ -496,6 +503,11 @@ namespace TP_Final
                     adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.RechazadaPorDonante, txtComentario.Text);
                     break;
                 case "AdopcionConcretada":
+                    if (!ValidarComentario())
+                    {
+                        updateEliminacion.Update();
+                        return;
+                    }
                     publicacionNegocio.ActualizarEstado(idPublicacion, Estado.FinalizadaConExito);
                     adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.Completada, txtComentario.Text);
                     mensajeExito = "La adopción ha sido concretada y la publicación ha sido finalizada con éxito.";
@@ -518,14 +530,14 @@ namespace TP_Final
             if (string.IsNullOrEmpty(txtComentario.Text))
             {
                 lblError.Text = "Se requiere un comentario.";
-                lblError.ForeColor = System.Drawing.Color.Cyan;
+                lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Visible = true;  // Establecer la visibilidad en true
                 return false;
             }
             else if (txtComentario.Text.Length < 20)
             {
                 lblError.Text = "El comentario debe tener al menos 20 caracteres.";
-                lblError.ForeColor = System.Drawing.Color.Cyan;
+                lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Visible = true;  // Establecer la visibilidad en true
                 return false;
             }

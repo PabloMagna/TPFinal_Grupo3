@@ -8,25 +8,36 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
+<<<<<<< HEAD
     <!--SCRIPTS DE VALIDACION(CLIENTE)-->
    <script>
        function soloLetras(event) {
            var charCode = event.keyCode || event.which;
+=======
+    <%--GOOGLE FONTS--%>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    </style>
+    <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
+    <script>
+        function soloLetras(event) {
+            var charCode = event.keyCode || event.which;
+>>>>>>> 7f462b2b0c9dd112d4e49a186ab38f303449e835
 
-           // Permitir tecla Backspace (8) y tecla Delete (46)
-           if (charCode === 8 || charCode === 46) {
-               return true;
-           }
+            // Permitir tecla Backspace (8) y tecla Delete (46)
+            if (charCode === 8 || charCode === 46) {
+                return true;
+            }
 
-           var charStr = String.fromCharCode(charCode);
-           var pattern = /^[A-Za-z]+$/;
+            var charStr = String.fromCharCode(charCode);
+            var pattern = /^[A-Za-z]+$/;
 
-           if (!pattern.test(charStr)) {
-               event.preventDefault();
-               return false;
-           }
-       }
-   </script>
+            if (!pattern.test(charStr)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
     <script>
         function soloNumeros(event) {
             var charCode = event.keyCode || event.which;
@@ -47,24 +58,63 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<<<<<<< HEAD
      <section class="portada">
         <h1 id="titulo">EDITAR DATOS DE PERFIL</h1>       
     </section>
    
   
+=======
+    <section class="portada">
+        <h1 id="titulo">Editar datos de Perfil</h1>
+    </section>
+
+    <!--
+    <aside>
+        <button id="btnSideBar" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            EditarPerfil</button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Perfil de Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p>Estas son las opciones de navegacion del menú de usuario</p>
+                <ul>
+                    <li><a href="Perfil.aspx#PerfilTitulo">Editar datos de Perfil</a></li>
+                    <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+        {%>
+                    <li><a href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a></li>
+                    <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
+                    <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
+                    <%if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
+        {%>
+                    <li><a href="Adopciones.aspx">Tus Adopciones</a></li>
+
+                    <% } %>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    -->
+>>>>>>> 7f462b2b0c9dd112d4e49a186ab38f303449e835
     <section class="menu-tabs">
-        <ul class="nav nav-tabs">          
-             <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-                        {%>
-          <li class="nav-item">
-            <a class="nav-link" href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
-          </li>           
+        <ul class="nav nav-tabs">
+            <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+                {%>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
+            </li>
             <% } %>
         </ul>
 
@@ -102,11 +152,34 @@
                                 <div class="card-body">
                                     <div class="content-text">
                                         <h5 class="card-title"><%= item.Titulo %></h5>
+                                        <% if (item.Estado == Dominio.Estado.Pausada)
+                                            { %>
+                                        <div class="card-text">
+                                            <div class="alert alert-warning" role="alert">
+                                                Publicación Pausada
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                                <% if (item.Estado == Dominio.Estado.FinalizadaConExito)
+                                            { %>
+                                        <div class="card-text">
+                                            <div class="alert alert-success" role="alert">
+                                                Adopción Concretada
+                                            </div>
+                                        </div>
+                                        <% } %>
                                         <p class="card-text"><%= item.Descripcion %></p>
+<<<<<<< HEAD
                                     </div>   
                                     <div class="botonesPerfil">
                                          <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
                                     </div>                                   
+=======
+                                    </div>
+                                    <div class="botonesPerfil">
+                                        <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
+                                    </div>
+>>>>>>> 7f462b2b0c9dd112d4e49a186ab38f303449e835
                                 </div>
                             </div>                           
                         </div>
@@ -195,6 +268,7 @@
     <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
     %>
+<<<<<<< HEAD
     <div class="container">
         <div class="perfil">
             <div class="row">
@@ -221,6 +295,17 @@
                         <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
                     </div>
+=======
+    <div class="container perfil">
+
+        <div class="row">
+            <div id="formPersona" runat="server">
+                <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
+                <div class="mb-3">
+                    <label class="form-label smallCamp">Nombre </label>
+                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+>>>>>>> 7f462b2b0c9dd112d4e49a186ab38f303449e835
                 </div>
             </div>
        </div>
