@@ -1,52 +1,48 @@
-﻿*{
-    box-sizing:border-box;
+﻿
+body {   
 }
-/*Ojo con los estilos del body que afectan a la navbar también y cambia mucho el estilo en comparación con las otras páginas
-    Si se quiere agregar estilos a esta página, se puede encerrar todo en una section con un id o clase 
-    y aplicarlos sobre esa setcion contenedora
-*/
-body {
-    /*background-color: aliceblue;*/ /*lo pasé al master*/
-   /*font-family: 'Roboto', sans-serif;
-    font-size: 1.3rem;*/   
+.portada {
+    background-color: #D2E3EB;
+    height: auto;
+    padding: 8px;
+    text-align: center;    
 }
-/*También hay que tener cuidado al dat estilo a etiquietas (ej "a" o "ul") sin especificar a qué contenedor pertenecen 
-    (ej: ".divx a") porque cambia el estilo de todas las "a" y las "ul" de la página*/
-/*
-ul{
-    list-style:none;
-}*/
-/*
-a{
-    text-decoration:none;
-    color:aliceblue;
+
+#titulo {
+    color: #24566E;
+    font-size: 1.4rem;
 }
-*/
+
+.menu-tabs {
+    text-transform: uppercase;
+    background-color: #C45F2E;
+}
+
+    .menu-tabs a {
+        color: #D2E3EB;
+        text-decoration: none;
+    }
+
+        .menu-tabs a:hover {
+            color: #24566E !important;
+            background-color: #D2E3EB;
+            text-decoration: none;
+        }
+
+    .menu-tabs li {
+        border: 1px solid #D2E3EB;
+    }
+
 
 .titulo {
     text-align: center;
-    font-size: 2.4rem;
+    font-size: 2.0rem;
     margin: 10px auto;
-    padding: 8px;
+    padding: 30px;
+    color: #24566E;
 }
 .leyenda{
     text-align:center;
-}
-
-#btnSideBar{
-    position:fixed;
-    z-index:10;
-}
-
-.offcanvas-body>ul>li{
-    padding:8px;
-    margin-top:2px;
-    font-size:1.3rem;
-}
-
-#offcanvasScrolling{
-     background-color:rgb(248, 105, 41);
-     color:#fff;
 }
 
 /*Contenedor de Historias*/
@@ -92,6 +88,7 @@ a{
     max-width:500px;
     margin:100px auto;
 }
+
 .divForm{
     max-width:500px;
 }
@@ -130,12 +127,16 @@ a{
     border-radius: 10px;
     border: 2px solid #24566E;
 }
+.btn-red{
+    background-color:red;
+    color:azure;
+}
 
-    .btn-perfil:hover {
-        color: #24566E;
-        background-color: #C45F2E;
-        border: 2px solid #24566E;
-    }
+.btn-perfil:hover {
+    color: #24566E;
+    background-color: #C45F2E;
+    border: 2px solid #24566E;
+}
 
 .content-text {
     height: 120px;
@@ -144,32 +145,12 @@ a{
     text-overflow: ellipsis;
 }
 
-.menu-tabs {
-    text-transform: uppercase;
-    background-color: #C45F2E;
-}
-    .menu-tabs a {
-        color: #D2E3EB;
-        text-decoration: none;
-    }
-        .menu-tabs a:hover {
-            color: #24566E !important;
-            background-color: #D2E3EB;
-            text-decoration: none;
-        }
-    .menu-tabs li {
-        border: 1px solid #D2E3EB;
-    }
-
-.portada {
-    background-color: #D2E3EB;
-    height: auto;
-    padding: 8px;
-    text-align: center;
-    /*  margin-top: 60px;*/
+.row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-#titulo {
-    color: #24566E;
-    font-size:1.4rem;
+.perfil-section{
+    margin:30px 0;
 }

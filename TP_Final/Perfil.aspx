@@ -3,16 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/Perfil.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f9b631791e.js" crossorigin="anonymous"></script>
-    <%--scripts para incluir jquery y jquery validation--%>
+    <!--scripts para incluir jquery y jquery validation-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
-    <%--GOOGLE FONTS--%>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    </style>
-    <%--SCRIPTS DE VALIDACION(CLIENTE)--%>
+    <!--SCRIPTS DE VALIDACION(CLIENTE)-->
    <script>
        function soloLetras(event) {
            var charCode = event.keyCode || event.which;
@@ -52,41 +48,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <section class="portada">
-        <h1 id="titulo">Editar datos de Perfil</h1>       
+        <h1 id="titulo">EDITAR DATOS DE PERFIL</h1>       
     </section>
    
-    <!--
-    <aside>
-        <button id="btnSideBar" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            EditarPerfil</button>
-
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Perfil de Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <p>Estas son las opciones de navegacion del menú de usuario</p>
-                <ul>
-                    <li><a href="Perfil.aspx#PerfilTitulo">Editar datos de Perfil</a></li>
-                    <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-                        {%>
-                    <li><a href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a></li>
-                    <li><a href="Perfil.aspx#Historias">Tus Historias</a></li>
-                    <li><a href="Perfil.aspx#Publicaciones">Tus Publicaciones</a></li>
-                    <%if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
-                        {%>
-                    <li><a href="Adopciones.aspx">Tus Adopciones</a></li>
-
-                    <% } %>
-                    <% } %>
-                </ul>
-            </div>
-        </div>
-    </aside>
-    -->
+  
     <section class="menu-tabs">
         <ul class="nav nav-tabs">          
              <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
@@ -105,18 +70,17 @@
 
     </section>
 
+    <section class="perfil-section">
+   
+         <%if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
+        { %>    
 
-    <%if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-        { %>
-
-    <div class="container">
-
-        <h2 id="Publicaciones" class="titulo">Tus Publicaciones</h2>
-        <%--SECCION PUBLICACIONES--%>
+        <h2 class="titulo">Tus Publicaciones</h2>
+        <!--SECCION PUBLICACIONES-->
         <div class="row">
             <asp:Label runat="server" ID="lbNombre"></asp:Label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <asp:ScriptManager ID="smTarjetas" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server" ID="upTarjetas" UpdateMode="Conditional">
                 <ContentTemplate>
@@ -132,36 +96,31 @@
                             {%>
                         <% foreach (var item in publicaciones)
                             { %>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="card">
                                 <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="Imagen mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
                                 <div class="card-body">
                                     <div class="content-text">
                                         <h5 class="card-title"><%= item.Titulo %></h5>
                                         <p class="card-text"><%= item.Descripcion %></p>
-                                    </div>
-    <%--                                <% if (item.Estado == Dominio.Estado.Pausada)
-                                        { %>
-                                    <p class="card-text" style="color: red">Pausada - Actívala para publicitar</p>
-                                    <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary custom-btn">Editar</a>
-                                    <% } %>--%>
+                                    </div>   
                                     <div class="botonesPerfil">
                                          <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
-                                    <a href="BorrarPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Activar/Desactivar</a>
-
-                                    </div>
-                                   
+                                    </div>                                   
                                 </div>
-                            </div>
-                            <% }
-                                } %>
+                            </div>                           
                         </div>
+                         <% }
+                                } %>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-    </div>
+    </section>
+   
 
     <%--SECCION HISTORIAS--%>
+    <section class="perfil-section">
 
     <h2 id="Historias" class="titulo">Tus Historias 
             <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
@@ -209,15 +168,15 @@
                     </div>
                     <asp:HiddenField ID="hfIDHistoria" runat="server" Value='<%# Eval("ID") %>' />
                     <div class="contenedorBotones">
-                        <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary botonPad" OnClick="btnAceptar_Click" />
-                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Eliminar" CssClass="btn btn-danger botonPad" />
+                        <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary btn-perfil" OnClick="btnAceptar_Click" />
+                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Eliminar" CssClass="btn btn-red btn-perfil" />
                     </div>
                 </div>
             </div>
             </div>
         </ItemTemplate>
     </asp:Repeater>
-    <hr />
+   
     <% } %>
 
     <% }
@@ -229,42 +188,42 @@
         <h3 class="leyenda">Completa registro para poder acceder a todo el contenido del Sitio </h3>
     </div>
     <% } %>
+</section>
 
-
-    <%--SECCION PERFIL--%>
+    <!--SECCION PERFIL-->
+    <section class="perfil-section">
     <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
     %>
-    <div class="container perfil">
-
-        <div class="row">
-            <div id="formPersona" runat="server">
-                <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
-                <div class="mb-3">
-                    <label class="form-label smallCamp">Nombre </label>
-                    <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);" ></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+    <div class="container">
+        <div class="perfil">
+            <div class="row">
+                <div id="formPersona" runat="server">
+                    <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
+                    <div class="mb-3">
+                        <label class="form-label smallCamp">Nombre </label>
+                        <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);" ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="tbNombre" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <asp:TextBox ID="tbApellido" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">DNI</label>
+                        <asp:TextBox ID="tbDni" runat="server" class="form-control" MaxLength="10" onkeypress="return soloNumeros(event);"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Ingrese solo números, maximo 10 digitos" ValidationExpression="^\d{1,10}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha de Nacimiento </label>
+                        <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Apellido</label>
-                    <asp:TextBox ID="tbApellido" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="tbApellido" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">DNI</label>
-                    <asp:TextBox ID="tbDni" runat="server" class="form-control" MaxLength="10" onkeypress="return soloNumeros(event);"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Campo Obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="tbDni" ForeColor="Red" ErrorMessage="Ingrese solo números, maximo 10 digitos" ValidationExpression="^\d{1,10}$" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RegularExpressionValidator>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha de Nacimiento </label>
-                    <asp:TextBox ID="tbFechaNac" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvFechaNac" runat="server" ControlToValidate="tbFechaNac" ForeColor="Red" ErrorMessage="Campo obligatorio" SetFocusOnError="true" ValidationGroup="ValPersona"></asp:RequiredFieldValidator>
-                </div>
-
             </div>
-
-        </div>
+       </div>
     </div>
     <%}
         else
@@ -287,7 +246,7 @@
     <%} %>
 
     <div class="container divForm">
-        <%--TELEFONO--%>
+        <!--TELEFONO-->
         <div class="mb-3">
             <label class="form-label">Telefono</label>
             <asp:TextBox ID="tbTel" runat="server" class="form-control" MaxLength="20" onkeypress="return soloNumeros(event);"></asp:TextBox>
@@ -297,7 +256,7 @@
 
 
 
-        <%--LOCALIDADES Y PROVINCIAS--%>
+        <!--LOCALIDADES Y PROVINCIAS-->
         <div class="mb-3">
             <label for="ddlProvincia" class="form-label">Provincia:</label>
             <asp:UpdatePanel ID="updatePanelProvincia" runat="server">
@@ -314,15 +273,13 @@
                     <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-select"></asp:DropDownList>
                     <asp:CustomValidator ID="cvLocalidad" runat="server" ControlToValidate="ddlLocalidad" ForeColor="Red" ErrorMessage="Por favor, seleccione una Localidad" SetFocusOnError="true" OnServerValidate="cvLocalidad_ServerValidate" ValidationGroup="ValAmbos"></asp:CustomValidator>
                 </ContentTemplate>
-                <%--  <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="ddlProvincia" EventName="SelectedIndexChanged" />
-                    </Triggers>--%>
+            
             </asp:UpdatePanel>
         </div>
 
         <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
             { %>
-        <%--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar--%>
+        <!--IMAGEN DE USUARIO PERSONA O REFUGIO Implementar funcion para cambiar-->
         <asp:UpdatePanel ID="upImgPerfil" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="mb-3 contenedorImgPerfil">
@@ -351,8 +308,8 @@
         <% } %>
 
         <div class="mb-3">
-            <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-primary" CausesValidation="true" />
+            <asp:Button ID="Modificar" runat="server" Text="Guardar" OnClick="Modificar_Click" class="btn btn-primary btn-perfil" CausesValidation="true" />
         </div>
     </div>
-
+    </section>
 </asp:Content>

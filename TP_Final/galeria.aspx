@@ -52,7 +52,7 @@
                             <% if (publicaciones == null || publicaciones.Count == 0)
                                 {%>
                             <div class="col-md-12">
-                                <h1>No se encontraron resultados</h1>
+                                <h3>No se encontraron resultados</h3>
                             </div>
                             <%}
                                 else
