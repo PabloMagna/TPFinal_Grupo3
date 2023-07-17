@@ -85,24 +85,44 @@ namespace TP_Final
 
             PublicacionNegocio negocio = new PublicacionNegocio();
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
+            int idAdoptanteActivo = adopcionNegocio.BuscarAdoptanteActivoPorPublicacion(idPublicacion);
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            Usuario adoptante = usuarioNegocio.BuscarxID(idAdoptanteActivo);
             string comentario;
+
             switch (btnAccion.CommandName)
             {
                 case "Activar":
-                    comentario = "Adopcion eliminada por Administrador";
+                    comentario = "Adopción eliminada por Administrador";
                     negocio.ActualizarEstado(idPublicacion, Estado.Activa);
-                    //Si hay una adopcion en proceso se da de baja
-                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.EliminadaPorAdoptante,comentario);
+                    // Si hay una adopción en proceso se da de baja
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.EliminadoPorAdmin, comentario);
                     CargarPublicaciones();
+
+                    if (adoptante != null && !string.IsNullOrEmpty(adoptante.Email))
+                    {
+                        EmailSender emailSender = new EmailSender();
+                        emailSender.EnviarCorreoBajaAdopcion(adoptante.Email, comentario);
+                    }
+
                     break;
+
                 case "Eliminar":
                     comentario = "Publicación eliminada por Administrador";
                     negocio.ActualizarEstado(idPublicacion, Estado.EliminadaPorAdmin);
-                    //Si hay una adopcion en proceso se da de baja
-                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.EliminadaPorAdoptante, comentario);
+                    // Si hay una adopción en proceso se da de baja
+                    adopcionNegocio.ActualizarEstadoActivaActual(idPublicacion, EstadoAdopcion.PublicacionBorrada, comentario);
                     CargarPublicaciones();
+
+                    if (adoptante != null && !string.IsNullOrEmpty(adoptante.Email))
+                    {
+                        EmailSender emailSender = new EmailSender();
+                        emailSender.EnviarCorreoBajaAdopcion(adoptante.Email, comentario);
+                    }
+
                     break;
             }
         }
+
     }
 }

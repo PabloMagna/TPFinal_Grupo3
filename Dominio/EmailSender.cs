@@ -55,6 +55,18 @@ namespace Dominio
             SendEmail(emailAdoptante, "", asunto, cuerpo);
         }
 
+        public void EnviarCorreoBajaAdopcion(string emailAdoptante, string motivoBaja)
+        {
+            string asunto = "Adopción cancelada";
+            string cuerpo = "<html><body>";
+            cuerpo += "<h2>Adopción cancelada</h2>";
+            cuerpo += "<p>La adopción de la mascota ha sido cancelada.</p>";
+            cuerpo += "<p>Estas son las razones:</p>";
+            cuerpo += "<p>" + motivoBaja.Replace("\n", "<br>") + "</p>";
+            cuerpo += "</body></html>";
+
+            SendEmail(emailAdoptante, "", asunto, cuerpo);
+        }
 
     }
 }
