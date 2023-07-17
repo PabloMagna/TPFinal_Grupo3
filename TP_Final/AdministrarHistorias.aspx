@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdministrarHistorias.aspx.cs" Inherits="TP_Final.AdministrarHistorias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/admin.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:GridView ID="dgvHistorias" runat="server" CssClass="table table-striped" AutoGenerateColumns="false"
@@ -18,8 +19,10 @@
         </asp:TemplateField>
          <asp:TemplateField HeaderText="Usuario">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlUsuario" runat="server" Text="Usuario"
-                        NavigateUrl='<%# "AdministrarUsuarios.aspx?IDU=" + Eval("IdUsuario") %>'></asp:HyperLink>
+                    <asp:HyperLink ID="hlUsuario" runat="server" Text="Usuario" CssClass="aspHyperLink"
+                        NavigateUrl='<%# "AdministrarUsuarios.aspx?IDU=" + Eval("IdUsuario") %>'>
+                        <iconify-icon icon="majesticons:user-box-line" width="30px"></iconify-icon>
+                    </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
     </Columns>

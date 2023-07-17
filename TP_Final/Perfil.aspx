@@ -56,7 +56,7 @@
             <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
                 {%>
             <li class="nav-item">
-                <a class="nav-link" href="Perfil.aspx#lbImgPerfil">Foto de Perfil</a>
+                <a class="nav-link" href="Perfil.aspx#DatosPerfil">Datos de Perfil</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
@@ -200,7 +200,7 @@
         <% } %>
     </section>
 
-    <section class="perfil-section">
+    <section class="perfil-section" id="DatosPerfil">
         <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
         %>

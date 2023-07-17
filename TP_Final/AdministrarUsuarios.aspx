@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdministrarUsuarios.aspx.cs" Inherits="TP_Final.AdministrarUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/admin.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:GridView ID="dgvUsuarios" runat="server" CssClass="table table-striped" AutoGenerateColumns="false"
@@ -25,28 +26,28 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Publicaciones">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlPublicaciones" runat="server" Text="Publicaciones"
-                        NavigateUrl='<%# "AdministrarPublicaciones.aspx?ID=" + Eval("Id") %>'></asp:HyperLink>
+                    <asp:HyperLink ID="hlPublicaciones" runat="server" CssClass="aspHyperLink"
+                        NavigateUrl='<%# "AdministrarPublicaciones.aspx?ID=" + Eval("Id") %>'>
+                        <iconify-icon icon="fluent-mdl2:storyboard" width="30px"></iconify-icon>
+                    </asp:HyperLink>  
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Comentarios">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlComentarios" runat="server" Text="Comentarios"
-                        NavigateUrl='<%# "AdministrarComentarios.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
+                    <asp:HyperLink ID="hlComentarios" runat="server" CssClass="aspHyperLink"
+                        NavigateUrl='<%# "AdministrarComentarios.aspx?IDU=" + Eval("ID") %>'>
+                        <iconify-icon icon="ant-design:comment-outlined" width="30px"></iconify-icon>
+                    </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
                         <asp:TemplateField HeaderText="Historias">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlHistorias" runat="server" Text="Historias"
-                        NavigateUrl='<%# "AdministrarHistorias.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
+                    <asp:HyperLink ID="hlHistorias" runat="server" CssClass="aspHyperLink"
+                        NavigateUrl='<%# "AdministrarHistorias.aspx?IDU=" + Eval("ID") %>'>
+                        <iconify-icon icon="material-symbols:history-edu" width="30px"></iconify-icon>
+                    </asp:HyperLink>                    
                 </ItemTemplate>
-            </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Adopcion">
-                <ItemTemplate>
-                    <asp:HyperLink ID="hlAdopcion" runat="server" Text="Adopcion"
-                        NavigateUrl='<%# "AdministrarAdopciones.aspx?IDU=" + Eval("ID") %>'></asp:HyperLink>
-                </ItemTemplate>
-            </asp:TemplateField>
+            </asp:TemplateField>                        
         </Columns>
     </asp:GridView>
 </asp:Content>

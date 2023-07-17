@@ -1,0 +1,43 @@
+﻿body {
+}
+.aspHyperLink {
+    color: #C45F2E !important;
+    font-weight:bold;
+    text-decoration: none;
+    text-align:center;
+}
+    .aspHyperLink:hover {
+        color: #24566E !important;
+    }
+.btn-estado {
+    color: #24566E;
+    background-color: #D2E3EB;
+    padding: 2px;
+    border-radius: 10px;
+    border: 2px solid #24566E;
+    width: 80px;
+    font-size:11px;
+    margin: 5px 0;
+}
+
+.btn-red {
+    background-color: red;
+    color: azure;
+}
+.btn-estado:hover {
+    color: #D2E3EB;
+    background-color: #24566E;
+}
+
+.btn-red:hover {
+    background-color:darkred;
+    color: azure;
+}
+#nota {
+    color: #24566E;
+    font-size: 1.5rem;
+    background-color: #D2E3EB;
+    padding: 15px;
+    text-align: center;
+}
+
