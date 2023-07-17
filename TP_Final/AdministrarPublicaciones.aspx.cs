@@ -123,6 +123,25 @@ namespace TP_Final
                     break;
             }
         }
+        protected bool MostrarBotonActivar(object estado)
+        {
+            if (estado != null && estado is Estado)
+            {
+                Estado estadoPublicacion = (Estado)estado;
+                return estadoPublicacion != Estado.Activa;
+            }
+            return false;
+        }
+
+        protected bool MostrarBotonEliminar(object estado)
+        {
+            if (estado != null && estado is Estado)
+            {
+                Estado estadoPublicacion = (Estado)estado;
+                return estadoPublicacion != Estado.EliminadaPorAdmin && estadoPublicacion != Estado.BorradaPorUsuario;
+            }
+            return false;
+        }
 
     }
 }

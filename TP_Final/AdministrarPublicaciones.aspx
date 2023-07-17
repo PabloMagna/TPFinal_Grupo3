@@ -5,17 +5,16 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 id="nota"> <iconify-icon icon="jam:triangle-danger-f" style="color: red;"></iconify-icon> Los cambios en los estados afectarán a las Adopciones vinculadas dandolas de baja</h2>
-    <asp:GridView ID="dgvPublicaciones" runat="server" CssClass="table table-striped" AutoGenerateColumns="false"
-        DataKeyNames="Id">
+    <h2 id="nota"> <iconify-icon icon="jam:triangle-danger-f" style="color: red;"></iconify-icon> Los cambios en los estados afectarán a las Adopciones vinculadas dándolas de baja</h2>
+    <asp:GridView ID="dgvPublicaciones" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" DataKeyNames="Id">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="Titulo" HeaderText="Título" ReadOnly="true" />
             <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="Especie" HeaderText="Especie" ReadOnly="true" />
-            <asp:BoundField DataField="Raza" HeaderText="Raza" ReadOnly="true" />
-            <asp:BoundField DataField="Edad" HeaderText="Edad" ReadOnly="true" />
+            <asp:BoundField DataField="Raza" HeaderText="Raza" ReadOnly="true" Visible="false" />
+            <asp:BoundField DataField="Edad" HeaderText="Edad" ReadOnly="true" Visible="false"/>
             <asp:BoundField DataField="Sexo" HeaderText="Sexo" ReadOnly="true" Visible="false" />
             <asp:BoundField DataField="FechaHora" HeaderText="Fecha y Hora" ReadOnly="true" />
             <asp:TemplateField HeaderText="Estado">
@@ -27,24 +26,21 @@
             <asp:BoundField DataField="IDProvincia" HeaderText="Provincia" ReadOnly="true" />
             <asp:TemplateField HeaderText="Detalle">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlDetalle" runat="server" Text="Detalle" CssClass="aspHyperLink"
-                        NavigateUrl='<%# "DetallePublicacion.aspx?ID=" + Eval("ID") %>'>
+                    <asp:HyperLink ID="hlDetalle" runat="server" Text="Detalle" CssClass="aspHyperLink" NavigateUrl='<%# "DetallePublicacion.aspx?ID=" + Eval("ID") %>'>
                         <iconify-icon icon="pajamas:details-block" width="30px"></iconify-icon>
                     </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Usuario">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlUsuario" runat="server" Text="Usuario" CssClass="aspHyperLink"
-                        NavigateUrl='<%# "AdministrarUsuarios.aspx?IDU=" + Eval("IdUsuario") %>'>
+                    <asp:HyperLink ID="hlUsuario" runat="server" Text="Usuario" CssClass="aspHyperLink" NavigateUrl='<%# "AdministrarUsuarios.aspx?IDU=" + Eval("IdUsuario") %>'>
                         <iconify-icon icon="majesticons:user-box-line" width="30px"></iconify-icon>
                     </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Comentarios">
                 <ItemTemplate>
-                    <asp:HyperLink ID="hlComentarios" runat="server" CssClass="aspHyperLink"
-                        NavigateUrl='<%# "AdministrarComentarios.aspx?IDU=" + Eval("ID") %>'>
+                    <asp:HyperLink ID="hlComentarios" runat="server" CssClass="aspHyperLink" NavigateUrl='<%# "AdministrarComentarios.aspx?IDU=" + Eval("ID") %>'>
                         <iconify-icon icon="ant-design:comment-outlined" width="30px"></iconify-icon>
                     </asp:HyperLink>
                 </ItemTemplate>
@@ -52,12 +48,11 @@
             <asp:TemplateField HeaderText="Acciones">
                 <ItemTemplate>
                     <asp:Button ID="btnActivar" runat="server" Text="Activar" CommandName="Activar" CommandArgument='<%# Eval("Id") %>'
-                        CssClass="btn btn-estado" OnClick="btnAcciones_Click"  />                   
+                        CssClass="btn btn-estado" OnClick="btnAcciones_Click" Visible='<%# MostrarBotonActivar(Eval("Estado")) %>' />
                     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>'
-                        CssClass="btn btn-red btn-estado" OnClick="btnAcciones_Click" />
+                        CssClass="btn btn-red btn-estado" OnClick="btnAcciones_Click" Visible='<%# MostrarBotonEliminar(Eval("Estado")) %>' />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>
-
