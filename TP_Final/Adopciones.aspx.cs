@@ -62,6 +62,13 @@ namespace TP_Final
             TextBox txtComentario = (TextBox)row.FindControl("txtComentario");
             string comentario = txtComentario.Text.Trim();
 
+            if (comentario.Length < 20)
+            {
+                // Mostrar mensaje de error si el comentario tiene menos de 20 caracteres
+                Response.Write("<script>alert('El comentario debe tener al menos 20 caracteres.');</script>");
+                return;
+            }
+
             // Actualizar el estado de la adopción y la publicación en la base de datos
             AdopcionNegocio adopcionNegocio = new AdopcionNegocio();
 
@@ -79,6 +86,7 @@ namespace TP_Final
             // Cargar las adopciones actualizadas
             CargarAdopciones(idUsuario);
         }
+
 
 
     }
