@@ -13,14 +13,18 @@
 }
 
 #titulo1 {
-    color: #24566E;
-    background-color: #D2E3EB;
-    padding: 40px 0;
+    background-color: #D2E3EB;    
+    padding: 12px;
     text-align: center;
-    /*margin-top: 70px;*/
+    color: #24566E;
+    font-size: 2.0rem;
 }
 
 
+#titulo {
+    color: #24566E;
+    font-size: 2.0rem;
+}
 
 .about-us {
     margin: 30px 15%;

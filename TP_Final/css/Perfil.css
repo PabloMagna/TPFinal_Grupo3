@@ -21,6 +21,7 @@ body {
     .menu-tabs a {
         color: #D2E3EB;
         text-decoration: none;
+        border: 1px solid #D2E3EB;
     }
 
         .menu-tabs a:hover {
@@ -29,9 +30,6 @@ body {
             text-decoration: none;
         }
 
-    .menu-tabs li {
-        border: 1px solid #D2E3EB;
-    }
 
 
 .titulo {
@@ -41,8 +39,10 @@ body {
     padding: 30px;
     color: #24566E;
 }
-.leyenda{
-    text-align:center;
+.leyenda {
+    text-align: center;
+    margin: 15px;
+    color: #C45F2E;
 }
 
 /*Contenedor de Historias*/

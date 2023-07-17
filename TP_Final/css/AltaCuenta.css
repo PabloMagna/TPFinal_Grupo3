@@ -1,12 +1,13 @@
 ﻿.portada {
     background-color: #D2E3EB;
     height: auto;
-    padding: 20px 0;
+    padding: 12px;
     text-align: center;
 }
 
 #titulo {
     color: #24566E;
+    font-size: 2.0rem;
 }
 
 .formulario {

@@ -135,7 +135,7 @@
             </asp:UpdatePanel>
         </div>
     </section>
-
+    <hr />
     <section class="perfil-section">
         <h2 id="Historias" class="titulo">Tus Historias 
             <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
@@ -144,7 +144,7 @@
         <% if (historias == null || historias.Count == 0)
         { %>
         <div class="col-md-12">
-            <h3 class="leyenda">Las historias están disponibles para quienes adopten Mascotas </h3>
+            <h3 class="leyenda">No tienes historias compartidas</h3>
         </div>
         <% }
         else
@@ -203,8 +203,9 @@
         </div>
         <% } %>
     </section>
-
+    <hr />
     <section class="perfil-section" id="DatosPerfil">
+        <h2 class="titulo">Datos de perfil</h2>
         <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
         %>
