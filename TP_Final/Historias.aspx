@@ -13,7 +13,7 @@
     </section>
     
     <section id="formularioOculto" class="formularioOculto" runat="server">
-        <%if (Session["Usuario"] != null)
+        <%if (Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Tipo != Dominio.TipoUsuario.Refugio)
         {%>
             <div class="contenidoForm">
                 <asp:Button ID="btn_expandir" runat="server" Text="Contanos tu historia" class="btn border-orange" Onclick="btnExpandir_Click" />

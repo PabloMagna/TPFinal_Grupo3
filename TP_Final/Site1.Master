@@ -38,61 +38,60 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="galeria.aspx">En adopción</a>
                             </li>
-                           
+
                             <li class="nav-item">
                                 <a class="nav-link" href="Historias.aspx">Historias</a>
                             </li>
-                             
-                            
-                        <% if (Session["Usuario"] != null)
-                            {%>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="formPublicacion.aspx">Publicar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Favoritos.aspx">Favoritos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Adopciones.aspx">Mis Adopciones</a>
-                                </li>
 
-                            <%
 
-                                Dominio.Usuario usuarioConectado = new Dominio.Usuario();
-                                usuarioConectado= (Dominio.Usuario)Session["Usuario"];
-                                if(usuarioConectado.EsAdmin == true)
+                            <% if (Session["Usuario"] != null)
                                 {
-               
-                                %>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="AdministrarPublicaciones.aspx">Administrar Publicaciones</a></li>
-                                            <li><a class="dropdown-item" href="AdministrarUsuarios.aspx">Administrar Usuarios</a></li>
-                                            <li><a class="dropdown-item" href="AdministrarComentarios.aspx">Administrar Comentarios</a></li>
-                                            <li><a class="dropdown-item" href="AdministrarHistorias.aspx">Administrar Historias</a></li>
-                                        </ul>
-                                    </li>
-                                <%}  
-                            }%>
+                            %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="formPublicacion.aspx">Publicar</a>
+                            </li>
+                            <% if (((Dominio.Usuario)Session["Usuario"]).Tipo != Dominio.TipoUsuario.Refugio)
+                                {
+                            %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Favoritos.aspx">Favoritos</a>
+                            </li>
+                            <% 
+                                }
+                                Dominio.Usuario usuarioConectado = (Dominio.Usuario)Session["Usuario"];
+                                if (usuarioConectado.EsAdmin)
+                                {
+                            %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="AdministrarPublicaciones.aspx">Administrar Publicaciones</a></li>
+                                    <li><a class="dropdown-item" href="AdministrarUsuarios.aspx">Administrar Usuarios</a></li>
+                                    <li><a class="dropdown-item" href="AdministrarComentarios.aspx">Administrar Comentarios</a></li>
+                                    <li><a class="dropdown-item" href="AdministrarHistorias.aspx">Administrar Historias</a></li>
+                                </ul>
+                            </li>
+                            <% 
+                                }
+                            } %>
                         </ul>
 
                         <% if (Session["Usuario"] != null)
                             { %>
                         <!-- Elementos de navegación para un usuario con sesión iniciada -->
-                            <div class="d-flex justify-content-end ">                                
-                                <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 3.0rem; height: 3.0rem;">
-                                  <img src="<%=ObtenerUrl() %>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" onerror="cargarImagenPredeterminada(this)" />                               
-                                </div>
-                                <div id="botones" class="d-flex flex-row"> 
-                                    <asp:Button ID="btnsalir" class="botones" runat="server" Text="Cerrar sesión" OnClick="btnsalir_Click"/>
-                                    <asp:Button ID="btnperfil" class="botones" runat="server" Text="Ir al perfil" OnClick="btnperfil_Click" />
-                                </div>
+                        <div class="d-flex justify-content-end ">
+                            <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center align-self-center" style="width: 3.0rem; height: 3.0rem;">
+                                <img src="<%=ObtenerUrl() %>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" onerror="cargarImagenPredeterminada(this)" />
                             </div>
+                            <div id="botones" class="d-flex flex-row">
+                                <asp:Button ID="btnsalir" class="botones" runat="server" Text="Cerrar sesión" OnClick="btnsalir_Click" />
+                                <asp:Button ID="btnperfil" class="botones" runat="server" Text="Ir al perfil" OnClick="btnperfil_Click" />
+                            </div>
+                        </div>
                         <% }
-                        else
-                        { %>
+                            else
+                            { %>
                         <!-- Elementos de navegación para un usuario sin sesión iniciada -->
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">

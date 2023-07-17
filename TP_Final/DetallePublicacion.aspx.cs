@@ -221,5 +221,43 @@ namespace TP_Final
             AdopcionNegocio negocio = new AdopcionNegocio();
             return negocio.EnDataBaseActivo(idUser, idPublicacion);
         }
+        protected string obtenerNombrePorID(int iDusuario)
+        {
+            UsuarioNegocio negocioUsuario = new UsuarioNegocio();
+            Usuario usuario = negocioUsuario.BuscarxID(iDusuario);
+            if(usuario != null && usuario.Tipo == TipoUsuario.PersonaCompleto)
+            {
+                PersonaNegocio negocio = new PersonaNegocio();
+                Persona persona = negocio.BuscarporUsuario(usuario.Id);
+                return persona.Nombre + persona.Apellido;
+            }else if(usuario != null && usuario.Tipo == TipoUsuario.Refugio)
+            {
+                RefugioNegocio negocio = new RefugioNegocio();
+                Refugio refugio = negocio.BuscarporUsuario(usuario.Id);
+                return refugio.Nombre;
+            }
+            return "Desconocido";
+        }
+        protected string obtenerImagenPorID(int iDusuario)
+        {
+            UsuarioNegocio negocioUsuario = new UsuarioNegocio();
+            Usuario usuario = negocioUsuario.BuscarxID(iDusuario);
+            if (usuario != null && usuario.Tipo == TipoUsuario.PersonaCompleto)
+            {
+                PersonaNegocio negocio = new PersonaNegocio();
+                Persona persona = negocio.BuscarporUsuario(usuario.Id);
+                return persona.UrlImagen;
+            }
+            else if (usuario != null && usuario.Tipo == TipoUsuario.Refugio)
+            {
+                RefugioNegocio negocio = new RefugioNegocio();
+                Refugio refugio = negocio.BuscarporUsuario(usuario.Id);
+                return refugio.UrlImagen;
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

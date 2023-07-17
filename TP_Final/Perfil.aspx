@@ -51,23 +51,27 @@
         <h1 id="titulo">Editar datos de Perfil</h1>
     </section>
 
-    <section class="menu-tabs">
-        <ul class="nav nav-tabs">
-            <% if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-                {%>
-            <li class="nav-item">
-                <a class="nav-link" href="Perfil.aspx#DatosPerfil">Datos de Perfil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
-            </li>
-            <% } %>
-        </ul>
+<section class="menu-tabs">
+    <ul class="nav nav-tabs">
+        <% if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Refugio) { %>
+        <li class="nav-item">
+            <a class="nav-link" href="Perfil.aspx#DatosPerfil">Datos de Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
+        </li>
+        <% } %>
+        <% if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto) { %>
+        <li class="nav-item">
+            <a class="nav-link" href="Adopciones.aspx">Adopciones</a>
+        </li>
+        <% } %>
+    </ul>
+</section>
 
-    </section>
 
     <section class="perfil-section">
         <%if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)

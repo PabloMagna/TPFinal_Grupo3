@@ -66,7 +66,7 @@ namespace TP_Final
         protected void cargarHistorias()
         {
             HistoriaNegocio histoNegocio = new HistoriaNegocio();
-            historias = histoNegocio.ListarPorUsuario(userLogeado.Id);
+            historias = histoNegocio.ListarPorUsuarioActivas(userLogeado.Id);
             rpHistorias.DataSource = historias;
             rpHistorias.DataBind();
         }

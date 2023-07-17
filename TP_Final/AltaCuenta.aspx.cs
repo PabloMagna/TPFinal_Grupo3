@@ -113,7 +113,7 @@ namespace TP_Final
                     //Datos de usuario
                     usuario.Email = tbEmail.Text;
                     usuario.Password = tbPassword.Text;
-                    usuario.Tipo = TipoUsuario.Persona;
+                    usuario.Tipo = TipoUsuario.Refugio;
                     usuario.EsAdmin = false;
                     usuario.Estado = EstadoUsuario.Activo;
                     idUsuario = usuarios.Agregar(usuario);

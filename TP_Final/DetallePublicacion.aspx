@@ -6,12 +6,12 @@
     <link href="css/DetallePublicacion.css" rel="stylesheet" type="text/css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-    </style>   
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="portada">
-        <h1 id="titulo">Detalles de la publicación</h1>       
+        <h1 id="titulo">Detalles de la publicación</h1>
     </section>
     <br />
     <div class="container">
@@ -32,7 +32,7 @@
                         <p class="card-text">Localidad: <%= CargarLocalidad() %></p>
                         <p class="card-text">Provincia: <%= CargarProvincia() %></p>
                         <p class="card-text">Fecha y hora: <%= publicacion.FechaHora.ToString() %></p>
-                        <p class="card-text">Estado: <%= publicacion.Estado %></p>                      
+                        <p class="card-text">Estado: <%= publicacion.Estado %></p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -57,27 +57,29 @@
                     </div>
                 </div>
                 <div class="col-md-2 div-botones">
-                      <%if (Session["Usuario"] != null)
+                    <div class="col-md-2 div-botones">
+                        <% if (Session["Usuario"] != null)
                             {
-                                if (ComprobarAdopcion(((Usuario)Session["Usuario"]).Id, publicacion.Id))
-                                { %>
+                                Usuario usuario = (Usuario)Session["Usuario"];
+                                if (usuario.Tipo != TipoUsuario.Refugio)
+                                {
+                                    if (ComprobarAdopcion(usuario.Id, publicacion.Id))
+                                    { %>
                         <div>
                             <h5>Ya estás en Proceso de Adopción con este animal</h5>
                         </div>
                         <div>
-                             <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                            <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
                         </div>
-                       
                         <%}
                             else if (publicacion.Estado == Estado.EnProceso)
                             {%>
                         <div>
-                            <h5>Publicacion Pausada por estar en proceso de Adopcion</h5>
+                            <h5>Publicación Pausada por estar en proceso de Adopción</h5>
                         </div>
                         <div>
                             <asp:Button ID="btnFavorito2" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
                         </div>
-                        
                         <%}
                             else
                             {%>
@@ -86,23 +88,23 @@
                         </div>
                         <div>
                             <asp:Button ID="btnFavorito3" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        </div>                        
-                        
+                        </div>
                         <%}
-                            }
-                            else
-                            {%>
+                                  }
+                              }
+                              else
+                              {%>
                         <div>
                             <a href="Login.aspx" class="btn btn-primary">Adoptar</a>
                         </div>
                         <div>
-                             <a href="Login.aspx" class="btn btn-primary">Agregar a Favoritos</a>
+                            <a href="Login.aspx" class="btn btn-primary">Agregar a Favoritos</a>
                         </div>
-                        
-                       
                         <%} %>
+                    </div>
+
+
                 </div>
-            </div>
         </section>
     </div>
 
@@ -121,9 +123,9 @@
         {%>
     <section class="container-sm comentarios">
         <div class="cabecera">
-            <img class="imgUser" src="<%:camposUsuario[i].UrlImg %>" onerror="this.onerror=null; 
+            <img class="imgUser" src="<% =obtenerImagenPorID(coment.IdUsuario)  %>" onerror="this.onerror=null; 
             this.src='<%:ImgPlaceHolder %>;'" />
-            <label name="Nombre-Usuario" class="lbNombre"><%:camposUsuario[i].Nombre %></label>
+            <label name="Nombre-Usuario" class="lbNombre"><% =obtenerNombrePorID(coment.IdUsuario) %></label>
             <label class="fecha"><%=coment.FechaHora.ToString()%></label>
         </div>
         <div class="comentario">
