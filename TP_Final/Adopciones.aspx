@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Adopciones.aspx.cs" Inherits="TP_Final.Adopciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="css/adopciones.css" rel="stylesheet" type="text/css" />
     <script>
         function ConfirmarEliminar() {
             return confirm("¿Estás seguro de que quieres eliminar esta adopción?");
@@ -10,7 +10,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Adopciones</h1>
+    
+    <section class="portada">
+        <h1 id="titulo">Mis Adopciones</h1>
+    </section>
+
     <div class="table-responsive">
         <asp:GridView ID="dgvAdopciones" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" OnRowDataBound="dgvAdopciones_RowDataBound">
             <Columns>

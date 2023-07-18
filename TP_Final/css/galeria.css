@@ -51,3 +51,9 @@
     margin-top: 20px;
     border-radius: 10px;
 }
+.mensaje {
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 15px;
+    color: #C45F2E;
+}

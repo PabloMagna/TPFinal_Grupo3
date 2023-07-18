@@ -57,9 +57,13 @@
         <li class="nav-item">
             <a class="nav-link" href="Perfil.aspx#DatosPerfil">Datos de Perfil</a>
         </li>
+          <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
+         {
+        %>
         <li class="nav-item">
             <a class="nav-link" href="Perfil.aspx#Historias">Historias</a>
         </li>
+        <%} %>
         <li class="nav-item">
             <a class="nav-link" href="Perfil.aspx#Publicaciones" tabindex="-1" aria-disabled="true">Tus Publicaciones</a>
         </li>
@@ -73,10 +77,7 @@
 </section>
 
 
-    <section class="perfil-section">
-        <%if (userLogeado.Tipo != Dominio.TipoUsuario.Persona)
-        { %>    
-
+    <section class="perfil-section">    
         <h2 class="titulo">Tus Publicaciones</h2>
         <!--SECCION PUBLICACIONES-->
         <div class="row">
@@ -95,124 +96,128 @@
                         <%}%>
 
                         <%else
-                            {%>
-                        <% foreach (var item in publicaciones)
-                            { %>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="Imagen mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
-                                <div class="card-body">
-                                    <div class="content-text">
-                                        <h5 class="card-title"><%= item.Titulo %></h5>
-                                        <% if (item.Estado == Dominio.Estado.Pausada)
-                                            { %>
-                                        <div class="card-text">
-                                            <div class="alert alert-warning" role="alert">
-                                                Publicación Pausada
+                        {%>
+                            <% foreach (var item in publicaciones)
+                                { %>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="<%=obtenerPrimeraImagen(item.Id) %>" style="max-height: 19rem" class="card-img-top" alt="Imagen mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
+                                        <div class="card-body">
+                                            <div class="content-text">
+                                                <h5 class="card-title"><%= item.Titulo %></h5>
+                                                <% if (item.Estado == Dominio.Estado.Pausada)
+                                                    { %>
+                                                <div class="card-text">
+                                                    <div class="alert alert-warning" role="alert">
+                                                        Publicación Pausada
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                <% if (item.Estado == Dominio.Estado.FinalizadaConExito)
+                                                    { %>
+                                                <div class="card-text">
+                                                    <div class="alert alert-success" role="alert">
+                                                        Adopción Concretada
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                <p class="card-text"><%= item.Descripcion %></p>
+                                            </div>
+                                            <div class="botonesPerfil">
+                                                <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
                                             </div>
                                         </div>
-                                        <% } %>
-                                        <% if (item.Estado == Dominio.Estado.FinalizadaConExito)
-                                            { %>
-                                        <div class="card-text">
-                                            <div class="alert alert-success" role="alert">
-                                                Adopción Concretada
-                                            </div>
-                                        </div>
-                                        <% } %>
-                                        <p class="card-text"><%= item.Descripcion %></p>
-                                    </div>
-                                    <div class="botonesPerfil">
-                                        <a href="FormPublicacion.aspx?ID=<%= item.Id %>" class="btn btn-primary btn-perfil">Editar</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                         <% }
-                                } %>
+                            <% }
+                          } %>
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
     </section>
     <hr />
+   
+      <%  if (userLogeado.Tipo != Dominio.TipoUsuario.Refugio)
+         {
+        %>
     <section class="perfil-section">
+       
+
         <h2 id="Historias" class="titulo">Tus Historias 
             <iconify-icon icon="fluent-emoji-high-contrast:paw-prints" width="25px"></iconify-icon>
         </h2>
+       
 
-        <% if (historias == null || historias.Count == 0)
-        { %>
+        <% if ((historias == null || historias.Count == 0) && userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto )
+            { %>
         <div class="col-md-12">
             <h3 class="leyenda">No tienes historias compartidas</h3>
         </div>
         <% }
-        else
-        {
+            else if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto )
+            {
         %>
-        <asp:Repeater ID="rpHistorias" runat="server">
-            <ItemTemplate>
-                <div class="container Historias">
+            <asp:Repeater ID="rpHistorias" runat="server">
+                <ItemTemplate>
+                    <div class="container Historias">
 
-                    <div class="card-body">
+                        <div class="card-body">
 
-                        <div class="row">
-                            <img id="imgHistoria" class="imagenPreview" src='<%# Eval("UrlImagen") %>' alt="Imagen Mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
-                            <label class="form-label">Cambiar foto</label>
-                        </div>
-                        <div class="mb-3">
-                            <input type="file" id="tbImagenHistoria" runat="server" accept="image/jpeg, image/png, image/jpg" onchange="previewImageHistoria(this)" class="form-control" />
-                        </div>
-                        <script>
-                            function previewImageHistoria(input) {
-                                if (input.files && input.files[0]) {
-                                    var reader = new FileReader();
+                            <div class="row">
+                                <img id="imgHistoria" class="imagenPreview" src='<%# Eval("UrlImagen") %>' alt="Imagen Mascota" onerror="this.src = '/imagenes/pet_placeholder.png'">
+                                <label class="form-label">Cambiar foto</label>
+                            </div>
+                            <div class="mb-3">
+                                <input type="file" id="tbImagenHistoria" runat="server" accept="image/jpeg, image/png, image/jpg" onchange="previewImageHistoria(this)" class="form-control" />
+                            </div>
+                            <script>
+                                function previewImageHistoria(input) {
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
 
-                                    reader.onload = function (e) {
-                                        var imgElement = input.parentNode.previousElementSibling.querySelector(".imagenPreview");
-                                        imgElement.src = e.target.result;
-                                    };
+                                        reader.onload = function (e) {
+                                            var imgElement = input.parentNode.previousElementSibling.querySelector(".imagenPreview");
+                                            imgElement.src = e.target.result;
+                                        };
 
-                                    reader.readAsDataURL(input.files[0]);
+                                        reader.readAsDataURL(input.files[0]);
+                                    }
                                 }
-                            }
-                        </script>
-                        <div class="mb-3">
-                            <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="300" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
-                            <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
-                        </div>
-                        <asp:HiddenField ID="hfIDHistoria" runat="server" Value='<%# Eval("ID") %>' />
-                        <div class="contenedorBotones">
-                            <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary btn-perfil" OnClick="btnAceptar_Click" />
-                            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Eliminar" CssClass="btn btn-red btn-perfil" />
+                            </script>
+                            <div class="mb-3">
+                                <asp:TextBox ID="tbDescripcion" runat="server" class="form-control" TextMode="MultiLine" Rows="5" MaxLength="300" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
+                                <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>
+                            </div>
+                            <asp:HiddenField ID="hfIDHistoria" runat="server" Value='<%# Eval("ID") %>' />
+                            <div class="contenedorBotones">
+                                <asp:Button ID="btnAceptar" runat="server" Text="Aplicar Cambios" CssClass="btn btn-primary btn-perfil" OnClick="btnAceptar_Click" />
+                                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Eliminar" CssClass="btn btn-red btn-perfil" />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
 
-        <% } %>
-
-        <% }
-
-        %>
-        <%else
-        {%>
+            <% }
+            else if (userLogeado.Tipo == Dominio.TipoUsuario.Persona)
+            {%>
         <div class="col-md-12">
             <h3 class="leyenda">Completa registro para poder acceder a todo el contenido del Sitio </h3>
         </div>
         <% } %>
     </section>
     <hr />
+    <% }
+        %>
     <section class="perfil-section" id="DatosPerfil">
-        <h2 class="titulo">Datos de perfil</h2>
+        <h2 class="titulo">Datos del perfil</h2>
         <%  if (userLogeado.Tipo == Dominio.TipoUsuario.PersonaCompleto || userLogeado.Tipo == Dominio.TipoUsuario.Persona)
         {
         %>
     <div class="container perfil">
         <div class="row">
-            <div id="formPersona" runat="server">
-                <h2 id="PerfilTitulo" class="titulo">Tus datos de perfil</h2>
+            <div id="formPersona" runat="server">                
                 <div class="mb-3">
                     <label class="form-label smallCamp">Nombre </label>
                     <asp:TextBox ID="tbNombre" runat="server" class="form-control" MaxLength="20" onkeydown="return soloLetras(event);" ></asp:TextBox>

@@ -38,7 +38,7 @@
 
                             <% if (repeaterFavoritos.Items.Count == 0) { %>
                                 <div class="col-md-12">
-                                    <h1>No tienes publicaciones guardadas en favoritos.</h1>
+                                    <h1 class="mensaje">No tienes publicaciones guardadas en favoritos.</h1>
                                 </div>
                             <% } %>
                         </div>
