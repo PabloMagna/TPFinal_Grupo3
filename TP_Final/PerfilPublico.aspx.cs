@@ -34,7 +34,7 @@ namespace TP_Final
         }
         private void CargarPersonaORefugio()
         {
-            if(usuario.Tipo == TipoUsuario.PersonaCompleto || usuario.Tipo == TipoUsuario.Persona)
+            if (usuario.Tipo == TipoUsuario.PersonaCompleto || usuario.Tipo == TipoUsuario.Persona)
             {
                 PersonaNegocio personaNegocio = new PersonaNegocio();
                 persona = personaNegocio.BuscarporUsuario(usuario.Id);
@@ -68,7 +68,27 @@ namespace TP_Final
             // Si no se encuentran URLs de imágenes, se devuelve la URL predeterminada
             return "https://thumbs.dreamstime.com/b/ilustraci%C3%B3n-vectorial-del-logotipo-de-la-cara-perro-logo-cabeza-emblema-sobre-fondo-blanco-166636491.jpg";
         }
-
-
+        protected string BuscarProvinciaPorID(int idProvincia)
+        {
+            ProvinciaNegocio negocio = new ProvinciaNegocio();
+            if (negocio.ObtenerNombrePorId(idProvincia) != null)
+                return negocio.ObtenerNombrePorId(idProvincia);
+            else
+                return "no especificado";
+        }
+        protected string BuscarLocalidadPorID(int idLocalidad)
+        {
+            LocalidadNegocio negocio = new LocalidadNegocio();
+            if (negocio.ObtnerNombrePorID(idLocalidad) != null)
+                return negocio.ObtnerNombrePorID(idLocalidad);
+            else
+                return "no especificado";
+        }
+        protected string BuscarNombrePublicacionPorId(int idPublicacion)
+        {
+            PublicacionNegocio negocio = new PublicacionNegocio();
+            Publicacion publicacion =  negocio.ObtenerPorId(idPublicacion);
+            return publicacion.Titulo;
+        }
     }
 }

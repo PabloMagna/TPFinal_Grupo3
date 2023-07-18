@@ -27,8 +27,20 @@ namespace TP_Final
             Usuario usuario = negocio.Login(contrasenia, email);
             if(usuario != null)
             {
-                Session["Usuario"] = usuario;
-                Response.Redirect("default.aspx");
+                if(usuario.Estado == EstadoUsuario.EliminadoPorUsuario)
+                {
+                    lblLogueado.Text = "Usuario Eliminado";
+                    lblLogueado.Visible = true;
+                }else if(usuario.Estado == EstadoUsuario.EliminadoPorAdmin)
+                {
+                    lblLogueado.Text = "Usuario Baneado por Admin";
+                    lblLogueado.Visible = true;
+                }
+                else
+                {
+                    Session["Usuario"] = usuario;
+                    Response.Redirect("default.aspx");
+                }             
             }
             else
             {

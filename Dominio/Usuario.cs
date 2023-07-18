@@ -9,8 +9,8 @@ namespace Dominio
     public enum EstadoUsuario
     {
         Activo = 1,
-        Inactivo = 2,
-        Eliminado = 3,
+        EliminadoPorUsuario = 2,
+        EliminadoPorAdmin = 3,
         Comprobado = 4
     }
 
