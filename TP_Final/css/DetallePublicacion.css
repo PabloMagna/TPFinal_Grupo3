@@ -35,8 +35,7 @@
     position: relative;
 }
 
-.comentario {
-    /*margin: 10px auto;*/
+.comentario {    
     width:fit-content;
     position: relative;
     margin-left: 50px;
@@ -122,40 +121,66 @@ textarea.form-control:focus {
     margin-top: 6px;
 }
 
+
+
+/*Detalle publicacion*/
+.div-botones {
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.div-botones div{
+    width: 100%;    
+}
 .btn {
     color: #24566E;
     background-color: #D2E3EB;
-    padding: 4px 8px;
+    padding: 4px 0;
     border-radius: 10px;
     border: 2px solid #24566E;
     margin:15px 0;
+    width:100% !important;
 }
 
-    .btn:hover {
-        color: #24566E;
+    .btn:hover {       
         background-color: #C45F2E;
-        border: 2px solid #24566E;
     }
 
-
+.carousel {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D2E3EB;
+}
 .carousel-inner {
     background-color: #D2E3EB;
-    height: 400px;
-    width:500px;
+    height: 380px;
+    width:100%;
 }
 
 .carousel-item img {
-    height: 400px;
+    height: 380px;
     width: auto;
     overflow: hidden;
     object-fit: contain;
     object-position: center;
 }
 
-.div-botones{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align: center;
+.card-body{
+    width:100%;
+    overflow:hidden;
+}
+.card-descripcion {    
+    color: #24566E;
+    margin-bottom:15px;
+}
+.card-text {
+    margin-bottom: 5px;
+    overflow: hidden;
 }

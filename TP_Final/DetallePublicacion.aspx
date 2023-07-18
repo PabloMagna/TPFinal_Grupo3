@@ -14,17 +14,20 @@
         <h1 id="titulo">Detalles de la publicación</h1>
     </section>
     <br />
-    <div class="container">
-        <section class="Detalle">
+    <section class="Detalle">
+        <div class="container">        
             <div class="btnVolver">
                 <a href="/galeria.aspx">
-                    <img src="imagenes/leftarrow.png" class="volver" /></a>
+                <img src="imagenes/leftarrow.png" class="volver" />
+                </a>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="card-body">
-                        <h5 class="card-title"><%= publicacion.Titulo %></h5>
-                        <p class="card-text"><%= publicacion.Descripcion %></p>
+                        <div class="card-descripcion">
+                            <h5 class="card-title"><%= publicacion.Titulo %></h5>
+                            <p class="card-text"><%= publicacion.Descripcion %></p>
+                        </div>                        
                         <p class="card-text">Especie: <%= CargarEspecie() %></p>
                         <p class="card-text">Raza: <%= publicacion.Raza %></p>
                         <p class="card-text">Edad: <%= CargarEdad() %></p>
@@ -35,7 +38,7 @@
                         <p class="card-text">Estado: <%= publicacion.Estado %></p>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <% foreach (var imagen in listaImagenes)
@@ -56,57 +59,48 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-2 div-botones">
-                    <div class="col-md-2 div-botones">
+                <div class="col-md-2">
+                    <div class="div-botones">
                         <% if (Session["Usuario"] != null)
-                            {
+                           {
                                 Usuario usuario = (Usuario)Session["Usuario"];
                                 if (usuario.Tipo != TipoUsuario.Refugio)
                                 {
                                     if (ComprobarAdopcion(usuario.Id, publicacion.Id))
                                     { %>
-                        <div>
-                            <h5>Ya estás en Proceso de Adopción con este animal</h5>
-                        </div>
-                        <div>
-                            <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        </div>
-                        <%}
-                            else if (publicacion.Estado == Estado.EnProceso)
-                            {%>
-                        <div>
-                            <h5>Publicación Pausada por estar en proceso de Adopción</h5>
-                        </div>
-                        <div>
-                            <asp:Button ID="btnFavorito2" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        </div>
-                        <%}
-                            else
-                            {%>
-                        <div>
-                            <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
-                        </div>
-                        <div>
-                            <asp:Button ID="btnFavorito3" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
-                        </div>
-                        <%}
-                                  }
-                              }
-                              else
-                              {%>
-                        <div>
-                            <a href="Login.aspx" class="btn btn-primary">Adoptar</a>
-                        </div>
-                        <div>
-                            <a href="Login.aspx" class="btn btn-primary">Agregar a Favoritos</a>
-                        </div>
-                        <%} %>
+                                    <div>
+                                        <h5>Ya estás en Proceso de Adopción con este animal</h5>
+                                    </div>
+                                    <div>
+                                        <asp:Button ID="btnFavorito" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                                    </div>
+                                    <%}
+                                    else if (publicacion.Estado == Estado.EnProceso)
+                                    {%>
+                                    <div>
+                                        <h5>Publicación Pausada por estar en proceso de Adopción</h5>
+                                    </div>
+                                    <div>
+                                        <asp:Button ID="btnFavorito2" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                                    </div>
+                                   <%}
+                                    else
+                                    {%>
+                                        <div>
+                                            <a href="ConfirmarDatos.aspx?ID=<%= publicacion.Id %>" class="btn btn-primary">Adoptar</a>
+                                        </div>
+                                        <div>
+                                            <asp:Button ID="btnFavorito3" runat="server" CssClass="btn btn-primary" OnClick="btnFavorito_Click" Text="Agregar a favoritos" />
+                                        </div>
+                                  <%}
+                                }
+                           }%>                            
                     </div>
-
-
                 </div>
+              </div>
+           </div>
         </section>
-    </div>
+   
 
     <%--COMENTARIOS--%>
 
