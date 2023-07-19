@@ -17,3 +17,15 @@
     color: #24566E;
     font-size: 2.0rem;
 }
+
+
+.enlace {
+    color: #C45F2E !important;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+}
+
+    .enlace:hover {
+        color: #24566E !important;
+    }

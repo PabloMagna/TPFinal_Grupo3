@@ -30,12 +30,16 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Detalle Publicación">
                     <ItemTemplate>
-                        <a href='<%# "DetallePublicacion.aspx?ID=" + Eval("IDPublicacion") %>'>Ver detalle</a>
+                        <a class="enlace" href='<%# "DetallePublicacion.aspx?ID=" + Eval("IDPublicacion") %>'>
+                             <iconify-icon icon="fluent-mdl2:storyboard" width="30px"></iconify-icon>
+                        </a>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Eliminar adopcion">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEliminar" runat="server" Text="Ya no quiero adoptarlo" OnClientClick="return ConfirmarEliminar();" OnClick="lnkEliminar_Click" CommandArgument='<%# Eval("IDPublicacion") %>'></asp:LinkButton>
+                        <asp:LinkButton class="enlace" ID="lnkEliminar" runat="server" OnClientClick="return ConfirmarEliminar();" OnClick="lnkEliminar_Click" CommandArgument='<%# Eval("IDPublicacion") %>'>
+                            <iconify-icon icon="emojione:cross-mark-button" width="30px"></iconify-icon>
+                        </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

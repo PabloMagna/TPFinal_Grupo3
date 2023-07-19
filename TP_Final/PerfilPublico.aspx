@@ -14,7 +14,7 @@
                         <h2 class="card-title"><%=persona.Nombre +" "+ persona.Apellido %></h2>
                         <%if (persona.UrlImagen != null)
                             { %>
-                        <img style="max-height:300px; max-width:300px" src="<%=persona.UrlImagen %>" alt="Alternate Text" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'" /> <%--PONER PLAHCEHOLDER IMAGEN SI ES NULL, TAMBIEN MAS ABAJO EN REFUGIO--%>
+                        <img style="max-height:300px; max-width:300px" src="<%=persona.UrlImagen %>" alt="Alternate Text" onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/301/664/non_2x/adopt-a-dog-help-the-homeless-animals-find-a-home-cartoon-illustration-vector.jpg'" /> 
                         <%} %>
                         <h5 class="card-text">Provincia: <%=BuscarProvinciaPorID(persona.IDProvincia)%></h5>
                         <h5 class="card-text">Localidad: <%=BuscarLocalidadPorID(persona.IDLocalidad)%></h5>
