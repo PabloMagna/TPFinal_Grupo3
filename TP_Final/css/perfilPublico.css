@@ -1,0 +1,30 @@
+﻿body {
+    
+}
+.row {
+    width: 100% !important;
+}
+
+.container {
+    width: 100% !important;
+}
+.card {
+    width: 70% !important;
+}
+.card-body {
+    width: 100% !important;
+    align-content:center;
+    text-align:center;
+}
+
+ul {
+    list-style-type: none;
+}
+.card-title {
+    background-color: #D2E3EB;
+    padding: 10px;
+    text-align: center;
+    color: #24566E;
+    font-size: 1.5rem;
+    width:100%;
+}

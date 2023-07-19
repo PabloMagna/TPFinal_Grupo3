@@ -87,6 +87,7 @@
     <Content Include="css\galeria.css" />
     <Content Include="css\formPublicacion.css" />
     <Content Include="css\Perfil.css" />
+    <Content Include="css\perfilPublico.css" />
     <Content Include="default.aspx" />
     <Content Include="DetallePublicacion.aspx" />
     <Content Include="EditarImagenesMascota.aspx" />
