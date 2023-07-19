@@ -18,11 +18,6 @@
     <div class="table-responsive">
         <asp:GridView ID="dgvAdopciones" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" OnRowDataBound="dgvAdopciones_RowDataBound">
             <Columns>
-                <asp:TemplateField HeaderText="Número de Lista">
-                    <ItemTemplate>
-                        <%# Container.DataItemIndex + 1 %>
-                    </ItemTemplate>
-                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Estado">
                     <ItemTemplate>
                         <%# ((Dominio.EstadoAdopcion)Eval("Estado")).ToString() %>

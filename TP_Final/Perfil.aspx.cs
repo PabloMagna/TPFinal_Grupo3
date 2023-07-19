@@ -102,26 +102,30 @@ namespace TP_Final
             {
                 HiddenField hfIDHistoria = (HiddenField)repeaterItem.FindControl("hfIDHistoria");
                 TextBox tbDescripcion = (TextBox)repeaterItem.FindControl("tbDescripcion");
-                HtmlInputFile tbImgenFile = (HtmlInputFile)repeaterItem.FindControl("tbImagenHistoria");
+                HtmlInputFile tbImagenFile = (HtmlInputFile)repeaterItem.FindControl("tbImagenHistoria");
 
-                if (hfIDHistoria != null && tbDescripcion != null)
+                if (hfIDHistoria != null && tbDescripcion != null && tbImagenFile != null)
                 {
                     int idHistoria = Convert.ToInt32(hfIDHistoria.Value);
                     string descripcion = tbDescripcion.Text;
-                   
+
                     // Obtener el objeto Historia y actualizar los campos
                     HistoriaNegocio negocio = new HistoriaNegocio();
                     Historia nueva = negocio.Buscar(idHistoria);
-                    
+
                     if (nueva != null)
                     {
                         nueva.Descripcion = descripcion;
-                        // si el cliente cargo una img, la actualizo, sino queda la que ya tenia.
-                        string urlAux =ObtenerUrlImagenHistoria(nueva.ID, tbImgenFile);
-                        if (urlAux != null)
+
+                        if (tbImagenFile.PostedFile != null && tbImagenFile.PostedFile.ContentLength > 0) // Verificar si se cargó una nueva imagen
                         {
-                            nueva.UrlImagen = urlAux;
+                            string urlAux = ObtenerUrlImagenHistoria(nueva.ID, tbImagenFile);
+                            if (urlAux != null)
+                            {
+                                nueva.UrlImagen = urlAux;
+                            }
                         }
+
                         // Actualizar el objeto en tu lógica de negocio o base de datos
                         negocio.Actualizar(nueva);
 
@@ -134,6 +138,7 @@ namespace TP_Final
                 }
             }
         }
+
 
 
 
