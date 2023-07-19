@@ -71,6 +71,7 @@
     <Content Include="AdministrarUsuarios.aspx" />
     <Content Include="Adopciones.aspx" />
     <Content Include="AltaCuenta.aspx" />
+    <Content Include="BorrarComentario.aspx" />
     <Content Include="BorrarPublicacion.aspx" />
     <Content Include="ConfirmarDatos.aspx" />
     <Content Include="ContactoAdopcion.aspx" />
@@ -155,6 +156,13 @@
     </Compile>
     <Compile Include="AltaCuenta.aspx.designer.cs">
       <DependentUpon>AltaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BorrarComentario.aspx.cs">
+      <DependentUpon>BorrarComentario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BorrarComentario.aspx.designer.cs">
+      <DependentUpon>BorrarComentario.aspx</DependentUpon>
     </Compile>
     <Compile Include="BorrarPublicacion.aspx.cs">
       <DependentUpon>BorrarPublicacion.aspx</DependentUpon>

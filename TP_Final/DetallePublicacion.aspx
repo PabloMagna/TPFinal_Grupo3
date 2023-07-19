@@ -7,6 +7,16 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
     </style>
+    <script>
+    function confirmarEliminacion(idComentario) {
+        // Mostrar cuadro de diálogo de confirmación
+        if (confirm("¿Estás seguro de que quieres eliminar este comentario?")) {
+            // Si el usuario hace clic en Aceptar, redireccionar a la página de borrado con el ID del comentario
+            window.location.href = "BorrarComentario.aspx?ID=" + idComentario;
+        }
+        // Si el usuario hace clic en Cancelar, no se realizará ninguna acción
+    }
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -125,6 +135,10 @@
         <div class="comentario">
             <p id="pComentario"><%=coment.Descripcion %></p>
         </div>
+        <%if (((Usuario)Session["Usuario"]).Id == coment.IdUsuario)
+            { %>
+        <a class="btn btn-danger" href="#" onclick="confirmarEliminacion(<%= coment.Id %>);">Borrar Comentario</a>
+        <%} %>
     </section>
     <%
         } %>

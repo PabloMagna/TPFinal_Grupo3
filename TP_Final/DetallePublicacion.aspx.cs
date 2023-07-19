@@ -114,7 +114,7 @@ namespace TP_Final
             UsuarioNegocio usuarioNego = new UsuarioNegocio();
             //usuarios = new List<Usuario>();
             comentarios = new List<Comentario>();
-            comentarios = comentarioNego.ListarPorPublicacion(id);
+            comentarios = comentarioNego.ListarPorPublicacionActivas(id);
             camposUsuario = new List<Campos>();
 
             foreach (var comentario in comentarios)
@@ -225,12 +225,13 @@ namespace TP_Final
         {
             UsuarioNegocio negocioUsuario = new UsuarioNegocio();
             Usuario usuario = negocioUsuario.BuscarxID(iDusuario);
-            if(usuario != null && usuario.Tipo == TipoUsuario.PersonaCompleto)
+            if (usuario != null && usuario.Tipo == TipoUsuario.PersonaCompleto)
             {
                 PersonaNegocio negocio = new PersonaNegocio();
                 Persona persona = negocio.BuscarporUsuario(usuario.Id);
                 return persona.Nombre + persona.Apellido;
-            }else if(usuario != null && usuario.Tipo == TipoUsuario.Refugio)
+            }
+            else if (usuario != null && usuario.Tipo == TipoUsuario.Refugio)
             {
                 RefugioNegocio negocio = new RefugioNegocio();
                 Refugio refugio = negocio.BuscarporUsuario(usuario.Id);

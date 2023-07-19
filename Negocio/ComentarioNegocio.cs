@@ -130,6 +130,40 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Comentario> ListarPorPublicacionActivas(int IDPublicacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Comentario> lista = new List<Comentario>();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id, IdPublicacion, IdUsuario, Descripcion, Estado, FechaHora FROM Comentarios WHERE IdPublicacion = @IDPublicacion AND Estado = 1");
+                datos.setearParametro("@IDPublicacion", IDPublicacion);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Comentario aux = new Comentario();
+                    aux.Id = datos.Lector.GetInt32(0);
+                    aux.IdPublicacion = datos.Lector.GetInt32(1);
+                    aux.IdUsuario = datos.Lector.GetInt32(2);
+                    aux.Descripcion = datos.Lector.GetString(3);
+                    aux.Estado = (EstadoComentario)Enum.Parse(typeof(EstadoComentario), datos.Lector.GetInt32(4).ToString());
+                    aux.FechaHora = datos.Lector.GetDateTime(5);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Comentario> ListarPorUsuario(int IDUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -183,5 +217,34 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public bool ExisteComentarioActivo(int idComentario, int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Comentarios WHERE Id = @IDComentario AND IdUsuario = @IDUsuario AND Estado = @EstadoActivo");
+                datos.setearParametro("@IDComentario", idComentario);
+                datos.setearParametro("@IDUsuario", idUsuario);
+                datos.setearParametro("@EstadoActivo", EstadoComentario.Activo);
+                datos.ejecutarLectura();
+
+                // Verificar si hay algún resultado (si existe un comentario activo con el ID y el ID de usuario proporcionados)
+                if (datos.Lector.Read())
+                {
+                    return true; // Devolver true si existe al menos un comentario activo con el ID y el ID de usuario
+                }
+
+                return false; // Si no se encontró ningún resultado, no existe comentario activo con esos valores
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
