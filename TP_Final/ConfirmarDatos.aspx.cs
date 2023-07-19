@@ -221,9 +221,18 @@ namespace TP_Final
                     Persona persona = personaNegocio.BuscarporUsuario(donante.Id);
                     if (persona != null)
                     {
-                        donanteInfo = $"Donante: {persona.Nombre} {persona.Apellido}<br>" +
-                                      $"Email: {donante.Email}<br>" +
-                                      $"Teléfono: {persona.Telefono}<br>";
+                        string perfilPublicoUrl = GetAbsoluteUrl($"PerfilPublico.aspx?ID={donante.Id}");
+                        donanteInfo = $"<div style=\"font-family: Arial, sans-serif; text-align: center;\">" +
+                                      $"<div style=\"background-color: #f2f2f2; border: 1px solid #ccc; padding: 20px;\">" +
+                                      $"<h2>¡Mandamos tu solicitud de Adopción!</h2>" +
+                                      $"<h3>Detalles de la adopción:</h3>" +
+                                      $"<strong>Publicación:</strong> {publicacion.Titulo}<br>" +
+                                      $"<strong>Donante</strong><br>" +
+                                      $"<strong>Nombre:</strong> {persona.Nombre} {persona.Apellido}<br>" +
+                                      $"<strong>Email:</strong> {donante.Email}<br>" +
+                                      $"<strong>Teléfono:</strong> {persona.Telefono}<br>" +
+                                      $"<a href=\"{perfilPublicoUrl}\">Ver Perfil Público con Historial</a>" +
+                                      $"</div></div>";
                     }
                 }
                 else if (donante.Tipo == TipoUsuario.Refugio)
@@ -233,27 +242,31 @@ namespace TP_Final
                     if (refugio != null)
                     {
                         string perfilPublicoUrl = GetAbsoluteUrl($"PerfilPublico.aspx?ID={donante.Id}");
-                        donanteInfo = $"Donante: {refugio.Nombre}<br>" +
-                                      $"Email: {donante.Email}<br>" +
-                                      $"Teléfono: {refugio.Telefono}<br>" +
-                                      $"Dirección: {refugio.Direccion}<br>" +
-                                      $"Link al Perfil Público con Historial:{perfilPublicoUrl}<br>";
+                        donanteInfo = $"<div style=\"font-family: Arial, sans-serif; text-align: center;\">" +
+                                      $"<div style=\"background-color: #f2f2f2; border: 1px solid #ccc; padding: 20px;\">" +
+                                      $"<h2>¡Mandamos tu solicitud de Adopción!</h2>" +
+                                      $"<h3>Detalles de la adopción:</h3>" +
+                                      $"<strong>Publicación:</strong> {publicacion.Titulo}<br>" +
+                                      $"<strong>Donante:</strong> {refugio.Nombre}<br>" +
+                                      $"<strong>Email:</strong> {donante.Email}<br>" +
+                                      $"<strong>Teléfono:</strong> {refugio.Telefono}<br>" +
+                                      $"<strong>Dirección:</strong> {refugio.Direccion}<br>" +
+                                      $"<a href=\"{perfilPublicoUrl}\">Ver Perfil Público con Historial</a>" +
+                                      $"</div></div>";
                     }
                 }
             }
 
             // Crear el cuerpo del correo electrónico en formato HTML
             string body = $"<html><body>" +
-                          $"<h2>¡Mandamos tu solicitud de Adopción!</h2><br>" +
-                          $"<h3>Detalles de la adopción:</h3><br>" +
-                          $"<h3><strong>Publicación:</strong> {publicacion.Titulo}</h3><br>" +
-                          $"<h3>{donanteInfo}</h3>" +
+                          $"{donanteInfo}" +
                           $"</body></html>";
 
             // Enviar el correo electrónico
             EmailSender emailSender = new EmailSender();
             emailSender.SendEmail(emailUsuario, "PetNet", "Tu solicitud de adopción fue enviada", body);
         }
+
 
         private void EnviarCorreoDonante(int idPublicacion, int idUsuarioAdoptante)
         {
@@ -269,18 +282,21 @@ namespace TP_Final
                 if (persona != null)
                 {
                     string perfilPublicoUrl = GetAbsoluteUrl($"PerfilPublico.aspx?ID={adoptante.Id}");
-                    adoptanteInfo = $"Adoptante: {persona.Nombre} {persona.Apellido}<br>" +
-                                    $"Email: {adoptante.Email}<br>" +
-                                    $"Teléfono: {persona.Telefono}<br>" +
-                                    $"Link al Perfil Público con Historial:{perfilPublicoUrl}<br>";
+                    adoptanteInfo = $"<div style=\"font-family: Arial, sans-serif; text-align: center;\">" +
+                                    $"<div style=\"background-color: #f2f2f2; border: 1px solid #ccc; padding: 20px;\">" +
+                                    $"<h2>¡Hay un Interesado en tu Mascota!</h2>" +
+                                    $"<h3>Detalles de la adopción:</h3>" +
+                                    $"<strong>Adoptante:</strong> {persona.Nombre} {persona.Apellido}<br>" +
+                                    $"<strong>Email:</strong> {adoptante.Email}<br>" +
+                                    $"<strong>Teléfono:</strong> {persona.Telefono}<br>" +
+                                    $"<a href=\"{perfilPublicoUrl}\">Ver Perfil Público con Historial</a>" +
+                                    $"</div></div>";
                 }
             }
 
             // Crear el cuerpo del correo electrónico en formato HTML
             string body = $"<html><body>" +
-                          $"<h2>¡Hay un Interesado en tu Mascota!</h2><br>" +
-                          $"<h3>Detalles de la adopción:</h3><br>" +
-                          $"<h3>{adoptanteInfo}</h3>" +
+                          $"{adoptanteInfo}" +
                           $"</body></html>";
 
             // Obtener el correo electrónico del donante
@@ -295,6 +311,7 @@ namespace TP_Final
                 emailSender.SendEmail(donante.Email, "PetNet", "Tu publicación tiene un Interesado", body);
             }
         }
+
 
 
         protected void cvProvincia_ServerValidate(object source, ServerValidateEventArgs args)

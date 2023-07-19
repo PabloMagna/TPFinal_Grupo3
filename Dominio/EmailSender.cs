@@ -45,12 +45,13 @@ namespace Dominio
         public void EnviarCorreoRechazoAdopcion(string emailAdoptante, string motivoRechazo)
         {
             string asunto = "Adopción rechazada";
-            string cuerpo = "<html><body>";
-            cuerpo += "<h2>Adopción rechazada</h2>";
-            cuerpo += "<p>El donante de la mascota ha rechazado tu adopción.</p>";
-            cuerpo += "<p>Estas son las razones:</p>";
-            cuerpo += "<p>" + motivoRechazo.Replace("\n", "<br>") + "</p>";
-            cuerpo += "</body></html>";
+            string cuerpo = $"<html><body style=\"font-family: Arial, sans-serif; text-align: center;\">";
+            cuerpo += $"<div style=\"background-color: #f2f2f2; border: 1px solid #ccc; padding: 20px;\">";
+            cuerpo += $"<h2>Adopción rechazada</h2>";
+            cuerpo += $"<p>El donante de la mascota ha rechazado tu adopción.</p>";
+            cuerpo += $"<p>Estas son las razones:</p>";
+            cuerpo += $"<p>{motivoRechazo.Replace("\n", "<br>")}</p>";
+            cuerpo += $"</div></body></html>";
 
             SendEmail(emailAdoptante, "", asunto, cuerpo);
         }
@@ -58,15 +59,17 @@ namespace Dominio
         public void EnviarCorreoBajaAdopcion(string emailAdoptante, string motivoBaja)
         {
             string asunto = "Adopción cancelada";
-            string cuerpo = "<html><body>";
-            cuerpo += "<h2>Adopción cancelada</h2>";
-            cuerpo += "<p>La adopción de la mascota ha sido cancelada.</p>";
-            cuerpo += "<p>Estas son las razones:</p>";
-            cuerpo += "<p>" + motivoBaja.Replace("\n", "<br>") + "</p>";
-            cuerpo += "</body></html>";
+            string cuerpo = $"<html><body style=\"font-family: Arial, sans-serif; text-align: center;\">";
+            cuerpo += $"<div style=\"background-color: #f2f2f2; border: 1px solid #ccc; padding: 20px;\">";
+            cuerpo += $"<h2>Adopción cancelada</h2>";
+            cuerpo += $"<p>La adopción de la mascota ha sido cancelada.</p>";
+            cuerpo += $"<p>Estas son las razones:</p>";
+            cuerpo += $"<p>{motivoBaja.Replace("\n", "<br>")}</p>";
+            cuerpo += $"</div></body></html>";
 
             SendEmail(emailAdoptante, "", asunto, cuerpo);
         }
+
 
     }
 }
